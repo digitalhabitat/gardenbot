@@ -4,13 +4,14 @@
     "type": "split",
     "children": [
       {
-        "id": "31c3e1cdd6d82003",
+        "id": "a5bf91a08f616712",
         "type": "leaf",
         "state": {
           "type": "markdown",
           "state": {
-            "file": "systems/computer-system/computer-system-main.md",
-            "mode": "preview"
+            "file": "main.md",
+            "mode": "preview",
+            "source": false
           }
         }
       }
@@ -48,8 +49,7 @@
               }
             }
           }
-        ],
-        "currentTab": 1
+        ]
       }
     ],
     "direction": "horizontal",
@@ -69,7 +69,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "systems/computer-system/computer-system-main.md",
+                "file": "main.md",
                 "collapseAll": true,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -84,19 +84,19 @@
       }
     ],
     "direction": "horizontal",
-    "width": 286
+    "width": 100
   },
-  "active": "31c3e1cdd6d82003",
+  "active": "a5bf91a08f616712",
   "lastOpenFiles": [
-    "systems/computer-system/computer-system-main.md",
     "main.md",
-    "systems/power-system/power-system-main.md",
     "systems/drive-system/drive-system-main.md",
+    "systems/computer-system/computer-system-main.md",
     "inbox.md",
+    "chassis/chassis.md",
+    "systems/power-system/power-system-main.md",
     "Acknowlegements.md",
     "engineering-documentation.md",
     "systems/drive-system/drive-system-details/drive-motor-controller.md",
-    "wire-management/DIN-rail.md",
-    "wire-management/wire-management.md"
+    "wire-management/DIN-rail.md"
   ]
 }
