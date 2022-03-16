@@ -9,8 +9,8 @@
         "state": {
           "type": "markdown",
           "state": {
-            "file": "main.md",
-            "mode": "preview",
+            "file": "inbox.md",
+            "mode": "source",
             "source": false
           }
         }
@@ -40,7 +40,7 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "",
+                "query": ".com",
                 "matchingCase": false,
                 "explainSearch": false,
                 "collapseAll": false,
@@ -69,7 +69,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "main.md",
+                "file": "inbox.md",
                 "collapseAll": true,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -88,15 +88,15 @@
   },
   "active": "a5bf91a08f616712",
   "lastOpenFiles": [
-    "main.md",
-    "systems/drive-system/drive-system-main.md",
-    "systems/computer-system/computer-system-main.md",
     "inbox.md",
+    "main.md",
+    "systems/computer-system/computer-system-main.md",
+    "dimensions/chassis_assembly_parameters.PNG",
+    "dimensions/main_capture.PNG",
+    "dimensions/mobile robot - How should emergency stops be wired_ - Robotics Stack Exchange.pdf",
+    "systems/drive-system/drive-system-main.md",
     "chassis/chassis.md",
     "systems/power-system/power-system-main.md",
-    "Acknowlegements.md",
-    "engineering-documentation.md",
-    "systems/drive-system/drive-system-details/drive-motor-controller.md",
-    "wire-management/DIN-rail.md"
+    "Acknowlegements.md"
   ]
 }

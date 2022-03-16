@@ -19,7 +19,7 @@ aliases: nano
 
 ### Software
 - OS: Ubuntu 20.04
-	- https://qengineering.eu/install-ubuntu-20.04-on-jetson-nano.html
+	- https://qengineering.eu/install-ubuntu-20.04-on-jetson-nano.html ^links
 - ROS2
 
 ### Peripheral Deveics
