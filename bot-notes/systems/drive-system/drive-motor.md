@@ -1,12 +1,12 @@
 ---
-aliases: [motors]
+aliases: [motors, MY1016 ]
 ---
 
-# Drive System Motors
+# Drive Motor
 ---
-![[drive_motor_assembly.PNG|300x300]]
+![[drive_motor_assembly_nobg.PNG|300x300]]
 
-### Specs
+## Specs
 Type: 24 Volt Brushed DC
 Max Current: 15 A
 Rated Speed: 2750 RPM +/- 5%  
@@ -16,10 +16,12 @@ Model: MY1016
 Sprocket: 11 Tooth #25 ANSI Roller Chain
 Supplier Link: https://www.monsterscooterparts.com/24vo200wamow.html
 
+```csvtable
+source: MY1060_specs.csv
+```
 
 
-
-Parts
+## Parts
 - M6 Hex Bolt
 - M6 Eye Bolt
 - M6 Hex Nut
@@ -27,7 +29,7 @@ Parts
 - M6 Oversized Washer 
 - Corner Machine Bracket
 	- Drawing: [[2313n26_corner machine bracketl.gif]]
-	- Supllier Link: https://www.mcmaster.com/2313N26/
+	- Supplier Link: https://www.mcmaster.com/2313N26/
 - Chain: 108 link #25 ASNI Roller Chain
 	- Supplier Linker: [108-link-25-chain.html](https://www.monsterscooterparts.com/brands/pulse/models/street-cruiser-e/108-link-25-chain.html)
 

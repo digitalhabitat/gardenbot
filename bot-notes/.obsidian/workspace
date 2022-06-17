@@ -4,15 +4,11 @@
     "type": "split",
     "children": [
       {
-        "id": "a5bf91a08f616712",
+        "id": "16e8cc1425a211f8",
         "type": "leaf",
         "state": {
-          "type": "markdown",
-          "state": {
-            "file": "inbox.md",
-            "mode": "source",
-            "source": false
-          }
+          "type": "empty",
+          "state": {}
         }
       }
     ],
@@ -23,8 +19,9 @@
     "type": "split",
     "children": [
       {
-        "id": "f63e6f30165423ae",
+        "id": "b0e246f4a21db460",
         "type": "tabs",
+        "dimension": 25.64102564102564,
         "children": [
           {
             "id": "d4054f9bd7ac7862",
@@ -33,70 +30,68 @@
               "type": "file-explorer",
               "state": {}
             }
-          },
+          }
+        ]
+      },
+      {
+        "id": "f63e6f30165423ae",
+        "type": "tabs",
+        "dimension": 74.35897435897436,
+        "children": [
           {
             "id": "f9adf6e06bc0df93",
             "type": "leaf",
             "state": {
               "type": "search",
               "state": {
-                "query": ".com",
-                "matchingCase": false,
-                "explainSearch": false,
-                "collapseAll": false,
+                "query": "",
+                "matchingCase": true,
+                "explainSearch": true,
+                "collapseAll": true,
                 "extraContext": false,
                 "sortOrder": "alphabetical"
               }
             }
+          },
+          {
+            "id": "5efea92e2caa851a",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "systems/drive-system/drive-motor.md",
+                "mode": "source",
+                "backlinks": true,
+                "source": false
+              }
+            }
           }
-        ]
+        ],
+        "currentTab": 1
       }
     ],
     "direction": "horizontal",
-    "width": 347
+    "width": 1228.8000000000002
   },
   "right": {
     "id": "10b75a03e44355b5",
     "type": "split",
-    "children": [
-      {
-        "id": "40a62b55ac55a253",
-        "type": "tabs",
-        "children": [
-          {
-            "id": "d5e45c9f967fd6a5",
-            "type": "leaf",
-            "state": {
-              "type": "backlink",
-              "state": {
-                "file": "inbox.md",
-                "collapseAll": true,
-                "extraContext": false,
-                "sortOrder": "alphabetical",
-                "showSearch": false,
-                "searchQuery": "",
-                "backlinkCollapsed": false,
-                "unlinkedCollapsed": true
-              }
-            }
-          }
-        ]
-      }
-    ],
+    "children": [],
     "direction": "horizontal",
-    "width": 100
+    "width": 429,
+    "collapsed": true
   },
-  "active": "a5bf91a08f616712",
+  "active": "16e8cc1425a211f8",
   "lastOpenFiles": [
-    "inbox.md",
+    "systems/drive-system/drive-motor.md",
+    "systems/computer-system/rpi4_pinout.png",
+    "systems/computer-system/computer-system.md",
+    "systems/computer-system/computer-rpi.md",
+    "systems/computer-system/computer-nano.md",
     "main.md",
-    "systems/computer-system/computer-system-main.md",
-    "dimensions/chassis_assembly_parameters.PNG",
-    "dimensions/main_capture.PNG",
-    "dimensions/mobile robot - How should emergency stops be wired_ - Robotics Stack Exchange.pdf",
-    "systems/drive-system/drive-system-main.md",
-    "chassis/chassis.md",
-    "systems/power-system/power-system-main.md",
-    "Acknowlegements.md"
+    "systems/power-system/power-system.md",
+    "systems/drive-system/drive-motor-controller.md",
+    "systems/drive-system/drive-system-details/vclamp_datasheet.pdf",
+    "site/scripts/md-page-src/README.md"
   ]
 }

@@ -18,13 +18,13 @@ Supplier Link: https://www.monsterscooterparts.com/chain-sprocket-razor-mx350-mx
 
 ---
 
-## Spocket-to-Wheel Adapter
+## Sprocket-to-Wheel Adapter
 ![[sprocket_adapter_and_hardware.PNG|300]]
 
 Parts:
 - 2x Hub Sprocket Adapter (Laser Cut Metal)
 	- 2x Adapter Plate A
-	- 2x Apapter Plate B 
+	- 2x Adapter Plate B 
 	- Supplier Link: https://sendcutsend.com/
     - Material: AR400-250 (.25 in, Steel)
 	- Files: #todo
