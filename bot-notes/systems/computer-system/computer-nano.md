@@ -20,11 +20,17 @@ https://elinux.org/Jetson_Nano
 	- https://qengineering.eu/install-ubuntu-20.04-on-jetson-nano.html ^links
 - ROS2
 
+```shell
+ssh jetson@192.168.1.14
+```
+
+## Caveats
+- The Jetson Nano uses a custom kernel (GNU/Linux 4.9.253-tegra aarch64) that can't properly install WireGuard due to a [WireGuard bug](https://forums.developer.nvidia.com/t/kernel-error-when-using-wireguard/184764). The workaround is to use a user space implementation, [wireguard-go](https://github.com/WireGuard/wireguard-go)
 ---
 ## Peripheral Devices
 - [[drive-motor-controller|roboclaw]]
 - Bluetooth Controller (Procurement Pending)
-- GNSS Reciever (Procurement Pending)
+- GNSS Receiver (Procurement Pending)
 
 ## Power Supply
 - [[power-system]]

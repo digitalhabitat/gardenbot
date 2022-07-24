@@ -18,6 +18,10 @@ https://elinux.org/RPi_VerifiedPeripherals
 -  Ubuntu 22.04 LTS (GNU/Linux 5.15.0-1011-raspi aarch64)
 - ROS2
 
+```shell
+ssh bot@192.168.22
+```
+
 ### Installations 
 - https://roboticsbackend.com/install-ros2-on-raspberry-pi/
 

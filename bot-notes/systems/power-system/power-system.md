@@ -11,11 +11,13 @@
 
 ---
 
-## Motor Battery System	
+## 24V Motor Battery System	
  
  ### Components
  - 2x12V-9AH SLA Batteries 
- - 24V Charger
+ - 24 V  1.5 A Charger `XHK-909-2415`
+	 - Model: XHK-909-2415
+	 - Precaution: **When the light is green, remove the charger**
  - Fuse Holder
  - Fuses (procurement pending #todo)
  
@@ -31,6 +33,11 @@
 - Supplier Link: https://www.amazon.com/dp/B001NJ3H0C
 - Pre-Charger
 - Emergency Stop
+- Cycle use : >260 cyles
+- Floating and Standby use : 3-5 years
+- Self Discharge 3% per month @ 25 C
+- Charge Voltage @ 25C
+	- 14.4-14.7  (-30mV/C), max. Current: 2.70A
 
 
 ###  Charger Specs
