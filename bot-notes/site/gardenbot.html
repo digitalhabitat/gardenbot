@@ -33,3 +33,17 @@ http://192.168.1.22:8421
 ```sh
 sudo python3 blink.py
 ```
+
+## docker notes
+
+Start a stoped container and enter an interactive bash shell
+
+```sh
+docker start -ai <docker_id_or_name>
+```
+
+Start a new shell for a running ROS container
+
+```sh
+docker exec -it <ros_docker_id> /ros_entrypoint.sh bash
+```

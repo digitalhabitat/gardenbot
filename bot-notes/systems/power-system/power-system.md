@@ -7,6 +7,7 @@
 - Power Strip
 - Motor Battery System
 - Logic Battery System
+	- PiSugar Battery
 - USB Isolator
 
 ---
@@ -93,7 +94,30 @@
 - Max Current: #todo 
 - Supplier Link: #todo 
 
+## PiSugar2
+> This UPS is only intended as a power fail safe for the Raspberry Pi incase the 12V logic battery fails
+-  Pisugar2 Portable 1200 mAh UPS Lithium Battery
+- https://github.com/PiSugar/PiSugar/wiki/PiSugar2
+- https://github.com/PiSugar/pisugar-power-manager-rs#unix-domain-socket--webscoket--tcp
+- Output Current: 2.4A 
+- Output Voltage:  5V 
+- I2C: 0x75(BAT) 0x32(RTC)
 
+### CLI
+- Fetch battery charge percentage
+```
+echo "get battery" | nc -q 0 127.0.0.1 8423
+```
 
+### WebUI
+**Local WebUI access**
+- Via web browser visit http://192.168.1.22:8421
+
+**Remote WebUI access**
+1. In a terminal enter
+```sh
+ ssh -L 8080:192.168.1.22:8421 proxy8.remoteiot.com
+```
+2. Via web browser visit http://localhost:8080/index.html
 
 [[power_system_requirements_specifications]]
