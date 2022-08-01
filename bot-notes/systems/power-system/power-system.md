@@ -16,9 +16,7 @@
  
  ### Components
  - 2x12V-9AH SLA Batteries 
- - 24 V  1.5 A Charger `XHK-909-2415`
-	 - Model: XHK-909-2415
-	 - Precaution: **When the light is green, remove the charger**
+ - 24 V  1.5 A Charger `W13112099014`
  - Fuse Holder
  - Fuses (procurement pending #todo)
  
@@ -43,10 +41,11 @@
 
 ###  Charger Specs
 - 24V SLA Wall Charger
-- Model: `XHK-909-2415`
-- Input: `100V-240~50/60Hz, 1.5A (Max)`
-- Output: `24VDC @ 1.5A`
-- Supplier Link: #todo
+- Model: `W13112099014`
+-  Input `AC 100 - 120V 50/60Hz`
+-  Output `24V 1.5A`
+-  UL listed, short circuit, over charge, and over voltage protection 
+- Supplier Link: https://www.amazon.com/gp/product/B000K0675C/
 
 ---
 
