@@ -57,7 +57,7 @@
 - 12V-to-5V Step Down Converter 
 	- Anker Dual USB-A Car Charger
 - Fuses (procurement pending #todo) 
-- Estimated Capacity = 
+- Estimated Capacity = #todo
 - (Battery Rated Capacity)
 - (Usable Capacity Correction Percentage)
 - (Battery Voltage/Converter Voltage)
@@ -65,9 +65,8 @@
 - Lead Acid 
 - Battery Rated Capacity ~= Usable Capacity (~65% of Rated Capacity) (50% of Rated Capacity, in high current applications)
 	 - https://www.youtube.com/watch?v=lPyDtuzYE5s&t=754s
-   
  
- ### Loads
+### Loads
 - [[computer-nano|nano]] ~12.5Watts~
 	- Micro-USB Power: 5V 2.5 Amps (Current Configuration)
 	- Barrel Jack Power: 5V 4 Amps 
@@ -75,9 +74,8 @@
 - [[rpi4]] #todo
 - usb watt meter
 - Rate Capacity (amp-hours)
-- 
  
- ### Logic Battery Specs
+### Logic Battery Specs
 - Capacity: #todo
 - Runtime: #todo
 - 12V SLA Battery Supply
