@@ -5,9 +5,14 @@ aliases: [ rpi4, rpi]
 -  Raspberry Pi 4 Model B Rev 1.5
 ### Components
 - Din Rail Enclosure
+- LED Status indication
+	- https://github.com/todbot/blink1-tool.git
 - Camera
+	- 15-pin MIPI Camera Serial Interface (CSI) connector
+	- https://www.amazon.com/gp/product/B07RWCGX5K
+	- https://www.raspberrypi.com/documentation/accessories/camera.html
 - Battery Backup
-- 
+-  
 https://elinux.org/RPi_VerifiedPeripherals
 
 ### Specs
@@ -15,8 +20,10 @@ https://elinux.org/RPi_VerifiedPeripherals
 - Storage: 32 GB SD Card
 
 ### Software
--  Ubuntu 22.04 LTS (GNU/Linux 5.15.0-1011-raspi aarch64)
-- ROS2
+-  Raspberry Pi OS
+	- https://www.raspberrypi.com/software/operating-systems/#raspberry-pi-os-64-bit
+- Docker
+	- https://github.com/digitalhabitat/gardenbot_ros2_workspace
 
 ```shell
 ssh bot@192.168.22
