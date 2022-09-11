@@ -3,11 +3,12 @@ aliases: [ rpi4, rpi]
 ---
 # Raspberry Pi 4  2GB
 -  Raspberry Pi 4 Model B Rev 1.5
+- `Linux raspberrypi 5.15.56-v8+ #1575 SMP PREEMPT Fri Jul 22 20:31:26 BST 2022 aarch64 GNU/Linux`
 ### Components
 - Din Rail Enclosure
 - LED Status indication
 	- https://github.com/todbot/blink1-tool.git
-- Camera
+- [[computer-rpi-camera]]
 	- 15-pin MIPI Camera Serial Interface (CSI) connector
 	- https://www.amazon.com/gp/product/B07RWCGX5K
 	- https://www.raspberrypi.com/documentation/accessories/camera.html
