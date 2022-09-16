@@ -1,14 +1,21 @@
 ---
 aliases: [ rpi4, rpi]
 ---
+
 # Raspberry Pi 4  2GB
--  Raspberry Pi 4 Model B Rev 1.5
+
+- Raspberry Pi 4 Model B Rev 1.5
+- Raspberry Pi OS 64-bit
+- Description: Debian GNU/Linux 11 (bullseye)
 - `Linux raspberrypi 5.15.56-v8+ #1575 SMP PREEMPT Fri Jul 22 20:31:26 BST 2022 aarch64 GNU/Linux`
-### Components
+
+## Components
+
 - Din Rail Enclosure
 - LED Status indication
 	- https://github.com/todbot/blink1-tool.git
 - [[computer-rpi-camera]]
+	- OV5647
 	- 15-pin MIPI Camera Serial Interface (CSI) connector
 	- https://www.amazon.com/gp/product/B07RWCGX5K
 	- https://www.raspberrypi.com/documentation/accessories/camera.html
@@ -16,30 +23,37 @@ aliases: [ rpi4, rpi]
 -  
 https://elinux.org/RPi_VerifiedPeripherals
 
-### Specs
+## Specs
+
 - USB-C Power:
 - Storage: 32 GB SD Card
 
-### Software
+## Software
+
 -  Raspberry Pi OS
 	- https://www.raspberrypi.com/software/operating-systems/#raspberry-pi-os-64-bit
 - Docker
 	- https://github.com/digitalhabitat/gardenbot_ros2_workspace
 
+wifi local ip
 ```shell
 ssh bot@192.168.22
 ```
 
-### Installations 
+## Installations 
+
 - https://roboticsbackend.com/install-ros2-on-raspberry-pi/
 - docker
 	- ROS docker Image https://hub.docker.com/_/ros
+
 ## Peripheral Devices
+
 - [[drive-motor-controller|roboclaw]]
 - Bluetooth Controller (Procurement Pending)
 - GNSS Receiver (Procurement Pending)
 
 ## Caveats
+
 - The the rpi's camera firmware and libraries will not work for Ubuntu 64bit builds. [64 bit build failures](https://github.com/raspberrypi/userland/issues/630)
 - https://2byt.es/post/vcgencmd/ 
 ```shell

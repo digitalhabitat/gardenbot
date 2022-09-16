@@ -4,16 +4,11 @@
     "type": "split",
     "children": [
       {
-        "id": "5efea92e2caa851a",
+        "id": "d088fcd177137387",
         "type": "leaf",
         "state": {
-          "type": "markdown",
-          "state": {
-            "file": "systems/computer-system/computer-rpi-camera.md",
-            "mode": "source",
-            "backlinks": true,
-            "source": false
-          }
+          "type": "empty",
+          "state": {}
         }
       }
     ],
@@ -71,7 +66,6 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "systems/computer-system/computer-rpi-camera.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -89,17 +83,17 @@
     "width": 690.800048828125,
     "collapsed": true
   },
-  "active": "5efea92e2caa851a",
+  "active": "d088fcd177137387",
   "lastOpenFiles": [
-    "systems/computer-system/computer-rpi.md",
     "systems/computer-system/computer-rpi-camera.md",
-    "systems/computer-system/computer-nano.md",
+    "systems/computer-system/computer-rpi.md",
     "systems/computer-system/computer-system.md",
+    "systems/computer-system/computer-nano.md",
+    "systems/computer-system/rpi4_pinout.png",
     "systems/power-system/power-system.md",
     "systems/drive-system/drive-motor-controller.md",
     "wire-management/wire-management.md",
     "systems/drive-system/drive-system-wheel-assembly.md",
-    "systems/drive-system/drive-system-safety.md",
-    "systems/drive-system/drive-system.md"
+    "systems/drive-system/drive-system-safety.md"
   ]
 }
