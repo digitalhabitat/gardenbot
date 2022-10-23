@@ -8,6 +8,7 @@ aliases: [ rpi4, rpi]
 - Raspberry Pi OS 64-bit
 - Description: Debian GNU/Linux 11 (bullseye)
 - `Linux raspberrypi 5.15.56-v8+ #1575 SMP PREEMPT Fri Jul 22 20:31:26 BST 2022 aarch64 GNU/Linux`
+- [[computer-rpi-setup|rpi-setup]]
 
 ## Components
 
@@ -28,23 +29,12 @@ https://elinux.org/RPi_VerifiedPeripherals
 - USB-C Power:
 - Storage: 32 GB SD Card
 
-## Software
-
--  Raspberry Pi OS
-	- https://www.raspberrypi.com/software/operating-systems/#raspberry-pi-os-64-bit
+## Software 
+- Raspberry Pi OS 64-bit
+- Visual Studio Code
 - Docker
-	- https://github.com/digitalhabitat/gardenbot_ros2_workspace
-
-wifi local ip
-```shell
-ssh bot@192.168.22
-```
-
-## Installations 
-
-- https://roboticsbackend.com/install-ros2-on-raspberry-pi/
-- docker
-	- ROS docker Image https://hub.docker.com/_/ros
+- ROS2 Workspace Remove Development Template
+- See [[computer-rpi-setup]] for instructions.
 
 ## Peripheral Devices
 

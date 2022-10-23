@@ -16,6 +16,9 @@ Est. Max Power Consumption:
 
 Est. Typical Power Consumption: 
  - 400 Watts @ 16.6-A/24-VDC (w/ two motors)
+
+
+
 ---
 
 ## Components:

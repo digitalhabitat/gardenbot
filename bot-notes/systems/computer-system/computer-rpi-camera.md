@@ -20,17 +20,13 @@ Software Stack: libcamera ()
 
 ---
 
-Send a test video with h264 rtp stream
-
-- Run this on rpi (host is client ip address)
+## Send a test video with h264 rtp stream
 
 ```shell
 gst-launch-1.0 -v videotestsrc ! x264enc tune=zerolatency bitrate=500 speed-preset=superfast ! rtph264pay ! udpsink port=5000 host=192.168.1.24
 ```
 
-Receive h264 rtp stream
-
-- Run this on client machine 
+## Receive h264 rtp stream
 
 ```shell
 gst-launch-1.0 -v udpsrc port=5000 ! "application/x-rtp, media=(string)video, clock-rate=(int)90000, encoding-name=(string)H264, payload=(int)96" ! rtph264depay ! h264parse ! decodebin ! videoconvert ! autovideosink sync=false
@@ -54,13 +50,31 @@ Client Machine (192.168.1.24)
 gst-launch-1.0 udpsrc address=192.168.1.24 port=5000 caps=application/x-rtp ! rtph264depay ! h264parse ! avdec_h264 ! autovideosink
 ```
 
-Using  libcamerasrc gstreamer element (without libcamera-vid) (not working rip yet)
-[source](https://github.com/raspberrypi/linux/issues/3974#issuecomment-791422239)
+## libcamerasrc gstreamer plugin
+Using  libcamerasrc gstreamer element (without libcamera-vid)
 
 ```shell
 gst-launch-1.0 videotestsrc ! v4l2h264enc ! 'video/x-h264,level=(string)3' ! fakesink
 ```
 
 ```shell
-gst-launch-1.0 libcamerasrc ! capsfilter caps=video/x-raw,width=1280,height=720,format=NV12 ! v4l2convert ! v4l2h264enc extra-controls="controls,repeat_sequence_header=1" ! h264parse ! rtph264pay ! udpsink host=localhost port=5000
+gst-launch-1.0 -vvvv libcamerasrc ! video/x-raw,width=1280,height=720,format=NV12,colorimetry=bt601,framerate=30/1,interlace-mode=progressive ! v4l2h264enc extra-controls="controls,repeat_sequence_header=1" ! 'video/x-h264,level=(string)4' ! h264parse ! rtph264pay ! udpsink host=192.168.1.24 port=5000
+```
+
+## Other experiments
+
+https://developer.ridgerun.com/wiki/index.php/Introduction_to_network_streaming_using_GStreamer
+
+stream test video from gstreamer to VLC
+```shell
+gst-launch-1.0 -v videotestsrc ! x264enc tune=zerolatency bitrate=500 speed-preset=superfast ! h264parse ! mpegtsmux ! rtpmp2tpay  ! udpsink port=5000 host=192.168.0.51
+```
+stream rpi camera from gstream to vlc (high latency)
+```shell
+gst-launch-1.0 -vvvv libcamerasrc ! queue ! video/x-raw,width=1280,height=720,format=NV12,colorimetry=bt601,framerate=30/1,interlace-mode=progressive ! v4l2h264enc extra-controls="controls,repeat_sequence_header=1" ! 'video/x-h264,level=(string)4' ! h264parse ! mpegtsmux ! rtpmp2tpay ! udpsink host=192.168.0.51 port=5000
+
+```
+
+```shell
+vlc rtp://@:port
 ```

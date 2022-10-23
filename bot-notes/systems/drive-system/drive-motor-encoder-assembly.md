@@ -1,5 +1,5 @@
 ---
-aliases: [encoders, AMT103-V]
+aliases: [encoder, encoders, AMT103-V]
 ---
 # Drive Motor Encoder Assembly
 ---
@@ -18,7 +18,7 @@ Parts
 - AMT10 Encoder Mount (3D printed)
 	- Material: MJF Nylon	
 	- File: encoder_mount_v3.stl
-	- Note: The mounting holes for AMT103 where too large for the M3 Philip Machine Screws. A small amount of glue was used to shrink the holes. Version 4 should resize the holes to be 5-10% smaller (2.7mm) than the screw diameter(3mm).
+	- Note: The mounting holes for AMT103 where too large for the M3 Philip Machine Screws. A small amount of glue was used to shrink the holes. Version 4 should resize the holes to be 5-10% smaller (2.7mm) than the screw diameter(3mm). Also, the length from the mount surface to the motor shaft should be 56.5mm not 55mm. See [[MY1060_dimension.webp]]
 	- Qty: 2
 	- Drawing: [[AMT10 Encoder Mount Rev-.pdf]]
 	- Supplier Link: https://www.jawstec.com/
@@ -26,6 +26,20 @@ Parts
 - AMT103-V
 	- Qty: 2
 	- Supplier Link: https://www.digikey.com/en/products/detail/cui-devices/AMT103-V/827016
+	-  Default Resolution:  [amt103-ppr]
+	- Default Resolution:Pulse per revolution (PPR)
+	- Resolution
+		- pre-set to 204
+		- `4*ppr*gear_ratio = Steps per wheel revolution`
+		- `(4x2048)*(80/11)=59578.1818182`
+		- `2*pi*r
+		- meters per rev = 0.7979645340119
+		- step per meter = `step/rev * (meters/rev)^-1`
+		- steps per meter = 74662.6939905
+		- 59578.1818182 Steps per Revolution (59,578)
+	https://www.desmos.com/calculator/nbb1lyeses
+
+		
 
 - M3 x 0.5 mm Thread, 8 mm Long (Philip Machine Screw)
 	- Purpose: Mounting AMT103-V to Encoder Mount
@@ -40,3 +54,6 @@ Parts
 	- Qty: 1
 	- Cut:
 		2 parts of 3 feet cuttings
+		
+		
+	[amt103-ppr]: 2048

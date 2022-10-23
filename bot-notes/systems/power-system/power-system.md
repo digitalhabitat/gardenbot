@@ -12,6 +12,10 @@
 
 ---
 
+
+
+
+
 ## 24V Motor Battery System	
  
  ### Components
@@ -24,6 +28,15 @@
  
  ### Loads
 -  [[drive-system#Specs]] 400 Watts???
+
+### 24 Volt Wire System
+[DC cable sizing calculator](https://www.fabhabs.com/dc-cable-sizing-calculator)
+Voltage (V): 24
+Current (Amps): 30
+Cable run, including return (m) : 2 
+Voltage drop (%): 3
+Calculated Minimum cable cross section (mm^2): 4
+Closest American (AWG) gauge: AWG 11
   
 ### Motor Battery Specs
 - Capacity: 216 Watt-Hours (Nominal)
