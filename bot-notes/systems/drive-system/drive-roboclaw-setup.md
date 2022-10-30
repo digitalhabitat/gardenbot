@@ -7,7 +7,8 @@
 
 ## Serial Interface Setup
 
-> The motor controller is not powered via the micro-USB port. In order to power the motor controller the Roboclaw must be connected to the Main Battery. Alternatively, a Logic Battery (Backup Battery) may be connected to the RoboClaw.
+>[!INFO]
+The roboclaw motor controller is not powered via the micro-USB port. In order to power the motor controller the Roboclaw must be connected to the Main Battery. Alternatively, a Logic Battery (Backup Battery) may be connected to the RoboClaw.
 
 1. With the motor controller powered off, connect the controller via the micro-USB to the Linux machine you wish to interface the controller with.
 2. Open a terminal and issue the following command to capture the serial port device label e.g. `/dev/tty*` [More info](https://en.wikipedia.org/wiki/Serial_port#Hardware_abstraction)
@@ -135,3 +136,16 @@ ros2 run teleop_twist_keyboard teleop_twist_keyboard
 
 > [!WARNING]
 This configuration may not safely stop the motors during a network connection loss, and you may lose control the bot. A possible improvement would be to include a time out mechanism that breaks the motors when the "roboclaw_node" has not received a control command after a given amount of time. This may be done with an extra ros2 node.
+
+### ROS2 roboclaw node improvements
+
+0. Open a terminal
+1. Launch the `teleop-test.xml` launch file. This combines steps 7 and 8 from the previous section.
+```sh
+ros2 launch ./launch/teleop-test.xml 
+```
+2. Press `Cltr + Shift + S` to split the terminal
+3.  Run the teleop node on the second windows
+```
+ros2 run teleop_twist_keyboard teleop_twist_keyboard 
+```

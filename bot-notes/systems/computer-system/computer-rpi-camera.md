@@ -18,6 +18,14 @@ Software Stack: libcamera ()
 
 [gstreamer pipeline examples](https://gist.github.com/hum4n0id/cda96fb07a34300cdb2c0e314c14df0a)
 
+## Installing GStreamer
+
+1. Open a terminal on the rpi4 and run the following command
+
+```sh
+sudo apt-get install libgstreamer1.0-dev libgstreamer-plugins-base1.0-dev libgstreamer-plugins-bad1.0-dev gstreamer1.0-plugins-base gstreamer1.0-plugins-good gstreamer1.0-plugins-bad gstreamer1.0-plugins-ugly gstreamer1.0-libav gstreamer1.0-tools gstreamer1.0-x gstreamer1.0-alsa gstreamer1.0-gl gstreamer1.0-gtk3 gstreamer1.0-qt5 gstreamer1.0-pulseaudio
+```
+
 ---
 
 ## Send a test video with h264 rtp stream
@@ -53,12 +61,22 @@ gst-launch-1.0 udpsrc address=192.168.1.24 port=5000 caps=application/x-rtp ! rt
 ## libcamerasrc gstreamer plugin
 Using  libcamerasrc gstreamer element (without libcamera-vid)
 
+Test Video Steam
+
 ```shell
 gst-launch-1.0 videotestsrc ! v4l2h264enc ! 'video/x-h264,level=(string)3' ! fakesink
 ```
 
+libcamerasrc Stream on Raspberry Pi
+
 ```shell
 gst-launch-1.0 -vvvv libcamerasrc ! video/x-raw,width=1280,height=720,format=NV12,colorimetry=bt601,framerate=30/1,interlace-mode=progressive ! v4l2h264enc extra-controls="controls,repeat_sequence_header=1" ! 'video/x-h264,level=(string)4' ! h264parse ! rtph264pay ! udpsink host=192.168.1.24 port=5000
+```
+
+Client Machine (192.168.1.24)
+
+```shell
+gst-launch-1.0 udpsrc address=192.168.1.24 port=5000 caps=application/x-rtp ! rtph264depay ! h264parse ! avdec_h264 ! autovideosink
 ```
 
 ## Other experiments

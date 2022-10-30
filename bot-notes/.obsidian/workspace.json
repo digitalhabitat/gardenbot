@@ -4,16 +4,16 @@
     "type": "split",
     "children": [
       {
-        "id": "76b5cc204b177e2b",
+        "id": "c06f6f7580e4154f",
         "type": "tabs",
         "children": [
           {
-            "id": "d088fcd177137387",
+            "id": "2520f8271f7de675",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "main.md",
+                "file": "wire-system/wire-management.md",
                 "mode": "source",
                 "backlinks": true,
                 "source": false
@@ -39,17 +39,17 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "",
+                "query": "MY",
                 "matchingCase": true,
-                "explainSearch": true,
-                "collapseAll": true,
+                "explainSearch": false,
+                "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical"
               }
             }
           },
           {
-            "id": "d4054f9bd7ac7862",
+            "id": "ef77bcd2bf78b3be",
             "type": "leaf",
             "state": {
               "type": "file-explorer",
@@ -63,7 +63,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 391
+    "width": 390.5
   },
   "right": {
     "id": "10b75a03e44355b5",
@@ -79,7 +79,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "main.md",
+                "file": "wire-system/wire-management.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -97,20 +97,17 @@
     "width": 690.800048828125,
     "collapsed": true
   },
-  "ribbon": {
-    "mostRecentAction": ""
-  },
-  "active": "d088fcd177137387",
+  "active": "2520f8271f7de675",
   "lastOpenFiles": [
-    "engineering-documentation.md",
-    "inbox.md",
+    "systems/computer-system/computer-rpi-camera.md",
+    "systems/computer-system/rpi4_pinout.png",
+    "systems/computer-system/computer-rpi.md",
+    "wire-system/wire-management.md",
     "main.md",
+    "wire-system/wire-diagrams/test.svg",
+    "systems/drive-system/drive-motor-controller.md",
     "Acknowlegements.md",
-    "Setup SSH.md",
-    "rpi-setup.md",
     "systems/drive-system/drive-roboclaw-setup.md",
-    "systems/computer-system/computer-rpi-setup.md",
-    "systems/drive-system/drive-motor-encoder-assembly.md",
-    "systems/drive-system/drive-system-details/drive-system-drawings/AMT10 Encoder Mount Rev-.pdf"
+    "wire-system/wire-diagrams/12v_battery_system.drawio.svg"
   ]
 }

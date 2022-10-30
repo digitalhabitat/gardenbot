@@ -6,5 +6,8 @@
   "useMarkdownLinks": false,
   "legacyEditor": false,
   "livePreview": true,
-  "spellcheck": true
+  "spellcheck": true,
+  "showInlineTitle": false,
+  "showUnsupportedFiles": true,
+  "promptDelete": false
 }

@@ -1,10 +1,8 @@
 # Garden Bot
 
----
 
-![[main_capture.PNG|400]]
+![[main_capture-removebg.png]]
 
----
 
 ## Introduction
 

@@ -13,7 +13,7 @@ This guide will outline the steps taken to setup the baseline software on the Ra
 1. Install Raspberry PI Imager https://www.raspberrypi.com/software/
 2. Select gear for advance option to specify a hostname, username, password, and network configurations ^rpi-os-config
 3. Flash Raspberry PI OS 64-bit to Micro SD Card
-	1. Alternatively setup NVMe boot with NVMe hat/
+	1. Alternatively setup NVMe boot with NVMe hat
 
 ## Setup SSH
 1. Test ssh access `ssh <user>@<rpi-local-ip>` Use the password you configured in the [[#^rpi-os-config]] step
@@ -91,7 +91,7 @@ exit
 2. Open VS Code on host machine
 3. Install the remote [Remote Development extension pack](https://aka.ms/vscode-remote/download/extension) more info about remote development [here](https://code.visualstudio.com/docs/remote/remote-overview)
 4. Connect to the `rpi4` via VS Code on your host machine
-	1. With VS Code open press Ctrl + Shift + P  and enter "Connect to Host"
+	1. With VS Code open press `Ctrl + Shift + P`  and enter "Connect to Host"
 	2. You should be prompted  with a drop down menu of the known host that was configured in [[#^rpi4-ssh-config]] step
 5. Open ros2 workspace folder
 	1.  With VS Code, Select File, Open Folder, `/home/bot/bot_ros2_workspace/` then click okay
@@ -103,17 +103,22 @@ exit
 	1. on VS Code press Ctrl + Shift + P  and enter "Rebuild and Reopen in Container" 
 	2. Check out the readme for the workspace to get started. Click [here](https://www.allisonthackston.com/articles/vscode-docker-ros2.html)to read a blog about this ROS2 workspace template 
 
-## Setup github ssh keys
+## Setup GitHub ssh keys
 
+1. Create private-public key pair and add public key to github
 ```shell
 ssh-keygen -t ed25519 -C "<youremail>" -f ~/.ssh/<key_file>
 ```
 
+2. Test credentials
 ```shell
 ssh -T -i ~/.ssh/<private-key> git@github.com
 ```
 
+3. Configure global settings
 ```shell
 git config --global user.email "youremail@yourdomain.com"
 git config --global user.name "Your Name"
 ```
+
+[Sharing Git credentials with your container](https://code.visualstudio.com/docs/remote/containers#_sharing-git-credentials-with-your-container)
