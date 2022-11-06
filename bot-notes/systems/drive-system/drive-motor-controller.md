@@ -22,7 +22,9 @@ Interfacing Components:
 - [[drive-motor]]
 - [[DIN-rail]]
 
-
+> [!Troubleshooting]
+> - [Status Codes](https://downloads.basicmicro.com/docs/roboclaw_user_manual.pdf#page=73) 
+> - [LED Blink Sequences](https://downloads.basicmicro.com/docs/roboclaw_user_manual.pdf#page=44)
 
 ---
 ## Disconnect 

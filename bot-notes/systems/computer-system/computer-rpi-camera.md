@@ -10,13 +10,14 @@ Software Stack: libcamera ()
 - https://www.amazon.com/gp/product/B07RWCGX5K
 - https://www.raspberrypi.com/documentation/accessories/camera.html
 
-[Gstream Tools](https://gstreamer.freedesktop.org/documentation/tutorials/basic/gstreamer-tools.html?gi-language=c)
+## Related Material
 
-[Using Gstreamer](https://www.raspberrypi.com/documentation/accessories/camera.html#using-gstreamer)
+- [Q-engineering rp4 gstreamer](https://qengineering.eu/install-gstreamer-1.18-on-raspberry-pi-4.html)
+- [Gstream Tools](https://gstreamer.freedesktop.org/documentation/tutorials/basic/gstreamer-tools.html?gi-language=c)
+- [Using Gstreamer](https://www.raspberrypi.com/documentation/accessories/camera.html#using-gstreamer)
+- [test streams](https://github.com/matthew1000/gstreamer-cheat-sheet/blob/master/test_streams.md)
+- [gstreamer pipeline examples](https://gist.github.com/hum4n0id/cda96fb07a34300cdb2c0e314c14df0a)
 
-[test streams](https://github.com/matthew1000/gstreamer-cheat-sheet/blob/master/test_streams.md)
-
-[gstreamer pipeline examples](https://gist.github.com/hum4n0id/cda96fb07a34300cdb2c0e314c14df0a)
 
 ## Installing GStreamer
 
@@ -67,10 +68,16 @@ Test Video Steam
 gst-launch-1.0 videotestsrc ! v4l2h264enc ! 'video/x-h264,level=(string)3' ! fakesink
 ```
 
-libcamerasrc Stream on Raspberry Pi
+libcamerasrc Stream on Raspberry Pi (Zoomed)
 
 ```shell
 gst-launch-1.0 -vvvv libcamerasrc ! video/x-raw,width=1280,height=720,format=NV12,colorimetry=bt601,framerate=30/1,interlace-mode=progressive ! v4l2h264enc extra-controls="controls,repeat_sequence_header=1" ! 'video/x-h264,level=(string)4' ! h264parse ! rtph264pay ! udpsink host=192.168.1.24 port=5000
+```
+
+libcamerasrc Stream on Raspberry Pi (Full image)
+
+```sh
+gst-launch-1.0 -vvvv libcamerasrc ! video/x-raw,width=640,height=480,format=NV12,colorimetry=bt601,framerate=30/1,interlace-mode=progressive ! v4l2h264enc extra-controls="controls,repeat_sequence_header=1" ! 'video/x-h264,level=(string)4' ! h264parse ! rtph264pay ! udpsink host=192.168.1.24 port=5000
 ```
 
 Client Machine (192.168.1.24)
@@ -84,10 +91,13 @@ gst-launch-1.0 udpsrc address=192.168.1.24 port=5000 caps=application/x-rtp ! rt
 https://developer.ridgerun.com/wiki/index.php/Introduction_to_network_streaming_using_GStreamer
 
 stream test video from gstreamer to VLC
+
 ```shell
 gst-launch-1.0 -v videotestsrc ! x264enc tune=zerolatency bitrate=500 speed-preset=superfast ! h264parse ! mpegtsmux ! rtpmp2tpay  ! udpsink port=5000 host=192.168.0.51
 ```
+
 stream rpi camera from gstream to vlc (high latency)
+
 ```shell
 gst-launch-1.0 -vvvv libcamerasrc ! queue ! video/x-raw,width=1280,height=720,format=NV12,colorimetry=bt601,framerate=30/1,interlace-mode=progressive ! v4l2h264enc extra-controls="controls,repeat_sequence_header=1" ! 'video/x-h264,level=(string)4' ! h264parse ! mpegtsmux ! rtpmp2tpay ! udpsink host=192.168.0.51 port=5000
 

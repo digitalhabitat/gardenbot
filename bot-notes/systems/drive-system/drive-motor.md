@@ -17,7 +17,7 @@ Sprocket: 11 Tooth #25 ANSI Roller Chain
 Supplier Link: https://www.monsterscooterparts.com/24vo200wamow.html
 
 ```csvtable
-source: MY1060_specs.csv
+source: systems/drive-system/drive-system-details/MY1060_specs.csv
 ```
 
 
