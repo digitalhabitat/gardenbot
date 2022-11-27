@@ -16,6 +16,10 @@ Building a robot is hard. Building a robot alone is ludicrous. This is because a
 
 Building a robot that can navigation semi-autonomously via GPS way points is my white whale. It's a pretty simple if not modest goal. This problem is mostly solved in the Agricultural Industry but I really would like to discover the first principles in practice. This goal is mostly about understanding the existing open-source software well enough to piece them together to solve a problem. Robot Operating System provides that software framework and community that makes this task realistic considering all the challenges that lay ahead.
 
+## Similar Projects
+
+https://github.com/ClemensElflein/OpenMower
+
 ## Current Status
 
 - Basic Keyboard teleportation via ssh over WiFi
@@ -26,7 +30,9 @@ Building a robot that can navigation semi-autonomously via GPS way points is my 
 
 ## Road Map
 
-- Integrate GPS module
+- Complete Parts List #WIP 
+- Complete Wire Diagram Documentation #WIP 
+- Integrate GPS module #WIP
 - Integrate IMU
 - Integrate a localization package
 - Integrate a way point piloting package
