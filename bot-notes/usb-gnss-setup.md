@@ -57,7 +57,7 @@ $ sudo ./str2str -in ntrip://username:password@hostname:port/mountpoint -out ser
 
 - If your using a RTK correction service then we need a convenient way to store the login credentials securely. This is done with Environment Variables
 - Alternative you can set up your own base station (this requires an additional Receiver that can stream out RTK corrections).
-- Each method will  similarly
+- Each method will act similarly
 
 ---
 

@@ -33,6 +33,7 @@ https://github.com/ClemensElflein/OpenMower
 - Complete Parts List #WIP 
 - Complete Wire Diagram Documentation #WIP 
 - Integrate GPS module #WIP
+- Utilize [obsidian-html](https://github.com/obsidian-html/obsidian-html) to make these notes more accessible
 - Integrate IMU
 - Integrate a localization package
 - Integrate a way point piloting package
