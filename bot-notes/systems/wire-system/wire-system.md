@@ -3,6 +3,7 @@
 The the wiring of each major electrical system is documented with https://www.diagrams.net/ via `.drawio` or `.drawio.svg`  See [FAQ](https://www.diagrams.net/doc/faq/save-file-formats) for file format details.The construction of individual wires and harnesses is documented with [WireViz](https://github.com/formatc1702/WireViz) via `.yml` files. The `.yml` files are store in the `wire-diagrams` directory and are processed into `.svg` files with the VScode Task "Run wireviz" using the shell script  `wireviz.sh`
 
 >[!Work in progress]
+> - #WIP
 > - 24 Volt System Diagram (mostly complete)
 > - 12 Volt System Diagram (incomplete)
 > - Wiring construction (incomplete)
@@ -53,7 +54,11 @@ The the wiring of each major electrical system is documented with https://www.di
 
 ## 24 Volt Supply Wiring Diagram
 
-![[test.svg]]
+
+![[wire-system-24-volt.drawio.html]]
+
+
+![[wire-system-24-volt.drawio.svg]]
 
 
 ---

@@ -12,7 +12,7 @@ echo "$filename"
 $cmd $filename
 done
 
-for filename in *.gv *.png *.html *.tsv
+for filename in *.gv *.png *.html 
 do
 echo "removing $filename"
 rm $filename
