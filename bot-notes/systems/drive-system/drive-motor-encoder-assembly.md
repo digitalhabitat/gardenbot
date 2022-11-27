@@ -45,7 +45,7 @@ Parts
 	- Purpose: Mounting AMT103-V to Encoder Mount
 	- Qty: 2
 	- Supplier Data: 
-		- Menards SKU: 2012284
+		- Menards SKU: ## 873146
 		- https://www.homedepot.com/p/Everbilt-M3-0-5-x-10-mm-Phillips-Flat-Head-Zinc-Plated-Machine-Screw-3-Pack-841658/204849607
 
 - Data Communication Cable (6C 24AWG DOUBLE SHIELDED CABLE)

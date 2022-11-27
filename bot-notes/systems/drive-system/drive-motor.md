@@ -30,7 +30,7 @@ source: systems/drive-system/drive-system-details/MY1060_specs.csv
 - Corner Machine Bracket
 	- Drawing: [[2313n26_corner machine bracketl.gif]]
 	- Supplier Link: https://www.mcmaster.com/2313N26/
-- Chain: 108 link #25 ASNI Roller Chain
+		- Chain: 108 link #25 ASNI Roller Chain
 	- Supplier Linker: [108-link-25-chain.html](https://www.monsterscooterparts.com/brands/pulse/models/street-cruiser-e/108-link-25-chain.html)
 
 
