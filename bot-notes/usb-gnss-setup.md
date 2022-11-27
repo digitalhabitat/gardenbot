@@ -130,14 +130,18 @@ sudo ./str2str -in ntrip://$GB_NTRIP_USER:$GB_NTRIP_PASSWORD@$GB_NTRIP_HOSTNAME:
 This project is using the [Emlid Reach RTK Module](https://docs.emlid.com/reach/reference/specifications/reach-module-specs/) and following [documentation](https://docs.emlid.com/reach/). The Emlid is configured with the following settings
 
 ```
+[details="Simple system report"]
+app version: 28.4-r0
+enabled: true
+mode: client
 correction_input:
-    base_corrections:
-      io_type: serial
-      settings:
-        serial:
-          baud_rate: 115200
-          device: ttyGS0 (USB-to-PC)
-          send_position_to_base: true
+  base_corrections:
+    io_type: serial
+    settings:
+      serial:
+        baud_rate: 115200
+        device: ttyGS0 (USB-to-PC)
+        send_position_to_base: true
 position_output:
   output1:
     io_type: serial
@@ -170,6 +174,24 @@ position_output:
         baud_rate: 9600
         device: ttyGS0 (USB-to-PC)
         format: NMEA
+positioning_settings:
+  elevation_mask_angle: 15
+  glonass_ar_mode: true
+  gnss_settings:
+    positioning_systems:
+      beidou: false
+      galileo: true
+      glonass: true
+      gps: true
+      qzss: true
+      sbas: true
+    update_rate: 5
+  gps_ar_mode: fix-and-hold
+  max_horizontal_acceleration: 1
+  max_vertical_acceleration: 1
+  positioning_mode: kinematic
+  snr_mask: 35
+[/details]
 ```
 
 To use the serial device as non-root user, udev rules must be installed.
