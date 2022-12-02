@@ -6,7 +6,14 @@ aliases: [encoder, encoders, AMT103-V]
 ![[drive_motor_encoder.PNG|300]]
 
 
-Parts
+## Parts
+
+```dataview
+TABLE WITHOUT ID
+component-type, description, source-files, supplier-link
+FROM csv("parts-list-rev1.csv")
+WHERE sub-assembly = "encoder"
+```
 
 - Hex Nut Encoder Adapter (3D printed)
 	- Material: MJF Nylon

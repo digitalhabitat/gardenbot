@@ -1,0 +1,86 @@
+bom-Id,system,sub-assembly,component-type,part-number,description,qty,notes,source-files,oem-doc,drawing-files,wiki-link,mfr.,mpn,supplier,spn,supplier-link
+,drive,motor,motor controller,,Brushed DC Motor Controler,1,,,,,,,,,,
+,drive,motor,motor,,24 Volt Brushed DC Motor,2,,,,,,,,,,https://www.monsterscooterparts.com/24vo200wamow.html
+,drive,motor,fastener,,M6 Hex Bolt #todo mm long,2,,,,,,,,,,
+,drive,motor,fastener,,M6 Hex Bolt #todo mm long,5,,,,,,,,,,
+,drive,motor,fastener,,M6 Eye Bolt,2,,,,,,,,,,
+,drive,motor,fastener,,M6 Nylon Hex Nut,3,,,,,,,,,,
+,drive,motor,fastener,,M6 Oversized Washer,6,,,,,,,,,,
+,drive,motor,bracket,,Corner Machine Bracket,2,,,,,,,,,,https://www.mcmaster.com/2313N26/
+,drive,motor,chain,,108 link #25 ASNI Roller Chain,2,,,,,,,,,,https://www.monsterscooterparts.com/brands/pulse/models/street-cruiser-e/108-link-25-chain.html
+,drive,encoder,3d print,,3d printed Hex Nut Encoder Adapter,2,,[[amt103_encoder_8mm_adapter_v1.stl]],,,[[drive-motor-encoder-assembly]],,,,, https://www.jawstec.com/
+,drive,encoder,3d print,,3d AMT10 Encoder Mount,2,,[[amt103_encoder_mount_v1.stl]],,,[[drive-motor-encoder-assembly]],,,,, https://www.jawstec.com/
+,drive,encoder,rotary encoder,,AMT103-V,2,,,,,[[drive-motor-encoder-assembly]],,,,,
+,drive,encoder,fastener,,"M3 x 0.5 mm Thread, 8 mm Long (Philip Machine Screw)",8,,,,,[[drive-motor-encoder-assembly]],,,homedepot,873146, https://www.homedepot.com/p/Everbilt-M3-0-5-x-10-mm-Phillips-Flat-Head-Zinc-Plated-Machine-Screw-3-Pack-841658/204849607
+,drive,encoder,wire and cable,,Data Communication Cable (6C 24AWG DOUBLE SHIELDED CABLE),2,3 feet each,,,,[[drive-motor-encoder-assembly]],,,mcmaster,75985K63,https://www.mcmaster.com/75985K63/
+,drive,encoder,pin header,,1 x 5P 2.54 mm pin header housing,2,,,,,[[drive-motor-encoder-assembly]],,,,,
+,drive,encoder,pin header,,1 x 2P 2.54 mm pin header housing,4,,,,,[[drive-motor-encoder-assembly]],,,,,
+,drive,sprocket-hub,sprocket,,80 Tooth #25 Chain Sprocket ,2,,,,,,,MY1016,monster scooter parts,N83-9090, https://www.monsterscooterparts.com/chain-sprocket-razor-mx350-mx500-mx650.html
+,drive,sprocket-hub,laser cut sheet metal,,Custom Laser Cut Adapter Plate A,2,"AR400-250 (0.25 in, Steel)",,,,,n/a,n/a,sendcutsend,, https://sendcutsend.com/
+,drive,sprocket-hub,laser cut sheet metal,,Custom Laser Cut Adapter Plate B,2,"AR400-250 (0.25 in, Steel)",,,,,n/a,n/a,sendcutsend,, https://sendcutsend.com/
+,drive,sprocket-hub,fastener,,"5/16in Hex bolts, #todo inches long",8,,,,,,,,lowes,,
+,drive,sprocket-hub,fastener,,5/16in Hex bolts,8,,,,,,,,lowes,,
+,drive,sprocket-hub,fastener,,5/16in Hex nuts,8,,,,,,,,lowes,,
+,drive,sprocket-hub,fastener,,5/16in Washers,8,,,,,,,,lowes,,
+,drive,sprocket-hub,fastener,,"M6 Hex bolts,  #todo mm long",8,,,,,,,,lowes,,
+,drive,sprocket-hub,fastener,,"M6 Aluminum spacers, #todo inches long",8,,,,,,,,mcmaster-carr,,
+,drive,sprocket-hub,fastener,,M6 Washers,8,,,,,,,,mcmaster-carr,,
+,drive,sprocket-hub,fastener,,M6 Nylon Hex Nuts,8,,,,,,,,lowes,,
+,drive,sprocket-hub,wheel,,10in pneumatic wheel,2,included with garden cart,,,,,,,harbor freight,,https://www.harborfreight.com/10-inch-x-3-1-2-half-inch-pneumatic-tire-67465.html
+,drive,sprocket-hub,bushing,,rear axel bushing,2,custom cut copper pipe,,,,,,,lowes,,
+,drive,sprocket-hub,bearing,,thrush bearing,2,,,,,,,,mcmaster-carr,,
+,power,battery,battery,,12 Volt 12 Ah SLA Battery ,3,,,,,,expertpower,EXP12120 ,amazon,B00A82A2ZS,https://www.amazon.com/dp/B00A82A2ZS
+,power,battery,charger,,24 Volt  1.5 Amp SLA Charger,1,,,,,,,W13112099014 ,amazon,,https://www.amazon.com/dp/B000K0675C/
+,power,battery,charger,,12 Volt  1.2 Amp SLA Charger,1,,,,,,,,amazon,,https://www.amazon.com/Orion-Motor-Tech-Multipurpose-Motorcycles/dp/B08LLFQNNJ/
+,power,,outlet strip,,8 Outlet Power Strip,1,,,,,,,,,,https://www.amazon.com/gp/product/B08TC6NTHT/
+,power,,,,Cord Wrapper,,,,,,,,,,,https://www.amazon.com/dp/B09MZ41Z9Q
+,power,,power supply,,12 Volt 2 Amp Power Supply,,,,,,,,,,,https://www.amazon.com/gp/product/B07HNL5D56/
+,computer,,Single board computer,,Raspberry Pi 4 Model B Rev 1.5 (4GB),1,,,,,,,,,,
+,computer,,Single board computer,,Jetson Nano,,,,,,,,,,,
+,computer,,usb led indicator,,,,,,,,,,,,,
+,computer,,csci camera,,,,,,,,,,,,,
+,computer,,usb gnss reciever,,,,,,,,,,,,,
+,computer,,usb imu,,,,,,,,,,,,,
+,wire,,DIN rail,,12” 35mm DIN rail,2,,,,,,,,amazon,B079TX7WDQ,https://www.amazon.com/gp/product/B079TX7WDQ/ref=ppx_yo_dt_b_asin_title_o09_s00?ie=UTF8&psc=1
+,wire,,fastener,,nylon spacer #todo,,,,,,,,,,,
+,wire,,fastener,,Hex nut #todo,,,,,,,,,,,
+,wire,,fastener,,Bolt #todo,,,,,,,,,,,
+,wire,,fastener,,washer #todo,,,,,,,,,,,
+,wire,,terminal block,,10 AWG DK4N Red/Black 10 Gang DIN Rail Terminal Blocks,1,,,,,,dinkle,,amazon,B06XPZG45K,https://www.amazon.com/gp/product/B06XPZG45K/ref=ppx_yo_dt_b_asin_title_o07_s00?ie=UTF8&psc=1
+,wire,,terminal block,,6 AWG DK4N Red/Black 10 Gang DIN Rail Terminal Blocks,1,,,,,,dinkle,,amazon,B07TN3RLYZ,https://www.amazon.com/gp/product/B07TN3RLYZ/
+,wire,,gauge,,Voltage Gauge Meter,2,,,,,,,,,,https://www.amazon.com/gp/product/B09SP6DGZ1
+,wire,,battery disconnect switch,,Battery Disconnect,,,,,,,,,,,https://www.amazon.com/gp/product/B08RRTDSFB/
+,wire,,toggle switch,,2P SPST ON-OFF Switch,1,,,gsw-110.pdf,,,gardnerbender,gsw-110,homedepot,,
+,wire,,toggle switch,,4P DPST ON-OFF Switch,2,,,gsw-114.pdf,,,gardnerbender,gsw-114,homedepot,,
+,wire,,toggle switch,,6P DPDT ON-OFF-ON Switch,1,,,gsw-123.pdf,,,gardnerbender,gsW-123,homedepot,,
+,wire,24 volt,wiring harness,W1,,,,,,,,,,,,
+,wire,24 volt,wiring harness,W2,,,,,,,,,,,,
+,wire,24 volt,wiring harness,W3,,,,,,,,,,,,
+,wire,24 volt,wiring harness,W4,,,,,,,,,,,,
+,wire,24 volt,wiring harness,W5,,,,,,,,,,,,
+,wire,24 volt,wiring harness,W6,,,,,,,,,,,,
+,wire,24 volt,wiring harness,W7,,,,,,,,,,,,
+,wire,24 volt,wiring harness,W8,,,,,,,,,,,,
+,wire,24 volt,wiring harness,W9,,,,,,,,,,,,
+,wire,24 volt,wiring harness,W10,,,,,,,,,,,,
+,wire,24 volt,wiring harness,W11,,,,,,,,,,,,
+,chassis,frame,vehicle frame,,garden cart,,,,,,,,,,,
+,chassis,frame,fastener,,Upper pvc spacer #todo,,,,,,,,,,,
+,chassis,frame,fastener,,Lower pcv #todo,,,,,,,,,,,
+,chassis,frame,fastener,,Upper and lower nuts #todo,,,,,,,,,,,
+,chassis,frame,fastener,,Lower washer #todo,,,,,,,,,,,
+,chassis,frame,fastener,,1/2in threaded bolt #todo,,,,,,,,,,,
+,chassis,frame,,,,,,,,,,,,,,
+,chassis,upper platform,platform,,5/16in pine plywood inner platform,,,,,,,,,,,
+,chassis,upper platform,platform,,5/16in pine plywood outer platorm,,,,,,,,,,,
+,chassis,upper platform,bracket,,aluminum bar front,,,,,,,,,,,
+,chassis,upper platform,bracket,,alumnium bar back,,,,,,,,,,,
+,chassis,upper platform,fastener,,piano hinge,,,,,,,,,,,
+,chassis,upper platform,fastener,,clear abs sheet,,,,,,,,,,,
+,chassis,lower platform,plywood,,1/2in pine plywood,,,,,,,,,,,
+,chassis,lower platform,fastener,,u bolts,,,,,,,,,,,
+,chassis,lower platform,fastener,,u bolt nuts,,,,,,,,,,,
+,chassis,lower platform,fastener,,u bolt washer,,,,,,,,,,,
+,chassis,lower platform,fastener,,battery eye bolt,,,,,,,,,,,
+,chassis,lower platform,fastener,,battery eye bolt washer,,,,,,,,,,,
+,chassis,lower platform,fastener,,battery eye bolt nut,,,,,,,,,,,
