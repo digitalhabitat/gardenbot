@@ -29,7 +29,7 @@ dmesg --follow
 > If you're using a terminal within a docker container you may need to try running the 
 > container in "privileged" mode. This is consider unsafe in some circumstances so you may look [here](#TODO) for details on how to expose serial interfaces more securely.
 
-3. In the terminal, enter the following.
+2. In the terminal, enter the following.
 ```shell
 sudo screen /dev/ttyACM0 9600
 ```
@@ -38,7 +38,7 @@ sudo screen /dev/ttyACM0 9600
 sudo cutecom
 ```
 
-2. You should be able to observe [NMEA strings](http://lefebure.com/articles/nmea-gga/) streamed to the terminal
+3. You should be able to observe [NMEA strings](http://lefebure.com/articles/nmea-gga/) streamed to the terminal
 
 ```
 nc 192.168.0.20:9002
@@ -120,12 +120,12 @@ sudo apt install rtklib
 
 1. Attempt to receive RTK corrections.
 
-Single Site
+ - Single Site
 ```shell
 sudo ./str2str -in ntrip://$GB_NTRIP_USER:$GB_NTRIP_PASSWORD@$GB_NTRIP_HOSTNAME:$GB_NTRIP_PORT_SINGLE/$GB_NTRIP_ENDPOINT_SINGLE#rtcm3
 ```
 
-auto
+- Automatic Site
 ```shell
 sudo ./str2str -in ntrip://$GB_NTRIP_USER:$GB_NTRIP_PASSWORD@$GB_NTRIP_HOSTNAME:$GB_NTRIP_PORT_AUTO/$GB_NTRIP_ENDPOINT_AUTO#rtcm3
 ```
@@ -227,7 +227,7 @@ Bus 003 Device 063: ID 3032:0014 Emlid Reach
                                    ^^^^^^^ make note of this label
 ```
 
-2.  
+2. #todo
 ```shell
 udevadm info -q all -n /dev/ttyACM0
 ```
@@ -249,7 +249,7 @@ E: ID_PCI_CLASS_FROM_DATABASE=Serial bus controller
 ....
 ```
 
-4.
+4. #todo
 ```shell
 cd /etc/udev/rules.d/;
 sudo vim 51-emlid.rules
@@ -262,7 +262,7 @@ sudo vim 51-emlid.rules
 ATTRS{idProduct}=="0014", ATTRS{idVendor}=="3032", MODE:="666", GROUP="plugdev", SUBSYSTEM=="tty", SYMLINK+="emlid_rtk"
 ```
 
-5. 
+5. #todo
 ```shell
 sudo udevadm control --reload && sudo udevadm trigger
 ```
@@ -275,14 +275,12 @@ sudo screen /dev/emlid_rtk
 
 6.  Run the str2str rtklib CLI application
 
-Receive **Single site** corrections via NTRIP and relay to USB GNSS receiver via serial
+- To receive **Single site** corrections via NTRIP and relay to USB GNSS receiver via serial
 ```shell
 sudo ./str2str -in ntrip://$GB_NTRIP_USER:$GB_NTRIP_PASSWORD@$GB_NTRIP_HOSTNAME:$GB_NTRIP_PORT_SINGLE/$GB_NTRIP_ENDPOINT_SINGLE#rtcm3 -out serial://emlid_rtk:115200#52001 -b 1
 ```
 
-or
-
-Receive **Automatic cell** corrections via NTRIP and relay to USB GNSS receiver via serial
+- Alt. to Receive **Automatic cell** corrections via NTRIP and relay to USB GNSS receiver via serial
 ```shell
 sudo ./str2str -in ntrip://$GB_NTRIP_USER:$GB_NTRIP_PASSWORD@$GB_NTRIP_HOSTNAME:$GB_NTRIP_PORT_AUTO/$GB_NTRIP_ENDPOINT_AUTO#rtcm3 -out serial://ttyACM0:115200#52001 -b 1
 ```
