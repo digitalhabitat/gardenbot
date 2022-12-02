@@ -55,9 +55,14 @@ $ sudo ./str2str -in ntrip://username:password@hostname:port/mountpoint -out ser
 
 ## Access RTK correction service and RTK correction data
 
-- If your using a RTK correction service then we need a convenient way to store the login credentials securely. This is done with Environment Variables
-- Alternative you can set up your own base station (this requires an additional Receiver that can stream out RTK corrections).
-- Each method will act similarly
+- If your using a RTK correction service then we need a convenient way to store the login credentials securely. This is can be done with Environment Variables
+- Alternatively you can set up your own base station (this requires an additional Receiver that can stream out RTK corrections).
+- Each method will perform similarly. The limitations of each will be based on the following:
+
+|Method|Base Station Coverage| Cost|
+|-|-|-|
+|RTK Service| Typically Statewide| Free or Subscription (depending on state)|
+|RTK Base station | 6 mi (single band) 36 mi (multi-band)| +$300 for additional receiver and antenna|
 
 ---
 
