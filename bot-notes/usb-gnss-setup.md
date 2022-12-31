@@ -2,6 +2,7 @@
 
 >[!Work in Progess]
 > - Initial testing notes #WIP 
+> - https://www.ardusimple.com/rtk-explained/
 > - [rtkexplorer – Exploring low cost solutions for high precision GPS/GNSS](http://rtkexplorer.com/)
 > - https://en.wikipedia.org/wiki/NMEA_0183
 > - https://incors.in.gov/rtk.aspx
@@ -11,7 +12,26 @@
 > - https://github.com/rtklibexplorer/RTKLIB
 > - https://packages.ubuntu.com/search?keywords=rtklib
 
-#todo Add diagram for a brief explanation of how this project is using rtklib CLI AP **str2str** to receive RTK correction via NTRIP from a Continuously Operating Reference Stations (CORS) network
+This setup provides a tutorial on how to use a GNSS RTK Receiver, a Linux Machine, and an RTK Correction Service (or Base Station) to access position data with centimeter-level precision. Many GNSS RTK Receivers will connect to an NTRIP Caster directly utilizing its on-board LoRa,WiFi, Bluetooth, or Cellular Modem. However this tutorial is geared towards using a Linux Machine to connect to an NTRIP Caster to receive the RTK Correction Data and then relay the data to the RTK Receiver via USB. This use case is more relevant to a robotic platform that already has access to the Internet or a Local Network with an NTRIP Caster. Main reason to do it this way is because your Linux Machine may already be using a Cellular Modem or Long Distance Wireless Access Point. This would render the wireless capabilities of the RTK Receiver as redundant or less capable than what the Linux machine is using.
+
+![[gnss-rtk-diagram.svg]]
+
+## Basic Concepts
+
+### GNSS RTK Receiver (Rover)
+These devices have recently became available in low-cost forms with comparable performance to higher end products. It is basically a micro-controller with a GNSS antenna and receiver with the capability to run complex calculations that enable it to resolve position data with centimeter precision under the right conditions. The micro-controller may be using a library like [RTKLIB](https://github.com/rtklibexplorer/RTKLIB) to perform the calculations. The most important condition for resolving centimeter-level precision is access to RTK corrections from a nearby(~35km) Base Station.
+
+### Base Station
+The Base Station is basically a stationary GNSS RTK Receiver that is configured to stream out RTK correction data using a NTRIP Server (COTS products offer this as a single package). A Base Station and Reference Station are synonymous.
+
+### Continuously Operating Reference Stations (CORS) network
+A CORS Network is a collection of GNSS Base stations combined in a single network to provide wider coverage of valid RTK correction data. Recall that RTK correction data is only valid within a ~35km radius of the Base Station. A CORS network may provide convenient access to RTK correction data from the nearest base station. There also exist advance techniques to combine correction data from multiple base stations to provide correction data from a Virtual Reference Station (VRS) to further reduce location error. [See VRS for details](https://geo-matching.com/content/the-principles-and-performance-of-cors-network-rtk-and-vrs)
+
+### Linux Machine NTRIP Client
+[RTKLIB](https://packages.ubuntu.com/jammy/rtklib) provides a suite of CLIs and GUIs that simplify much of the work. In theory could configure your design to perform the RTK calculations on the Linux Machine. However in this tutorial, the Linux Machine is only used to relay the RTK correction data from the NTRIP Caster to the GNSS RTK Receiver. To do this we use the RTKLIB CLI `str2str` which enables us to connect to a NTRIP caster as a data input source and a GNSS RTK Receiver has a data output target. This employs our Linux machine as a NTRIP Client. Alternatively, instead of using the RTKLIB CLI, we can use the ROS package [ntrip_client](http://wiki.ros.org/ntrip_client). See OpenMower's [ntrip_client](https://github.com/ClemensElflein/open_mower_ros/blob/63f11ded7ed5eafcaaefb1778d315079e11c6fed/src/open_mower/launch/include/_ntrip_client.launch) launch file for further details.
+
+
+## Getting Started with RTKLIB str2str
 
 0. Open a terminal and enter the following command to capture the serial port device label e.g. `/dev/tty*` [More info](https://en.wikipedia.org/wiki/Serial_port#Hardware_abstraction)
 ```shell
@@ -33,14 +53,14 @@ dmesg --follow
 ```shell
 sudo screen /dev/ttyACM0 9600
 ```
- or
+ 
 ```shell
 sudo cutecom
 ```
 
-3. You should be able to observe [NMEA strings](http://lefebure.com/articles/nmea-gga/) streamed to the terminal
+3. You should be able to observe [NMEA strings](http://lefebure.com/articles/nmea-gga/) streamed to the terminal. If not, your device may need to be manually configured to do so. One, alternative method is to configure the GNSS receiver to output data via TCP. Enter the either the following commands to observe the data stream.
 
-```
+```shell
 nc 192.168.0.20:9002
 ```
 
@@ -48,12 +68,14 @@ nc 192.168.0.20:9002
 socat - TCP4:192.168.0.20:9002
 ```
 
+4. The `str2str` rtklib CLI application is use to connect to a NTRIP Caster and recieve 
+
 ```
 $ sudo ./str2str -in ntrip://username:password@hostname:port/mountpoint -out serial://ttyACM0:115200#52001 -b 1
 ```
 
 
-## Access RTK correction service and RTK correction data
+### Access RTK correction service and RTK correction data
 
 - If your using a RTK correction service then we need a convenient way to store the login credentials securely. This is can be done with Environment Variables
 - Alternatively you can set up your own base station (this requires an additional Receiver that can stream out RTK corrections).
@@ -84,34 +106,34 @@ sudo vim ~/.bashrc
 > #########################################################
 > # DO NOT PUBLISH, THIS CONTAINS USERNAMES and PASSWORDS #
 > #########################################################
-> export GB_NTRIP_HOSTNAME="..."
+> export NTRIP_HOSTNAME="..."
 > # Automatic cells
-> export GB_NTRIP_PORT_AUTO="9000"
-> export GB_NTRIP_ENDPOINT_AUTO="RTCM3_MAX"
+> export NTRIP_PORT_AUTO="9000"
+> export NTRIP_ENDPOINT_AUTO="RTCM3_MAX"
 > # single site
-> export GB_NTRIP_PORT_SINGLE="..."
-> export GB_NTRIP_ENDPOINT_SINGLE="..."
+> export NTRIP_PORT_SINGLE="..."
+> export NTRIP_ENDPOINT_SINGLE="..."
 > # secret
-> export GB_NTRIP_USER="..."
-> export GB_NTRIP_PASSWORD="..."
+> export NTRIP_USER="..."
+> export NTRIP_PASSWORD="..."
 > ```
 
 2. After saving edits, close the terminal
 2. Open new terminal, Verify environment variables
 ```shell
 echo -e '\n'\
-'ntrip hostname:        ' $GB_NTRIP_HOSTNAME'\n'\
-'ntrip port_auto:       ' $GB_NTRIP_PORT_AUTO'\n'\
-'ntrip endpoint_auto:   ' $GB_NTRIP_ENDPOINT_AUTO'\n'\
-'ntrip port_sigle:      ' $GB_NTRIP_PORT_SINGLE'\n'\
-'ntrip endpoint_single: ' $GB_NTRIP_ENDPOINT_SINGLE'\n'\
-'ntrip user:            ' $GB_NTRIP_USER'\n'\
-'nitrip password:       ' $GB_NTRIP_PASSWORD
+'ntrip hostname:        ' $NTRIP_HOSTNAME'\n'\
+'ntrip port_auto:       ' $NTRIP_PORT_AUTO'\n'\
+'ntrip endpoint_auto:   ' $NTRIP_ENDPOINT_AUTO'\n'\
+'ntrip port_sigle:      ' $NTRIP_PORT_SINGLE'\n'\
+'ntrip endpoint_single: ' $NTRIP_ENDPOINT_SINGLE'\n'\
+'ntrip user:            ' $NTRIP_USER'\n'\
+'nitrip password:       ' $NTRIP_PASSWORD
 ```
 
 ---
 
-### RTKLIB
+### Installing RTKLIB
 
 0. In the terminal install the rtklib
 ```
@@ -122,15 +144,15 @@ sudo apt install rtklib
 
  - Single Site
 ```shell
-sudo ./str2str -in ntrip://$GB_NTRIP_USER:$GB_NTRIP_PASSWORD@$GB_NTRIP_HOSTNAME:$GB_NTRIP_PORT_SINGLE/$GB_NTRIP_ENDPOINT_SINGLE#rtcm3
+sudo ./str2str -in ntrip://$NTRIP_USER:$NTRIP_PASSWORD@$NTRIP_HOSTNAME:$NTRIP_PORT_SINGLE/$NTRIP_ENDPOINT_SINGLE#rtcm3
 ```
 
 - Automatic Site
 ```shell
-sudo ./str2str -in ntrip://$GB_NTRIP_USER:$GB_NTRIP_PASSWORD@$GB_NTRIP_HOSTNAME:$GB_NTRIP_PORT_AUTO/$GB_NTRIP_ENDPOINT_AUTO#rtcm3
+sudo ./str2str -in ntrip://$NTRIP_USER:$NTRIP_PASSWORD@$NTRIP_HOSTNAME:$NTRIP_PORT_AUTO/$NTRIP_ENDPOINT_AUTO#rtcm3
 ```
 
-## Configure RTK device correction input and position out methods
+### Configure RTK device correction input and position out methods
 
 This project is using the [Emlid Reach RTK Module](https://docs.emlid.com/reach/reference/specifications/reach-module-specs/) and following [documentation](https://docs.emlid.com/reach/). The Emlid is configured with the following settings
 
@@ -198,6 +220,8 @@ positioning_settings:
   snr_mask: 35
 [/details]
 ```
+
+###  Creating a persistent label for the RTK GNSS USB device
 
 To use the serial device as non-root user, udev rules must be installed.
 
@@ -273,16 +297,16 @@ Re-plug in USB GNSS receiver and verify [NMEA strings](http://lefebure.com/artic
 sudo screen /dev/emlid_rtk
 ```
 
-6.  Run the str2str rtklib CLI application
+6.  Run the `str2str` rtklib CLI application
 
 - To receive **Single site** corrections via NTRIP and relay to USB GNSS receiver via serial
 ```shell
-sudo ./str2str -in ntrip://$GB_NTRIP_USER:$GB_NTRIP_PASSWORD@$GB_NTRIP_HOSTNAME:$GB_NTRIP_PORT_SINGLE/$GB_NTRIP_ENDPOINT_SINGLE#rtcm3 -out serial://emlid_rtk:115200#52001 -b 1
+sudo ./str2str -in ntrip://$NTRIP_USER:$NTRIP_PASSWORD@$NTRIP_HOSTNAME:$NTRIP_PORT_SINGLE/$NTRIP_ENDPOINT_SINGLE#rtcm3 -out serial://emlid_rtk:115200#52001 -b 1
 ```
 
 - Alt. to Receive **Automatic cell** corrections via NTRIP and relay to USB GNSS receiver via serial
 ```shell
-sudo ./str2str -in ntrip://$GB_NTRIP_USER:$GB_NTRIP_PASSWORD@$GB_NTRIP_HOSTNAME:$GB_NTRIP_PORT_AUTO/$GB_NTRIP_ENDPOINT_AUTO#rtcm3 -out serial://ttyACM0:115200#52001 -b 1
+sudo ./str2str -in ntrip://$NTRIP_USER:$NTRIP_PASSWORD@$NTRIP_HOSTNAME:$NTRIP_PORT_AUTO/$NTRIP_ENDPOINT_AUTO#rtcm3 -out serial://ttyACM0:115200#52001 -b 1
 ```
 
 7. Listen
