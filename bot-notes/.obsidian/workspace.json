@@ -1,0 +1,113 @@
+{
+  "main": {
+    "id": "0a9556d3f30a1fde",
+    "type": "split",
+    "children": [
+      {
+        "id": "c06f6f7580e4154f",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "2520f8271f7de675",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "wire-system/wire-management.md",
+                "mode": "source",
+                "backlinks": true,
+                "source": false
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "dd990e6206cc1025",
+    "type": "split",
+    "children": [
+      {
+        "id": "5b465d7f7bde0580",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "f9adf6e06bc0df93",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "MY",
+                "matchingCase": true,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              }
+            }
+          },
+          {
+            "id": "ef77bcd2bf78b3be",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical"
+              }
+            }
+          }
+        ],
+        "currentTab": 1
+      }
+    ],
+    "direction": "horizontal",
+    "width": 390.5
+  },
+  "right": {
+    "id": "10b75a03e44355b5",
+    "type": "split",
+    "children": [
+      {
+        "id": "1281734ed5f4fc6d",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "d12acc9e6379204d",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "wire-system/wire-management.md",
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 690.800048828125,
+    "collapsed": true
+  },
+  "active": "2520f8271f7de675",
+  "lastOpenFiles": [
+    "systems/computer-system/computer-rpi-camera.md",
+    "systems/computer-system/rpi4_pinout.png",
+    "systems/computer-system/computer-rpi.md",
+    "wire-system/wire-management.md",
+    "main.md",
+    "wire-system/wire-diagrams/test.svg",
+    "systems/drive-system/drive-motor-controller.md",
+    "Acknowlegements.md",
+    "systems/drive-system/drive-roboclaw-setup.md",
+    "wire-system/wire-diagrams/12v_battery_system.drawio.svg"
+  ]
+}

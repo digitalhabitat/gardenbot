@@ -1,10 +1,8 @@
 # Garden Bot
 
----
 
-![[main_capture.PNG|400]]
+![[main_capture-removebg.png]]
 
----
 
 ## Introduction
 
@@ -18,15 +16,39 @@ Building a robot is hard. Building a robot alone is ludicrous. This is because a
 
 Building a robot that can navigation semi-autonomously via GPS way points is my white whale. It's a pretty simple if not modest goal. This problem is mostly solved in the Agricultural Industry but I really would like to discover the first principles in practice. This goal is mostly about understanding the existing open-source software well enough to piece them together to solve a problem. Robot Operating System provides that software framework and community that makes this task realistic considering all the challenges that lay ahead.
 
+## Similar Projects
+
+https://github.com/ClemensElflein/OpenMower
+
+## Current Status
+
+- Basic Keyboard teleportation via ssh over WiFi
+	1. Start docker [bot_ros2_workspace](https://github.com/digitalhabitat/bot_ros2_workspace)
+	2. Open terminal run `ros2 launch ./launch/teleop-test.xml`
+	3. Open a second terminal run `ros2 run ros2 run teleop_twist_keyboard teleop_twist_keyboard`
+	4. See [[drive-roboclaw-setup]] additional info
+
+## Road Map
+
+- Complete Parts List #WIP 
+- Complete Wire Diagram Documentation #WIP 
+- Integrate GPS module #WIP
+- Utilize [obsidian-html](https://github.com/obsidian-html/obsidian-html) to make these notes more accessible
+- Integrate IMU
+- Integrate a localization package
+- Integrate a way point piloting package
+
 ##  Content
 [[computer-system]]
+- [[computer-nano|nano]]
+- [[computer-rpi|rpi4]]
 [[drive-system]]
--	[[drive-motor]] `MY1016`
--	[[drive-motor-encoder-assembly]] `AMT103-V`
--	[[drive-motor-controller]] `roboclaw 2x30A`
+- [[drive-motor]] `MY1016`
+- [[drive-motor-encoder-assembly]] `AMT103-V`
+- [[drive-motor-controller]] `roboclaw 2x30A`
 [[steering-system-main]]
 [[power-system]]
-[[wire-management]]
+[[wire-system]]
 
 ---
 
