@@ -28,6 +28,9 @@ https://github.com/ClemensElflein/OpenMower
 	3. Open a second terminal run `ros2 run ros2 run teleop_twist_keyboard teleop_twist_keyboard`
 	4. See [[drive-roboclaw-setup]] additional info
 
+<iframe width="560" height="315" src="https://www.youtube.com/embed/C3Nxp40HBfw" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+
+
 ## Road Map
 
 - Complete Parts List #WIP 
@@ -49,6 +52,7 @@ https://github.com/ClemensElflein/OpenMower
 [[steering-system-main]]
 [[power-system]]
 [[wire-system]]
+[[localization-system]]
 
 ---
 

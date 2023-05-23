@@ -7,19 +7,6 @@
 
 [[drive-motor-encoder-assembly]]
 
-testing
-
-```dataview
-TABLE WITHOUT ID
-eventDate, eventName
-FROM csv("data.csv")
-WHERE eventDate = date(2022-01-13)
-```
-```dataviewjs
-const myData = await dv.io.csv("data.csv");
-dv.table(["eventDate", "eventName"], myData)
-```
-
 ## Drive System parts list
 ```dataview
 TABLE WITHOUT ID
