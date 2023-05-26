@@ -1,0 +1,159 @@
+{
+  "main": {
+    "id": "0a9556d3f30a1fde",
+    "type": "split",
+    "children": [
+      {
+        "id": "7a5ab2101968a44d",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "649af1403cef773b",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "main.md",
+                "mode": "source",
+                "backlinks": true,
+                "source": false
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "dd990e6206cc1025",
+    "type": "split",
+    "children": [
+      {
+        "id": "5b465d7f7bde0580",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "f9adf6e06bc0df93",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "tag:#todo",
+                "matchingCase": true,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              }
+            }
+          },
+          {
+            "id": "ef77bcd2bf78b3be",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical"
+              }
+            }
+          },
+          {
+            "id": "ec7a7b1aef4cbac8",
+            "type": "leaf",
+            "state": {
+              "type": "bookmarks",
+              "state": {}
+            }
+          }
+        ],
+        "currentTab": 1
+      }
+    ],
+    "direction": "horizontal",
+    "width": 614.5
+  },
+  "right": {
+    "id": "10b75a03e44355b5",
+    "type": "split",
+    "children": [
+      {
+        "id": "1281734ed5f4fc6d",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "d12acc9e6379204d",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "main.md",
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 690.800048828125,
+    "collapsed": true
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "switcher:Open quick switcher": false,
+      "graph:Open graph view": false,
+      "canvas:Create new canvas": false,
+      "command-palette:Open command palette": false,
+      "markdown-importer:Open format converter": false
+    }
+  },
+  "active": "649af1403cef773b",
+  "lastOpenFiles": [
+    "misc/links.md",
+    "misc/obsidian-links.md",
+    "oem-docs/ASIN_B08RRTDSFB _batter-disconnect.pdf",
+    "oem-docs/gsw-14.pdf",
+    "oem-docs/gsw-110.pdf",
+    "oem-docs/gsw-123.pdf",
+    "main.md",
+    "systems/power-system/power-system.md",
+    "systems/computer-system/computer-rpi.md",
+    "systems/computer-system/computer-nano.md",
+    "systems/steering-system/steering-system.md",
+    "steering-system.md",
+    "systems/wire-system/wire-system.md",
+    "systems/localization-sysytem/gnss-rtk/usb-gnss-setup.md",
+    "systems/localization-sysytem/localization-system.md",
+    "systems/drive-system/drive-motor-controller.md",
+    "systems/drive-system/drive-system.md",
+    "systems/computer-system/computer-system.md",
+    "dimensions/mobile robot - How should emergency stops be wired_ - Robotics Stack Exchange.pdf",
+    "formal-docs/concept_of_operations.md",
+    "systems/drive-system/drive-motor.md",
+    "systems/wire-system/wire-diagrams/12v_battery_system.drawio.svg",
+    "systems/wire-system/wire-diagrams/12v_battery_system.drawio (copy).svg",
+    "systems/steering-system/steering-motor-controller.md",
+    "README.md",
+    "chassis/chassis.md",
+    "misc",
+    "chassis/chassis-drawings/Battery Slot Rev-.pdf",
+    "formal-docs/power_system_requirements_specifications.md",
+    "misc/inbox.md",
+    "misc/engineering-documentation.md",
+    "encoder.md",
+    "misc/Acknowlegements.md",
+    "systems/localization-sysytem/gnss-rtk/gnss-rtk-diagram.svg",
+    "systems/localization-sysytem/gnss-rtk",
+    "systems/computer-system/rpi4_pinout.png",
+    "systems/computer-system/computer-rpi-setup.md",
+    "systems/localization-sysytem",
+    "wire-system/wire-diagrams/test.svg"
+  ]
+}

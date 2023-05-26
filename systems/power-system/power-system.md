@@ -12,10 +12,6 @@
 
 ---
 
-
-
-
-
 ## 24V Motor Battery System	
  
  ### Components

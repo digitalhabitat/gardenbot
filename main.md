@@ -1,4 +1,4 @@
-# Garden Bot
+# gardenbot
 
 
 ![[main_capture-removebg.png]]
@@ -16,10 +16,6 @@ Building a robot is hard. Building a robot alone is ludicrous. This is because a
 
 Building a robot that can navigation semi-autonomously via GPS way points is my white whale. It's a pretty simple if not modest goal. This problem is mostly solved in the Agricultural Industry but I really would like to discover the first principles in practice. This goal is mostly about understanding the existing open-source software well enough to piece them together to solve a problem. Robot Operating System provides that software framework and community that makes this task realistic considering all the challenges that lay ahead.
 
-## Similar Projects
-
-https://github.com/ClemensElflein/OpenMower
-
 ## Current Status
 
 - Basic Keyboard teleportation via ssh over WiFi
@@ -30,30 +26,65 @@ https://github.com/ClemensElflein/OpenMower
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/C3Nxp40HBfw" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 
+## Demonstration Road Map
 
-## Road Map
+- [x] Keyboard Teleoperation
+- [ ] Bluetooth Controller Teleoperation
+- [ ] Remote Teleoperation
+- [ ] Realtime Camera Streaming
+- [ ] Localization
+- [ ] Mapping/Obstacle Detection
+- [ ] Navigation
 
-- Complete Parts List #WIP 
-- Complete Wire Diagram Documentation #WIP 
-- Integrate GPS module #WIP
-- Utilize [obsidian-html](https://github.com/obsidian-html/obsidian-html) to make these notes more accessible
-- Integrate IMU
-- Integrate a localization package
-- Integrate a way point piloting package
+## Milestones
+
+- Hardware
+	- [x] Primary Electronics 
+	- [x] Differential Steering
+	- [x] Ackermann Steering
+	- [ ] Computer Enclosure
+	- [ ] Charging Relay
+	- [ ] SugarPi 3 Plus
+	- [ ] GPS mount
+	- [ ] IMU mount
+	- [ ] Computer mount
+	- [ ] Camera mount
+	- [ ] 2D LIDAR
+	- [ ] Vehicle Enclosure
+- Documentation
+	- [ ] Utilize [obsidian-html](https://github.com/obsidian-html/obsidian-html) 
+	- [ ] Parts List #WIP 
+	- [ ] Wire Diagram #WIP 
+	- [ ] Steering System #todo
+	- [ ] 3D Models and Dimensions #WIP
+- Software
+	- [ ] CI/CD workflow #WIP
+	- [ ] GPS ROS node
+	- [ ] IMU ROS node
+	- [ ] Blink(1) integration
+	- [ ] Localization package
+	- [ ] Way point piloting package
+
 
 ##  Content
-[[computer-system]]
+
+>[!Work in progress]
+> Various pages are still in development.
+
+[[computer-system]] #todo
 - [[computer-nano|nano]]
 - [[computer-rpi|rpi4]]
 [[drive-system]]
 - [[drive-motor]] `MY1016`
 - [[drive-motor-encoder-assembly]] `AMT103-V`
 - [[drive-motor-controller]] `roboclaw 2x30A`
-[[steering-system-main]]
+[[steering-system]] #todo
 [[power-system]]
 [[wire-system]]
-[[localization-system]]
+[[localization-system]] #todo
 
 ---
 
+## Similar Projects
 
+https://github.com/ClemensElflein/OpenMower
