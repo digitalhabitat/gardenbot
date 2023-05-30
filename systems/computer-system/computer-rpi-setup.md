@@ -10,12 +10,14 @@ This guide will outline the steps taken to setup the baseline software on the Ra
 
 
 ## Setup OS Installation
+
 1. Install Raspberry PI Imager https://www.raspberrypi.com/software/
 2. Select gear for advance option to specify a hostname, username, password, and network configurations ^rpi-os-config
 3. Flash Raspberry PI OS 64-bit to Micro SD Card
 	1. Alternatively setup NVMe boot with NVMe hat
 
 ## Setup SSH
+
 1. Test ssh access `ssh <user>@<rpi-local-ip>` Use the password you configured in the [[#^rpi-os-config]] step
 2. Reserve a static local IP address for within the router's configuration
 3. Reboot the pi 
@@ -39,11 +41,14 @@ Host <config-name>
 	ForwardX11 yes
 	ServerAliveInterval 120
 ```
+
 8.  Test ssh `ssh <config-name>`
 
 ## Setup VS Code and ROS2 Workspace Repository
+
 1. Open a ssh terminal on the Raspberry Pi 4
 2. Install [Visual Studio Code](https://code.visualstudio.com/docs/setup/raspberry-pi) on the pi
+
 ```shell
 sudo apt update
 ```
@@ -53,14 +58,17 @@ sudo apt install code
 ```
 
 4. Clone the ros2 workspace repo into the Raspberry Pi's home directory for the current user
+
 ```shell
 cd
 git clone https://github.com/digitalhabitat/bot_ros2_workspace
 ```
 
 ## Install Docker
+
 1. Open a ssh terminal on the Raspberry Pi 4
 2. Install docker will the following commands
+
 ```shell
 sudo apt-get update && sudo apt-get upgrade
 ```
@@ -72,8 +80,10 @@ curl -fsSL https://get.docker.com -o get-docker.sh
 ```shell
  sudo sh get-docker.sh
 ```
+
 4. [more Info about script](https://docs.docker.com/engine/install/ubuntu/#install-using-the-convenience-script)
 5. These next steps maybe necessary for docker to work it VS Code remote development click [here](https://docs.docker.com/engine/install/linux-postinstall/) for more info
+
 ```shell
 sudo groupadd docker
 ```
@@ -106,16 +116,19 @@ exit
 ## Setup GitHub ssh keys
 
 1. Create private-public key pair and add public key to github
+
 ```shell
 ssh-keygen -t ed25519 -C "<youremail>" -f ~/.ssh/<key_file>
 ```
 
 2. Test credentials
+
 ```shell
 ssh -T -i ~/.ssh/<private-key> git@github.com
 ```
 
 3. Configure global settings
+   
 ```shell
 git config --global user.email "youremail@yourdomain.com"
 git config --global user.name "Your Name"
