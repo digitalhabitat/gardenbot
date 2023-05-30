@@ -100,23 +100,24 @@ sudo vim ~/.bashrc
 
 >[!WARNING]
 > Note login credentials environment variables have been omitted. Use this snippet as a template. Be careful **NOT** to upload theses to the internet. This should pasted at the bottom of the .bashrc file of the Linux machine. This will create permanent environment variables to store RTK correction service login credentials. This template has two separate ports and endpoints for connecting to a network that automatically selects a reference station and one for connecting a specific reference station. 
-> ```
-> # InCORS RTK correction service credentials https://incors.in.gov/
-> # Save the environment variables to to .bashrc i.e `sudo vim ~/.bashrc`
-> #########################################################
-> # DO NOT PUBLISH, THIS CONTAINS USERNAMES and PASSWORDS #
-> #########################################################
-> export NTRIP_HOSTNAME="..."
-> # Automatic cells
-> export NTRIP_PORT_AUTO="9000"
-> export NTRIP_ENDPOINT_AUTO="RTCM3_MAX"
-> # single site
-> export NTRIP_PORT_SINGLE="..."
-> export NTRIP_ENDPOINT_SINGLE="..."
-> # secret
-> export NTRIP_USER="..."
-> export NTRIP_PASSWORD="..."
-> ```
+
+```shell
+# InCORS RTK correction service credentials https://incors.in.gov/
+# Save the environment variables to to .bashrc i.e `sudo vim ~/.bashrc`
+#########################################################
+# DO NOT PUBLISH, THIS CONTAINS USERNAMES and PASSWORDS #
+#########################################################
+export NTRIP_HOSTNAME="..."
+# Automatic cells
+export NTRIP_PORT_AUTO="9000"
+export NTRIP_ENDPOINT_AUTO="RTCM3_MAX"
+# single site
+export NTRIP_PORT_SINGLE="..."
+export NTRIP_ENDPOINT_SINGLE="..."
+# secret
+export NTRIP_USER="..."
+export NTRIP_PASSWORD="..."
+```
 
 2. After saving edits, close the terminal
 2. Open new terminal, Verify environment variables

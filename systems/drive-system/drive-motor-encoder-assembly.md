@@ -8,12 +8,16 @@ aliases: [encoder, encoders, AMT103-V]
 
 ## Parts
 
+
+%%
 ```dataview
 TABLE WITHOUT ID
 component-type, description, source-files, supplier-link
 FROM csv("parts-list-rev1.csv")
 WHERE sub-assembly = "encoder"
 ```
+%%
+
 
 - Hex Nut Encoder Adapter (3D printed)
 	- Material: MJF Nylon

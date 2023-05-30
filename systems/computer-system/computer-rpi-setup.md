@@ -8,7 +8,6 @@ This guide will outline the steps taken to setup the baseline software on the Ra
 >[!INFO]
 > This project recommends using a Raspberry Pi with at least 4GB of RAM. Compiler issues have been encounter with the 2GB variant.
 
-
 ## Setup OS Installation
 
 1. Install Raspberry PI Imager https://www.raspberrypi.com/software/
@@ -21,7 +20,7 @@ This guide will outline the steps taken to setup the baseline software on the Ra
 1. Test ssh access `ssh <user>@<rpi-local-ip>` Use the password you configured in the [[#^rpi-os-config]] step
 2. Reserve a static local IP address for within the router's configuration
 3. Reboot the pi 
-	On host machine: `ssh -t <user>@<rpi-local-ip> "reboot"
+	On host machine: `ssh -t <user>@<rpi-local-ip> "reboot"`
 	Or, within the pi ssh terminal `reboot`
 4. Test ssh access with machine name
 	`ssh <user>@<hostname>`
@@ -32,7 +31,8 @@ This guide will outline the steps taken to setup the baseline software on the Ra
 7. Add ssh config to host machine ^rpi4-ssh-config
 	1. On host machine: `xdg-open ~/.ssh/config`
 	2. Copy-paste the following, this project is using `rpi4` as the config-name
-```
+
+```txt
 Host <config-name>
 	HostName <local-reserved-static-ip>
 	User bot
