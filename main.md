@@ -8,11 +8,11 @@
 
 There are two goals to this garden-bot project. Goal #1 is to develop and document my experience in building a semi-autonomous navigating four-wheeled robot. Robotics has a wide range of disciplines and risk involved. If this project is delayed or abandoned for any reason, I want to produce at least a documented learning experience. Goal #2 is the garden-bot should have the ability to self-navigate via GPS way points. Essentially you click on a point on a Google Maps like Interface and the robot should navigated itself to that location while avoiding obstacles.
 
-## Goal #1
+## Goal 1
 
 Building a robot is hard. Building a robot alone is ludicrous. This is because a robots are inherently complex. The most important task that ensures a robotic endeavor such as this one is successful is to manage that complexity. Since I'm practically building a robot from scratch, there is an unexpected amount of designing and fabrication involved that I can safely say I was not prepared for. When it came to mechanical design and development I learned quickly that pen and paper and ad-hoc solutions was not going to be enough. Overwhelmed with the growing awareness of complexity I reached for a knowledge base solution like this. Obsidian.md will be the foundation for managing most of the technical information and knowledge that require high visibility and access.
 
-## Goal #2
+## Goal 2
 
 Building a robot that can navigation semi-autonomously via GPS way points is my white whale. It's a pretty simple if not modest goal. This problem is mostly solved in the Agricultural Industry but I really would like to discover the first principles in practice. This goal is mostly about understanding the existing open-source software well enough to piece them together to solve a problem. Robot Operating System provides that software framework and community that makes this task realistic considering all the challenges that lay ahead.
 
@@ -38,32 +38,37 @@ Building a robot that can navigation semi-autonomously via GPS way points is my 
 
 ## Milestones
 
-- Hardware
-	- [x] Primary Electronics 
-	- [x] Differential Steering
-	- [x] Ackermann Steering
-	- [ ] Computer Enclosure
-	- [ ] Charging Relay
-	- [ ] SugarPi 3 Plus
-	- [ ] GPS mount
-	- [ ] IMU mount
-	- [ ] Computer mount
-	- [ ] Camera mount
-	- [ ] 2D LIDAR
-	- [ ] Vehicle Enclosure
-- Documentation
-	- [ ] Utilize [obsidian-html](https://github.com/obsidian-html/obsidian-html) 
-	- [ ] Parts List #WIP 
-	- [ ] Wire Diagram #WIP 
-	- [ ] Steering System #todo
-	- [ ] 3D Models and Dimensions #WIP
-- Software
-	- [ ] CI/CD workflow #WIP
-	- [ ] GPS ROS node
-	- [ ] IMU ROS node
-	- [ ] Blink(1) integration
-	- [ ] Localization package
-	- [ ] Way point piloting package
+### Hardware
+
+- [x] Primary Electronics 
+- [x] Differential Steering
+- [x] Ackermann Steering
+- [ ] Computer Enclosure
+- [ ] Charging Relay
+- [ ] SugarPi 3 Plus
+- [ ] GPS mount
+- [ ] IMU mount
+- [ ] Computer mount
+- [ ] Camera mount
+- [ ] 2D LIDAR
+- [ ] Vehicle Enclosure
+
+### Documentation
+
+- [ ] Utilize [obsidian-html](https://github.comobsidian-html/obsidian-html) 
+- [ ] Parts List #WIP 
+- [ ] Wire Diagram #WIP 
+- [ ] Steering System #todo
+- [ ] 3D Models and Dimensions #WIP
+
+### Software
+
+- [ ] CI/CD workflow #WIP
+- [ ] GPS ROS node
+- [ ] IMU ROS node
+- [ ] Blink(1) integration
+- [ ] Localization package
+- [ ] Way point piloting package
 
 
 ##  Content
@@ -74,10 +79,12 @@ Building a robot that can navigation semi-autonomously via GPS way points is my 
 [[computer-system]] #todo
 - [[computer-nano|nano]]
 - [[computer-rpi|rpi4]]
+
 [[drive-system]]
 - [[drive-motor]] `MY1016`
 - [[drive-motor-encoder-assembly]] `AMT103-V`
 - [[drive-motor-controller]] `roboclaw 2x30A`
+
 [[steering-system]] #todo
 [[power-system]]
 [[wire-system]]
