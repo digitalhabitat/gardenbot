@@ -1,27 +1,35 @@
 # gardenbot
 
-
-![[main_capture-removebg.png]]
-
+![[main_capture-removebg.png|400]]
 
 ## Introduction
 
-There are two goals to this garden-bot project. Goal #1 is to develop and document my experience in building a semi-autonomous navigating four-wheeled robot. Robotics has a wide range of disciplines and risk involved. If this project is delayed or abandoned for any reason, I want to produce at least a documented learning experience. Goal #2 is the garden-bot should have the ability to self-navigate via GPS way points. Essentially you click on a point on a Google Maps like Interface and the robot should navigated itself to that location while avoiding obstacles.
+The Gardenbot idea was imagined during my end of a group senior design project for the [2019 AgBot Challenge](https://github.com/digitalhabitat/agbot_0). I decided to begin the project because of my interest in robotics and systems engineering. 
+
+There are two goals to the garden-bot project:
 
 ## Goal 1
 
-Building a robot is hard. Building a robot alone is ludicrous. This is because a robots are inherently complex. The most important task that ensures a robotic endeavor such as this one is successful is to manage that complexity. Since I'm practically building a robot from scratch, there is an unexpected amount of designing and fabrication involved that I can safely say I was not prepared for. When it came to mechanical design and development I learned quickly that pen and paper and ad-hoc solutions was not going to be enough. Overwhelmed with the growing awareness of complexity I reached for a knowledge base solution like this. Obsidian.md will be the foundation for managing most of the technical information and knowledge that require high visibility and access.
+Goal #1 is to document my experience in building a semi-autonomous navigating four-wheeled robot. Robotics has a wide range of disciplines and risks involved. If this project is ever delayed or abandoned, there will at least exist detailed documentation of the process—lessons and insights involved.
+
+Robots are inherently complex, which makes building a robot especially challenging. In order for a robotic endeavor such as this to reach success, managing that complexity is crucial. Since I'm basically building a robot from scratch—for the first time ever on my own—I admittingly was not prepared for all the design and fabrication work involved. Acutely aware of the project’s growing complexity, I realized that pen-and-paper and ad-hoc solutions were inefficient in managing the mechanical design and development process.
+
+So I reached for a personal knowledge base—this website—to help me document, organize, and share my research and findings. [Obsidian.md](https://en.wikipedia.org/wiki/Obsidian_(software)) will be the foundation for managing most of the technical information and knowledge that require high visibility and access.
 
 ## Goal 2
 
-Building a robot that can navigation semi-autonomously via GPS way points is my white whale. It's a pretty simple if not modest goal. This problem is mostly solved in the Agricultural Industry but I really would like to discover the first principles in practice. This goal is mostly about understanding the existing open-source software well enough to piece them together to solve a problem. Robot Operating System provides that software framework and community that makes this task realistic considering all the challenges that lay ahead.
+Goal #2 is to develop the garden-bot with the ability to self-navigate via GPS way points. The person navigating the garden-bot would be able to click a point on a Google Maps-like interface and the robot would navigate itself to that location while avoiding obstacles.
+
+Building a robot that can navigate semi-autonomously via GPS way points is my white whale. It's a pretty simple, if not modest, goal. But ultimately has potential for productivity gains in the Agricultural Industry and the larger society. I would be proud in having made contributions in establishing the first principles in practice. 
+
+Achieving this goal requires a deep understanding of existing open-source software and weaving that knowledge together to make the garden-bot work. [Robot Operating System](https://en.wikipedia.org/wiki/Robot_Operating_System) provides the software framework and community to make this task achievable—considering all challenges that lay ahead.
 
 ## Current Status
 
 - Basic Keyboard teleportation via ssh over WiFi
 	1. Start docker [bot_ros2_workspace](https://github.com/digitalhabitat/bot_ros2_workspace)
 	2. Open terminal run `ros2 launch ./launch/teleop-test.xml`
-	3. Open a second terminal run `ros2 run ros2 run teleop_twist_keyboard teleop_twist_keyboard`
+	3. Open a second terminal run `ros2 run teleop_twist_keyboard teleop_twist_keyboard`
 	4. See [[drive-roboclaw-setup]] additional info
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/C3Nxp40HBfw" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
@@ -70,11 +78,9 @@ Building a robot that can navigation semi-autonomously via GPS way points is my 
 - [ ] Localization package
 - [ ] Way point piloting package
 
-
 ##  Content
 
->[!Work in progress]
-> Various pages are still in development.
+>[!attention] Various pages are still in development.
 
 [[computer-system]] #todo
 - [[computer-nano|nano]]
