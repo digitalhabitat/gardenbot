@@ -1,8 +1,0 @@
-# The first folder that contains all obsidian files
-# Use full path or relative path, but don't use ~/
-obsidian_folder_path_str: '.'
-
-# The note that will be used as the index.html
-# should be in obsidian_folder_path_str
-# Use full path or relative path, but don't use ~/
-obsidian_entrypoint_path_str: 'main.md'
