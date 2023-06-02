@@ -22,7 +22,7 @@ jobs:
           echo ${{ github.workspace }}
           ls -al
           obsidianhtml convert -i clone-path/config/config.yaml -v
-          touch ${{ github.workspace }}/html/.nojekyll
+          touch ${{ github.workspace }}/output/html/.nojekyll
 
       - name: Publish to Github Pages
         uses: s0/git-publish-subdir-action@develop
