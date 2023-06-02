@@ -10,6 +10,8 @@ There are two goals to the garden-bot project:
 
 ## Goal 1
 
+Testing
+
 Goal #1 is to document my experience in building a semi-autonomous navigating four-wheeled robot. Robotics has a wide range of disciplines and risks involved. If this project is ever delayed or abandoned, there will at least exist detailed documentation of the process—lessons and insights involved.
 
 Robots are inherently complex, which makes building a robot especially challenging. In order for a robotic endeavor such as this to reach success, managing that complexity is crucial. Since I'm basically building a robot from scratch—for the first time ever on my own—I admittingly was not prepared for all the design and fabrication work involved. Acutely aware of the project’s growing complexity, I realized that pen-and-paper and ad-hoc solutions were inefficient in managing the mechanical design and development process.
