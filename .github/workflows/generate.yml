@@ -19,6 +19,7 @@ jobs:
           cd ${{ github.workspace }}
           pip install --upgrade pip
           pip install git+https://github.com/obsidian-html/obsidian-html
+          pwd
           obsidianhtml convert -i clone-path/config/config.yaml -v
           touch html/.nojekyll
 
