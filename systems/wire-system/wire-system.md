@@ -50,13 +50,9 @@ The the wiring of each major electrical system is documented with https://www.di
 	- Labels: WX1, WX2
 
 
-![[wireviz-w1.svg|w1]] ![[wireviz-w2.svg]]
+![[wireviz-w1.svg|w1]] ![[wireviz-w2.svg|w2]]
 
 ## 24 Volt Supply Wiring Diagram
-
-
-![[wire-system-24-volt.drawio.html]]
-
 
 ![[wire-system-24-volt.drawio.svg]]
 
