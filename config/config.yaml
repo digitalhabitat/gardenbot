@@ -1,3 +1,4 @@
+# This config is stritcly for usage by the github action generate.yml
 # The note that will be used as the index.html
 # should be in obsidian_folder_path_str
 # Use full path or relative path, but don't use ~/

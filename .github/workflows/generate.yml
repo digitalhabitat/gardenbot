@@ -24,11 +24,24 @@ jobs:
           obsidianhtml convert -i clone-path/config/config.yaml -v
           touch ${{ github.workspace }}/output/html/.nojekyll
 
-      - name: Publish to Github Pages
-        uses: s0/git-publish-subdir-action@develop
+#      - name: Publish to Github Pages
+#        uses: s0/git-publish-subdir-action@develop
+#        env:
+#          REPO: self
+#          BRANCH: gh-pages # The branch name where you want to push the assets
+#          FOLDER: output/html # The directory where your assets are generated
+#          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # GitHub will automatically add this - you don't need to bother getting a token
+#          MESSAGE: "Build: ({sha}) {msg}" # The commit message
+      
+      - name: Pushes to another repsository
+        id: push_directory
+        uses: cpina/github-action-push-to-another-repository@main
         env:
-          REPO: self
-          BRANCH: gh-pages # The branch name where you want to push the assets
-          FOLDER: output/html # The directory where your assets are generated
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # GitHub will automatically add this - you don't need to bother getting a token
-          MESSAGE: "Build: ({sha}) {msg}" # The commit message
+          SSH_DEPLOY_KEY: ${{ secrets.SSH_DEPLOY_KEY }}
+        with:
+          source-directory: 'output/html'
+          destination-github-username: 'digitalhabitat'
+          destination-repository-name: 'digitalhabitat.github.io'
+          user-email: miketm89@gmail.com
+          commit-message: pushed from $GITHUB_REF
+          target-branch: master
