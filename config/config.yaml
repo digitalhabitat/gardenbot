@@ -3,3 +3,22 @@
 # should be in obsidian_folder_path_str
 # Use full path or relative path, but don't use ~/
 obsidian_entrypoint_path_str: 'clone-path/index.md'
+
+
+
+##########################################################################
+#                             HTML OUTPUT                                #
+##########################################################################
+
+# Will be inputted into the Html template as page title
+# Not used anywhere else atm.
+site_name: 'gardenbot'
+
+file_exports: [
+  encoding: binary,
+  src: resources/includes/favicon.ico
+]
+# file_exports:
+#   - encoding: binary
+#     src: Resources/Includes/favicon.ico
+#     dst: favicon.ico
