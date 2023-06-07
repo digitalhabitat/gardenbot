@@ -8,7 +8,7 @@
             "label": "Run wireviz",
             "detail": "Generate .svg diagrams",
             "type": "shell",
-            "command": "bot-notes/systems/wire-system/wire-diagrams/wireviz.sh",
+            "command": "bot-notes/systems/wire-system/wire-diagrams/wireviz/wireviz.sh",
             "presentation": {
               "echo": true,
               "reveal": "always",
@@ -17,7 +17,41 @@
               "showReuseMessage": true,
               "clear": false
             }
+        },
+        // Generate Html
+        {
+            "label": "generate html",
+            "detail": "Run all unit tests and show results.",
+            "type": "shell",
+            "command": "obsidianhtml convert -i config/local-config.yaml",
+            "group": {
+                "kind": "test",
+                "isDefault": true
+            }
+        },
+        // Test Page (requires) port forwarding
+        {
+          "label": "start server",
+          "type": "shell",
+          "dependsOn":["generate html"],
+          "command": "obsidianhtml serve --directory output/html --port 8888",
+          "group": {
+              "kind": "test",
+              "isDefault": true
+          }
+        },
+        // Clean
+        {
+
+          "label": "clean output",
+          "detail": "Run the clean target",
+          "type": "shell",
+          "command": "kill $(lsof -i:8888 -t); rm -r ./output",
+          "group": {
+            "kind": "test",
+            "isDefault": true
         }
+      },
 
     ],
     "inputs": [

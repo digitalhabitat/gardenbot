@@ -1,5 +1,8 @@
 # gardenbot
 
+> [!example]- obsidian.md notes
+> https://github.com/digitalhabitat/gardenbot
+
 ![[main_capture-removebg.png|400]]
 
 ## Introduction
@@ -9,8 +12,6 @@ The Gardenbot idea was imagined during my end of a group senior design project f
 There are two goals to the garden-bot project:
 
 ## Goal 1
-
-Testing
 
 Goal #1 is to document my experience in building a semi-autonomous navigating four-wheeled robot. Robotics has a wide range of disciplines and risks involved. If this project is ever delayed or abandoned, there will at least exist detailed documentation of the process—lessons and insights involved.
 

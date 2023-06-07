@@ -4,8 +4,6 @@
 # Use full path or relative path, but don't use ~/
 obsidian_entrypoint_path_str: 'gardenbot.md'
 
-
-
 ##########################################################################
 #                             HTML OUTPUT                                #
 ##########################################################################
@@ -13,6 +11,10 @@ obsidian_entrypoint_path_str: 'gardenbot.md'
 # Will be inputted into the Html template as page title
 # Not used anywhere else atm.
 site_name: 'gardenbot/notes'
+
+# Use when deploying to https://mydomain.com/html_prefix/ instead of https://mydomain.com/
+# use '/html_prefix' (prepend slash, no slash at the end)
+html_url_prefix: ''
 
 file_exports:
   - encoding: binary
