@@ -3,7 +3,7 @@
 import * as grapher_2d from './graphers/2d.js';
 import * as grapher_3d from './graphers/3d.js';
 
-const CONFIGURED_HTML_URL_PREFIX = '';
+const CONFIGURED_HTML_URL_PREFIX = '/gardenbot';
 const URL_MODE = "absolute";
 
 var graphers = [
