@@ -94,9 +94,10 @@ Achieving this goal requires a deep understanding of existing open-source softwa
 - [[drive-motor-encoder-assembly]] `AMT103-V`
 - [[drive-motor-controller]] `roboclaw 2x30A`
 
-[[steering-system]] #todo
+[[steering-system]] #WIP 
+- [[steering-motor-controller]]
 [[power-system]]
-[[wire-system]]
+[[wire-system]]	
 [[localization-system]] #todo
 
 ---
