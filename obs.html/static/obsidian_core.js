@@ -13,7 +13,7 @@ var CONFIG_CLOSE_LEFT_PANE_IF_EMPTY = 0;
 var RELATIVE_PATHS = 0;
 var documentation_mode = 1;
 var tab_mode = !no_tab_mode;
-var gzip_hash = '22586319413613334670030787144373837182'                       // used to check whether the localStorage data is stale
+var gzip_hash = '106757970155141671246523313152571618174'                       // used to check whether the localStorage data is stale
 
 // global cache
 var fn_cache_ls_available = null;
@@ -99,8 +99,14 @@ function load_theme() {
     }
 
     let theme_name = ls_get('theme_name');
+
     if (!theme_name){
-        ls_set('theme_name', 'obs-light');
+        if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+            ls_set('theme_name', 'obs-dark');
+          } else {
+           
+            ls_set('theme_name', 'obs-light');
+          }
     }
     set_theme(ls_get('theme_name'));
     disable_antiflash();
@@ -149,12 +155,24 @@ function getParentContainer(el){
 
 function load_page() {
     // let page know that js is enabled
+    // ----------------------------------------------------------------------------
     signal_js_enabled(document.body)
 
-    if (documentation_mode) {
-        //httpGetAsync(html_url_prefix + '/obs.html/data/graph.json', load_dirtree_as_left_pane, 0, false);
-    }
 
+    // Continuous observers
+    // ----------------------------------------------------------------------------
+    const resize_ob = new ResizeObserver(function(entries) {
+        // resize the container height every time the header height changes
+        let containers = document.querySelectorAll(".container");
+        containers.forEach(container => {
+            setContentHeight(container);
+        });
+    });
+    resize_ob.observe(document.getElementById('header'));
+
+
+    // Custom hooks and loads
+    // ----------------------------------------------------------------------------
     let collection = document.getElementsByClassName("container")
     if (collection.length > 0) {
         LoadTableOfContents(collection[0])
@@ -188,9 +206,10 @@ function load_page() {
                     // we scroll to the anchor
                     // we do this manually because scrolling divs suck
                     let levelcont = document.getElementsByClassName("container")[0];
+                    let header = document.getElementById("header")
                     var el = levelcont.querySelectorAll(link.replaceAll(':', '\\:'))[0];
                     if (el) {
-                        getParentContainer(el).scrollTop = el.offsetTop - rem(6);
+                        getParentContainer(el).scrollTop = el.offsetTop - (rem(1) + header.getBoundingClientRect().height) 
                         el.classList.add('fade-it');
                         setTimeout(function() {
                             el.classList.remove('fade-it');
@@ -320,6 +339,9 @@ function SetContainer(container) {
     // Set click to get header link
     SetHeaders(container);
 
+    // wrap images in links so we can easily open the actual size (unless it is already wrapped by a link)
+    wrap_imgs_with_links(container);
+
     // Load mermaid code
     // if (mermaid_enabled){
     //     mermaid.init()
@@ -340,6 +362,9 @@ function SetContainer(container) {
     // requires_js can be set on elements that need to be hidden unless js is enabled
     // this block will remove the requires_js class from all elements
     signal_js_enabled(container)
+
+    // adjust container height so content does not fall off screen
+    setContentHeight(container)
 
     // set graph svg and button to have unique id across tabs
     let graph_div = container.querySelectorAll(".graph_div");
@@ -542,6 +567,10 @@ function disable(el){
     }
 }
 
+function setContentHeight(container){
+    const height = document.getElementById('header').offsetHeight;
+    container.style.height = `calc(100vh - ${height}px - 2rem)`;
+}
 
 // standard
 function cl_toggle_id(id, class_name){
@@ -592,3 +621,34 @@ function style_checklist(element){
         }
     }
 }
+
+function isPartOfLink(element) {
+	// Check if any parent element is a link
+	let parentElement = element.parentElement;
+	while (parentElement !== null) {
+	  if (parentElement.tagName === 'A') {
+		return true;
+	  }
+	  parentElement = parentElement.parentElement;
+	}
+  
+	// If no link element found, return false
+	return false;
+}
+
+function wrap_imgs_with_links(container) {
+	[...container.getElementsByTagName("img")].forEach(img => {
+		// don't wrap if image already is wrapped in a link
+		if (isPartOfLink(img)){ return; }
+
+		// create link wrapper
+		let wrapper = document.createElement('a');
+		wrapper.setAttribute('href',img.src);
+		wrapper.setAttribute("target", "_blank");
+		
+		// put img in link
+		img.parentNode.insertBefore(wrapper, img);
+		wrapper.appendChild(img);
+	});
+}
+
