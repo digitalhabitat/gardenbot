@@ -9,6 +9,16 @@ The the wiring of each major electrical system is documented with https://www.di
 > - Wiring construction (incomplete)
 > - Part documentation (incomplete)
 > - Wire lables (incomplete)
+> - https://www.cosjwt.com/tag/asme-y1444-2008/
+> - IEEE-200-1975 (ANSI Y32.16-1975)
+> - ASME Y14.44-2008 
+
+>[!Info]
+>**Golden rules** for harness reference designation from IEEE-200-1975 include:
+>- The movable (less fixed) connector of a mating pair shall be designated P [where P means plug].
+>- The stationary (more fixed) connector of a mating pair shall be designated J or X [where J means Jack].
+>- If two cables are to be connected to each other, each of the mating cable connectors shall be designated P.
+
 
 ## 24 Volt Wire System
 

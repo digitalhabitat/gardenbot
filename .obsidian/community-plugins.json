@@ -1,9 +1,9 @@
 [
   "obsidian-csv-table",
   "obsidian-dynamic-toc",
-  "drawio-obsidian",
   "txt-as-md-obsidian",
   "dataview",
   "webpage-html-export",
-  "obsidian-git"
+  "obsidian-git",
+  "obsidian-diagrams-net"
 ]

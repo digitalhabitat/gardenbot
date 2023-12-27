@@ -1,3 +1,16 @@
 {
-  "items": []
+  "items": [
+    {
+      "type": "file",
+      "ctime": 1703700882524,
+      "path": "systems/wire-system/wire-system.md",
+      "title": "Wire Sys bookmark"
+    },
+    {
+      "type": "file",
+      "ctime": 1703701115488,
+      "path": "systems/power-system/pisugar.md",
+      "title": "pisugar"
+    }
+  ]
 }
