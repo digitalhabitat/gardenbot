@@ -5,6 +5,7 @@
 [Amazon](https://www.amazon.com/Portable-Platform-Raspberry-Accessories-handhold/dp/B09MJ876FW/)
 [Install](https://github.com/PiSugar/PiSugar/wiki/PiSugar-3-Series)
 [TCP commands](https://github.com/PiSugar/pisugar-power-manager-rs)
+[PiSugar Power Manager](https://github.com/PiSugar/PiSugar/wiki/PiSugar-Power-Manager-(Software))
 Web UI: http://192.168.1.25:8421/#/
 
 Default ports:
