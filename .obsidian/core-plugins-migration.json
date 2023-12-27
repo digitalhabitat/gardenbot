@@ -7,7 +7,7 @@
   "outgoing-link": false,
   "tag-pane": false,
   "page-preview": true,
-  "daily-notes": false,
+  "daily-notes": true,
   "templates": false,
   "note-composer": true,
   "command-palette": true,
@@ -18,7 +18,7 @@
   "zk-prefixer": false,
   "random-note": false,
   "outline": false,
-  "word-count": true,
+  "word-count": false,
   "slides": false,
   "audio-recorder": false,
   "workspaces": false,
@@ -26,5 +26,6 @@
   "publish": false,
   "sync": false,
   "canvas": true,
-  "bookmarks": true
+  "bookmarks": true,
+  "properties": false
 }

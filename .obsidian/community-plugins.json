@@ -3,5 +3,7 @@
   "obsidian-dynamic-toc",
   "drawio-obsidian",
   "txt-as-md-obsidian",
-  "dataview"
+  "dataview",
+  "webpage-html-export",
+  "obsidian-git"
 ]
