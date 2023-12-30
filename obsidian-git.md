@@ -1,11 +1,12 @@
 # obsidian git 
 
+- https://publish.obsidian.md/git-doc/Getting+Started
 - https://publish.obsidian.md/git-doc/Authentication
 - [Fine-grained personal access token](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens)
 
 ### Start a GitHub repository and a obsidian vault
 
-- I already had an obsidian vault synced to a GitHub repository. In this procedure I am just laying out what I did to start use the obsidian git plugin.
+- I already had an Obsidian vault synced to a GitHub repository. In this procedure I am just laying out what I did to start using the Obsidian Git plugin.
 
 ### Utilize a `.gitignore` file
 
