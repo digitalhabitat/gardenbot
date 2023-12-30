@@ -344,6 +344,19 @@ nc localhost 52001
 ```
 
 
+## Extras
+
+- Set trace level with `-t 3` and you can read logs with `cat str2str.trace`
+
+```sh
+str2str -in \
+ntrip://$NT_USER:$NT_PASSWORD@$NT_HOSTNAME:$NT_PORT_SINGLE/$NT_ENDPOINT_SINGLE#rtcm3 \
+-t 3
+```
+
+```shell
+cat str2str.trace
+```
 ## Nomenclature
 
 #todo 
