@@ -376,6 +376,7 @@
 <li><a href="#creating-a-persistent-label-for-the-rtk-gnss-usb-device" class="anchor-link">Creating a persistent label for the RTK GNSS USB device</a></li>
 </ul>
 </li>
+<li><a href="#extras" class="anchor-link">Extras</a></li>
 <li><a href="#nomenclature" class="anchor-link">Nomenclature</a></li>
 </ul>
 </li>
@@ -889,6 +890,28 @@ ntrip://<span class="nv">$NT_USER</span>:<span class="nv">$NT_PASSWORD</span>@<s
 
 </div>
 
+<h2 id="extras">Extras</h2>
+<ul>
+<li>Set trace level with <code>-t 3</code> and you can read logs with <code>cat str2str.trace</code>   </li>
+</ul>
+<div class="lang-sh">
+
+<div class="codehilite"><pre><span></span><code>str2str -in <span class="se">\</span>
+ntrip://<span class="nv">$NT_USER</span>:<span class="nv">$NT_PASSWORD</span>@<span class="nv">$NT_HOSTNAME</span>:<span class="nv">$NT_PORT_SINGLE</span>/<span class="nv">$NT_ENDPOINT_SINGLE</span><span class="c1">#rtcm3 \</span>
+-t <span class="m">3</span>
+</code></pre></div>
+
+
+</div>
+
+<div class="lang-shell">
+
+<div class="codehilite"><pre><span></span><code>cat str2str.trace
+</code></pre></div>
+
+
+</div>
+
 <h2 id="nomenclature">Nomenclature</h2>
 <p><a class="inline-tag" href="/gardenbot/obs.html/tags/todo/index.html">todo</a> </p></div>
 <div class="note-footer">
@@ -909,17 +932,17 @@ ntrip://<span class="nv">$NT_USER</span>:<span class="nv">$NT_PASSWORD</span>@<s
 
 </div>
 <div class="graph requires_js ">
-    <div id="A261790212777293681876356636332684004708{level}" class="graph_div"></div>
+    <div id="A201256659834409009460922467935723894803{level}" class="graph_div"></div>
 
-    <div class="graph-instructions" id="D261790212777293681876356636332684004708{level}">
+    <div class="graph-instructions" id="D201256659834409009460922467935723894803{level}">
         Left-click: follow link, Right-click: select node, Scroll: zoom
     </div>
     
     <div class="graph-button-row" style="display:flex;">
-        <button class="graph_button graph_show_button" id="B261790212777293681876356636332684004708{level}" level="{level}" note_temp_id="261790212777293681876356636332684004708" onclick="window.ObsHtmlGraph.run(this, '261790212777293681876356636332684004708', 'usb-gnss-setup');">
+        <button class="graph_button graph_show_button" id="B201256659834409009460922467935723894803{level}" level="{level}" note_temp_id="201256659834409009460922467935723894803" onclick="window.ObsHtmlGraph.run(this, '201256659834409009460922467935723894803', 'usb-gnss-setup');">
             Show Graph
         </button>
-        <button class="graph_button graph_type_button" id="C261790212777293681876356636332684004708{level}" style="flex:1" onclick="window.ObsHtmlGraph.switch_graph_type(this);">
+        <button class="graph_button graph_type_button" id="C201256659834409009460922467935723894803{level}" style="flex:1" onclick="window.ObsHtmlGraph.switch_graph_type(this);">
             2D
         </button>
     </div>
