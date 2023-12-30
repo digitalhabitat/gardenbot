@@ -376,6 +376,7 @@
 <li><a href="#creating-a-persistent-label-for-the-rtk-gnss-usb-device" class="anchor-link">Creating a persistent label for the RTK GNSS USB device</a></li>
 </ul>
 </li>
+<li><a href="#nomenclature" class="anchor-link">Nomenclature</a></li>
 </ul>
 </li>
 </ul>
@@ -404,6 +405,7 @@
 </ul>
 </div>
 </div>
+<p><a href="https://incors.in.gov/" class="external-link">https://incors.in.gov/</a>   </p>
 <p>This setup provides a tutorial on how to use a GNSS RTK Receiver, a Linux Machine, and an RTK Correction Service (or Base Station) to access position data with centimeter-level precision. Many GNSS RTK Receivers will connect to an NTRIP Caster directly utilizing its on-board LoRa,WiFi, Bluetooth, or Cellular Modem. However this tutorial is geared towards using a Linux Machine to connect to an NTRIP Caster to receive the RTK Correction Data and then relay the data to the RTK Receiver via USB. This use case is more relevant to a robotic platform that already has access to the Internet or a Local Network with an NTRIP Caster. Main reason to do it this way is because your Linux Machine may already be using a Cellular Modem or Long Distance Wireless Access Point. This would render the wireless capabilities of the RTK Receiver as redundant or less capable than what the Linux machine is using.   </p>
 <p><img alt="" src="/gardenbot/systems/localization-sysytem/gnss-rtk/gnss-rtk-diagram.svg" />   </p>
 <h2 id="basic-concepts">Basic Concepts</h2>
@@ -428,7 +430,7 @@
 </div>
 
 <ol>
-<li>Plugin in the USB RTK module and on the Linux terminal you should see this something like the following:   </li>
+<li>Plugin in the USB RTK module and on the Linux terminal you should see this something like the following:    </li>
 </ol>
 <div class="lang-stdout">
 
@@ -452,7 +454,7 @@ container in "privileged" mode. This is consider unsafe in some circumstances so
 </div>
 </div>
 <ol>
-<li>In the terminal, enter the following.   </li>
+<li>Cancel the process from step 0. In the terminal, enter the following.   </li>
 </ol>
 <div class="lang-shell">
 
@@ -462,6 +464,7 @@ container in "privileged" mode. This is consider unsafe in some circumstances so
 
 </div>
 
+<p>or   </p>
 <div class="lang-shell">
 
 <div class="codehilite"><pre><span></span><code>sudo cutecom
@@ -481,6 +484,7 @@ container in "privileged" mode. This is consider unsafe in some circumstances so
 
 </div>
 
+<p>or   </p>
 <div class="lang-shell">
 
 <div class="codehilite"><pre><span></span><code>socat - TCP4:192.168.0.20:9002
@@ -490,7 +494,7 @@ container in "privileged" mode. This is consider unsafe in some circumstances so
 </div>
 
 <ol>
-<li>The <code>str2str</code> rtklib CLI application is use to connect to a NTRIP Caster and recieve    </li>
+<li>The <code>str2str</code> rtklib CLI application is use to connect to a NTRIP Caster and receive correction data.    </li>
 </ol>
 <div class="lang-general">
 
@@ -559,35 +563,35 @@ container in "privileged" mode. This is consider unsafe in some circumstances so
 <span class="c1">#########################################################</span>
 <span class="c1"># DO NOT PUBLISH, THIS CONTAINS USERNAMES and PASSWORDS #</span>
 <span class="c1">#########################################################</span>
-<span class="nb">export</span> <span class="nv">NTRIP_HOSTNAME</span><span class="o">=</span><span class="s2">&quot;...&quot;</span>
+<span class="nb">export</span> <span class="nv">NT_HOSTNAME</span><span class="o">=</span><span class="s1">&#39;...&#39;</span>
 <span class="c1"># Automatic cells</span>
-<span class="nb">export</span> <span class="nv">NTRIP_PORT_AUTO</span><span class="o">=</span><span class="s2">&quot;9000&quot;</span>
-<span class="nb">export</span> <span class="nv">NTRIP_ENDPOINT_AUTO</span><span class="o">=</span><span class="s2">&quot;RTCM3_MAX&quot;</span>
+<span class="nb">export</span> <span class="nv">NT_PORT_AUTO</span><span class="o">=</span><span class="s1">&#39;9000&#39;</span>
+<span class="nb">export</span> <span class="nv">NT_ENDPOINT_AUTO</span><span class="o">=</span><span class="s1">&#39;RTCM3_MAX&#39;</span>
 <span class="c1"># single site</span>
-<span class="nb">export</span> <span class="nv">NTRIP_PORT_SINGLE</span><span class="o">=</span><span class="s2">&quot;...&quot;</span>
-<span class="nb">export</span> <span class="nv">NTRIP_ENDPOINT_SINGLE</span><span class="o">=</span><span class="s2">&quot;...&quot;</span>
+<span class="nb">export</span> <span class="nv">NT_PORT_SINGLE</span><span class="o">=</span><span class="s1">&#39;...&#39;</span>
+<span class="nb">export</span> <span class="nv">NT_ENDPOINT_SINGLE</span><span class="o">=</span><span class="s1">&#39;...&#39;</span>
 <span class="c1"># secret</span>
-<span class="nb">export</span> <span class="nv">NTRIP_USER</span><span class="o">=</span><span class="s2">&quot;...&quot;</span>
-<span class="nb">export</span> <span class="nv">NTRIP_PASSWORD</span><span class="o">=</span><span class="s2">&quot;...&quot;</span>
+<span class="nb">export</span> <span class="nv">NT_USER</span><span class="o">=</span><span class="s1">&#39;...&#39;</span>
+<span class="nb">export</span> <span class="nv">NT_PASSWORD</span><span class="o">=</span><span class="s1">&#39;...&#39;</span>
 </code></pre></div>
 
 
 </div>
 
 <ol>
-<li>After saving edits, close the terminal   </li>
-<li>Open new terminal, Verify environment variables   </li>
+<li>After saving edits, close the terminal then run <code>source ~/.bahsrc</code>   </li>
+<li>Verify environment variables   </li>
 </ol>
 <div class="lang-shell">
 
 <div class="codehilite"><pre><span></span><code><span class="nb">echo</span> -e <span class="s1">&#39;\n&#39;</span><span class="se">\</span>
-<span class="s1">&#39;ntrip hostname:        &#39;</span> <span class="nv">$NTRIP_HOSTNAME</span><span class="s1">&#39;\n&#39;</span><span class="se">\</span>
-<span class="s1">&#39;ntrip port_auto:       &#39;</span> <span class="nv">$NTRIP_PORT_AUTO</span><span class="s1">&#39;\n&#39;</span><span class="se">\</span>
-<span class="s1">&#39;ntrip endpoint_auto:   &#39;</span> <span class="nv">$NTRIP_ENDPOINT_AUTO</span><span class="s1">&#39;\n&#39;</span><span class="se">\</span>
-<span class="s1">&#39;ntrip port_sigle:      &#39;</span> <span class="nv">$NTRIP_PORT_SINGLE</span><span class="s1">&#39;\n&#39;</span><span class="se">\</span>
-<span class="s1">&#39;ntrip endpoint_single: &#39;</span> <span class="nv">$NTRIP_ENDPOINT_SINGLE</span><span class="s1">&#39;\n&#39;</span><span class="se">\</span>
-<span class="s1">&#39;ntrip user:            &#39;</span> <span class="nv">$NTRIP_USER</span><span class="s1">&#39;\n&#39;</span><span class="se">\</span>
-<span class="s1">&#39;nitrip password:       &#39;</span> <span class="nv">$NTRIP_PASSWORD</span>
+<span class="s1">&#39;ntrip hostname:        &#39;</span> <span class="nv">$NT_HOSTNAME</span><span class="s1">&#39;\n&#39;</span><span class="se">\</span>
+<span class="s1">&#39;ntrip port_auto:       &#39;</span> <span class="nv">$NT_PORT_AUTO</span><span class="s1">&#39;\n&#39;</span><span class="se">\</span>
+<span class="s1">&#39;ntrip endpoint_auto:   &#39;</span> <span class="nv">$NT_ENDPOINT_AUTO</span><span class="s1">&#39;\n&#39;</span><span class="se">\</span>
+<span class="s1">&#39;ntrip port_sigle:      &#39;</span> <span class="nv">$NT_PORT_SINGLE</span><span class="s1">&#39;\n&#39;</span><span class="se">\</span>
+<span class="s1">&#39;ntrip endpoint_single: &#39;</span> <span class="nv">$NT_ENDPOINT_SINGLE</span><span class="s1">&#39;\n&#39;</span><span class="se">\</span>
+<span class="s1">&#39;ntrip user:            &#39;</span> <span class="nv">$NT_USER</span><span class="s1">&#39;\n&#39;</span><span class="se">\</span>
+<span class="s1">&#39;nitrip password:       &#39;</span> <span class="nv">$NT_PASSWORD</span>
 </code></pre></div>
 
 
@@ -616,7 +620,8 @@ container in "privileged" mode. This is consider unsafe in some circumstances so
 </ol>
 <div class="lang-shell">
 
-<div class="codehilite"><pre><span></span><code>sudo ./str2str -in ntrip://<span class="nv">$NTRIP_USER</span>:<span class="nv">$NTRIP_PASSWORD</span>@<span class="nv">$NTRIP_HOSTNAME</span>:<span class="nv">$NTRIP_PORT_SINGLE</span>/<span class="nv">$NTRIP_ENDPOINT_SINGLE</span><span class="c1">#rtcm3</span>
+<div class="codehilite"><pre><span></span><code>str2str -in <span class="se">\</span>
+ntrip://<span class="nv">$NT_USER</span>:<span class="nv">$NT_PASSWORD</span>@<span class="nv">$NT_HOSTNAME</span>:<span class="nv">$NT_PORT_SINGLE</span>/<span class="nv">$NT_ENDPOINT_SINGLE</span><span class="c1">#rtcm3</span>
 </code></pre></div>
 
 
@@ -625,9 +630,21 @@ container in "privileged" mode. This is consider unsafe in some circumstances so
 <ul>
 <li>Automatic Site   </li>
 </ul>
+<div class="callout callout-warning active" rasa="1">
+<div class="callout-title ">
+<div class="callout-title-icon"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="callout-icon"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"></path><line x1="12" y1="9" x2="12" y2="13"></line><line x1="12" y1="17" x2="12.01" y2="17"></line></svg>
+</div>
+<div class="callout-title-name">Warning
+</div>
+</div>
+<div class="callout-content">
+<p>Automatic site requires communication with a <strong>GNSS RTK Receiver</strong> in order to automatically send you correction data from the nearest site (end point).</p>
+</div>
+</div>
 <div class="lang-shell">
 
-<div class="codehilite"><pre><span></span><code>sudo ./str2str -in ntrip://<span class="nv">$NTRIP_USER</span>:<span class="nv">$NTRIP_PASSWORD</span>@<span class="nv">$NTRIP_HOSTNAME</span>:<span class="nv">$NTRIP_PORT_AUTO</span>/<span class="nv">$NTRIP_ENDPOINT_AUTO</span><span class="c1">#rtcm3</span>
+<div class="codehilite"><pre><span></span><code>str2str -in <span class="se">\</span>
+ntrip://<span class="nv">$NT_USER</span>:<span class="nv">$NT_PASSWORD</span>@<span class="nv">$NT_HOSTNAME</span>:<span class="nv">$NT_PORT_AUTO</span>/<span class="nv">$NT_ENDPOINT_AUTO</span><span class="c1">#rtcm3</span>
 </code></pre></div>
 
 
@@ -840,7 +857,9 @@ ATTRS<span class="o">{</span>idProduct<span class="o">}==</span><span class="s2"
 </ol>
 <div class="lang-shell">
 
-<div class="codehilite"><pre><span></span><code>sudo ./str2str -in ntrip://<span class="nv">$NTRIP_USER</span>:<span class="nv">$NTRIP_PASSWORD</span>@<span class="nv">$NTRIP_HOSTNAME</span>:<span class="nv">$NTRIP_PORT_SINGLE</span>/<span class="nv">$NTRIP_ENDPOINT_SINGLE</span><span class="c1">#rtcm3 -out serial://emlid_rtk:115200#52001 -b 1</span>
+<div class="codehilite"><pre><span></span><code>str2str -in <span class="se">\</span>
+ntrip://<span class="nv">$NT_USER</span>:<span class="nv">$NT_PASSWORD</span>@<span class="nv">$NT_HOSTNAME</span>:<span class="nv">$NT_PORT_SINGLE</span>/<span class="nv">$NT_ENDPOINT_SINGLE</span><span class="c1">#rtcm3 \</span>
+-out serial://emlid_rtk:115200#52001 -b <span class="m">1</span>
 </code></pre></div>
 
 
@@ -851,7 +870,9 @@ ATTRS<span class="o">{</span>idProduct<span class="o">}==</span><span class="s2"
 </ul>
 <div class="lang-shell">
 
-<div class="codehilite"><pre><span></span><code>sudo ./str2str -in ntrip://<span class="nv">$NTRIP_USER</span>:<span class="nv">$NTRIP_PASSWORD</span>@<span class="nv">$NTRIP_HOSTNAME</span>:<span class="nv">$NTRIP_PORT_AUTO</span>/<span class="nv">$NTRIP_ENDPOINT_AUTO</span><span class="c1">#rtcm3 -out serial://ttyACM0:115200#52001 -b 1</span>
+<div class="codehilite"><pre><span></span><code>str2str -in <span class="se">\</span>
+ntrip://<span class="nv">$NT_USER</span>:<span class="nv">$NT_PASSWORD</span>@<span class="nv">$NT_HOSTNAME</span>:<span class="nv">$NT_PORT_AUTO</span>/<span class="nv">$NT_ENDPOINT_AUTO</span><span class="c1">#rtcm3 \</span>
+-out serial://emlid_rtk:115200#52001 -b <span class="m">1</span>
 </code></pre></div>
 
 
@@ -866,7 +887,10 @@ ATTRS<span class="o">{</span>idProduct<span class="o">}==</span><span class="s2"
 </code></pre></div>
 
 
-</div></div>
+</div>
+
+<h2 id="nomenclature">Nomenclature</h2>
+<p><a class="inline-tag" href="/gardenbot/obs.html/tags/todo/index.html">todo</a> </p></div>
 <div class="note-footer">
 <div class="backlinks">
 <h2>Backlinks</h2>
@@ -878,24 +902,24 @@ ATTRS<span class="o">{</span>idProduct<span class="o">}==</span><span class="s2"
 <div class="tags">
 <h2>Tags</h2>
 <ul>
-	<li><a class="backlink" href="/gardenbot/obs.html/tags/todo/index.html">todo</a></li>
 	<li><a class="backlink" href="/gardenbot/obs.html/tags/WIP/index.html">WIP</a></li>
+	<li><a class="backlink" href="/gardenbot/obs.html/tags/todo/index.html">todo</a></li>
 </ul>
 </div>
 
 </div>
 <div class="graph requires_js ">
-    <div id="A96668254846253327514556064898103325388{level}" class="graph_div"></div>
+    <div id="A261790212777293681876356636332684004708{level}" class="graph_div"></div>
 
-    <div class="graph-instructions" id="D96668254846253327514556064898103325388{level}">
+    <div class="graph-instructions" id="D261790212777293681876356636332684004708{level}">
         Left-click: follow link, Right-click: select node, Scroll: zoom
     </div>
     
     <div class="graph-button-row" style="display:flex;">
-        <button class="graph_button graph_show_button" id="B96668254846253327514556064898103325388{level}" level="{level}" note_temp_id="96668254846253327514556064898103325388" onclick="window.ObsHtmlGraph.run(this, '96668254846253327514556064898103325388', 'usb-gnss-setup');">
+        <button class="graph_button graph_show_button" id="B261790212777293681876356636332684004708{level}" level="{level}" note_temp_id="261790212777293681876356636332684004708" onclick="window.ObsHtmlGraph.run(this, '261790212777293681876356636332684004708', 'usb-gnss-setup');">
             Show Graph
         </button>
-        <button class="graph_button graph_type_button" id="C96668254846253327514556064898103325388{level}" style="flex:1" onclick="window.ObsHtmlGraph.switch_graph_type(this);">
+        <button class="graph_button graph_type_button" id="C261790212777293681876356636332684004708{level}" style="flex:1" onclick="window.ObsHtmlGraph.switch_graph_type(this);">
             2D
         </button>
     </div>
