@@ -24,13 +24,13 @@ This setup provides a tutorial on how to use a GNSS RTK Receiver, a Linux Machin
 ## Basic Concepts
 
 ### GNSS RTK Receiver (Rover)
-These devices have recently became available in low-cost forms with comparable performance to higher end products. It is basically a micro-controller with a GNSS antenna and receiver with the capability to run complex calculations that enable it to resolve position data with centimeter precision under the right conditions. The micro-controller may be using a library like [RTKLIB](https://github.com/rtklibexplorer/RTKLIB) to perform the calculations. The most important condition for resolving centimeter-level precision is access to RTK corrections from a nearby(~35km) Base Station.
+These devices have recently became available in low-cost forms with comparable performance to higher end products. It is basically a micro-controller with a GNSS antenna and receiver with the capability to run complex calculations that enable it to resolve position data with centimeter precision under the right conditions. The micro-controller may be using a library like [RTKLIB](https://github.com/rtklibexplorer/RTKLIB) to perform the calculations. The most important condition for resolving centimeter-level precision is access to RTK corrections from a nearby (approximately 35 km) Base Station.
 
 ### Base Station
 The Base Station is basically a stationary GNSS RTK Receiver that is configured to stream out RTK correction data using a NTRIP Server (COTS products offer this as a single package). A Base Station and Reference Station are synonymous.
 
 ### Continuously Operating Reference Stations (CORS) network
-A CORS Network is a collection of GNSS Base stations combined in a single network to provide wider coverage of valid RTK correction data. Recall that RTK correction data is only valid within a ~35km radius of the Base Station. A CORS network may provide convenient access to RTK correction data from the nearest base station. There also exist advance techniques to combine correction data from multiple base stations to provide correction data from a Virtual Reference Station (VRS) to further reduce location error. [See VRS for details](https://geo-matching.com/content/the-principles-and-performance-of-cors-network-rtk-and-vrs)
+A CORS Network is a collection of GNSS Base stations combined in a single network to provide wider coverage of valid RTK correction data. Recall that RTK correction data is only valid within approximately a 35 km radius of the Base Station. A CORS network may provide convenient access to RTK correction data from the nearest base station. There also exist advance techniques to combine correction data from multiple base stations to provide correction data from a Virtual Reference Station (VRS) to further reduce location error. [See VRS for details](https://geo-matching.com/content/the-principles-and-performance-of-cors-network-rtk-and-vrs)
 
 ### Linux Machine NTRIP Client
 [RTKLIB](https://packages.ubuntu.com/jammy/rtklib) provides a suite of CLIs and GUIs that simplify much of the work. In theory could configure your design to perform the RTK calculations on the Linux Machine. However in this tutorial, the Linux Machine is only used to relay the RTK correction data from the NTRIP Caster to the GNSS RTK Receiver. To do this we use the RTKLIB CLI `str2str` which enables us to connect to a NTRIP caster as a data input source and a GNSS RTK Receiver has a data output target. This employs our Linux machine as a NTRIP Client. Alternatively, instead of using the RTKLIB CLI, we can use the ROS package [ntrip_client](http://wiki.ros.org/ntrip_client). See OpenMower's [ntrip_client](https://github.com/ClemensElflein/open_mower_ros/blob/63f11ded7ed5eafcaaefb1778d315079e11c6fed/src/open_mower/launch/include/_ntrip_client.launch) launch file for further details.
@@ -110,6 +110,12 @@ sudo vim ~/.bashrc
 >[!WARNING]
 > Note login credentials environment variables have been omitted. Use this snippet as a template. Be careful **NOT** to upload theses to the internet. This should pasted at the bottom of the .bashrc file of the Linux machine. This will create permanent environment variables to store RTK correction service login credentials. This template has two separate ports and endpoints for connecting to a network that automatically selects a reference station and one for connecting a specific reference station. 
 
+>[!Info] 
+> If you prefer not to store secrets as environment variables [OWSAP recommends](https://cheatsheetseries.owasp.org/cheatsheets/Secrets_Management_Cheat_Sheet.html#32-where-should-a-secret-be) using secrets-manager such as:
+> >[AWS Secret Manager](https://aws.amazon.com/secrets-manager/), [Azure Key Vault](https://azure.microsoft.com/nl-nl/services/key-vault/), [Google Secret Manager](https://cloud.google.com/secret-manager)), or other third-party facilities ([Hashicorp Vault](https://www.vaultproject.io/), [Conjur](https://www.conjur.org/), [Keeper](https://www.keepersecurity.com/), [Confidant](https://lyft.github.io/confidant/))
+> 
+> In this project I am using [infisical](https://infisical.com/infisical-vs-hashicorp-vault)
+
 ```shell
 # InCORS RTK correction service credentials https://incors.in.gov/
 # Save the environment variables to to .bashrc i.e `sudo vim ~/.bashrc`
@@ -163,7 +169,7 @@ ntrip://$NT_USER:$NT_PASSWORD@$NT_HOSTNAME:$NT_PORT_SINGLE/$NT_ENDPOINT_SINGLE#r
 - Automatic Site
 
 > [!warning]
-> Automatic site requires communication with a **GNSS RTK Receiver** in order to automatically send you correction data from the nearest site (end point).
+> Automatic site requires communication with a **GNSS RTK Receiver** in order to automatically send you correction data from the nearest site (end point). Since there is NO target `-out` parameter provided in the example below str2str will timeout as it waits to recieve GNSS cordinate data. In this case the `-in` `-out` abstraction is not strictly applicable since the data is being exchanged both directions between server and client.
 
 ```shell
 str2str -in \
@@ -343,7 +349,6 @@ ntrip://$NT_USER:$NT_PASSWORD@$NT_HOSTNAME:$NT_PORT_AUTO/$NT_ENDPOINT_AUTO#rtcm3
 nc localhost 52001
 ```
 
-
 ## Extras
 
 - Set trace level with `-t 3` and you can read logs with `cat str2str.trace`
@@ -357,6 +362,18 @@ ntrip://$NT_USER:$NT_PASSWORD@$NT_HOSTNAME:$NT_PORT_SINGLE/$NT_ENDPOINT_SINGLE#r
 ```shell
 cat str2str.trace
 ```
+
+## Questions
+
+### Q1. How do you find the NTRIP Mount point for Automatic Cells or Single Sites?
+
+1. The service provide may have a number of resources such as a tables specifying the connection details or and interactive map of the CORs Network.
+2. With a given **IP address** and **Port** you can use `str2str -in ntrip://<ip>:<port>` to return a **Source Table** with the 2nd data field specifying the mount point. [For more info see](https://software.rtcm-ntrip.org/wiki/STR)
+3. There are also several tools that enable you browse the available mount points on such as http://monitor.use-snip.com/  or [srctblbrows.exe](https://www.rtklib.com/prog/manual_2.4.2.pdf#page=85)
+
 ## Nomenclature
 
-#todo 
+#todo
+
+
+Source Table: Represents contents list of provided data by NTRIP servers
