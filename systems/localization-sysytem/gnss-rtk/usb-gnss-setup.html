@@ -377,6 +377,10 @@
 </ul>
 </li>
 <li><a href="#extras" class="anchor-link">Extras</a></li>
+<li><a href="#questions" class="anchor-link">Questions</a><ul>
+<li><a href="#q1-how-do-you-find-the-ntrip-mount-point-for-automatic-cells-or-single-sites" class="anchor-link">Q1. How do you find the NTRIP Mount point for Automatic Cells or Single Sites?</a></li>
+</ul>
+</li>
 <li><a href="#nomenclature" class="anchor-link">Nomenclature</a></li>
 </ul>
 </li>
@@ -411,11 +415,11 @@
 <p><img alt="" src="/gardenbot/systems/localization-sysytem/gnss-rtk/gnss-rtk-diagram.svg" />   </p>
 <h2 id="basic-concepts">Basic Concepts</h2>
 <h3 id="gnss-rtk-receiver-rover">GNSS RTK Receiver (Rover)</h3>
-<p>These devices have recently became available in low-cost forms with comparable performance to higher end products. It is basically a micro-controller with a GNSS antenna and receiver with the capability to run complex calculations that enable it to resolve position data with centimeter precision under the right conditions. The micro-controller may be using a library like <a href="https://github.com/rtklibexplorer/RTKLIB" class="external-link" class="external-link">RTKLIB</a> to perform the calculations. The most important condition for resolving centimeter-level precision is access to RTK corrections from a nearby(~35km) Base Station.   </p>
+<p>These devices have recently became available in low-cost forms with comparable performance to higher end products. It is basically a micro-controller with a GNSS antenna and receiver with the capability to run complex calculations that enable it to resolve position data with centimeter precision under the right conditions. The micro-controller may be using a library like <a href="https://github.com/rtklibexplorer/RTKLIB" class="external-link" class="external-link">RTKLIB</a> to perform the calculations. The most important condition for resolving centimeter-level precision is access to RTK corrections from a nearby (approximately 35 km) Base Station.   </p>
 <h3 id="base-station">Base Station</h3>
 <p>The Base Station is basically a stationary GNSS RTK Receiver that is configured to stream out RTK correction data using a NTRIP Server (COTS products offer this as a single package). A Base Station and Reference Station are synonymous.   </p>
 <h3 id="continuously-operating-reference-stations-cors-network">Continuously Operating Reference Stations (CORS) network</h3>
-<p>A CORS Network is a collection of GNSS Base stations combined in a single network to provide wider coverage of valid RTK correction data. Recall that RTK correction data is only valid within a ~35km radius of the Base Station. A CORS network may provide convenient access to RTK correction data from the nearest base station. There also exist advance techniques to combine correction data from multiple base stations to provide correction data from a Virtual Reference Station (VRS) to further reduce location error. <a href="https://geo-matching.com/content/the-principles-and-performance-of-cors-network-rtk-and-vrs" class="external-link">See VRS for details</a>   </p>
+<p>A CORS Network is a collection of GNSS Base stations combined in a single network to provide wider coverage of valid RTK correction data. Recall that RTK correction data is only valid within approximately a 35 km radius of the Base Station. A CORS network may provide convenient access to RTK correction data from the nearest base station. There also exist advance techniques to combine correction data from multiple base stations to provide correction data from a Virtual Reference Station (VRS) to further reduce location error. <a href="https://geo-matching.com/content/the-principles-and-performance-of-cors-network-rtk-and-vrs" class="external-link">See VRS for details</a>   </p>
 <h3 id="linux-machine-ntrip-client">Linux Machine NTRIP Client</h3>
 <p><a href="https://packages.ubuntu.com/jammy/rtklib" class="external-link">RTKLIB</a> provides a suite of CLIs and GUIs that simplify much of the work. In theory could configure your design to perform the RTK calculations on the Linux Machine. However in this tutorial, the Linux Machine is only used to relay the RTK correction data from the NTRIP Caster to the GNSS RTK Receiver. To do this we use the RTKLIB CLI <code>str2str</code> which enables us to connect to a NTRIP caster as a data input source and a GNSS RTK Receiver has a data output target. This employs our Linux machine as a NTRIP Client. Alternatively, instead of using the RTKLIB CLI, we can use the ROS package <a href="http://wiki.ros.org/ntrip_client" class="external-link">ntrip_client</a>. See OpenMower's <a href="https://github.com/ClemensElflein/open_mower_ros/blob/63f11ded7ed5eafcaaefb1778d315079e11c6fed/src/open_mower/launch/include/_ntrip_client.launch" class="external-link">ntrip_client</a> launch file for further details.   </p>
 <h2 id="getting-started-with-rtklib-str2str">Getting Started with RTKLIB str2str</h2>
@@ -557,6 +561,22 @@ container in "privileged" mode. This is consider unsafe in some circumstances so
 <p>Note login credentials environment variables have been omitted. Use this snippet as a template. Be careful <strong>NOT</strong> to upload theses to the internet. This should pasted at the bottom of the .bashrc file of the Linux machine. This will create permanent environment variables to store RTK correction service login credentials. This template has two separate ports and endpoints for connecting to a network that automatically selects a reference station and one for connecting a specific reference station.</p>
 </div>
 </div>
+<div class="callout callout-info active" rasa="1">
+<div class="callout-title ">
+<div class="callout-title-icon"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="callout-icon"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>
+</div>
+<div class="callout-title-name">Info
+</div>
+</div>
+<div class="callout-content">
+<p>If you prefer not to store secrets as environment variables <a href="https://cheatsheetseries.owasp.org/cheatsheets/Secrets_Management_Cheat_Sheet.html#32-where-should-a-secret-be" class="external-link">OWSAP recommends</a> using secrets-manager such as:   </p>
+<blockquote>
+<p><a href="https://aws.amazon.com/secrets-manager/" class="external-link">AWS Secret Manager</a>, <a href="https://azure.microsoft.com/nl-nl/services/key-vault/" class="external-link">Azure Key Vault</a>, <a href="https://cloud.google.com/secret-manager" class="external-link">Google Secret Manager</a>), or other third-party facilities (<a href="https://www.vaultproject.io/" class="external-link">Hashicorp Vault</a>, <a href="https://www.conjur.org/" class="external-link">Conjur</a>, <a href="https://www.keepersecurity.com/" class="external-link">Keeper</a>, <a href="https://lyft.github.io/confidant/" class="external-link">Confidant</a>) <br />
+<br />
+In this project I am using <a href="https://infisical.com/infisical-vs-hashicorp-vault" class="external-link">infisical</a></p>
+</blockquote>
+</div>
+</div>
 <div class="lang-shell">
 
 <div class="codehilite"><pre><span></span><code><span class="c1"># InCORS RTK correction service credentials https://incors.in.gov/</span>
@@ -639,7 +659,7 @@ ntrip://<span class="nv">$NT_USER</span>:<span class="nv">$NT_PASSWORD</span>@<s
 </div>
 </div>
 <div class="callout-content">
-<p>Automatic site requires communication with a <strong>GNSS RTK Receiver</strong> in order to automatically send you correction data from the nearest site (end point).</p>
+<p>Automatic site requires communication with a <strong>GNSS RTK Receiver</strong> in order to automatically send you correction data from the nearest site (end point). Since there is NO target <code>-out</code> parameter provided in the example below str2str will timeout as it waits to recieve GNSS cordinate data. In this case the <code>-in</code> <code>-out</code> abstraction is not strictly applicable since the data is being exchanged both directions between server and client.</p>
 </div>
 </div>
 <div class="lang-shell">
@@ -912,8 +932,16 @@ ntrip://<span class="nv">$NT_USER</span>:<span class="nv">$NT_PASSWORD</span>@<s
 
 </div>
 
+<h2 id="questions">Questions</h2>
+<h3 id="q1-how-do-you-find-the-ntrip-mount-point-for-automatic-cells-or-single-sites">Q1. How do you find the NTRIP Mount point for Automatic Cells or Single Sites?</h3>
+<ol>
+<li>The service provide may have a number of resources such as a tables specifying the connection details or and interactive map of the CORs Network.   </li>
+<li>With a given <strong>IP address</strong> and <strong>Port</strong> you can use <code>str2str -in ntrip://&lt;ip&gt;:&lt;port&gt;</code> to return a <strong>Source Table</strong> with the 2nd data field specifying the mount point. <a href="https://software.rtcm-ntrip.org/wiki/STR" class="external-link">For more info see</a>   </li>
+<li>There are also several tools that enable you browse the available mount points on such as <a href="http://monitor.use-snip.com/" class="external-link">http://monitor.use-snip.com/</a>  or <a href="https://www.rtklib.com/prog/manual_2.4.2.pdf#page=85" class="external-link">srctblbrows.exe</a>   </li>
+</ol>
 <h2 id="nomenclature">Nomenclature</h2>
-<p><a class="inline-tag" href="/gardenbot/obs.html/tags/todo/index.html">todo</a> </p></div>
+<p><a class="inline-tag" href="/gardenbot/obs.html/tags/todo/index.html">todo</a>   </p>
+<p>Source Table: Represents contents list of provided data by NTRIP servers</p></div>
 <div class="note-footer">
 <div class="backlinks">
 <h2>Backlinks</h2>
@@ -932,17 +960,17 @@ ntrip://<span class="nv">$NT_USER</span>:<span class="nv">$NT_PASSWORD</span>@<s
 
 </div>
 <div class="graph requires_js ">
-    <div id="A201256659834409009460922467935723894803{level}" class="graph_div"></div>
+    <div id="A283980547125594467674267558908870302562{level}" class="graph_div"></div>
 
-    <div class="graph-instructions" id="D201256659834409009460922467935723894803{level}">
+    <div class="graph-instructions" id="D283980547125594467674267558908870302562{level}">
         Left-click: follow link, Right-click: select node, Scroll: zoom
     </div>
     
     <div class="graph-button-row" style="display:flex;">
-        <button class="graph_button graph_show_button" id="B201256659834409009460922467935723894803{level}" level="{level}" note_temp_id="201256659834409009460922467935723894803" onclick="window.ObsHtmlGraph.run(this, '201256659834409009460922467935723894803', 'usb-gnss-setup');">
+        <button class="graph_button graph_show_button" id="B283980547125594467674267558908870302562{level}" level="{level}" note_temp_id="283980547125594467674267558908870302562" onclick="window.ObsHtmlGraph.run(this, '283980547125594467674267558908870302562', 'usb-gnss-setup');">
             Show Graph
         </button>
-        <button class="graph_button graph_type_button" id="C201256659834409009460922467935723894803{level}" style="flex:1" onclick="window.ObsHtmlGraph.switch_graph_type(this);">
+        <button class="graph_button graph_type_button" id="C283980547125594467674267558908870302562{level}" style="flex:1" onclick="window.ObsHtmlGraph.switch_graph_type(this);">
             2D
         </button>
     </div>
