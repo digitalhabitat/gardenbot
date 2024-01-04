@@ -361,6 +361,7 @@
 <div class="toc">
 <ul>
 <li><a href="#usb-gnss-rtk-receiver-setup" class="anchor-link">USB GNSS RTK Receiver Setup</a><ul>
+<li><a href="#h_-initial-testing-notes-_obsidian_pattern_tag_wip" class="anchor-link">- Initial testing notes {_obsidian_pattern_tag_WIP}</a></li>
 <li><a href="#basic-concepts" class="anchor-link">Basic Concepts</a><ul>
 <li><a href="#gnss-rtk-receiver-rover" class="anchor-link">GNSS RTK Receiver (Rover)</a></li>
 <li><a href="#base-station" class="anchor-link">Base Station</a></li>
@@ -394,8 +395,8 @@
 </div>
 </div>
 <div class="callout-content">
+<h2 id="h_-initial-testing-notes-_obsidian_pattern_tag_wip">- Initial testing notes <a class="inline-tag" href="/gardenbot/obs.html/tags/WIP/index.html">WIP</a></h2>
 <ul>
-<li>Initial testing notes <a class="inline-tag" href="/gardenbot/obs.html/tags/WIP/index.html">WIP</a>   </li>
 <li><a href="https://www.ardusimple.com/rtk-explained/" class="external-link">https://www.ardusimple.com/rtk-explained/</a>   </li>
 <li><a href="http://rtkexplorer.com/" class="external-link">rtkexplorer – Exploring low cost solutions for high precision GPS/GNSS</a>   </li>
 <li><a href="https://en.wikipedia.org/wiki/NMEA_0183" class="external-link">https://en.wikipedia.org/wiki/NMEA_0183</a>   </li>
@@ -423,6 +424,7 @@
 <h3 id="linux-machine-ntrip-client">Linux Machine NTRIP Client</h3>
 <p><a href="https://packages.ubuntu.com/jammy/rtklib" class="external-link">RTKLIB</a> provides a suite of CLIs and GUIs that simplify much of the work. In theory could configure your design to perform the RTK calculations on the Linux Machine. However in this tutorial, the Linux Machine is only used to relay the RTK correction data from the NTRIP Caster to the GNSS RTK Receiver. To do this we use the RTKLIB CLI <code>str2str</code> which enables us to connect to a NTRIP caster as a data input source and a GNSS RTK Receiver has a data output target. This employs our Linux machine as a NTRIP Client. Alternatively, instead of using the RTKLIB CLI, we can use the ROS package <a href="http://wiki.ros.org/ntrip_client" class="external-link">ntrip_client</a>. See OpenMower's <a href="https://github.com/ClemensElflein/open_mower_ros/blob/63f11ded7ed5eafcaaefb1778d315079e11c6fed/src/open_mower/launch/include/_ntrip_client.launch" class="external-link">ntrip_client</a> launch file for further details.   </p>
 <h2 id="getting-started-with-rtklib-str2str">Getting Started with RTKLIB str2str</h2>
+<p>Very help explanation <a href="https://github.com/septentrio-gnss/Septentrio_AgnosticCorrectionsProgram/blob/main/str2str/README.md#what-is-str2str" class="external-link">What is str2str</a>   </p>
 <ol>
 <li>Open a terminal and enter the following command to capture the serial port device label e.g. <code>/dev/tty*</code> <a href="https://en.wikipedia.org/wiki/Serial_port#Hardware_abstraction" class="external-link">More info</a>   </li>
 </ol>
@@ -641,8 +643,7 @@ In this project I am using <a href="https://infisical.com/infisical-vs-hashicorp
 </ol>
 <div class="lang-shell">
 
-<div class="codehilite"><pre><span></span><code>str2str -in <span class="se">\</span>
-ntrip://<span class="nv">$NT_USER</span>:<span class="nv">$NT_PASSWORD</span>@<span class="nv">$NT_HOSTNAME</span>:<span class="nv">$NT_PORT_SINGLE</span>/<span class="nv">$NT_ENDPOINT_SINGLE</span><span class="c1">#rtcm3</span>
+<div class="codehilite"><pre><span></span><code>str2str -in ntrip://<span class="nv">$NT_USER</span>:<span class="nv">$NT_PASSWORD</span>@<span class="nv">$NT_HOSTNAME</span>:<span class="nv">$NT_PORT_SINGLE</span>/<span class="nv">$NT_ENDPOINT_SINGLE</span><span class="c1">#rtcm3</span>
 </code></pre></div>
 
 
@@ -659,13 +660,12 @@ ntrip://<span class="nv">$NT_USER</span>:<span class="nv">$NT_PASSWORD</span>@<s
 </div>
 </div>
 <div class="callout-content">
-<p>Automatic site requires communication with a <strong>GNSS RTK Receiver</strong> in order to automatically send you correction data from the nearest site (end point). Since there is NO target <code>-out</code> parameter provided in the example below str2str will timeout as it waits to recieve GNSS cordinate data. In this case the <code>-in</code> <code>-out</code> abstraction is not strictly applicable since the data is being exchanged both directions between server and client.</p>
+<p>Automatic site requires communication with a <strong>GNSS RTK Receiver</strong> in order to automatically send you correction data from the nearest site (mount point). Since there is NO target <code>-out</code> parameter provided in the example below <code>str2str</code> will timeout as it waits to receive GNSS coordinate data. In this case the <code>-in</code> <code>-out</code> abstraction is not strictly accurate since the data is being exchanged both directions between server and client. <a class="inline-tag" href="/gardenbot/obs.html/tags/todo/index.html">todo</a> explain <code>-b 1</code> argument.</p>
 </div>
 </div>
 <div class="lang-shell">
 
-<div class="codehilite"><pre><span></span><code>str2str -in <span class="se">\</span>
-ntrip://<span class="nv">$NT_USER</span>:<span class="nv">$NT_PASSWORD</span>@<span class="nv">$NT_HOSTNAME</span>:<span class="nv">$NT_PORT_AUTO</span>/<span class="nv">$NT_ENDPOINT_AUTO</span><span class="c1">#rtcm3</span>
+<div class="codehilite"><pre><span></span><code>str2str -in ntrip://<span class="nv">$NT_USER</span>:<span class="nv">$NT_PASSWORD</span>@<span class="nv">$NT_HOSTNAME</span>:<span class="nv">$NT_PORT_AUTO</span>/<span class="nv">$NT_ENDPOINT_AUTO</span><span class="c1">#rtcm3</span>
 </code></pre></div>
 
 
@@ -794,7 +794,7 @@ The following commands will be used create a persistent label for serial port de
 </div>
 
 <ol>
-<li><a class="inline-tag" href="/gardenbot/obs.html/tags/todo/index.html">todo</a>   </li>
+<li>Run the udev management tool <code>udevadmn</code> to capture additional info.   </li>
 </ol>
 <div class="lang-shell">
 
@@ -826,7 +826,7 @@ The following commands will be used create a persistent label for serial port de
 </div>
 
 <ol>
-<li><a class="inline-tag" href="/gardenbot/obs.html/tags/todo/index.html">todo</a>   </li>
+<li>Next we need to provide the system instructions on how to treat our GNSS USB device. Here our goal is to create a persistent name for a device node by creating a symbolic link to the default device node.   </li>
 </ol>
 <div class="lang-shell">
 
@@ -848,8 +848,30 @@ ATTRS<span class="o">{</span>idProduct<span class="o">}==</span><span class="s2"
 
 </div>
 
+<div class="callout callout-info active" rasa="1">
+<div class="callout-title ">
+<div class="callout-title-icon"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="callout-icon"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>
+</div>
+<div class="callout-title-name">Explanation <br />
+</div>
+</div>
+<div class="callout-content">
 <ol>
-<li><a class="inline-tag" href="/gardenbot/obs.html/tags/todo/index.html">todo</a>   </li>
+<li><strong><code>ATTRS{idProduct}=="0014", ATTRS{idVendor}=="3032":</code></strong>   </li>
+<li>This helps identify a particular type or brand of device.   </li>
+<li><strong><em><code>MODE:="666"</code></em></strong>   </li>
+<li>"666" corresponds to read (4), write (2), and execute (1) permissions for the owner, group, and others, respectively. In this context, "666" means read and write permissions for everyone.   </li>
+<li><strong><code>GROUP="plugdev":</code></strong>   </li>
+<li>This specifies the group ownership of the device node. The device will be assigned to the "plugdev" group.   </li>
+<li><strong><code>SUBSYSTEM=="tty":</code></strong>   </li>
+<li>This condition narrows down the rule to devices in the "tty" (terminal) subsystem. It's often used for serial port devices.   </li>
+<li><strong><code>SYMLINK+="emlid_rtk":</code></strong>   </li>
+<li>This creates a symbolic link named "emlid_rtk" pointing to the device node. Symbolic links provide an additional name for the device, making it more user-friendly or predictable.</li>
+</ol>
+</div>
+</div>
+<ol>
+<li>Next we must reload udev rules and then trigger udev to reevaluate devices based on those updated rules. This enables our recent changes to take effect without requiring a system restart.   </li>
 </ol>
 <div class="lang-shell">
 
@@ -878,9 +900,7 @@ ATTRS<span class="o">{</span>idProduct<span class="o">}==</span><span class="s2"
 </ol>
 <div class="lang-shell">
 
-<div class="codehilite"><pre><span></span><code>str2str -in <span class="se">\</span>
-ntrip://<span class="nv">$NT_USER</span>:<span class="nv">$NT_PASSWORD</span>@<span class="nv">$NT_HOSTNAME</span>:<span class="nv">$NT_PORT_SINGLE</span>/<span class="nv">$NT_ENDPOINT_SINGLE</span><span class="c1">#rtcm3 \</span>
--out serial://emlid_rtk:115200#52001 -b <span class="m">1</span>
+<div class="codehilite"><pre><span></span><code>str2str -in ntrip://<span class="nv">$NT_USER</span>:<span class="nv">$NT_PASSWORD</span>@<span class="nv">$NT_HOSTNAME</span>:<span class="nv">$NT_PORT_SINGLE</span>/<span class="nv">$NT_ENDPOINT_SINGLE</span><span class="c1">#rtcm3 -out serial://emlid_rtk:115200#52001 -b 1</span>
 </code></pre></div>
 
 
@@ -891,9 +911,7 @@ ntrip://<span class="nv">$NT_USER</span>:<span class="nv">$NT_PASSWORD</span>@<s
 </ul>
 <div class="lang-shell">
 
-<div class="codehilite"><pre><span></span><code>str2str -in <span class="se">\</span>
-ntrip://<span class="nv">$NT_USER</span>:<span class="nv">$NT_PASSWORD</span>@<span class="nv">$NT_HOSTNAME</span>:<span class="nv">$NT_PORT_AUTO</span>/<span class="nv">$NT_ENDPOINT_AUTO</span><span class="c1">#rtcm3 \</span>
--out serial://emlid_rtk:115200#52001 -b <span class="m">1</span>
+<div class="codehilite"><pre><span></span><code>str2str -in ntrip://<span class="nv">$NT_USER</span>:<span class="nv">$NT_PASSWORD</span>@<span class="nv">$NT_HOSTNAME</span>:<span class="nv">$NT_PORT_AUTO</span>/<span class="nv">$NT_ENDPOINT_AUTO</span><span class="c1">#rtcm3 -out serial://emlid_rtk:115200#52001 -b 1</span>
 </code></pre></div>
 
 
@@ -916,9 +934,7 @@ ntrip://<span class="nv">$NT_USER</span>:<span class="nv">$NT_PASSWORD</span>@<s
 </ul>
 <div class="lang-sh">
 
-<div class="codehilite"><pre><span></span><code>str2str -in <span class="se">\</span>
-ntrip://<span class="nv">$NT_USER</span>:<span class="nv">$NT_PASSWORD</span>@<span class="nv">$NT_HOSTNAME</span>:<span class="nv">$NT_PORT_SINGLE</span>/<span class="nv">$NT_ENDPOINT_SINGLE</span><span class="c1">#rtcm3 \</span>
--t <span class="m">3</span>
+<div class="codehilite"><pre><span></span><code>str2str -in ntrip://<span class="nv">$NT_USER</span>:<span class="nv">$NT_PASSWORD</span>@<span class="nv">$NT_HOSTNAME</span>:<span class="nv">$NT_PORT_SINGLE</span>/<span class="nv">$NT_ENDPOINT_SINGLE</span><span class="c1">#rtcm3 -t 3</span>
 </code></pre></div>
 
 
@@ -935,13 +951,72 @@ ntrip://<span class="nv">$NT_USER</span>:<span class="nv">$NT_PASSWORD</span>@<s
 <h2 id="questions">Questions</h2>
 <h3 id="q1-how-do-you-find-the-ntrip-mount-point-for-automatic-cells-or-single-sites">Q1. How do you find the NTRIP Mount point for Automatic Cells or Single Sites?</h3>
 <ol>
-<li>The service provide may have a number of resources such as a tables specifying the connection details or and interactive map of the CORs Network.   </li>
+<li>The service provide may have a number of resources such as a table specifying the connection details or an interactive map of Sites a part of the CORs Network.   </li>
 <li>With a given <strong>IP address</strong> and <strong>Port</strong> you can use <code>str2str -in ntrip://&lt;ip&gt;:&lt;port&gt;</code> to return a <strong>Source Table</strong> with the 2nd data field specifying the mount point. <a href="https://software.rtcm-ntrip.org/wiki/STR" class="external-link">For more info see</a>   </li>
 <li>There are also several tools that enable you browse the available mount points on such as <a href="http://monitor.use-snip.com/" class="external-link">http://monitor.use-snip.com/</a>  or <a href="https://www.rtklib.com/prog/manual_2.4.2.pdf#page=85" class="external-link">srctblbrows.exe</a>   </li>
 </ol>
 <h2 id="nomenclature">Nomenclature</h2>
 <p><a class="inline-tag" href="/gardenbot/obs.html/tags/todo/index.html">todo</a>   </p>
-<p>Source Table: Represents contents list of provided data by NTRIP servers</p></div>
+<p>Source Table: Represents contents list of provided data by NTRIP servers   </p>
+<ol>
+<li>
+<p><strong>RTK (Real-Time Kinematic):</strong> A technique used to improve the precision of GNSS data.   </p>
+</li>
+<li>
+<p><strong>GNSS (Global Navigation Satellite System):</strong> A generic term used for satellite navigation systems including GPS, GLONASS, Galileo, and BeiDou.   </p>
+</li>
+<li>
+<p><strong>PPP (Precise Point Positioning):</strong>   </p>
+</li>
+<li>
+<p><strong>Base Station:</strong> A stationary GNSS receiver used as a reference point for RTK corrections.   </p>
+</li>
+<li>
+<p><strong>Rover Station:</strong> A mobile GNSS receiver that receives corrections from a base station.   </p>
+</li>
+<li>
+<p><strong>NTRIP (Networked Transport of RTCM via Internet Protocol):</strong> A communication protocol to streaming RTCM correction data over the internet.   </p>
+</li>
+<li>
+<p><strong>RTCM (Radio Technical Commission for Maritime Services):</strong>  International standards body that defines standards such as, RTCM SC-104, which specifies a set of binary messages (aka RTCM messages) containing GNSS correction data.   </p>
+</li>
+<li>
+<p><strong>Observation Data:</strong> Raw GNSS measurements collected by a receiver, including pseudoranges and carrier phase information.   </p>
+</li>
+<li>
+<p><strong>Solution:</strong> The final output of the positioning process, providing accurate coordinates for a specific location.   </p>
+</li>
+<li>
+<p><strong>Float Solution:</strong> A position solution with a lower level of accuracy, often used in standard GPS positioning.   </p>
+</li>
+<li>
+<p><strong>Fix Solution:</strong> A high-precision position solution achieved through RTK techniques, providing centimeter-level accuracy.   </p>
+</li>
+<li>
+<p><strong>DGNSS (Differential GNSS):</strong> A technique that improves GNSS accuracy by using correction data from a reference station.   </p>
+</li>
+<li>
+<p><strong>Cycle Slip:</strong>    </p>
+</li>
+<li>
+<p><strong>ION (Institute of Navigation):</strong> A professional organization that focuses on the science and art of navigation.   </p>
+</li>
+<li>
+<p><strong>Tropospheric Delay:</strong> The slowing of GNSS signals as they pass through the Earth's atmosphere, affecting accuracy.   </p>
+</li>
+<li>
+<p><strong>Receiver Firmware:</strong> . Embedded software of GNSS receievers.   </p>
+</li>
+<li>
+<p><strong>RINEX (Receiver Independent Exchange Format):</strong> A standard format for exchanging GNSS data between different software.   </p>
+</li>
+<li>
+<p><strong>Solution Status:</strong> Information indicating the quality and reliability of the position solution, such as 'FIXED' or 'FLOAT.'   </p>
+</li>
+<li>
+<p><strong>Ambiguity Resolution:</strong> The process of determining the integer values in carrier phase measurements to improve positioning accuracy in RTK.</p>
+</li>
+</ol></div>
 <div class="note-footer">
 <div class="backlinks">
 <h2>Backlinks</h2>
@@ -960,17 +1035,17 @@ ntrip://<span class="nv">$NT_USER</span>:<span class="nv">$NT_PASSWORD</span>@<s
 
 </div>
 <div class="graph requires_js ">
-    <div id="A283980547125594467674267558908870302562{level}" class="graph_div"></div>
+    <div id="A331164414484367016323936269144426637556{level}" class="graph_div"></div>
 
-    <div class="graph-instructions" id="D283980547125594467674267558908870302562{level}">
+    <div class="graph-instructions" id="D331164414484367016323936269144426637556{level}">
         Left-click: follow link, Right-click: select node, Scroll: zoom
     </div>
     
     <div class="graph-button-row" style="display:flex;">
-        <button class="graph_button graph_show_button" id="B283980547125594467674267558908870302562{level}" level="{level}" note_temp_id="283980547125594467674267558908870302562" onclick="window.ObsHtmlGraph.run(this, '283980547125594467674267558908870302562', 'usb-gnss-setup');">
+        <button class="graph_button graph_show_button" id="B331164414484367016323936269144426637556{level}" level="{level}" note_temp_id="331164414484367016323936269144426637556" onclick="window.ObsHtmlGraph.run(this, '331164414484367016323936269144426637556', 'usb-gnss-setup');">
             Show Graph
         </button>
-        <button class="graph_button graph_type_button" id="C283980547125594467674267558908870302562{level}" style="flex:1" onclick="window.ObsHtmlGraph.switch_graph_type(this);">
+        <button class="graph_button graph_type_button" id="C331164414484367016323936269144426637556{level}" style="flex:1" onclick="window.ObsHtmlGraph.switch_graph_type(this);">
             2D
         </button>
     </div>
