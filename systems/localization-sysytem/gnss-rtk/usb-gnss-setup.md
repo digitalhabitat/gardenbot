@@ -2,6 +2,7 @@
 
 >[!Work in Progess]
 > - Initial testing notes #WIP 
+> - 
 > - https://www.ardusimple.com/rtk-explained/
 > - [rtkexplorer – Exploring low cost solutions for high precision GPS/GNSS](http://rtkexplorer.com/)
 > - https://en.wikipedia.org/wiki/NMEA_0183
@@ -37,6 +38,8 @@ A CORS Network is a collection of GNSS Base stations combined in a single networ
 
 
 ## Getting Started with RTKLIB str2str
+
+Very help explanation [What is str2str](https://github.com/septentrio-gnss/Septentrio_AgnosticCorrectionsProgram/blob/main/str2str/README.md#what-is-str2str)
 
 0. Open a terminal and enter the following command to capture the serial port device label e.g. `/dev/tty*` [More info](https://en.wikipedia.org/wiki/Serial_port#Hardware_abstraction)
 ```shell
@@ -162,18 +165,16 @@ sudo apt install rtklib
  - Single Site
  
 ```shell
-str2str -in \
-ntrip://$NT_USER:$NT_PASSWORD@$NT_HOSTNAME:$NT_PORT_SINGLE/$NT_ENDPOINT_SINGLE#rtcm3
+str2str -in ntrip://$NT_USER:$NT_PASSWORD@$NT_HOSTNAME:$NT_PORT_SINGLE/$NT_ENDPOINT_SINGLE#rtcm3
 ```
 
 - Automatic Site
 
 > [!warning]
-> Automatic site requires communication with a **GNSS RTK Receiver** in order to automatically send you correction data from the nearest site (end point). Since there is NO target `-out` parameter provided in the example below str2str will timeout as it waits to recieve GNSS cordinate data. In this case the `-in` `-out` abstraction is not strictly applicable since the data is being exchanged both directions between server and client.
+> Automatic site requires communication with a **GNSS RTK Receiver** in order to automatically send you correction data from the nearest site (mount point). Since there is NO target `-out` parameter provided in the example below `str2str` will timeout as it waits to receive GNSS coordinate data. In this case the `-in` `-out` abstraction is not strictly accurate since the data is being exchanged both directions between server and client. #todo explain `-b 1` argument.
 
 ```shell
-str2str -in \
-ntrip://$NT_USER:$NT_PASSWORD@$NT_HOSTNAME:$NT_PORT_AUTO/$NT_ENDPOINT_AUTO#rtcm3
+str2str -in ntrip://$NT_USER:$NT_PASSWORD@$NT_HOSTNAME:$NT_PORT_AUTO/$NT_ENDPOINT_AUTO#rtcm3
 ```
 
 ### Configure RTK device correction input and position out methods
@@ -276,7 +277,7 @@ Bus 003 Device 063: ID 3032:0014 Emlid Reach
                                    ^^^^^^^ make note of this label
 ```
 
-2. #todo
+2. Run the udev management tool `udevadmn` to capture additional info.
 
 ```shell
 udevadm info -q all -n /dev/ttyACM0
@@ -299,7 +300,7 @@ E: ID_PCI_CLASS_FROM_DATABASE=Serial bus controller
 ....
 ```
 
-4. #todo
+4. Next we need to provide the system instructions on how to treat our GNSS USB device. Here our goal is to create a persistent name for a device node by creating a symbolic link to the default device node.
 
 ```shell
 cd /etc/udev/rules.d/;
@@ -313,7 +314,19 @@ sudo vim 51-emlid.rules
 ATTRS{idProduct}=="0014", ATTRS{idVendor}=="3032", MODE:="666", GROUP="plugdev", SUBSYSTEM=="tty", SYMLINK+="emlid_rtk"
 ```
 
-5. #todo
+> [!INFO] Explanation
+> 1. **`ATTRS{idProduct}=="0014", ATTRS{idVendor}=="3032":`**
+>	- This helps identify a particular type or brand of device.
+>2. ***`MODE:="666"`***
+>	- "666" corresponds to read (4), write (2), and execute (1) permissions for the owner, group, and others, respectively. In this context, "666" means read and write permissions for everyone.
+>3. **`GROUP="plugdev":`**
+>    - This specifies the group ownership of the device node. The device will be assigned to the "plugdev" group.
+>4. **`SUBSYSTEM=="tty":`**
+>    - This condition narrows down the rule to devices in the "tty" (terminal) subsystem. It's often used for serial port devices.
+>5. **`SYMLINK+="emlid_rtk":`**
+>    - This creates a symbolic link named "emlid_rtk" pointing to the device node. Symbolic links provide an additional name for the device, making it more user-friendly or predictable.
+
+5. Next we must reload udev rules and then trigger udev to reevaluate devices based on those updated rules. This enables our recent changes to take effect without requiring a system restart.
 
 ```shell
 sudo udevadm control --reload && sudo udevadm trigger
@@ -330,17 +343,13 @@ sudo screen /dev/emlid_rtk
 - To receive **Single site** corrections via NTRIP and relay to USB GNSS receiver via serial
 
 ```shell
-str2str -in \
-ntrip://$NT_USER:$NT_PASSWORD@$NT_HOSTNAME:$NT_PORT_SINGLE/$NT_ENDPOINT_SINGLE#rtcm3 \
--out serial://emlid_rtk:115200#52001 -b 1
+str2str -in ntrip://$NT_USER:$NT_PASSWORD@$NT_HOSTNAME:$NT_PORT_SINGLE/$NT_ENDPOINT_SINGLE#rtcm3 -out serial://emlid_rtk:115200#52001 -b 1
 ```
 
 - Alt. to Receive **Automatic cell** corrections via NTRIP and relay to USB GNSS receiver via serial
 
 ```shell
-str2str -in \
-ntrip://$NT_USER:$NT_PASSWORD@$NT_HOSTNAME:$NT_PORT_AUTO/$NT_ENDPOINT_AUTO#rtcm3 \
--out serial://emlid_rtk:115200#52001 -b 1
+str2str -in ntrip://$NT_USER:$NT_PASSWORD@$NT_HOSTNAME:$NT_PORT_AUTO/$NT_ENDPOINT_AUTO#rtcm3 -out serial://emlid_rtk:115200#52001 -b 1
 ```
 
 7. Listen
@@ -354,9 +363,7 @@ nc localhost 52001
 - Set trace level with `-t 3` and you can read logs with `cat str2str.trace`
 
 ```sh
-str2str -in \
-ntrip://$NT_USER:$NT_PASSWORD@$NT_HOSTNAME:$NT_PORT_SINGLE/$NT_ENDPOINT_SINGLE#rtcm3 \
--t 3
+str2str -in ntrip://$NT_USER:$NT_PASSWORD@$NT_HOSTNAME:$NT_PORT_SINGLE/$NT_ENDPOINT_SINGLE#rtcm3 -t 3
 ```
 
 ```shell
@@ -367,7 +374,7 @@ cat str2str.trace
 
 ### Q1. How do you find the NTRIP Mount point for Automatic Cells or Single Sites?
 
-1. The service provide may have a number of resources such as a tables specifying the connection details or and interactive map of the CORs Network.
+1. The service provide may have a number of resources such as a table specifying the connection details or an interactive map of Sites a part of the CORs Network.
 2. With a given **IP address** and **Port** you can use `str2str -in ntrip://<ip>:<port>` to return a **Source Table** with the 2nd data field specifying the mount point. [For more info see](https://software.rtcm-ntrip.org/wiki/STR)
 3. There are also several tools that enable you browse the available mount points on such as http://monitor.use-snip.com/  or [srctblbrows.exe](https://www.rtklib.com/prog/manual_2.4.2.pdf#page=85)
 
@@ -377,3 +384,41 @@ cat str2str.trace
 
 
 Source Table: Represents contents list of provided data by NTRIP servers
+
+1. **RTK (Real-Time Kinematic):** A technique used to improve the precision of GNSS data.
+    
+2. **GNSS (Global Navigation Satellite System):** A generic term used for satellite navigation systems including GPS, GLONASS, Galileo, and BeiDou.
+    
+3. **PPP (Precise Point Positioning):**
+    
+4. **Base Station:** A stationary GNSS receiver used as a reference point for RTK corrections.
+    
+5. **Rover Station:** A mobile GNSS receiver that receives corrections from a base station.
+    
+6. **NTRIP (Networked Transport of RTCM via Internet Protocol):** A communication protocol to streaming RTCM correction data over the internet.
+    
+7. **RTCM (Radio Technical Commission for Maritime Services):**  International standards body that defines standards such as, RTCM SC-104, which specifies a set of binary messages (aka RTCM messages) containing GNSS correction data.
+    
+8. **Observation Data:** Raw GNSS measurements collected by a receiver, including pseudoranges and carrier phase information.
+    
+9. **Solution:** The final output of the positioning process, providing accurate coordinates for a specific location.
+    
+10. **Float Solution:** A position solution with a lower level of accuracy, often used in standard GPS positioning.
+    
+11. **Fix Solution:** A high-precision position solution achieved through RTK techniques, providing centimeter-level accuracy.
+    
+12. **DGNSS (Differential GNSS):** A technique that improves GNSS accuracy by using correction data from a reference station.
+    
+13. **Cycle Slip:** 
+    
+14. **ION (Institute of Navigation):** A professional organization that focuses on the science and art of navigation.
+    
+15. **Tropospheric Delay:** The slowing of GNSS signals as they pass through the Earth's atmosphere, affecting accuracy.
+    
+16. **Receiver Firmware:** . Embedded software of GNSS receievers.
+    
+18. **RINEX (Receiver Independent Exchange Format):** A standard format for exchanging GNSS data between different software.
+    
+19. **Solution Status:** Information indicating the quality and reliability of the position solution, such as 'FIXED' or 'FLOAT.'
+    
+20. **Ambiguity Resolution:** The process of determining the integer values in carrier phase measurements to improve positioning accuracy in RTK.
