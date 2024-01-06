@@ -117,7 +117,7 @@ sudo vim ~/.bashrc
 > If you prefer not to store secrets as environment variables [OWSAP recommends](https://cheatsheetseries.owasp.org/cheatsheets/Secrets_Management_Cheat_Sheet.html#32-where-should-a-secret-be) using secrets-manager such as:
 > >[AWS Secret Manager](https://aws.amazon.com/secrets-manager/), [Azure Key Vault](https://azure.microsoft.com/nl-nl/services/key-vault/), [Google Secret Manager](https://cloud.google.com/secret-manager)), or other third-party facilities ([Hashicorp Vault](https://www.vaultproject.io/), [Conjur](https://www.conjur.org/), [Keeper](https://www.keepersecurity.com/), [Confidant](https://lyft.github.io/confidant/))
 > 
-> In this project I am using [infisical](https://infisical.com/infisical-vs-hashicorp-vault)
+> Other secret managers are [bitwarden](https://bitwarden.com/products/secrets-manager/)and [infisical](https://infisical.com/infisical-vs-hashicorp-vault)
 
 ```shell
 # InCORS RTK correction service credentials https://incors.in.gov/
