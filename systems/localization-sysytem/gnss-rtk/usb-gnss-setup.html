@@ -302,7 +302,7 @@
 		<button id="folder-13" class="dir-button active" onclick="toggle_dir(this.id)"><div class="file-icon"></div>gnss-rtk</button>
 		<div id="folder-container-13" class="dir-container requires_js active" path="/gardenbot/systems/localization-sysytem/gnss-rtk">
 			<ul class="dir-list">
-				<li><div class="file-icon non-md-file"></div><a class="" href="/gardenbot/systems/localization-sysytem/gnss-rtk/gnss-rtk-diagram.svg"  class="external-link">gnss-rtk-diagram.svg</a></li>
+				<li><div class="file-icon non-md-file"></div><a class="" href="/gardenbot/systems/localization-sysytem/gnss-rtk/gnss-rtk-diagram.drawio.svg"  class="external-link">gnss-rtk-diagram.drawio.svg</a></li>
 				<li><div class="file-icon"></div><a class="active current_page_dirtree" href="/gardenbot/systems/localization-sysytem/gnss-rtk/usb-gnss-setup.html"  >usb-gnss-setup</a></li>
 			</ul>
 		</div>
@@ -313,6 +313,7 @@
 	<button id="folder-14" class="dir-button folder_note  " href="/gardenbot/systems/power-system/power-system.html" onclick="open_folder_note(this)"><div class="file-icon"></div><div class="fn_pf">*</div>power-system</button>
 	<div id="folder-container-14" class="dir-container requires_js " path="/gardenbot/systems/power-system">
 		<ul class="dir-list">
+			<li><div class="file-icon"></div><a class="" href="/gardenbot/systems/power-system/pisugar.html"  >pisugar</a></li>
 		</ul>
 	</div>
 	<button id="folder-15" class="dir-button folder_note  " href="/gardenbot/systems/steering-system/steering-system.html" onclick="open_folder_note(this)"><div class="file-icon"></div><div class="fn_pf">*</div>steering-system</button>
@@ -361,23 +362,32 @@
 <div class="toc">
 <ul>
 <li><a href="#usb-gnss-rtk-receiver-setup" class="anchor-link">USB GNSS RTK Receiver Setup</a><ul>
-<li><a href="#h_-initial-testing-notes-_obsidian_pattern_tag_wip" class="anchor-link">- Initial testing notes {_obsidian_pattern_tag_WIP}</a></li>
 <li><a href="#basic-concepts" class="anchor-link">Basic Concepts</a><ul>
 <li><a href="#gnss-rtk-receiver-rover" class="anchor-link">GNSS RTK Receiver (Rover)</a></li>
 <li><a href="#base-station" class="anchor-link">Base Station</a></li>
 <li><a href="#continuously-operating-reference-stations-cors-network" class="anchor-link">Continuously Operating Reference Stations (CORS) network</a></li>
-<li><a href="#linux-machine-ntrip-client" class="anchor-link">Linux Machine NTRIP Client</a></li>
+<li><a href="#ntrip-client" class="anchor-link">NTRIP Client</a></li>
 </ul>
 </li>
-<li><a href="#getting-started-with-rtklib-str2str" class="anchor-link">Getting Started with RTKLIB str2str</a><ul>
+<li><a href="#rtklib-str2str" class="anchor-link">RTKLIB str2str</a><ul>
 <li><a href="#access-rtk-correction-service-and-rtk-correction-data" class="anchor-link">Access RTK correction service and RTK correction data</a></li>
 <li><a href="#environment-variables" class="anchor-link">Environment Variables</a></li>
 <li><a href="#installing-rtklib" class="anchor-link">Installing RTKLIB</a></li>
+</ul>
+</li>
+<li><a href="#gnss-rtk-receiver" class="anchor-link">GNSS RTK Receiver</a><ul>
 <li><a href="#configure-rtk-device-correction-input-and-position-out-methods" class="anchor-link">Configure RTK device correction input and position out methods</a></li>
+<li><a href="#emlid-reach" class="anchor-link">Emlid Reach</a></li>
+<li><a href="#interface" class="anchor-link">Interface</a></li>
 <li><a href="#creating-a-persistent-label-for-the-rtk-gnss-usb-device" class="anchor-link">Creating a persistent label for the RTK GNSS USB device</a></li>
+<li><a href="#explanation-of-str2str-parameters" class="anchor-link">Explanation of str2str parameters</a></li>
 </ul>
 </li>
 <li><a href="#extras" class="anchor-link">Extras</a></li>
+<li><a href="#ros2-demo" class="anchor-link">ROS2 Demo</a><ul>
+<li><a href="#initial-testing" class="anchor-link">Initial Testing</a></li>
+</ul>
+</li>
 <li><a href="#questions" class="anchor-link">Questions</a><ul>
 <li><a href="#q1-how-do-you-find-the-ntrip-mount-point-for-automatic-cells-or-single-sites" class="anchor-link">Q1. How do you find the NTRIP Mount point for Automatic Cells or Single Sites?</a></li>
 </ul>
@@ -387,33 +397,52 @@
 </li>
 </ul>
 </div>
-<div class="callout callout-work in progess active" rasa="1">
-<div class="callout-title ">
+<div class="callout callout-work in progess active callout-folded inactive" rasa="1">
+<div class="callout-title " onclick="toggle_callout(this.parentElement)">
 <div class="callout-title-icon"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="callout-icon"><line x1="18" y1="2" x2="22" y2="6"></line><path d="M7.5 20.5L19 9l-4-4L3.5 16.5 2 22z"></path></svg>
 </div>
 <div class="callout-title-name">Work in progess
 </div>
+<div class="callout-title-fold"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="ChevronDown"><polyline points="6 9 12 15 18 9"></polyline>
+</div>
 </div>
 <div class="callout-content">
-<h2 id="h_-initial-testing-notes-_obsidian_pattern_tag_wip">- Initial testing notes <a class="inline-tag" href="/gardenbot/obs.html/tags/WIP/index.html">WIP</a></h2>
 <ul>
-<li><a href="https://www.ardusimple.com/rtk-explained/" class="external-link">https://www.ardusimple.com/rtk-explained/</a>   </li>
+<li>Initial testing notes <a class="inline-tag" href="/gardenbot/obs.html/tags/WIP/index.html">WIP</a>   </li>
+<li><a href="https://learn.sparkfun.com/tutorials/what-is-gps-rtk/all" class="external-link">https://learn.sparkfun.com/tutorials/what-is-gps-rtk/all</a>   </li>
+<li><a href="https://www.ardusimple.com/rtk-explained/" class="external-link" class="external-link">https://www.ardusimple.com/rtk-explained/</a>   </li>
 <li><a href="http://rtkexplorer.com/" class="external-link">rtkexplorer – Exploring low cost solutions for high precision GPS/GNSS</a>   </li>
 <li><a href="https://en.wikipedia.org/wiki/NMEA_0183" class="external-link">https://en.wikipedia.org/wiki/NMEA_0183</a>   </li>
 <li><a href="https://incors.in.gov/rtk.aspx" class="external-link">https://incors.in.gov/rtk.aspx</a>   </li>
 <li><a href="https://wiki.openmower.de/index.php?title=System_Image#STR2STR_(optional,_recommended;_only_needed_if_you're_using_NTRIP,_so_probably_most_of_you)" class="external-link">open mower ntrip</a>   </li>
 <li><a href="https://ntrip-list.com/" class="external-link">https://ntrip-list.com/</a>   </li>
-<li><a href="http://reach.local" class="external-link">http://reach.local</a>   </li>
+<li><a href="http://reach.local" class="external-link" class="external-link">http://reach.local</a>   </li>
 <li><a href="https://github.com/rtklibexplorer/RTKLIB" class="external-link" class="external-link">https://github.com/rtklibexplorer/RTKLIB</a>   </li>
 <li><a href="https://packages.ubuntu.com/search?keywords=rtklib" class="external-link">https://packages.ubuntu.com/search?keywords=rtklib</a>   </li>
 <li><a href="http://magnav.mit.edu/" class="external-link">http://magnav.mit.edu/</a>   </li>
-<li><a href="https://youtu.be/lQuVkbphOog" class="external-link">https://youtu.be/lQuVkbphOog</a></li>
+<li><a href="https://youtu.be/lQuVkbphOog" class="external-link">https://youtu.be/lQuVkbphOog</a> <br />
+</li>
 </ul>
 </div>
 </div>
-<p><a href="https://incors.in.gov/" class="external-link">https://incors.in.gov/</a>   </p>
-<p>This setup provides a tutorial on how to use a GNSS RTK Receiver, a Linux Machine, and an RTK Correction Service (or Base Station) to access position data with centimeter-level precision. Many GNSS RTK Receivers will connect to an NTRIP Caster directly utilizing its on-board LoRa,WiFi, Bluetooth, or Cellular Modem. However this tutorial is geared towards using a Linux Machine to connect to an NTRIP Caster to receive the RTK Correction Data and then relay the data to the RTK Receiver via USB. This use case is more relevant to a robotic platform that already has access to the Internet or a Local Network with an NTRIP Caster. Main reason to do it this way is because your Linux Machine may already be using a Cellular Modem or Long Distance Wireless Access Point. This would render the wireless capabilities of the RTK Receiver as redundant or less capable than what the Linux machine is using.   </p>
-<p><img alt="" src="/gardenbot/systems/localization-sysytem/gnss-rtk/gnss-rtk-diagram.svg" />   </p>
+<div class="callout callout-info active" rasa="1">
+<div class="callout-title ">
+<div class="callout-title-icon"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="callout-icon"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>
+</div>
+<div class="callout-title-name">Helpful Resources <br />
+</div>
+</div>
+<div class="callout-content">
+<ul>
+<li><a href="https://www.ardusimple.com/rtk-explained/" class="external-link" class="external-link">RTK Explained</a>   </li>
+<li><a href="https://github.com/septentrio-gnss/Septentrio_AgnosticCorrectionsProgram/blob/main/str2str/README.md#what-is-str2str" class="external-link">What is str2str</a>   </li>
+<li><a href="https://www.ardusimple.com/product/simplertk2b-basic-starter-kit-ip65/" class="external-link">simpleRTK2B – Basic Starter Kit</a>   </li>
+<li><a href="https://incors.in.gov/" class="external-link">https://incors.in.gov/</a></li>
+</ul>
+</div>
+</div>
+<p>This setup provides a tutorial on how to use a GNSS RTK Receiver, a Linux Machine, and an RTK Correction Service (or Base Station) to access position data with centimeter-level precision. Many GNSS RTK Receivers will connect to an NTRIP Caster directly utilizing its on-board LoRa,WiFi, Bluetooth, or Cellular Modem. However this tutorial is geared towards using a Linux Machine to connect to an NTRIP Caster to receive the RTK Correction Data and then relay the data to the RTK Receiver via USB. This use case is more relevant to a robotic platform that already has access to the Internet or a Local Network with an NTRIP Caster/Server. Main reason to do it this way is because your Linux Machine may already be using a Cellular Modem or Long Distance Wireless Access Point. This would render the wireless capabilities of the RTK Receiver as redundant or less capable than what the Linux machine is using.   </p>
+<p><img alt="" src="/gardenbot/systems/localization-sysytem/gnss-rtk/gnss-rtk-diagram.drawio.svg" />   </p>
 <h2 id="basic-concepts">Basic Concepts</h2>
 <h3 id="gnss-rtk-receiver-rover">GNSS RTK Receiver (Rover)</h3>
 <p>These devices have recently became available in low-cost forms with comparable performance to higher end products. It is basically a micro-controller with a GNSS antenna and receiver with the capability to run complex calculations that enable it to resolve position data with centimeter precision under the right conditions. The micro-controller may be using a library like <a href="https://github.com/rtklibexplorer/RTKLIB" class="external-link" class="external-link">RTKLIB</a> to perform the calculations. The most important condition for resolving centimeter-level precision is access to RTK corrections from a nearby (approximately 35 km) Base Station.   </p>
@@ -421,10 +450,11 @@
 <p>The Base Station is basically a stationary GNSS RTK Receiver that is configured to stream out RTK correction data using a NTRIP Server (COTS products offer this as a single package). A Base Station and Reference Station are synonymous.   </p>
 <h3 id="continuously-operating-reference-stations-cors-network">Continuously Operating Reference Stations (CORS) network</h3>
 <p>A CORS Network is a collection of GNSS Base stations combined in a single network to provide wider coverage of valid RTK correction data. Recall that RTK correction data is only valid within approximately a 35 km radius of the Base Station. A CORS network may provide convenient access to RTK correction data from the nearest base station. There also exist advance techniques to combine correction data from multiple base stations to provide correction data from a Virtual Reference Station (VRS) to further reduce location error. <a href="https://geo-matching.com/content/the-principles-and-performance-of-cors-network-rtk-and-vrs" class="external-link">See VRS for details</a>   </p>
-<h3 id="linux-machine-ntrip-client">Linux Machine NTRIP Client</h3>
+<h3 id="ntrip-client">NTRIP Client</h3>
 <p><a href="https://packages.ubuntu.com/jammy/rtklib" class="external-link">RTKLIB</a> provides a suite of CLIs and GUIs that simplify much of the work. In theory could configure your design to perform the RTK calculations on the Linux Machine. However in this tutorial, the Linux Machine is only used to relay the RTK correction data from the NTRIP Caster to the GNSS RTK Receiver. To do this we use the RTKLIB CLI <code>str2str</code> which enables us to connect to a NTRIP caster as a data input source and a GNSS RTK Receiver has a data output target. This employs our Linux machine as a NTRIP Client. Alternatively, instead of using the RTKLIB CLI, we can use the ROS package <a href="http://wiki.ros.org/ntrip_client" class="external-link">ntrip_client</a>. See OpenMower's <a href="https://github.com/ClemensElflein/open_mower_ros/blob/63f11ded7ed5eafcaaefb1778d315079e11c6fed/src/open_mower/launch/include/_ntrip_client.launch" class="external-link">ntrip_client</a> launch file for further details.   </p>
-<h2 id="getting-started-with-rtklib-str2str">Getting Started with RTKLIB str2str</h2>
-<p>Very help explanation <a href="https://github.com/septentrio-gnss/Septentrio_AgnosticCorrectionsProgram/blob/main/str2str/README.md#what-is-str2str" class="external-link">What is str2str</a>   </p>
+<p><a href="https://software.rtcm-ntrip.org/wiki" class="external-link">https://software.rtcm-ntrip.org/wiki</a>   </p>
+<h2 id="rtklib-str2str">RTKLIB str2str</h2>
+<p><a href="https://www.rtklib.com/prog/manual_2.4.2.pdf#page=101" class="external-link">str2str manual</a>   </p>
 <ol>
 <li>Open a terminal and enter the following command to capture the serial port device label e.g. <code>/dev/tty*</code> <a href="https://en.wikipedia.org/wiki/Serial_port#Hardware_abstraction" class="external-link">More info</a>   </li>
 </ol>
@@ -671,77 +701,109 @@ Other secret managers are <a href="https://bitwarden.com/products/secrets-manage
 
 </div>
 
+<h2 id="gnss-rtk-receiver">GNSS RTK Receiver</h2>
 <h3 id="configure-rtk-device-correction-input-and-position-out-methods">Configure RTK device correction input and position out methods</h3>
-<p>This project is using the <a href="https://docs.emlid.com/reach/reference/specifications/reach-module-specs/" class="external-link">Emlid Reach RTK Module</a> and following <a href="https://docs.emlid.com/reach/" class="external-link">documentation</a>. The Emlid is configured with the following settings   </p>
-<div class="lang-general">
-
-<div class="codehilite"><pre><span></span><code><span class="k">[details=&quot;Simple system report&quot;]</span><span class="w"></span>
-<span class="na">app version: 28.4-r0</span><span class="w"></span>
-<span class="na">enabled: true</span><span class="w"></span>
-<span class="na">mode: client</span><span class="w"></span>
-<span class="na">correction_input:</span><span class="w"></span>
-<span class="w">  </span><span class="na">base_corrections:</span><span class="w"></span>
-<span class="w">    </span><span class="na">io_type: serial</span><span class="w"></span>
-<span class="w">    </span><span class="na">settings:</span><span class="w"></span>
-<span class="w">      </span><span class="na">serial:</span><span class="w"></span>
-<span class="w">        </span><span class="na">baud_rate: 115200</span><span class="w"></span>
-<span class="w">        </span><span class="na">device: ttyGS0 (USB-to-PC)</span><span class="w"></span>
-<span class="w">        </span><span class="na">send_position_to_base: true</span><span class="w"></span>
-<span class="na">position_output:</span><span class="w"></span>
-<span class="w">  </span><span class="na">output1:</span><span class="w"></span>
-<span class="w">    </span><span class="na">io_type: serial</span><span class="w"></span>
-<span class="w">    </span><span class="na">nmea_settings:</span><span class="w"></span>
-<span class="w">      </span><span class="na">serial:</span><span class="w"></span>
-<span class="w">        </span><span class="na">gga:</span><span class="w"></span>
-<span class="w">          </span><span class="na">enabled: true</span><span class="w"></span>
-<span class="w">          </span><span class="na">update_rate: 1</span><span class="w"></span>
-<span class="w">        </span><span class="na">gsa:</span><span class="w"></span>
-<span class="w">          </span><span class="na">enabled: false</span><span class="w"></span>
-<span class="w">          </span><span class="na">update_rate: 1</span><span class="w"></span>
-<span class="w">        </span><span class="na">gst:</span><span class="w"></span>
-<span class="w">          </span><span class="na">enabled: false</span><span class="w"></span>
-<span class="w">          </span><span class="na">update_rate: 1</span><span class="w"></span>
-<span class="w">        </span><span class="na">gsv:</span><span class="w"></span>
-<span class="w">          </span><span class="na">enabled: false</span><span class="w"></span>
-<span class="w">          </span><span class="na">update_rate: 1</span><span class="w"></span>
-<span class="w">        </span><span class="na">main_talker_id: gn</span><span class="w"></span>
-<span class="w">        </span><span class="na">rmc:</span><span class="w"></span>
-<span class="w">          </span><span class="na">enabled: false</span><span class="w"></span>
-<span class="w">          </span><span class="na">update_rate: 1</span><span class="w"></span>
-<span class="w">        </span><span class="na">vtg:</span><span class="w"></span>
-<span class="w">          </span><span class="na">enabled: false</span><span class="w"></span>
-<span class="w">          </span><span class="na">update_rate: 1</span><span class="w"></span>
-<span class="w">        </span><span class="na">zda:</span><span class="w"></span>
-<span class="w">          </span><span class="na">enabled: false</span><span class="w"></span>
-<span class="w">          </span><span class="na">update_rate: 1</span><span class="w"></span>
-<span class="w">    </span><span class="na">settings:</span><span class="w"></span>
-<span class="w">      </span><span class="na">serial:</span><span class="w"></span>
-<span class="w">        </span><span class="na">baud_rate: 9600</span><span class="w"></span>
-<span class="w">        </span><span class="na">device: ttyGS0 (USB-to-PC)</span><span class="w"></span>
-<span class="w">        </span><span class="na">format: NMEA</span><span class="w"></span>
-<span class="na">positioning_settings:</span><span class="w"></span>
-<span class="w">  </span><span class="na">elevation_mask_angle: 15</span><span class="w"></span>
-<span class="w">  </span><span class="na">glonass_ar_mode: true</span><span class="w"></span>
-<span class="w">  </span><span class="na">gnss_settings:</span><span class="w"></span>
-<span class="w">    </span><span class="na">positioning_systems:</span><span class="w"></span>
-<span class="w">      </span><span class="na">beidou: false</span><span class="w"></span>
-<span class="w">      </span><span class="na">galileo: true</span><span class="w"></span>
-<span class="w">      </span><span class="na">glonass: true</span><span class="w"></span>
-<span class="w">      </span><span class="na">gps: true</span><span class="w"></span>
-<span class="w">      </span><span class="na">qzss: true</span><span class="w"></span>
-<span class="w">      </span><span class="na">sbas: true</span><span class="w"></span>
-<span class="w">    </span><span class="na">update_rate: 5</span><span class="w"></span>
-<span class="w">  </span><span class="na">gps_ar_mode: fix-and-hold</span><span class="w"></span>
-<span class="w">  </span><span class="na">max_horizontal_acceleration: 1</span><span class="w"></span>
-<span class="w">  </span><span class="na">max_vertical_acceleration: 1</span><span class="w"></span>
-<span class="w">  </span><span class="na">positioning_mode: kinematic</span><span class="w"></span>
-<span class="w">  </span><span class="na">snr_mask: 35</span><span class="w"></span>
-<span class="k">[/details]</span><span class="w"></span>
-</code></pre></div>
-
-
+<p>This project is using the <a href="https://docs.emlid.com/reach/reference/specifications/reach-module-specs/" class="external-link">Emlid Reach RTK Module</a> and following <a href="https://docs.emlid.com/reach/" class="external-link">documentation</a>. Once the device is connected to a local WiFi network device can be accessed via the web app <a href="http://reach.local" class="external-link" class="external-link">http://reach.local</a>   </p>
+<h3 id="emlid-reach">Emlid Reach</h3>
+<ul>
+<li>Raw data receiver: U-blox NEO-M8T – 72 channels, output rate is up to 18Hz, supports GPS L1, GLONASS G1, BeiDou B1, QZSS, SBAS, ready for Galileo E1   </li>
+<li>Processing unit: Intel Edison – dual-core 500 MHz   </li>
+<li>Connectivity: I2C, UART, GPIO, TimeStamp, OTG USB, Bluetooth, Wi-Fi   </li>
+<li>GNSS Antenna: external with MCX connector   </li>
+</ul>
+<h3 id="interface">Interface</h3>
+<ul>
+<li>USB-to-PC    <ul>
+<li>On Reach Module: Micro-USB    </li>
+</ul>
+</li>
+<li>UART   <ul>
+<li>On Reach Module: Hirose DF13-6P-1.25H(50) colloquially  "DF13 Female headers"   </li>
+<li><a href="https://www.lambdrive.com/depot/Robotics/Controller/PixhawkFamily/Connector/index.html" class="external-link">https://www.lambdrive.com/depot/Robotics/Controller/PixhawkFamily/Connector/index.html</a>   </li>
+<li><a href="https://store.emlid.com/us/product/reach-m-cable-for-pixhawk/" class="external-link">https://store.emlid.com/us/product/reach-m-cable-for-pixhawk/</a>   </li>
+<li><a href="https://www.amazon.com/1-25mm-Adapter-Pixhawk-Controller-Quadcopter/dp/B07PWZTC88/" class="external-link">Molex PicoBlade</a>- Can be inserted into DF13 Female headers (but not visa versa)   </li>
+<li><a href="https://raspberrypi.stackexchange.com/questions/104464/where-are-the-uarts-on-the-raspberry-pi-4" class="external-link">https://raspberrypi.stackexchange.com/questions/104464/where-are-the-uarts-on-the-raspberry-pi-4</a>   </li>
+<li><a href="https://raspberrypi.stackexchange.com/questions/45570/how-do-i-make-serial-work-on-the-raspberry-pi3-pizerow-pi4-or-later-models/107780#107780" class="external-link">https://raspberrypi.stackexchange.com/questions/45570/how-do-i-make-serial-work-on-the-raspberry-pi3-pizerow-pi4-or-later-models/107780#107780</a>   </li>
+</ul>
+</li>
+</ul>
+<div class="callout callout-info active callout-folded inactive" rasa="1">
+<div class="callout-title " onclick="toggle_callout(this.parentElement)">
+<div class="callout-title-icon"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="callout-icon"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>
 </div>
-
+<div class="callout-title-name">The Emlid is configured with the following settings: <br />
+</div>
+<div class="callout-title-fold"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="ChevronDown"><polyline points="6 9 12 15 18 9"></polyline>
+</div>
+</div>
+<div class="callout-content"></div>
+</div>
+<p><a class="inline-tag" href="/gardenbot/obs.html/tags/todo/index.html">todo</a>: update the config below   </p>
+<blockquote>
+<p><code>[details="Simple system report"]   
+app version: 28.4-r0   
+enabled: true   
+mode: client   
+correction_input:   
+  base_corrections:   
+    io_type: serial   
+    settings:   
+      serial:   
+        baud_rate: 115200   
+        device: ttyGS0 (USB-to-PC)   
+        send_position_to_base: true   
+position_output:   
+  output1:   
+    io_type: serial   
+    nmea_settings:   
+      serial:   
+        gga:   
+          enabled: true   
+          update_rate: 1   
+        gsa:   
+          enabled: false   
+          update_rate: 1   
+        gst:   
+          enabled: false   
+          update_rate: 1   
+        gsv:   
+          enabled: false   
+          update_rate: 1   
+        main_talker_id: gn   
+        rmc:   
+          enabled: false   
+          update_rate: 1   
+        vtg:   
+          enabled: false   
+          update_rate: 1   
+        zda:   
+          enabled: false   
+          update_rate: 1   
+    settings:   
+      serial:   
+        baud_rate: 9600   
+        device: ttyGS0 (USB-to-PC)   
+        format: NMEA   
+positioning_settings:   
+  elevation_mask_angle: 15   
+  glonass_ar_mode: true   
+  gnss_settings:   
+    positioning_systems:   
+      beidou: false   
+      galileo: true   
+      glonass: true   
+      gps: true   
+      qzss: true   
+      sbas: true   
+    update_rate: 5   
+  gps_ar_mode: fix-and-hold   
+  max_horizontal_acceleration: 1   
+  max_vertical_acceleration: 1   
+  positioning_mode: kinematic   
+  snr_mask: 35   
+[/details]</code>
+   </p>
+</blockquote>
 <h3 id="creating-a-persistent-label-for-the-rtk-gnss-usb-device">Creating a persistent label for the RTK GNSS USB device</h3>
 <p>To use the serial device as non-root user, udev rules must be installed.   </p>
 <div class="callout callout-caution active" rasa="1">
@@ -862,7 +924,7 @@ ATTRS<span class="o">{</span>idProduct<span class="o">}==</span><span class="s2"
 <li><strong><em><code>MODE:="666"</code></em></strong>   </li>
 <li>"666" corresponds to read (4), write (2), and execute (1) permissions for the owner, group, and others, respectively. In this context, "666" means read and write permissions for everyone.   </li>
 <li><strong><code>GROUP="plugdev":</code></strong>   </li>
-<li>This specifies the group ownership of the device node. The device will be assigned to the "plugdev" group.   </li>
+<li>This specifies the group ownership of the device node. The device will be assigned to the "plugdev" group. The "plugedev" group is primarilty associated with serial commuication devices such as UART ports.   </li>
 <li><strong><code>SUBSYSTEM=="tty":</code></strong>   </li>
 <li>This condition narrows down the rule to devices in the "tty" (terminal) subsystem. It's often used for serial port devices.   </li>
 <li><strong><code>SYMLINK+="emlid_rtk":</code></strong>   </li>
@@ -884,7 +946,8 @@ ATTRS<span class="o">{</span>idProduct<span class="o">}==</span><span class="s2"
 <p>Re-plug in USB GNSS receiver and verify <a href="http://lefebure.com/articles/nmea-gga/" class="external-link" class="external-link">NMEA strings</a> streamed to the terminal   </p>
 <div class="lang-shell">
 
-<div class="codehilite"><pre><span></span><code>sudo screen /dev/emlid_rtk
+<div class="codehilite"><pre><span></span><code>ls -l /dev/emlid*
+sudo screen /dev/emlid_rtk
 </code></pre></div>
 
 
@@ -900,18 +963,40 @@ ATTRS<span class="o">{</span>idProduct<span class="o">}==</span><span class="s2"
 </ol>
 <div class="lang-shell">
 
-<div class="codehilite"><pre><span></span><code>str2str -in ntrip://<span class="nv">$NT_USER</span>:<span class="nv">$NT_PASSWORD</span>@<span class="nv">$NT_HOSTNAME</span>:<span class="nv">$NT_PORT_SINGLE</span>/<span class="nv">$NT_ENDPOINT_SINGLE</span><span class="c1">#rtcm3 -out serial://emlid_rtk:115200#52001 -b 1</span>
+<div class="codehilite"><pre><span></span><code>str2str -in ntrip://<span class="nv">$NT_USER</span>:<span class="nv">$NT_PASSWORD</span>@<span class="nv">$NT_HOSTNAME</span>:<span class="nv">$NT_PORT_SINGLE</span>/<span class="nv">$NT_ENDPOINT_SINGLE</span><span class="c1">#rtcm3 -out serial://emlid_rtk:115200#52001</span>
 </code></pre></div>
 
 
 </div>
 
 <ul>
-<li>Alt. to Receive <strong>Automatic cell</strong> corrections via NTRIP and relay to USB GNSS receiver via serial   </li>
+<li>Alt. to Receive <strong>Automatic cell</strong> corrections via NTRIP and relay to USB GNSS receiver via serial    </li>
+</ul>
+<div class="callout callout-note active" rasa="1">
+<div class="callout-title ">
+<div class="callout-title-icon"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="callout-icon"><line x1="18" y1="2" x2="22" y2="6"></line><path d="M7.5 20.5L19 9l-4-4L3.5 16.5 2 22z"></path></svg>
+</div>
+<div class="callout-title-name">Note
+</div>
+</div>
+<div class="callout-content">
+<p>Not sure if <code>hostname</code> is require for <code>serial://emlid_rtk:115200#NT_HOSTNAME</code>. For VRS or Automatic Cell sites, just be sure to include <code>-b 1</code> with your output stream</p>
+</div>
+</div>
+<div class="lang-shell">
+
+<div class="codehilite"><pre><span></span><code>str2str -in ntrip://<span class="nv">$NT_USER</span>:<span class="nv">$NT_PASSWORD</span>@<span class="nv">$NT_HOSTNAME</span>:<span class="nv">$NT_PORT_AUTO</span>/<span class="nv">$NT_ENDPOINT_AUTO</span><span class="c1">#rtcm3 -out serial://emlid_rtk:115200#NT_HOSTNAME -b 1</span>
+</code></pre></div>
+
+
+</div>
+
+<ul>
+<li>Alt. to Receive <strong>Automatic cell</strong> corrections via NTRIP and stream RTCM sentences via serial port. Stream reciever NMEA sentences via serial and TCP port 52001.   </li>
 </ul>
 <div class="lang-shell">
 
-<div class="codehilite"><pre><span></span><code>str2str -in ntrip://<span class="nv">$NT_USER</span>:<span class="nv">$NT_PASSWORD</span>@<span class="nv">$NT_HOSTNAME</span>:<span class="nv">$NT_PORT_AUTO</span>/<span class="nv">$NT_ENDPOINT_AUTO</span><span class="c1">#rtcm3 -out serial://emlid_rtk:115200#52001 -b 1</span>
+<div class="codehilite"><pre><span></span><code>str2str -in ntrip://<span class="nv">$NT_USER</span>:<span class="nv">$NT_PASSWORD</span>@<span class="nv">$NT_HOSTNAME</span>:<span class="nv">$NT_PORT_AUTO</span>/<span class="nv">$NT_ENDPOINT_AUTO</span><span class="c1">#rtcm3 -out serial://emlid_rtk:115200#52001</span>
 </code></pre></div>
 
 
@@ -928,6 +1013,28 @@ ATTRS<span class="o">{</span>idProduct<span class="o">}==</span><span class="s2"
 
 </div>
 
+<h3 id="explanation-of-str2str-parameters">Explanation of <code>str2str</code> parameters</h3>
+<p><a class="inline-tag" href="/gardenbot/obs.html/tags/todo/index.html">todo</a>   </p>
+<ul>
+<li>-in ntrip://<mark style="background: <a class="inline-tag" href="/gardenbot/obs.html/tags/FFB8EBA6/index.html">FFB8EBA6</a>;">username</mark>:<mark style="background: <a class="inline-tag" href="/gardenbot/obs.html/tags/FFB86CA6/index.html">FFB86CA6</a>;">password</mark>@<mark style="background: <a class="inline-tag" href="/gardenbot/obs.html/tags/BBFABBA6/index.html">BBFABBA6</a>;">host</mark>:<mark style="background: <a class="inline-tag" href="/gardenbot/obs.html/tags/ADCCFFA6/index.html">ADCCFFA6</a>;">port</mark>/<mark style="background: <a class="inline-tag" href="/gardenbot/obs.html/tags/CACFD9A6/index.html">CACFD9A6</a>;">mount</mark>#<mark style="background: <a class="inline-tag" href="/gardenbot/obs.html/tags/FF5582A6/index.html">FF5582A6</a>;">format</mark>   <ul>
+<li>username:    </li>
+<li>password:   </li>
+<li>host: Required   </li>
+<li>port:   </li>
+<li>mount:   </li>
+<li>format:   </li>
+</ul>
+</li>
+<li>-out serial://<mark style="background: <a class="inline-tag" href="/gardenbot/obs.html/tags/FFF3A3A6/index.html">FFF3A3A6</a>;">device_port</mark>:<mark style="background: <a class="inline-tag" href="/gardenbot/obs.html/tags/ABF7F7A6/index.html">ABF7F7A6</a>;">bitrate</mark>:<mark style="background: <a class="inline-tag" href="/gardenbot/obs.html/tags/D2B3FFA6/index.html">D2B3FFA6</a>;">parity</mark>:<mark style="background: <a class="inline-tag" href="/gardenbot/obs.html/tags/FFB8EBA6/index.html">FFB8EBA6</a>;">stopbit</mark>:<mark style="background: <a class="inline-tag" href="/gardenbot/obs.html/tags/FFB86CA6/index.html">FFB86CA6</a>;">fctr</mark>#<mark style="background: <a class="inline-tag" href="/gardenbot/obs.html/tags/BBFABBA6/index.html">BBFABBA6</a>;">host</mark> -b 1   <ul>
+<li>device_port:    </li>
+<li>bitrate:    </li>
+<li>parity:    </li>
+<li>stopbit:    </li>
+<li>fctr:    </li>
+<li>host:    </li>
+</ul>
+</li>
+</ul>
 <h2 id="extras">Extras</h2>
 <ul>
 <li>Set trace level with <code>-t 3</code> and you can read logs with <code>cat str2str.trace</code>   </li>
@@ -948,6 +1055,70 @@ ATTRS<span class="o">{</span>idProduct<span class="o">}==</span><span class="s2"
 
 </div>
 
+<h2 id="ros2-demo">ROS2 Demo</h2>
+<h3 id="initial-testing">Initial Testing</h3>
+<ul>
+<li>Configure the Emlid Reach device "Correction input" settings to connect to an NTRIP server via the webapp.    </li>
+<li>Install the nmea_serial_driver ROS2 package   </li>
+</ul>
+<div class="lang-shell">
+
+<div class="codehilite"><pre><span></span><code>ros2 run nmea_navsat_driver nmea_serial_driver --ros-args --params-file ./config/nmea_serial_driver.yaml
+</code></pre></div>
+
+
+</div>
+
+<ul>
+<li>Echo the ROS2 topic <code>/fix</code> which contains the <code>sensor_msgs/msg/NavSatFix</code>  messages   </li>
+</ul>
+<div class="lang-shell">
+
+<div class="codehilite"><pre><span></span><code>ros2 topic info /fix
+</code></pre></div>
+
+
+</div>
+
+<ul>
+<li>Observe the <code>NavSatFix</code> messages with covariance data.    </li>
+</ul>
+<div class="lang-shell">
+
+<div class="codehilite"><pre><span></span><code>header:
+  stamp:
+    sec: <span class="m">1705213614</span>
+    nanosec: <span class="m">891449711</span>
+  frame_id: gps
+status:
+  status: <span class="m">2</span>
+  service: <span class="m">1</span>
+latitude: omitted
+longitude: omitted
+altitude: omitted
+position_covariance:
+- <span class="m">0</span>.000144
+- <span class="m">0</span>.0
+- <span class="m">0</span>.0
+- <span class="m">0</span>.0
+- <span class="m">0</span>.000144
+- <span class="m">0</span>.0
+- <span class="m">0</span>.0
+- <span class="m">0</span>.0
+- <span class="m">0</span>.0144
+position_covariance_type: <span class="m">1</span>
+</code></pre></div>
+
+
+</div>
+
+<ul>
+<li><strong>Takeaway</strong>: This initial test verifies the principles, but one draw back is that the RTCM messages are streamed to the Reach module via it's onboard WiFi connection from the local network. Ideally I would prefer the RTCM messages were streamed to the Reach Module via the Raspberry Pis' in a "PC-to-USB" fashion. The main hurdle with this is we will need to use the UART ports on the the Reach module and Raspberry Pi to receive NMEA sentences. Using a single serial port for transmitting correction data to GNSS receiver and reading the NMEA sentences  (using two separate processes) <strong>dosen't seem possible or is error prone</strong> at this time so two serial port may be necessary.    </li>
+</ul>
+<p>My current understanding of possible configurations at this moment are: <br />
+1. Utilize Reach Modules' on-board WiFi and NTRIP client software to receive RTCM and stream the receiver "Position Output" to the Raspberry Pi in a "Serial-To-PC" fashion and utilize <code>nmea_navsat_diver</code> (Initial Testing Config) <br />
+2. Utilize <code>str2str</code> and <code>nmea_navsat_driver</code> and <strong>UART</strong> as a second channel for receiving NMEA sentences while <strong>PC-to-Serial</strong> is used for streaming RTCM Messages to the Reach Module. <br />
+3. Utilize <code>str2str</code> and <code>nmea_tcp_driver</code> (Only after <a href="https://github.com/CearLab/nmea_tcp_driver" class="external-link">nmea_tcp_driver</a> is rewritten for ROS2 support 💀) Currently started on a <a href="https://github.com/digitalhabitat/emlid_reach_ros2" class="external-link">emlid_reach_ros2</a> but I'm not sure how much work is required.   </p>
 <h2 id="questions">Questions</h2>
 <h3 id="q1-how-do-you-find-the-ntrip-mount-point-for-automatic-cells-or-single-sites">Q1. How do you find the NTRIP Mount point for Automatic Cells or Single Sites?</h3>
 <ol>
@@ -975,10 +1146,13 @@ ATTRS<span class="o">{</span>idProduct<span class="o">}==</span><span class="s2"
 <p><strong>Rover Station:</strong> A mobile GNSS receiver that receives corrections from a base station.   </p>
 </li>
 <li>
+<p><strong>NMEA message/string</strong>: <a class="inline-tag" href="/gardenbot/obs.html/tags/todo/index.html">todo</a>   </p>
+</li>
+<li>
 <p><strong>NTRIP (Networked Transport of RTCM via Internet Protocol):</strong> A communication protocol to streaming RTCM correction data over the internet.   </p>
 </li>
 <li>
-<p><strong>RTCM (Radio Technical Commission for Maritime Services):</strong>  International standards body that defines standards such as, RTCM SC-104, which specifies a set of binary messages (aka RTCM messages) containing GNSS correction data.   </p>
+<p><strong>RTCM (Radio Technical Commission for Maritime Services):</strong>  An international standards body that defines standards such as, RTCM SC-104, which specifies a set of binary messages (aka RTCM messages) containing GNSS correction data.   </p>
 </li>
 <li>
 <p><strong>Observation Data:</strong> Raw GNSS measurements collected by a receiver, including pseudoranges and carrier phase information.   </p>
@@ -1028,24 +1202,33 @@ ATTRS<span class="o">{</span>idProduct<span class="o">}==</span><span class="s2"
 <div class="tags">
 <h2>Tags</h2>
 <ul>
+	<li><a class="backlink" href="/gardenbot/obs.html/tags/BBFABBA6/index.html">BBFABBA6</a></li>
+	<li><a class="backlink" href="/gardenbot/obs.html/tags/ADCCFFA6/index.html">ADCCFFA6</a></li>
+	<li><a class="backlink" href="/gardenbot/obs.html/tags/FFF3A3A6/index.html">FFF3A3A6</a></li>
+	<li><a class="backlink" href="/gardenbot/obs.html/tags/D2B3FFA6/index.html">D2B3FFA6</a></li>
+	<li><a class="backlink" href="/gardenbot/obs.html/tags/ABF7F7A6/index.html">ABF7F7A6</a></li>
+	<li><a class="backlink" href="/gardenbot/obs.html/tags/CACFD9A6/index.html">CACFD9A6</a></li>
+	<li><a class="backlink" href="/gardenbot/obs.html/tags/FFB86CA6/index.html">FFB86CA6</a></li>
+	<li><a class="backlink" href="/gardenbot/obs.html/tags/FFB8EBA6/index.html">FFB8EBA6</a></li>
 	<li><a class="backlink" href="/gardenbot/obs.html/tags/todo/index.html">todo</a></li>
+	<li><a class="backlink" href="/gardenbot/obs.html/tags/FF5582A6/index.html">FF5582A6</a></li>
 	<li><a class="backlink" href="/gardenbot/obs.html/tags/WIP/index.html">WIP</a></li>
 </ul>
 </div>
 
 </div>
 <div class="graph requires_js ">
-    <div id="A159618125478161719116680619229515331886{level}" class="graph_div"></div>
+    <div id="A240582370681400625377163544308733923759{level}" class="graph_div"></div>
 
-    <div class="graph-instructions" id="D159618125478161719116680619229515331886{level}">
+    <div class="graph-instructions" id="D240582370681400625377163544308733923759{level}">
         Left-click: follow link, Right-click: select node, Scroll: zoom
     </div>
     
     <div class="graph-button-row" style="display:flex;">
-        <button class="graph_button graph_show_button" id="B159618125478161719116680619229515331886{level}" level="{level}" note_temp_id="159618125478161719116680619229515331886" onclick="window.ObsHtmlGraph.run(this, '159618125478161719116680619229515331886', 'usb-gnss-setup');">
+        <button class="graph_button graph_show_button" id="B240582370681400625377163544308733923759{level}" level="{level}" note_temp_id="240582370681400625377163544308733923759" onclick="window.ObsHtmlGraph.run(this, '240582370681400625377163544308733923759', 'usb-gnss-setup');">
             Show Graph
         </button>
-        <button class="graph_button graph_type_button" id="C159618125478161719116680619229515331886{level}" style="flex:1" onclick="window.ObsHtmlGraph.switch_graph_type(this);">
+        <button class="graph_button graph_type_button" id="C240582370681400625377163544308733923759{level}" style="flex:1" onclick="window.ObsHtmlGraph.switch_graph_type(this);">
             2D
         </button>
     </div>
