@@ -6,3 +6,4 @@
 - What is web3
 - testing
 - iOS test
+- UART cable need for Emlid

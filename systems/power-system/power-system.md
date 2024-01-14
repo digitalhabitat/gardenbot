@@ -101,7 +101,10 @@ Closest American (AWG) gauge: AWG 11
 - Supplier Link: #todo 
 
 ## PiSugar2
-> This UPS is only intended as a power fail safe for the Raspberry Pi incase the 12V logic battery fails
+
+> This UPS is only intended as a power fail safe for the Raspberry Pi in case the 12V logic battery fails
+
+	[[pisugar]]
 -  Pisugar2 Portable 1200 mAh UPS Lithium Battery
 - https://github.com/PiSugar/PiSugar/wiki/PiSugar2
 - https://github.com/PiSugar/pisugar-power-manager-rs#unix-domain-socket--webscoket--tcp

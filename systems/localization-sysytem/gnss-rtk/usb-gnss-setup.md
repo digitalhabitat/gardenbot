@@ -1,8 +1,9 @@
 # USB GNSS RTK Receiver Setup
 
->[!Work in Progess]
+
+>[!Work in Progess]-
 > - Initial testing notes #WIP 
-> - 
+> - https://learn.sparkfun.com/tutorials/what-is-gps-rtk/all
 > - https://www.ardusimple.com/rtk-explained/
 > - [rtkexplorer – Exploring low cost solutions for high precision GPS/GNSS](http://rtkexplorer.com/)
 > - https://en.wikipedia.org/wiki/NMEA_0183
@@ -14,32 +15,41 @@
 > - https://packages.ubuntu.com/search?keywords=rtklib
 > - http://magnav.mit.edu/
 > - https://youtu.be/lQuVkbphOog
+>   
 
-https://incors.in.gov/
 
+>[!INFO] Helpful Resources
+> - [RTK Explained](https://www.ardusimple.com/rtk-explained/)
+> - [What is str2str](https://github.com/septentrio-gnss/Septentrio_AgnosticCorrectionsProgram/blob/main/str2str/README.md#what-is-str2str)
+> - [simpleRTK2B – Basic Starter Kit](https://www.ardusimple.com/product/simplertk2b-basic-starter-kit-ip65/)
+> - https://incors.in.gov/
 
-This setup provides a tutorial on how to use a GNSS RTK Receiver, a Linux Machine, and an RTK Correction Service (or Base Station) to access position data with centimeter-level precision. Many GNSS RTK Receivers will connect to an NTRIP Caster directly utilizing its on-board LoRa,WiFi, Bluetooth, or Cellular Modem. However this tutorial is geared towards using a Linux Machine to connect to an NTRIP Caster to receive the RTK Correction Data and then relay the data to the RTK Receiver via USB. This use case is more relevant to a robotic platform that already has access to the Internet or a Local Network with an NTRIP Caster. Main reason to do it this way is because your Linux Machine may already be using a Cellular Modem or Long Distance Wireless Access Point. This would render the wireless capabilities of the RTK Receiver as redundant or less capable than what the Linux machine is using.
+This setup provides a tutorial on how to use a GNSS RTK Receiver, a Linux Machine, and an RTK Correction Service (or Base Station) to access position data with centimeter-level precision. Many GNSS RTK Receivers will connect to an NTRIP Caster directly utilizing its on-board LoRa,WiFi, Bluetooth, or Cellular Modem. However this tutorial is geared towards using a Linux Machine to connect to an NTRIP Caster to receive the RTK Correction Data and then relay the data to the RTK Receiver via USB. This use case is more relevant to a robotic platform that already has access to the Internet or a Local Network with an NTRIP Caster/Server. Main reason to do it this way is because your Linux Machine may already be using a Cellular Modem or Long Distance Wireless Access Point. This would render the wireless capabilities of the RTK Receiver as redundant or less capable than what the Linux machine is using.
 
-![[gnss-rtk-diagram.svg]]
-
+![[gnss-rtk-diagram.drawio.svg]]
 ## Basic Concepts
 
 ### GNSS RTK Receiver (Rover)
+
 These devices have recently became available in low-cost forms with comparable performance to higher end products. It is basically a micro-controller with a GNSS antenna and receiver with the capability to run complex calculations that enable it to resolve position data with centimeter precision under the right conditions. The micro-controller may be using a library like [RTKLIB](https://github.com/rtklibexplorer/RTKLIB) to perform the calculations. The most important condition for resolving centimeter-level precision is access to RTK corrections from a nearby (approximately 35 km) Base Station.
 
 ### Base Station
+
 The Base Station is basically a stationary GNSS RTK Receiver that is configured to stream out RTK correction data using a NTRIP Server (COTS products offer this as a single package). A Base Station and Reference Station are synonymous.
 
 ### Continuously Operating Reference Stations (CORS) network
+
 A CORS Network is a collection of GNSS Base stations combined in a single network to provide wider coverage of valid RTK correction data. Recall that RTK correction data is only valid within approximately a 35 km radius of the Base Station. A CORS network may provide convenient access to RTK correction data from the nearest base station. There also exist advance techniques to combine correction data from multiple base stations to provide correction data from a Virtual Reference Station (VRS) to further reduce location error. [See VRS for details](https://geo-matching.com/content/the-principles-and-performance-of-cors-network-rtk-and-vrs)
 
-### Linux Machine NTRIP Client
+### NTRIP Client
+
 [RTKLIB](https://packages.ubuntu.com/jammy/rtklib) provides a suite of CLIs and GUIs that simplify much of the work. In theory could configure your design to perform the RTK calculations on the Linux Machine. However in this tutorial, the Linux Machine is only used to relay the RTK correction data from the NTRIP Caster to the GNSS RTK Receiver. To do this we use the RTKLIB CLI `str2str` which enables us to connect to a NTRIP caster as a data input source and a GNSS RTK Receiver has a data output target. This employs our Linux machine as a NTRIP Client. Alternatively, instead of using the RTKLIB CLI, we can use the ROS package [ntrip_client](http://wiki.ros.org/ntrip_client). See OpenMower's [ntrip_client](https://github.com/ClemensElflein/open_mower_ros/blob/63f11ded7ed5eafcaaefb1778d315079e11c6fed/src/open_mower/launch/include/_ntrip_client.launch) launch file for further details.
 
+https://software.rtcm-ntrip.org/wiki
 
-## Getting Started with RTKLIB str2str
+## RTKLIB str2str
 
-Very help explanation [What is str2str](https://github.com/septentrio-gnss/Septentrio_AgnosticCorrectionsProgram/blob/main/str2str/README.md#what-is-str2str)
+[str2str manual](https://www.rtklib.com/prog/manual_2.4.2.pdf#page=101)
 
 0. Open a terminal and enter the following command to capture the serial port device label e.g. `/dev/tty*` [More info](https://en.wikipedia.org/wiki/Serial_port#Hardware_abstraction)
 ```shell
@@ -177,74 +187,94 @@ str2str -in ntrip://$NT_USER:$NT_PASSWORD@$NT_HOSTNAME:$NT_PORT_SINGLE/$NT_ENDPO
 str2str -in ntrip://$NT_USER:$NT_PASSWORD@$NT_HOSTNAME:$NT_PORT_AUTO/$NT_ENDPOINT_AUTO#rtcm3
 ```
 
+## GNSS RTK Receiver
 ### Configure RTK device correction input and position out methods
 
-This project is using the [Emlid Reach RTK Module](https://docs.emlid.com/reach/reference/specifications/reach-module-specs/) and following [documentation](https://docs.emlid.com/reach/). The Emlid is configured with the following settings
+This project is using the [Emlid Reach RTK Module](https://docs.emlid.com/reach/reference/specifications/reach-module-specs/) and following [documentation](https://docs.emlid.com/reach/). Once the device is connected to a local WiFi network device can be accessed via the web app http://reach.local
 
-```
-[details="Simple system report"]
-app version: 28.4-r0
-enabled: true
-mode: client
-correction_input:
-  base_corrections:
-    io_type: serial
-    settings:
-      serial:
-        baud_rate: 115200
-        device: ttyGS0 (USB-to-PC)
-        send_position_to_base: true
-position_output:
-  output1:
-    io_type: serial
-    nmea_settings:
-      serial:
-        gga:
-          enabled: true
-          update_rate: 1
-        gsa:
-          enabled: false
-          update_rate: 1
-        gst:
-          enabled: false
-          update_rate: 1
-        gsv:
-          enabled: false
-          update_rate: 1
-        main_talker_id: gn
-        rmc:
-          enabled: false
-          update_rate: 1
-        vtg:
-          enabled: false
-          update_rate: 1
-        zda:
-          enabled: false
-          update_rate: 1
-    settings:
-      serial:
-        baud_rate: 9600
-        device: ttyGS0 (USB-to-PC)
-        format: NMEA
-positioning_settings:
-  elevation_mask_angle: 15
-  glonass_ar_mode: true
-  gnss_settings:
-    positioning_systems:
-      beidou: false
-      galileo: true
-      glonass: true
-      gps: true
-      qzss: true
-      sbas: true
-    update_rate: 5
-  gps_ar_mode: fix-and-hold
-  max_horizontal_acceleration: 1
-  max_vertical_acceleration: 1
-  positioning_mode: kinematic
-  snr_mask: 35
-[/details]
-```
+### Emlid Reach 
+
+- Raw data receiver: U-blox NEO-M8T – 72 channels, output rate is up to 18Hz, supports GPS L1, GLONASS G1, BeiDou B1, QZSS, SBAS, ready for Galileo E1
+- Processing unit: Intel Edison – dual-core 500 MHz
+- Connectivity: I2C, UART, GPIO, TimeStamp, OTG USB, Bluetooth, Wi-Fi
+- GNSS Antenna: external with MCX connector
+### Interface
+- USB-to-PC 
+	- On Reach Module: Micro-USB 
+- UART
+	- On Reach Module: Hirose DF13-6P-1.25H(50) colloquially  "DF13 Female headers"
+	- https://www.lambdrive.com/depot/Robotics/Controller/PixhawkFamily/Connector/index.html
+	- https://store.emlid.com/us/product/reach-m-cable-for-pixhawk/
+	-   [Molex PicoBlade](https://www.amazon.com/1-25mm-Adapter-Pixhawk-Controller-Quadcopter/dp/B07PWZTC88/)- Can be inserted into DF13 Female headers (but not visa versa)
+	- https://raspberrypi.stackexchange.com/questions/104464/where-are-the-uarts-on-the-raspberry-pi-4
+	- https://raspberrypi.stackexchange.com/questions/45570/how-do-i-make-serial-work-on-the-raspberry-pi3-pizerow-pi4-or-later-models/107780#107780
+
+ >[!info]- The Emlid is configured with the following settings:
+#todo: update the config below
+> ```
+> [details="Simple system report"]
+> app version: 28.4-r0
+> enabled: true
+> mode: client
+> correction_input:
+>   base_corrections:
+>     io_type: serial
+>     settings:
+>       serial:
+>         baud_rate: 115200
+>         device: ttyGS0 (USB-to-PC)
+>         send_position_to_base: true
+> position_output:
+>   output1:
+>     io_type: serial
+>     nmea_settings:
+>       serial:
+>         gga:
+>           enabled: true
+>           update_rate: 1
+>         gsa:
+>           enabled: false
+>           update_rate: 1
+>         gst:
+>           enabled: false
+>           update_rate: 1
+>         gsv:
+>           enabled: false
+>           update_rate: 1
+>         main_talker_id: gn
+>         rmc:
+>           enabled: false
+>           update_rate: 1
+>         vtg:
+>           enabled: false
+>           update_rate: 1
+>         zda:
+>           enabled: false
+>           update_rate: 1
+>     settings:
+>       serial:
+>         baud_rate: 9600
+>         device: ttyGS0 (USB-to-PC)
+>         format: NMEA
+> positioning_settings:
+>   elevation_mask_angle: 15
+>   glonass_ar_mode: true
+>   gnss_settings:
+>     positioning_systems:
+>       beidou: false
+>       galileo: true
+>       glonass: true
+>       gps: true
+>       qzss: true
+>       sbas: true
+>     update_rate: 5
+>   gps_ar_mode: fix-and-hold
+>   max_horizontal_acceleration: 1
+>   max_vertical_acceleration: 1
+>   positioning_mode: kinematic
+>   snr_mask: 35
+> [/details]
+> ```
 
 ###  Creating a persistent label for the RTK GNSS USB device
 
@@ -320,7 +350,7 @@ ATTRS{idProduct}=="0014", ATTRS{idVendor}=="3032", MODE:="666", GROUP="plugdev",
 >2. ***`MODE:="666"`***
 >	- "666" corresponds to read (4), write (2), and execute (1) permissions for the owner, group, and others, respectively. In this context, "666" means read and write permissions for everyone.
 >3. **`GROUP="plugdev":`**
->    - This specifies the group ownership of the device node. The device will be assigned to the "plugdev" group.
+>    - This specifies the group ownership of the device node. The device will be assigned to the "plugdev" group. The "plugedev" group is primarilty associated with serial commuication devices such as UART ports.
 >4. **`SUBSYSTEM=="tty":`**
 >    - This condition narrows down the rule to devices in the "tty" (terminal) subsystem. It's often used for serial port devices.
 >5. **`SYMLINK+="emlid_rtk":`**
@@ -335,6 +365,7 @@ sudo udevadm control --reload && sudo udevadm trigger
 Re-plug in USB GNSS receiver and verify [NMEA strings](http://lefebure.com/articles/nmea-gga/) streamed to the terminal
 
 ```shell
+ls -l /dev/emlid*
 sudo screen /dev/emlid_rtk
 ```
 
@@ -343,13 +374,20 @@ sudo screen /dev/emlid_rtk
 - To receive **Single site** corrections via NTRIP and relay to USB GNSS receiver via serial
 
 ```shell
-str2str -in ntrip://$NT_USER:$NT_PASSWORD@$NT_HOSTNAME:$NT_PORT_SINGLE/$NT_ENDPOINT_SINGLE#rtcm3 -out serial://emlid_rtk:115200#52001 -b 1
+str2str -in ntrip://$NT_USER:$NT_PASSWORD@$NT_HOSTNAME:$NT_PORT_SINGLE/$NT_ENDPOINT_SINGLE#rtcm3 -out serial://emlid_rtk:115200#52001
 ```
 
-- Alt. to Receive **Automatic cell** corrections via NTRIP and relay to USB GNSS receiver via serial
-
+- Alt. to Receive **Automatic cell** corrections via NTRIP and relay to USB GNSS receiver via serial 
+> [!Note]
+> Not sure if `hostname` is require for `serial://emlid_rtk:115200#NT_HOSTNAME`. For VRS or Automatic Cell sites, just be sure to include `-b 1` with your output stream
+ 
 ```shell
-str2str -in ntrip://$NT_USER:$NT_PASSWORD@$NT_HOSTNAME:$NT_PORT_AUTO/$NT_ENDPOINT_AUTO#rtcm3 -out serial://emlid_rtk:115200#52001 -b 1
+str2str -in ntrip://$NT_USER:$NT_PASSWORD@$NT_HOSTNAME:$NT_PORT_AUTO/$NT_ENDPOINT_AUTO#rtcm3 -out serial://emlid_rtk:115200#NT_HOSTNAME -b 1
+```
+
+- Alt. to Receive **Automatic cell** corrections via NTRIP and stream RTCM sentences via serial port. Stream reciever NMEA sentences via serial and TCP port 52001.
+```shell
+str2str -in ntrip://$NT_USER:$NT_PASSWORD@$NT_HOSTNAME:$NT_PORT_AUTO/$NT_ENDPOINT_AUTO#rtcm3 -out serial://emlid_rtk:115200#52001
 ```
 
 7. Listen
@@ -357,6 +395,24 @@ str2str -in ntrip://$NT_USER:$NT_PASSWORD@$NT_HOSTNAME:$NT_PORT_AUTO/$NT_ENDPOIN
 ```shell
 nc localhost 52001
 ```
+
+### Explanation of `str2str` parameters
+
+#todo
+- -in ntrip://<mark style="background: #FFB8EBA6;">username</mark>:<mark style="background: #FFB86CA6;">password</mark>@<mark style="background: #BBFABBA6;">host</mark>:<mark style="background: #ADCCFFA6;">port</mark>/<mark style="background: #CACFD9A6;">mount</mark>#<mark style="background: #FF5582A6;">format</mark>
+	- username: 
+	- password:
+	- host: Required
+	- port:
+	- mount:
+	- format:
+- -out serial://<mark style="background: #FFF3A3A6;">device_port</mark>:<mark style="background: #ABF7F7A6;">bitrate</mark>:<mark style="background: #D2B3FFA6;">parity</mark>:<mark style="background: #FFB8EBA6;">stopbit</mark>:<mark style="background: #FFB86CA6;">fctr</mark>#<mark style="background: #BBFABBA6;">host</mark> -b 1
+	- device_port: 
+	- bitrate: 
+	- parity: 
+	- stopbit: 
+	- fctr: 
+	- host: 
 
 ## Extras
 
@@ -370,6 +426,51 @@ str2str -in ntrip://$NT_USER:$NT_PASSWORD@$NT_HOSTNAME:$NT_PORT_SINGLE/$NT_ENDPO
 cat str2str.trace
 ```
 
+## ROS2 Demo
+
+### Initial Testing
+
+- Configure the Emlid Reach device "Correction input" settings to connect to an NTRIP server via the webapp. 
+- Install the nmea_serial_driver ROS2 package
+```shell
+ros2 run nmea_navsat_driver nmea_serial_driver --ros-args --params-file ./config/nmea_serial_driver.yaml
+```
+- Echo the ROS2 topic `/fix` which contains the `sensor_msgs/msg/NavSatFix`  messages
+```shell
+ros2 topic info /fix
+```
+- Observe the `NavSatFix` messages with covariance data. 
+```shell
+header:
+  stamp:
+    sec: 1705213614
+    nanosec: 891449711
+  frame_id: gps
+status:
+  status: 2
+  service: 1
+latitude: omitted
+longitude: omitted
+altitude: omitted
+position_covariance:
+- 0.000144
+- 0.0
+- 0.0
+- 0.0
+- 0.000144
+- 0.0
+- 0.0
+- 0.0
+- 0.0144
+position_covariance_type: 1
+```
+
+- **Takeaway**: This initial test verifies the principles, but one draw back is that the RTCM messages are streamed to the Reach module via it's onboard WiFi connection from the local network. Ideally I would prefer the RTCM messages were streamed to the Reach Module via the Raspberry Pis' in a "PC-to-USB" fashion. The main hurdle with this is we will need to use the UART ports on the the Reach module and Raspberry Pi to receive NMEA sentences. Using a single serial port for transmitting correction data to GNSS receiver and reading the NMEA sentences  (using two separate processes) **dosen't seem possible or is error prone** at this time so two serial port may be necessary. 
+
+My current understanding of possible configurations at this moment are:
+1. Utilize Reach Modules' on-board WiFi and NTRIP client software to receive RTCM and stream the receiver "Position Output" to the Raspberry Pi in a "Serial-To-PC" fashion and utilize `nmea_navsat_diver` (Initial Testing Config)
+2. Utilize `str2str` and `nmea_navsat_driver` and **UART** as a second channel for receiving NMEA sentences while **PC-to-Serial** is used for streaming RTCM Messages to the Reach Module.
+3. Utilize `str2str` and `nmea_tcp_driver` (Only after [nmea_tcp_driver](https://github.com/CearLab/nmea_tcp_driver) is rewritten for ROS2 support 💀) Currently started on a [emlid_reach_ros2](https://github.com/digitalhabitat/emlid_reach_ros2) but I'm not sure how much work is required.
 ## Questions
 
 ### Q1. How do you find the NTRIP Mount point for Automatic Cells or Single Sites?
@@ -394,10 +495,12 @@ Source Table: Represents contents list of provided data by NTRIP servers
 4. **Base Station:** A stationary GNSS receiver used as a reference point for RTK corrections.
     
 5. **Rover Station:** A mobile GNSS receiver that receives corrections from a base station.
+
+6. **NMEA message/string**: #todo
     
 6. **NTRIP (Networked Transport of RTCM via Internet Protocol):** A communication protocol to streaming RTCM correction data over the internet.
     
-7. **RTCM (Radio Technical Commission for Maritime Services):**  International standards body that defines standards such as, RTCM SC-104, which specifies a set of binary messages (aka RTCM messages) containing GNSS correction data.
+7. **RTCM (Radio Technical Commission for Maritime Services):**  An international standards body that defines standards such as, RTCM SC-104, which specifies a set of binary messages (aka RTCM messages) containing GNSS correction data.
     
 8. **Observation Data:** Raw GNSS measurements collected by a receiver, including pseudoranges and carrier phase information.
     
