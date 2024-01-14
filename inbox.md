@@ -7,3 +7,5 @@
 - testing
 - iOS test
 - UART cable need for Emlid
+- How to sync installed plugins on mobile?
+-
