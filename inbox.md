@@ -8,4 +8,6 @@
 - iOS test
 - UART cable need for Emlid
 - How to sync installed plugins on mobile?
--
+- https://app.diagrams.net/
+	- Save as`filename.drawio.svg`
+- cat file1 | grep -z "pattern"
