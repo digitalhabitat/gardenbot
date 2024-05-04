@@ -472,7 +472,7 @@ Wheel radius (m): 0.127 <br />
 Wheel circumference(m): 0.798 <br />
 Meters per wheel revolution (m/rev): 0.798 <br />
 Gear ratio: 80/11 <br />
-Pulse per revolution (ppr): 2048   </p>
+Pulse per revolution (ppr): 2048 <a class="inline-tag" href="/gardenbot/obs.html/tags/qppr/index.html">qppr</a>   </p>
 <div class="lang-general">
 
 <div class="codehilite"><pre><span></span><code><span class="mf">4</span><span class="o">*</span><span class="n">ppr</span><span class="o">*</span><span class="n">gear_ratio</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kr">Step</span><span class="n">s</span><span class="w"> </span><span class="n">per</span><span class="w"> </span><span class="n">wheel</span><span class="w"> </span><span class="n">revolution</span><span class="err">`</span><span class="w"></span>
@@ -653,6 +653,14 @@ Steps per meter  =   59578.18 / 0.798
 </code></pre></div>
 
 
+</div>
+
+<div class="lang-sh">
+
+<div class="codehilite"><pre><span></span><code>ros2 topic pub /roboclaw/claw0/motor_vel_cmd roboclaw/msg/MotorVelocity <span class="s2">&quot;{index: 0, mot1_vel_sps: 1000, mot2_vel_sps: 1000}&quot;</span>
+</code></pre></div>
+
+
 </div></div>
 <div class="note-footer">
 <div class="backlinks">
@@ -665,23 +673,24 @@ Steps per meter  =   59578.18 / 0.798
 <div class="tags">
 <h2>Tags</h2>
 <ul>
+	<li><a class="backlink" href="/gardenbot/obs.html/tags/qppr/index.html">qppr</a></li>
 	<li><a class="backlink" href="/gardenbot/obs.html/tags/todo/index.html">todo</a></li>
 </ul>
 </div>
 
 </div>
 <div class="graph requires_js ">
-    <div id="A226525579843489292679047554835644791232{level}" class="graph_div"></div>
+    <div id="A254382323911665891661053646803301511871{level}" class="graph_div"></div>
 
-    <div class="graph-instructions" id="D226525579843489292679047554835644791232{level}">
+    <div class="graph-instructions" id="D254382323911665891661053646803301511871{level}">
         Left-click: follow link, Right-click: select node, Scroll: zoom
     </div>
     
     <div class="graph-button-row" style="display:flex;">
-        <button class="graph_button graph_show_button" id="B226525579843489292679047554835644791232{level}" level="{level}" note_temp_id="226525579843489292679047554835644791232" onclick="window.ObsHtmlGraph.run(this, '226525579843489292679047554835644791232', 'drive-roboclaw-setup');">
+        <button class="graph_button graph_show_button" id="B254382323911665891661053646803301511871{level}" level="{level}" note_temp_id="254382323911665891661053646803301511871" onclick="window.ObsHtmlGraph.run(this, '254382323911665891661053646803301511871', 'drive-roboclaw-setup');">
             Show Graph
         </button>
-        <button class="graph_button graph_type_button" id="C226525579843489292679047554835644791232{level}" style="flex:1" onclick="window.ObsHtmlGraph.switch_graph_type(this);">
+        <button class="graph_button graph_type_button" id="C254382323911665891661053646803301511871{level}" style="flex:1" onclick="window.ObsHtmlGraph.switch_graph_type(this);">
             2D
         </button>
     </div>
