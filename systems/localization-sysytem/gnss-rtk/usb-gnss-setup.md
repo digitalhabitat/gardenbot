@@ -378,15 +378,14 @@ str2str -in ntrip://$NT_USER:$NT_PASSWORD@$NT_HOSTNAME:$NT_PORT_SINGLE/$NT_ENDPO
 ```
 
 - Alt. to Receive **Automatic cell** corrections via NTRIP and relay to USB GNSS receiver via serial 
-> [!Note]For VRS or Automatic Cell sites, just be sure to include `-b 1` with your output stream
-> >STR2STR also implements "Output Received Stream to TCP Port" option like STRSVR 2.4.3 b34
-> >https://github.com/tomojitakasu/RTKLIB/issues/573#issuecomment-760017844
+> [!Note]
+> Not sure if `hostname` is require for `serial://emlid_rtk:115200#NT_HOSTNAME`. For VRS or Automatic Cell sites, just be sure to include `-b 1` with your output stream
  
 ```shell
 str2str -in ntrip://$NT_USER:$NT_PASSWORD@$NT_HOSTNAME:$NT_PORT_AUTO/$NT_ENDPOINT_AUTO#rtcm3 -out serial://emlid_rtk:115200#NT_HOSTNAME -b 1
 ```
 
-- Alt. to Receive **Automatic cell** corrections via NTRIP and stream RTCM sentences via serial port. Stream receiver NMEA sentences via serial and TCP port 52001.
+- Alt. to Receive **Automatic cell** corrections via NTRIP and stream RTCM sentences via serial port. Stream reciever NMEA sentences via serial and TCP port 52001.
 ```shell
 str2str -in ntrip://$NT_USER:$NT_PASSWORD@$NT_HOSTNAME:$NT_PORT_AUTO/$NT_ENDPOINT_AUTO#rtcm3 -out serial://emlid_rtk:115200#52001
 ```
@@ -407,13 +406,13 @@ nc localhost 52001
 	- port:
 	- mount:
 	- format:
-- -out serial://<mark style="background: #FFF3A3A6;">device_port</mark>:<mark style="background: #ABF7F7A6;">bitrate</mark>:<mark style="background: #D2B3FFA6;">parity</mark>:<mark style="background: #FFB8EBA6;">stopbit</mark>:<mark style="background: #FFB86CA6;">fctr</mark>#<mark style="background: #BBFABBA6;">port</mark> -b 1
+- -out serial://<mark style="background: #FFF3A3A6;">device_port</mark>:<mark style="background: #ABF7F7A6;">bitrate</mark>:<mark style="background: #D2B3FFA6;">parity</mark>:<mark style="background: #FFB8EBA6;">stopbit</mark>:<mark style="background: #FFB86CA6;">fctr</mark>#<mark style="background: #BBFABBA6;">host</mark> -b 1
 	- device_port: 
 	- bitrate: 
 	- parity: 
 	- stopbit: 
 	- fctr: 
-	- **port**: Undocumented option that implements "Output Received Stream to TCP Port".               
+	- host: 
 
 ## Extras
 

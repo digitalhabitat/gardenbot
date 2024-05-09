@@ -61,7 +61,7 @@ Wheel radius (m): 0.127
 Wheel circumference(m): 0.798
 Meters per wheel revolution (m/rev): 0.798
 Gear ratio: 80/11
-Pulse per revolution (ppr): 2048 #qppr
+Pulse per revolution (ppr): 2048
 ```
 4*ppr*gear_ratio = Steps per wheel revolution`
 
@@ -148,7 +148,4 @@ ros2 launch ./launch/teleop-test.xml
 3.  Run the teleop node on the second windows
 ```
 ros2 run teleop_twist_keyboard teleop_twist_keyboard 
-```
-```sh
-ros2 topic pub /roboclaw/claw0/motor_vel_cmd roboclaw/msg/MotorVelocity "{index: 0, mot1_vel_sps: 1000, mot2_vel_sps: 1000}"
 ```
