@@ -378,15 +378,19 @@ str2str -in ntrip://$NT_USER:$NT_PASSWORD@$NT_HOSTNAME:$NT_PORT_SINGLE/$NT_ENDPO
 ```
 
 - Alt. to Receive **Automatic cell** corrections via NTRIP and relay to USB GNSS receiver via serial 
-> [!Note]For VRS or Automatic Cell sites, just be sure to include `-b 1` with your output stream
-> >STR2STR also implements "Output Received Stream to TCP Port" option like STRSVR 2.4.3 b34
-> >https://github.com/tomojitakasu/RTKLIB/issues/573#issuecomment-760017844
+> [!Note]
+> Not sure if `hostname` is require for `serial://emlid_rtk:115200#NT_HOSTNAME`. For VRS or Automatic Cell sites, just be sure to include `-b 1` with your output stream
+
  
 ```shell
 str2str -in ntrip://$NT_USER:$NT_PASSWORD@$NT_HOSTNAME:$NT_PORT_AUTO/$NT_ENDPOINT_AUTO#rtcm3 -out serial://emlid_rtk:115200#NT_HOSTNAME -b 1
 ```
 
-- Alt. to Receive **Automatic cell** corrections via NTRIP and stream RTCM sentences via serial port. Stream receiver NMEA sentences via serial and TCP port 52001.
+> [!Note]
+> STR2STR also implements "Output Received Stream to TCP Port" option like STRSVR 2.4.3 b34
+> https://github.com/tomojitakasu/RTKLIB/issues/573#issuecomment-760017844
+
+- Alt. to Receive **Automatic cell** corrections via NTRIP and stream RTCM sentences via serial port. Stream reciever NMEA sentences via serial and TCP port 52001.
 ```shell
 str2str -in ntrip://$NT_USER:$NT_PASSWORD@$NT_HOSTNAME:$NT_PORT_AUTO/$NT_ENDPOINT_AUTO#rtcm3 -out serial://emlid_rtk:115200#52001
 ```
@@ -399,6 +403,8 @@ nc localhost 52001
 
 ### Explanation of `str2str` parameters
 
+[Running str2str](https://github.com/septentrio-gnss/Septentrio_AgnosticCorrectionsProgram/blob/main/str2str/README.md#running-str2str)
+
 #todo
 - -in ntrip://<mark style="background: #FFB8EBA6;">username</mark>:<mark style="background: #FFB86CA6;">password</mark>@<mark style="background: #BBFABBA6;">host</mark>:<mark style="background: #ADCCFFA6;">port</mark>/<mark style="background: #CACFD9A6;">mount</mark>#<mark style="background: #FF5582A6;">format</mark>
 	- username: 
@@ -407,13 +413,13 @@ nc localhost 52001
 	- port:
 	- mount:
 	- format:
-- -out serial://<mark style="background: #FFF3A3A6;">device_port</mark>:<mark style="background: #ABF7F7A6;">bitrate</mark>:<mark style="background: #D2B3FFA6;">parity</mark>:<mark style="background: #FFB8EBA6;">stopbit</mark>:<mark style="background: #FFB86CA6;">fctr</mark>#<mark style="background: #BBFABBA6;">port</mark> -b 1
+- -out serial://<mark style="background: #FFF3A3A6;">device_port</mark>:<mark style="background: #ABF7F7A6;">bitrate</mark>:<mark style="background: #D2B3FFA6;">parity</mark>:<mark style="background: #FFB8EBA6;">stopbit</mark>:<mark style="background: #FFB86CA6;">fctr</mark>#<mark style="background: #BBFABBA6;">output_tcp_port -b 1</mark>
 	- device_port: 
 	- bitrate: 
 	- parity: 
 	- stopbit: 
 	- fctr: 
-	- **port**: Undocumented option that implements "Output Received Stream to TCP Port".               
+	- output_tcp_port -b 1: The `-b 1` indicates that we want to use the **1st** of many output streams (if multiple outputs streams are used) as the source of NMEA sentences to stream to a TCP server 
 
 ## Extras
 
@@ -466,7 +472,7 @@ position_covariance:
 position_covariance_type: 1
 ```
 
-- **Takeaway**: This initial test verifies the principles, but one draw back is that the RTCM messages are streamed to the Reach module via it's onboard WiFi connection from the local network. Ideally I would prefer the RTCM messages were streamed to the Reach Module via the Raspberry Pis' in a "PC-to-USB" fashion. The main hurdle with this is we will need to use the UART ports on the the Reach module and Raspberry Pi to receive NMEA sentences. Using a single serial port for transmitting correction data to GNSS receiver and reading the NMEA sentences  (using two separate processes) **dosen't seem possible or is error prone** at this time so two serial port may be necessary. 
+- **Takeaway**: This initial test verifies the principles, but one draw back is that the RTCM messages are streamed to the Reach module via it's onboard WiFi connection from the local network. Ideally I would prefer the RTCM messages were streamed to the Reach Module via the Raspberry Pis' in a "PC-to-USB" fashion. The main hurdle with this is we will need to use the UART ports on the the Reach module and Raspberry Pi to receive NMEA sentences. Using a single serial port for transmitting correction data to GNSS receiver and reading the NMEA sentences  (using two separate processes) **doesn't seem possible or is error prone** at this time so two serial port may be necessary. 
 
 My current understanding of possible configurations at this moment are:
 1. Utilize Reach Modules' on-board WiFi and NTRIP client software to receive RTCM and stream the receiver "Position Output" to the Raspberry Pi in a "Serial-To-PC" fashion and utilize `nmea_navsat_diver` (Initial Testing Config)
@@ -476,7 +482,7 @@ My current understanding of possible configurations at this moment are:
 
 ### Q1. How do you find the NTRIP Mount point for Automatic Cells or Single Sites?
 
-1. The service provide may have a number of resources such as a table specifying the connection details or an interactive map of Sites a part of the CORs Network.
+1. The service provider may have a number of resources such as a table specifying the connection details or an interactive map of Sites a part of the CORs Network.
 2. With a given **IP address** and **Port** you can use `str2str -in ntrip://<ip>:<port>` to return a **Source Table** with the 2nd data field specifying the mount point. [For more info see](https://software.rtcm-ntrip.org/wiki/STR)
 3. There are also several tools that enable you browse the available mount points on such as http://monitor.use-snip.com/  or [srctblbrows.exe](https://www.rtklib.com/prog/manual_2.4.2.pdf#page=85)
 

@@ -150,6 +150,3 @@ ros2 launch ./launch/teleop-test.xml
 ```
 ros2 run teleop_twist_keyboard teleop_twist_keyboard 
 ```
-```sh
-ros2 topic pub /roboclaw/claw0/motor_vel_cmd roboclaw/msg/MotorVelocity "{index: 0, mot1_vel_sps: 1000, mot2_vel_sps: 1000}"
-```

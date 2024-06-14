@@ -1,7 +1,13 @@
-## PiSugar
+# PiSugar
 
->[!NOTE]  Make sure USB cable is connected to bottom left charging port.
-## Quick Start
+>[!NOTE]  Make sure USB cable is connect to bottom left charging port.
+
+## Info
+- Name: Pisugar 3 Plus
+- `i2c` Addresses
+	- `0x57` PowerIC `i2cdump -y 1 0x57`
+	- `0x68` [RTC](https://github.com/PiSugar/PiSugar/wiki/PiSugar-3-Series#rtc-on-board)
+	- Shell Command: `i2cdetect -y 1`
 
 ### CLI
 - Fetch battery charge percentage
@@ -20,23 +26,17 @@ Web UI: http://192.168.1.25:8421/#/
 - Status LED:
 	- Solid Blue: On Battery
 	- Incrementing Green: Charging (PS-Power Present)
-	
+
 ![[pisugar-interface.drawio.svg]]
-## Info
-- Name: Pisugar 3 Plus Portable 5000 mAh UPS
-- `i2c` Addresses
-	- `0x57` PowerIC `i2cdump -y 1 0x57`
-	- `0x68` [RTC](https://github.com/PiSugar/PiSugar/wiki/PiSugar-3-Series#rtc-on-board)
-	- Shell Command: `i2cdetect -y 1`
-- Links
-	- [Amazon](https://www.amazon.com/Portable-Platform-Raspberry-Accessories-handhold/dp/B09MJ876FW/)
-	- [Install](https://github.com/PiSugar/PiSugar/wiki/PiSugar-3-Series)
-	- [TCP commands](https://github.com/PiSugar/pisugar-power-manager-rs)
-	- [PiSugar Power Manager](https://github.com/PiSugar/PiSugar/wiki/PiSugar-Power-Manager-(Software))
+
+[Amazon](https://www.amazon.com/Portable-Platform-Raspberry-Accessories-handhold/dp/B09MJ876FW/)
+[Install](https://github.com/PiSugar/PiSugar/wiki/PiSugar-3-Series)
+[TCP commands](https://github.com/PiSugar/pisugar-power-manager-rs)
+[PiSugar Power Manager](https://github.com/PiSugar/PiSugar/wiki/PiSugar-Power-Manager-(Software))
+Web UI: http://192.168.1.25:8421/#/
 
 >[!NOTE]
 >**You can use SPI, I2C, and serial UART all at the same time**. There is no conflict. The Pi only has one usable UART. The simplest way to add additional serial links is to use a USB serial dongle. However UART0 and UART1 can not be used at the same time.
-
 
 Default ports:
 
@@ -46,8 +46,6 @@ tcp     0.0.0.0:8423
 ws      0.0.0.0:8422    # standalone websocket api
 http    0.0.0.0:8421    # web UI and websocket (/ws)
 ```
-
-## CLI Usage
 
 ```sh
 nc -U /tmp/pisugar-server.sock

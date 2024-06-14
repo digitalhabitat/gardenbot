@@ -6,6 +6,7 @@
 - What is web3
 - testing
 - iOS test
+- UART cable need for Emlid
 - How to sync installed plugins on mobile?
 - https://app.diagrams.net/
 	- Save as`filename.drawio.svg`
@@ -18,4 +19,3 @@
 - ros2 nodes that are running in containers are visible to other ros2 containers on separate machines.
 - https://pinout.xyz/
 - https://salamwaddah.com/blog/connecting-ps4-controller-to-raspberry-pi-via-bluetooth
-]]

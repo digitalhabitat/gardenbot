@@ -17,18 +17,6 @@
       "ctime": 1705197250429,
       "path": "systems/localization-sysytem/gnss-rtk/usb-gnss-setup.md",
       "title": "RTK"
-    },
-    {
-      "type": "file",
-      "ctime": 1705390654729,
-      "path": "inbox.md",
-      "title": "inbox"
-    },
-    {
-      "type": "file",
-      "ctime": 1705641351274,
-      "path": "systems/drive-system/drive-roboclaw-setup.md",
-      "title": "roboclaw"
     }
   ]
 }
