@@ -13,7 +13,7 @@ Rated Speed: 2750 RPM +/- 5%
 Rated Current: 11.0 A  
 Output: 200 watts
 Model: MY1016
-Sprocket: 11 Tooth #25 ANSI Roller Chain
+Sprocket: 11 Tooth #25 ANSI Roller Chain #motor-sprocket
 Supplier Link: https://www.monsterscooterparts.com/24vo200wamow.html
 
 ```csvtable

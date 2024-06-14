@@ -55,25 +55,26 @@ sudo udevadm control --reload && sudo udevadm trigger
 
 This project is using the ros2 humble from https://github.com/ProjectLadon/roboclaw.git. Some parameters will need to be adjusted.
 
-### Mechanical and Encoder Specs
+### Mechanical Specs and Calculations
+
+>[!NOTE]
+>Ticks per (wheel) revolution (TPR) has been experimentally verified to be `59578.182` ticks per revoultion.
+
 Wheel base width (m): 0.350
 Wheel radius (m): 0.127
 Wheel circumference(m): 0.798
 Meters per wheel revolution (m/rev): 0.798
+Motor gear sprocket: 11 #motor-sprocket
+Wheel gear sprocket: 80 #wheel-sprocket
 Gear ratio: 80/11
-Pulse per revolution (ppr): 2048 #qppr
+Quadrature pulses per (encoder) revolution: 2048 (encoderTPR) #amt103 
+Ticks per (wheel) revolution: 59,578.182 (See: TPR) #qppr #tpr 
+```math
+gearRatio = 80/11
+encoderQPPR = 2048
+wheelQPPR = gearRatio*encoderQPPR
+TPR = 4*wheelQPPR
 ```
-4*ppr*gear_ratio = Steps per wheel revolution`
-
-4 * 2048 * (80/11) = 59578.1818182
-```
-Steps per wheel rev: 595782.18
-```
-Steps per meter  =  (steps per wheel rev)/(meters per wheel rev)
-Steps per meter  =   59578.18 / 0.798
-```
-Steps per meter = 74659.37
-
 ### ROS2 roboclaw node setup and test
 1. verify roboclaw_single.launch
 ```xml

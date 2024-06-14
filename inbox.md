@@ -16,3 +16,6 @@
 ## TIL
 
 - ros2 nodes that are running in containers are visible to other ros2 containers on separate machines.
+- https://pinout.xyz/
+- https://salamwaddah.com/blog/connecting-ps4-controller-to-raspberry-pi-via-bluetooth
+]]

@@ -9,8 +9,7 @@ aliases: [wheels]
 ## Wheel Sprocket
 ![[drive_sprocket_with_adapter_and_hardware.PNG|300]]
 
-Teeth: 80  
-Chain: #25  
+80 Tooth #25 ANSI Roller Chain  #wheel-sprocket
 - Mounting Hole Circle Diameter: 65 mm, Hole Size Diameter 6 mm
 - Mounting Hole Circle Diameter: 144 mm, Hole Size Diameter 5.5 mm
 Supplier Link: https://www.monsterscooterparts.com/chain-sprocket-razor-mx350-mx500-mx650.html

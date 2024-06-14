@@ -34,13 +34,11 @@ WHERE sub-assembly = "encoder"
 	- Drawing: [[AMT10 Encoder Mount Rev-.pdf]]
 	- Supplier Link: https://www.jawstec.com/
 
-- AMT103-V
+- AMT103-V (Rotary Encoder Incremental Programmable Quadrature) #amt103
 	- Qty: 2
 	- Supplier Link: https://www.digikey.com/en/products/detail/cui-devices/AMT103-V/827016
-	-  Default Resolution:  [amt103-ppr]
-	- Default Resolution:Pulse per revolution (PPR)
+	- Default Resolution: 2048 (qppr) (2048 is Maximum)
 	- Resolution
-		- pre-set to 204
 		- `4*ppr*gear_ratio = Steps per wheel revolution`
 		- `(4x2048)*(80/11)=59578.1818182`
 		- `2*pi*r
@@ -49,6 +47,7 @@ WHERE sub-assembly = "encoder"
 		- steps per meter = 74662.6939905
 		- 59578.1818182 Steps per Revolution (59,578)
 	https://www.desmos.com/calculator/nbb1lyeses
+	
 
 		
 
