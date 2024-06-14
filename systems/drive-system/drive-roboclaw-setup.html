@@ -314,6 +314,7 @@
 	<div id="folder-container-14" class="dir-container requires_js " path="/gardenbot/systems/power-system">
 		<ul class="dir-list">
 			<li><div class="file-icon"></div><a class="" href="/gardenbot/systems/power-system/pisugar.html"  >pisugar</a></li>
+			<li><div class="file-icon non-md-file"></div><a class="" href="/gardenbot/systems/power-system/pisugar-interface.drawio.svg"  class="external-link">pisugar-interface.drawio.svg</a></li>
 		</ul>
 	</div>
 	<button id="folder-15" class="dir-button folder_note  " href="/gardenbot/systems/steering-system/steering-system.html" onclick="open_folder_note(this)"><div class="file-icon"></div><div class="fn_pf">*</div>steering-system</button>
@@ -364,7 +365,7 @@
 <li><a href="#roboclaw-motor-controller-setup" class="anchor-link">Roboclaw Motor Controller setup</a><ul>
 <li><a href="#serial-interface-setup" class="anchor-link">Serial Interface Setup</a></li>
 <li><a href="#ros2-roboclaw-node-setup" class="anchor-link">ROS2 Roboclaw Node Setup</a><ul>
-<li><a href="#mechanical-and-encoder-specs" class="anchor-link">Mechanical and Encoder Specs</a></li>
+<li><a href="#mechanical-specs-and-calculations" class="anchor-link">Mechanical Specs and Calculations</a></li>
 <li><a href="#ros2-roboclaw-node-setup-and-test" class="anchor-link">ROS2 roboclaw node setup and test</a></li>
 <li><a href="#ros2-roboclaw-node-improvements" class="anchor-link">ROS2 roboclaw node improvements</a></li>
 </ul>
@@ -465,34 +466,38 @@ ATTRS<span class="o">{</span>idProduct<span class="o">}==</span><span class="s2"
 
 <h2 id="ros2-roboclaw-node-setup">ROS2 Roboclaw Node Setup</h2>
 <p>This project is using the ros2 humble from <a href="https://github.com/ProjectLadon/roboclaw.git." class="external-link">https://github.com/ProjectLadon/roboclaw.git.</a> Some parameters will need to be adjusted.   </p>
-<h3 id="mechanical-and-encoder-specs">Mechanical and Encoder Specs</h3>
+<h3 id="mechanical-specs-and-calculations">Mechanical Specs and Calculations</h3>
+<div class="callout callout-note active" rasa="1">
+<div class="callout-title ">
+<div class="callout-title-icon"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="callout-icon"><line x1="18" y1="2" x2="22" y2="6"></line><path d="M7.5 20.5L19 9l-4-4L3.5 16.5 2 22z"></path></svg>
+</div>
+<div class="callout-title-name">Note
+</div>
+</div>
+<div class="callout-content">
+<p>Ticks per (wheel) revolution (TPR) has been experimentally verified to be <code>59578.182</code> ticks per revoultion.</p>
+</div>
+</div>
 <p>Wheel base width (m): 0.350 <br />
 Wheel radius (m): 0.127 <br />
 Wheel circumference(m): 0.798 <br />
 Meters per wheel revolution (m/rev): 0.798 <br />
+Motor gear sprocket: 11 <a class="inline-tag" href="/gardenbot/obs.html/tags/motor-sprocket/index.html">motor-sprocket</a> <br />
+Wheel gear sprocket: 80 <a class="inline-tag" href="/gardenbot/obs.html/tags/wheel-sprocket/index.html">wheel-sprocket</a> <br />
 Gear ratio: 80/11 <br />
-Pulse per revolution (ppr): 2048   </p>
-<div class="lang-general">
+Quadrature pulses per (encoder) revolution: 2048 (encoderTPR) <a class="inline-tag" href="/gardenbot/obs.html/tags/amt103/index.html">amt103</a>  <br />
+Ticks per (wheel) revolution: 59,578.182 (See: TPR) <a class="inline-tag" href="/gardenbot/obs.html/tags/qppr/index.html">qppr</a> <a class="inline-tag" href="/gardenbot/obs.html/tags/tpr/index.html">tpr</a>    </p>
+<div class="lang-math">
 
-<div class="codehilite"><pre><span></span><code><span class="mf">4</span><span class="o">*</span><span class="n">ppr</span><span class="o">*</span><span class="n">gear_ratio</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kr">Step</span><span class="n">s</span><span class="w"> </span><span class="n">per</span><span class="w"> </span><span class="n">wheel</span><span class="w"> </span><span class="n">revolution</span><span class="err">`</span><span class="w"></span>
-
-<span class="mf">4</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mf">2048</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="p">(</span><span class="mf">80</span><span class="o">/</span><span class="mf">11</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">59578.1818182</span><span class="w"></span>
+<div class="codehilite"><pre><span></span><code>gearRatio = 80/11
+encoderQPPR = 2048
+wheelQPPR = gearRatio*encoderQPPR
+TPR = 4*wheelQPPR
 </code></pre></div>
 
 
 </div>
 
-<p>Steps per wheel rev: 595782.18   </p>
-<div class="lang-general">
-
-<div class="codehilite"><pre><span></span><code>Steps per meter  =  (steps per wheel rev)/(meters per wheel rev)
-Steps per meter  =   59578.18 / 0.798
-</code></pre></div>
-
-
-</div>
-
-<p>Steps per meter = 74659.37   </p>
 <h3 id="ros2-roboclaw-node-setup-and-test">ROS2 roboclaw node setup and test</h3>
 <ol>
 <li>verify roboclaw_single.launch   </li>
@@ -664,23 +669,28 @@ Steps per meter  =   59578.18 / 0.798
 <div class="tags">
 <h2>Tags</h2>
 <ul>
+	<li><a class="backlink" href="/gardenbot/obs.html/tags/qppr/index.html">qppr</a></li>
+	<li><a class="backlink" href="/gardenbot/obs.html/tags/wheel-sprocket/index.html">wheel-sprocket</a></li>
 	<li><a class="backlink" href="/gardenbot/obs.html/tags/todo/index.html">todo</a></li>
+	<li><a class="backlink" href="/gardenbot/obs.html/tags/tpr/index.html">tpr</a></li>
+	<li><a class="backlink" href="/gardenbot/obs.html/tags/motor-sprocket/index.html">motor-sprocket</a></li>
+	<li><a class="backlink" href="/gardenbot/obs.html/tags/amt103/index.html">amt103</a></li>
 </ul>
 </div>
 
 </div>
 <div class="graph requires_js ">
-    <div id="A226525579843489292679047554835644791232{level}" class="graph_div"></div>
+    <div id="A206701270542835650713928511479784443618{level}" class="graph_div"></div>
 
-    <div class="graph-instructions" id="D226525579843489292679047554835644791232{level}">
+    <div class="graph-instructions" id="D206701270542835650713928511479784443618{level}">
         Left-click: follow link, Right-click: select node, Scroll: zoom
     </div>
     
     <div class="graph-button-row" style="display:flex;">
-        <button class="graph_button graph_show_button" id="B226525579843489292679047554835644791232{level}" level="{level}" note_temp_id="226525579843489292679047554835644791232" onclick="window.ObsHtmlGraph.run(this, '226525579843489292679047554835644791232', 'drive-roboclaw-setup');">
+        <button class="graph_button graph_show_button" id="B206701270542835650713928511479784443618{level}" level="{level}" note_temp_id="206701270542835650713928511479784443618" onclick="window.ObsHtmlGraph.run(this, '206701270542835650713928511479784443618', 'drive-roboclaw-setup');">
             Show Graph
         </button>
-        <button class="graph_button graph_type_button" id="C226525579843489292679047554835644791232{level}" style="flex:1" onclick="window.ObsHtmlGraph.switch_graph_type(this);">
+        <button class="graph_button graph_type_button" id="C206701270542835650713928511479784443618{level}" style="flex:1" onclick="window.ObsHtmlGraph.switch_graph_type(this);">
             2D
         </button>
     </div>

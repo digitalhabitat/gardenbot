@@ -314,6 +314,7 @@
 	<div id="folder-container-14" class="dir-container requires_js active" path="/gardenbot/systems/power-system">
 		<ul class="dir-list">
 			<li><div class="file-icon"></div><a class="active current_page_dirtree" href="/gardenbot/systems/power-system/pisugar.html"  >pisugar</a></li>
+			<li><div class="file-icon non-md-file"></div><a class="" href="/gardenbot/systems/power-system/pisugar-interface.drawio.svg"  class="external-link">pisugar-interface.drawio.svg</a></li>
 		</ul>
 	</div>
 	<button id="folder-15" class="dir-button folder_note  " href="/gardenbot/systems/steering-system/steering-system.html" onclick="open_folder_note(this)"><div class="file-icon"></div><div class="fn_pf">*</div>steering-system</button>
@@ -358,17 +359,19 @@
                         <a href="/gardenbot/" style="color: rgb(var(--normal-text-color));">Home</a> / <span style="color: #666;">systems</span> / <a href="/gardenbot/systems/power-system/power-system.html" style="color: var(--normal-text-color);">power-system</a> / <a href="/gardenbot/systems/power-system/pisugar.html" >pisugar</a>
                     </div>
                 </div>
-<div class="content"><h1 id="pisugar">pisugar</h1>
+<div class="content"><h1 id="pisugar">PiSugar</h1>
 <div class="toc">
 <ul>
-<li><a href="#pisugar" class="anchor-link">pisugar</a><ul>
-<li><a href="#pisugar_1" class="anchor-link">PiSugar</a></li>
-<li><a href="#info" class="anchor-link">Info</a></li>
+<li><a href="#pisugar" class="anchor-link">PiSugar</a><ul>
+<li><a href="#info" class="anchor-link">Info</a><ul>
+<li><a href="#cli" class="anchor-link">CLI</a></li>
+<li><a href="#webui" class="anchor-link">WebUI</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
 </div>
-<h2 id="pisugar_1">PiSugar</h2>
 <div class="callout callout-note active" rasa="1">
 <div class="callout-title ">
 <div class="callout-title-icon"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="callout-icon"><line x1="18" y1="2" x2="22" y2="6"></line><path d="M7.5 20.5L19 9l-4-4L3.5 16.5 2 22z"></path></svg>
@@ -388,14 +391,53 @@
 </ul>
 </li>
 </ul>
-<blockquote>
-<p><strong>You can use SPI, I2C, and serial UART all at the same time</strong>. There is no conflict. The Pi only has one usable UART. The simplest way to add additional serial links is to use a USB serial dongle.   </p>
-</blockquote>
+<h3 id="cli">CLI</h3>
+<ul>
+<li>Fetch battery charge percentage   </li>
+</ul>
+<div class="lang-general">
+
+<div class="codehilite"><pre><span></span><code>echo &quot;get battery&quot; | nc -q 0 127.0.0.1 8423
+</code></pre></div>
+
+
+</div>
+
+<p>Web UI: <a href="http://192.168.1.25:8421/#/" class="external-link" class="external-link">http://192.168.1.25:8421/#/</a>   </p>
+<ul>
+<li>Turn off Pi:    <ul>
+<li>Action: (Double Tap/Long Tap) Power button    </li>
+<li>Note: Sugar Pi in Sleep mode   </li>
+</ul>
+</li>
+<li>Turn on Pi:    <ul>
+<li>Remove and Return <strong>USB-C PS-Power</strong>   </li>
+<li>Current Schedule Wake up Config = On Power Restore   </li>
+</ul>
+</li>
+<li>Status LED:   <ul>
+<li>Solid Blue: On Battery   </li>
+<li>Incrementing Green: Charging (PS-Power Present)   </li>
+</ul>
+</li>
+</ul>
+<p><img alt="" src="/gardenbot/systems/power-system/pisugar-interface.drawio.svg" />   </p>
 <p><a href="https://www.amazon.com/Portable-Platform-Raspberry-Accessories-handhold/dp/B09MJ876FW/" class="external-link">Amazon</a> <br />
 <a href="https://github.com/PiSugar/PiSugar/wiki/PiSugar-3-Series" class="external-link">Install</a> <br />
 <a href="https://github.com/PiSugar/pisugar-power-manager-rs" class="external-link">TCP commands</a> <br />
 <a href="https://github.com/PiSugar/PiSugar/wiki/PiSugar-Power-Manager-(Software)" class="external-link">PiSugar Power Manager</a> <br />
-Web UI: <a href="http://192.168.1.25:8421/#/" class="external-link">http://192.168.1.25:8421/#/</a>   </p>
+Web UI: <a href="http://192.168.1.25:8421/#/" class="external-link" class="external-link">http://192.168.1.25:8421/#/</a>   </p>
+<div class="callout callout-note active" rasa="1">
+<div class="callout-title ">
+<div class="callout-title-icon"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="callout-icon"><line x1="18" y1="2" x2="22" y2="6"></line><path d="M7.5 20.5L19 9l-4-4L3.5 16.5 2 22z"></path></svg>
+</div>
+<div class="callout-title-name">Note
+</div>
+</div>
+<div class="callout-content">
+<p><strong>You can use SPI, I2C, and serial UART all at the same time</strong>. There is no conflict. The Pi only has one usable UART. The simplest way to add additional serial links is to use a USB serial dongle. However UART0 and UART1 can not be used at the same time.</p>
+</div>
+</div>
 <p>Default ports:   </p>
 <div class="lang-general">
 
@@ -441,7 +483,34 @@ get battery
 </code></pre></div>
 
 
-</div></div>
+</div>
+
+<ul>
+<li><a href="https://github.com/PiSugar/pisugar-power-manager-rs#unix-domain-socket--webscoket--tcp" class="external-link">https://github.com/PiSugar/pisugar-power-manager-rs#unix-domain-socket--webscoket--tcp</a>   </li>
+<li>Output Current: 2.4A    </li>
+<li>Output Voltage:  5V    </li>
+<li>I2C: 0x75(BAT) 0x32(RTC)   </li>
+</ul>
+<h3 id="webui">WebUI</h3>
+<p><strong>Local WebUI access</strong>   </p>
+<ul>
+<li>Via web browser visit <a href="http://192.168.1.22:8421" class="external-link">http://192.168.1.22:8421</a>   </li>
+</ul>
+<p><strong>Remote WebUI access</strong> via Local Port Forwarding <br />
+0. <code>ssh -L &lt;local-port&gt;:&lt;remote-server&gt; -f user@&lt;</code> <br />
+1. In a terminal enter   </p>
+<div class="lang-sh">
+
+<div class="codehilite"><pre><span></span><code> ssh -L <span class="m">8080</span>:192.168.1.22:8421 proxy8.remoteiot.com
+</code></pre></div>
+
+
+</div>
+
+<ol>
+<li>Via web browser visit <a href="http://localhost:8080/index.html" class="external-link">http://localhost:8080/index.html</a>   </li>
+</ol>
+<p><a href="/gardenbot/docs/formal-docs/power_system_requirements_specifications.html">power_system_requirements_specifications</a></p></div>
 <div class="note-footer">
 <div class="backlinks">
 <h2>Backlinks</h2>
@@ -456,17 +525,17 @@ get battery
 
 </div>
 <div class="graph requires_js ">
-    <div id="A218566352001526884347906142398287464310{level}" class="graph_div"></div>
+    <div id="A125873489421756208840052456996440224473{level}" class="graph_div"></div>
 
-    <div class="graph-instructions" id="D218566352001526884347906142398287464310{level}">
+    <div class="graph-instructions" id="D125873489421756208840052456996440224473{level}">
         Left-click: follow link, Right-click: select node, Scroll: zoom
     </div>
     
     <div class="graph-button-row" style="display:flex;">
-        <button class="graph_button graph_show_button" id="B218566352001526884347906142398287464310{level}" level="{level}" note_temp_id="218566352001526884347906142398287464310" onclick="window.ObsHtmlGraph.run(this, '218566352001526884347906142398287464310', 'pisugar');">
+        <button class="graph_button graph_show_button" id="B125873489421756208840052456996440224473{level}" level="{level}" note_temp_id="125873489421756208840052456996440224473" onclick="window.ObsHtmlGraph.run(this, '125873489421756208840052456996440224473', 'pisugar');">
             Show Graph
         </button>
-        <button class="graph_button graph_type_button" id="C218566352001526884347906142398287464310{level}" style="flex:1" onclick="window.ObsHtmlGraph.switch_graph_type(this);">
+        <button class="graph_button graph_type_button" id="C125873489421756208840052456996440224473{level}" style="flex:1" onclick="window.ObsHtmlGraph.switch_graph_type(this);">
             2D
         </button>
     </div>
