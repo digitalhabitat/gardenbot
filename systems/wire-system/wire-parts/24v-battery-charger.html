@@ -5,7 +5,7 @@
         <head>
                 <!-- Page information -->
                 <meta charset="UTF-8" />
-                <meta name="node_id" content="computer-rpi-camera">
+                <meta name="node_id" content="24v-battery-charger">
                 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
                 <link rel="shortcut icon" href="/gardenbot/favicon.ico" />
 
@@ -57,9 +57,9 @@
 
                 <!-- Onload tweaks -->
                 <script>
-                        const CURRENT_NODE = 'computer-rpi-camera';
+                        const CURRENT_NODE = '24v-battery-charger';
                         const HTML_URL_PREFIX = '/gardenbot';
-                        const PAGE_DEPTH = 2;
+                        const PAGE_DEPTH = 3;
                 </script>
         </head>
 
@@ -186,7 +186,7 @@
             }
         </script>
                                     <div class="graph_header_div requires_js">
-            <a id="graph_link" class="system-link" href="/gardenbot/obs.html/graph/index.html?node=computer-rpi-camera" title="Open fullpage Graph">
+            <a id="graph_link" class="system-link" href="/gardenbot/obs.html/graph/index.html?node=24v-battery-charger" title="Open fullpage Graph">
                     <img class="graph_header_div_svg" src = "/gardenbot/obs.html/static/graph.svg" alt="Open fullpage Graph" style="margin: 2px; width: 17px;"/>
             </a>
         </div>
@@ -261,12 +261,12 @@
 </div>
 <button id="folder-7" class="dir-button active" onclick="toggle_dir(this.id)"><div class="file-icon"></div>systems</button>
 <div id="folder-container-7" class="dir-container requires_js active" path="/gardenbot/systems">
-	<button id="folder-8" class="dir-button folder_note active " href="/gardenbot/systems/computer-system/computer-system.html" onclick="open_folder_note(this)"><div class="file-icon"></div><div class="fn_pf">*</div>computer-system</button>
-	<div id="folder-container-8" class="dir-container requires_js active" path="/gardenbot/systems/computer-system">
+	<button id="folder-8" class="dir-button folder_note  " href="/gardenbot/systems/computer-system/computer-system.html" onclick="open_folder_note(this)"><div class="file-icon"></div><div class="fn_pf">*</div>computer-system</button>
+	<div id="folder-container-8" class="dir-container requires_js " path="/gardenbot/systems/computer-system">
 		<ul class="dir-list">
 			<li><div class="file-icon"></div><a class="" href="/gardenbot/systems/computer-system/computer-nano.html"  >computer-nano</a></li>
 			<li><div class="file-icon"></div><a class="" href="/gardenbot/systems/computer-system/computer-rpi.html"  >computer-rpi</a></li>
-			<li><div class="file-icon"></div><a class="active current_page_dirtree" href="/gardenbot/systems/computer-system/computer-rpi-camera.html"  >computer-rpi-camera</a></li>
+			<li><div class="file-icon"></div><a class="" href="/gardenbot/systems/computer-system/computer-rpi-camera.html"  >computer-rpi-camera</a></li>
 			<li><div class="file-icon"></div><a class="" href="/gardenbot/systems/computer-system/computer-rpi-setup.html"  >computer-rpi-setup</a></li>
 		</ul>
 	</div>
@@ -323,8 +323,8 @@
 			<li><div class="file-icon"></div><a class="" href="/gardenbot/systems/steering-system/steering-motor-controller.html"  >steering-motor-controller</a></li>
 		</ul>
 	</div>
-	<button id="folder-16" class="dir-button folder_note  " href="/gardenbot/systems/wire-system/wire-system.html" onclick="open_folder_note(this)"><div class="file-icon"></div><div class="fn_pf">*</div>wire-system</button>
-	<div id="folder-container-16" class="dir-container requires_js " path="/gardenbot/systems/wire-system">
+	<button id="folder-16" class="dir-button folder_note active " href="/gardenbot/systems/wire-system/wire-system.html" onclick="open_folder_note(this)"><div class="file-icon"></div><div class="fn_pf">*</div>wire-system</button>
+	<div id="folder-container-16" class="dir-container requires_js active" path="/gardenbot/systems/wire-system">
 		<button id="folder-17" class="dir-button " onclick="toggle_dir(this.id)"><div class="file-icon"></div>wire-diagrams</button>
 		<div id="folder-container-17" class="dir-container requires_js " path="/gardenbot/systems/wire-system/wire-diagrams">
 			<ul class="dir-list">
@@ -333,11 +333,11 @@
 				<li><div class="file-icon non-md-file"></div><a class="" href="/gardenbot/systems/wire-system/wire-diagrams/wire-system-24-volt.drawio.svg"  class="external-link">wire-system-24-volt.drawio.svg</a></li>
 			</ul>
 		</div>
-		<button id="folder-18" class="dir-button " onclick="toggle_dir(this.id)"><div class="file-icon"></div>wire-parts</button>
-		<div id="folder-container-18" class="dir-container requires_js " path="/gardenbot/systems/wire-system/wire-parts">
+		<button id="folder-18" class="dir-button active" onclick="toggle_dir(this.id)"><div class="file-icon"></div>wire-parts</button>
+		<div id="folder-container-18" class="dir-container requires_js active" path="/gardenbot/systems/wire-system/wire-parts">
 			<ul class="dir-list">
 				<li><div class="file-icon"></div><a class="" href="/gardenbot/systems/wire-system/wire-parts/24v-battery.html"  >24v-battery</a></li>
-				<li><div class="file-icon"></div><a class="" href="/gardenbot/systems/wire-system/wire-parts/24v-battery-charger.html"  >24v-battery-charger</a></li>
+				<li><div class="file-icon"></div><a class="active current_page_dirtree" href="/gardenbot/systems/wire-system/wire-parts/24v-battery-charger.html"  >24v-battery-charger</a></li>
 			</ul>
 		</div>
 		<button id="folder-19" class="dir-button " onclick="toggle_dir(this.id)"><div class="file-icon"></div>wireviz</button>
@@ -364,184 +364,59 @@
                 <div style="width:100%; text-align: right;display: block;margin: 0.5rem;">
                     <div style="flex:1;display: none;"></div>
                     <div class="breadcrumbs" style="flex:1 ;padding: 0.5rem; width: fit-content;display: inline;border-radius: 0.2rem;">
-                        <a href="/gardenbot/" style="color: rgb(var(--normal-text-color));">Home</a> / <span style="color: #666;">systems</span> / <a href="/gardenbot/systems/computer-system/computer-system.html" style="color: var(--normal-text-color);">computer-system</a> / <a href="/gardenbot/systems/computer-system/computer-rpi-camera.html" >computer-rpi-camera</a>
+                        <a href="/gardenbot/" style="color: rgb(var(--normal-text-color));">Home</a> / <span style="color: #666;">systems</span> / <a href="/gardenbot/systems/wire-system/wire-system.html" style="color: var(--normal-text-color);">wire-system</a> / <span style="color: #666;">wire-parts</span> / <a href="/gardenbot/systems/wire-system/wire-parts/24v-battery-charger.html" >24v-battery-charger</a>
                     </div>
                 </div>
-<div class="content"><h1 id="raspberry-pi-4-camera">Raspberry Pi 4 Camera</h1>
+<div class="content"><h1 id="h_24-volt-battery-charger">24 Volt Battery Charger</h1>
 <div class="toc">
 <ul>
-<li><a href="#raspberry-pi-4-camera" class="anchor-link">Raspberry Pi 4 Camera</a><ul>
-<li><a href="#related-material" class="anchor-link">Related Material</a></li>
-<li><a href="#installing-gstreamer" class="anchor-link">Installing GStreamer</a></li>
-<li><a href="#send-a-test-video-with-h264-rtp-stream" class="anchor-link">Send a test video with h264 rtp stream</a></li>
-<li><a href="#receive-h264-rtp-stream" class="anchor-link">Receive h264 rtp stream</a></li>
-<li><a href="#libcamerasrc-gstreamer-plugin" class="anchor-link">libcamerasrc gstreamer plugin</a></li>
-<li><a href="#other-experiments" class="anchor-link">Other experiments</a></li>
-</ul>
-</li>
+<li><a href="#h_24-volt-battery-charger" class="anchor-link">24 Volt Battery Charger</a></li>
 </ul>
 </div>
-<p>Module: V1 camera (OV5647) <br />
-Software Stack: libcamera ()   </p>
+<p>Supplier Link: <a href="https://www.amazon.com/gp/product/B000K0675C" class="external-link">https://www.amazon.com/gp/product/B000K0675C</a> <br />
+Device Labels:  <br />
+Wire Connection Labels:   </p>
 <ul>
-<li>15-pin MIPI Camera Serial Interface (CSI) connector   </li>
-<li><a href="https://www.amazon.com/gp/product/B07RWCGX5K" class="external-link">https://www.amazon.com/gp/product/B07RWCGX5K</a>   </li>
-<li><a href="https://www.raspberrypi.com/documentation/accessories/camera.html" class="external-link">https://www.raspberrypi.com/documentation/accessories/camera.html</a>   </li>
+<li><a class="inline-tag" href="/gardenbot/obs.html/tags/todo/index.html">todo</a>   </li>
 </ul>
-<h2 id="related-material">Related Material</h2>
+<p>Wire Connections:   </p>
 <ul>
-<li><a href="https://qengineering.eu/install-gstreamer-1.18-on-raspberry-pi-4.html" class="external-link">Q-engineering rp4 gstreamer</a>   </li>
-<li><a href="https://gstreamer.freedesktop.org/documentation/tutorials/basic/gstreamer-tools.html?gi-language=c" class="external-link">Gstream Tools</a>   </li>
-<li><a href="https://www.raspberrypi.com/documentation/accessories/camera.html#using-gstreamer" class="external-link">Using Gstreamer</a>   </li>
-<li><a href="https://github.com/matthew1000/gstreamer-cheat-sheet/blob/master/test_streams.md" class="external-link">test streams</a>   </li>
-<li><a href="https://gist.github.com/hum4n0id/cda96fb07a34300cdb2c0e314c14df0a" class="external-link">gstreamer pipeline examples</a>   </li>
+<li><a class="inline-tag" href="/gardenbot/obs.html/tags/todo/index.html">todo</a>   </li>
+<li><a class="inline-tag" href="/gardenbot/obs.html/tags/todo/index.html">todo</a>   </li>
 </ul>
-<h2 id="installing-gstreamer">Installing GStreamer</h2>
-<ol>
-<li>Open a terminal on the rpi4 and run the following command   </li>
-</ol>
-<div class="lang-sh">
-
-<div class="codehilite"><pre><span></span><code>sudo apt-get install libgstreamer1.0-dev libgstreamer-plugins-base1.0-dev libgstreamer-plugins-bad1.0-dev gstreamer1.0-plugins-base gstreamer1.0-plugins-good gstreamer1.0-plugins-bad gstreamer1.0-plugins-ugly gstreamer1.0-libav gstreamer1.0-tools gstreamer1.0-x gstreamer1.0-alsa gstreamer1.0-gl gstreamer1.0-gtk3 gstreamer1.0-qt5 gstreamer1.0-pulseaudio
-</code></pre></div>
-
-
-</div>
-
-<h2 id="send-a-test-video-with-h264-rtp-stream">Send a test video with h264 rtp stream</h2>
-<div class="lang-shell">
-
-<div class="codehilite"><pre><span></span><code>gst-launch-1.0 -v videotestsrc ! x264enc <span class="nv">tune</span><span class="o">=</span>zerolatency <span class="nv">bitrate</span><span class="o">=</span><span class="m">500</span> speed-preset<span class="o">=</span>superfast ! rtph264pay ! udpsink <span class="nv">port</span><span class="o">=</span><span class="m">5000</span> <span class="nv">host</span><span class="o">=</span><span class="m">192</span>.168.1.24
-</code></pre></div>
-
-
-</div>
-
-<h2 id="receive-h264-rtp-stream">Receive h264 rtp stream</h2>
-<div class="lang-shell">
-
-<div class="codehilite"><pre><span></span><code>gst-launch-1.0 -v udpsrc <span class="nv">port</span><span class="o">=</span><span class="m">5000</span> ! <span class="s2">&quot;application/x-rtp, media=(string)video, clock-rate=(int)90000, encoding-name=(string)H264, payload=(int)96&quot;</span> ! rtph264depay ! h264parse ! decodebin ! videoconvert ! autovideosink <span class="nv">sync</span><span class="o">=</span><span class="nb">false</span>
-</code></pre></div>
-
-
-</div>
-
-<div class="lang-shell">
-
-<div class="codehilite"><pre><span></span><code>gst-launch-1.0 -v videotestsrc ! x264enc <span class="nv">tune</span><span class="o">=</span>zerolatency <span class="nv">bitrate</span><span class="o">=</span><span class="m">500</span> speed-preset<span class="o">=</span>superfast ! rtph264pay ! udpsink <span class="nv">port</span><span class="o">=</span><span class="m">5000</span> <span class="nv">host</span><span class="o">=</span><span class="m">192</span>.168.1.24
-</code></pre></div>
-
-
-</div>
-
-<p>Raspberry Pi - Server Machine   </p>
-<div class="lang-shell">
-
-<div class="codehilite"><pre><span></span><code>libcamera-vid -t <span class="m">0</span> -n --inline -o - <span class="p">|</span> gst-launch-1.0 fdsrc <span class="nv">fd</span><span class="o">=</span><span class="m">0</span> ! h264parse ! rtph264pay ! udpsink <span class="nv">host</span><span class="o">=</span><span class="m">192</span>.168.1.24 <span class="nv">port</span><span class="o">=</span><span class="m">5000</span>
-</code></pre></div>
-
-
-</div>
-
-<p>Client Machine (192.168.1.24)   </p>
-<div class="lang-shell">
-
-<div class="codehilite"><pre><span></span><code>gst-launch-1.0 udpsrc <span class="nv">address</span><span class="o">=</span><span class="m">192</span>.168.1.24 <span class="nv">port</span><span class="o">=</span><span class="m">5000</span> <span class="nv">caps</span><span class="o">=</span>application/x-rtp ! rtph264depay ! h264parse ! avdec_h264 ! autovideosink
-</code></pre></div>
-
-
-</div>
-
-<h2 id="libcamerasrc-gstreamer-plugin">libcamerasrc gstreamer plugin</h2>
-<p>Using  libcamerasrc gstreamer element (without libcamera-vid)   </p>
-<p>Test Video Steam   </p>
-<div class="lang-shell">
-
-<div class="codehilite"><pre><span></span><code>gst-launch-1.0 videotestsrc ! v4l2h264enc ! <span class="s1">&#39;video/x-h264,level=(string)3&#39;</span> ! fakesink
-</code></pre></div>
-
-
-</div>
-
-<p>libcamerasrc Stream on Raspberry Pi (Zoomed)   </p>
-<div class="lang-shell">
-
-<div class="codehilite"><pre><span></span><code>gst-launch-1.0 -vvvv libcamerasrc ! video/x-raw,width<span class="o">=</span><span class="m">1280</span>,height<span class="o">=</span><span class="m">720</span>,format<span class="o">=</span>NV12,colorimetry<span class="o">=</span>bt601,framerate<span class="o">=</span><span class="m">30</span>/1,interlace-mode<span class="o">=</span>progressive ! v4l2h264enc extra-controls<span class="o">=</span><span class="s2">&quot;controls,repeat_sequence_header=1&quot;</span> ! <span class="s1">&#39;video/x-h264,level=(string)4&#39;</span> ! h264parse ! rtph264pay ! udpsink <span class="nv">host</span><span class="o">=</span><span class="m">192</span>.168.1.24 <span class="nv">port</span><span class="o">=</span><span class="m">5000</span>
-</code></pre></div>
-
-
-</div>
-
-<p>libcamerasrc Stream on Raspberry Pi (Full image)   </p>
-<div class="lang-sh">
-
-<div class="codehilite"><pre><span></span><code>gst-launch-1.0 -vvvv libcamerasrc ! video/x-raw,width<span class="o">=</span><span class="m">640</span>,height<span class="o">=</span><span class="m">480</span>,format<span class="o">=</span>NV12,colorimetry<span class="o">=</span>bt601,framerate<span class="o">=</span><span class="m">30</span>/1,interlace-mode<span class="o">=</span>progressive ! v4l2h264enc extra-controls<span class="o">=</span><span class="s2">&quot;controls,repeat_sequence_header=1&quot;</span> ! <span class="s1">&#39;video/x-h264,level=(string)4&#39;</span> ! h264parse ! rtph264pay ! udpsink <span class="nv">host</span><span class="o">=</span><span class="m">192</span>.168.1.24 <span class="nv">port</span><span class="o">=</span><span class="m">5000</span>
-</code></pre></div>
-
-
-</div>
-
-<p>Client Machine (192.168.1.24)   </p>
-<div class="lang-shell">
-
-<div class="codehilite"><pre><span></span><code>gst-launch-1.0 udpsrc <span class="nv">address</span><span class="o">=</span><span class="m">192</span>.168.1.24 <span class="nv">port</span><span class="o">=</span><span class="m">5000</span> <span class="nv">caps</span><span class="o">=</span>application/x-rtp ! rtph264depay ! h264parse ! avdec_h264 ! autovideosink
-</code></pre></div>
-
-
-</div>
-
-<h2 id="other-experiments">Other experiments</h2>
-<p><a href="https://developer.ridgerun.com/wiki/index.php/Introduction_to_network_streaming_using_GStreamer" class="external-link">https://developer.ridgerun.com/wiki/index.php/Introduction_to_network_streaming_using_GStreamer</a>   </p>
-<p>stream test video from gstreamer to VLC   </p>
-<div class="lang-shell">
-
-<div class="codehilite"><pre><span></span><code>gst-launch-1.0 -v videotestsrc ! x264enc <span class="nv">tune</span><span class="o">=</span>zerolatency <span class="nv">bitrate</span><span class="o">=</span><span class="m">500</span> speed-preset<span class="o">=</span>superfast ! h264parse ! mpegtsmux ! rtpmp2tpay  ! udpsink <span class="nv">port</span><span class="o">=</span><span class="m">5000</span> <span class="nv">host</span><span class="o">=</span><span class="m">192</span>.168.0.51
-</code></pre></div>
-
-
-</div>
-
-<p>stream rpi camera from gstream to vlc (high latency)   </p>
-<div class="lang-shell">
-
-<div class="codehilite"><pre><span></span><code>gst-launch-1.0 -vvvv libcamerasrc ! queue ! video/x-raw,width<span class="o">=</span><span class="m">1280</span>,height<span class="o">=</span><span class="m">720</span>,format<span class="o">=</span>NV12,colorimetry<span class="o">=</span>bt601,framerate<span class="o">=</span><span class="m">30</span>/1,interlace-mode<span class="o">=</span>progressive ! v4l2h264enc extra-controls<span class="o">=</span><span class="s2">&quot;controls,repeat_sequence_header=1&quot;</span> ! <span class="s1">&#39;video/x-h264,level=(string)4&#39;</span> ! h264parse ! mpegtsmux ! rtpmp2tpay ! udpsink <span class="nv">host</span><span class="o">=</span><span class="m">192</span>.168.0.51 <span class="nv">port</span><span class="o">=</span><span class="m">5000</span>
-</code></pre></div>
-
-
-</div>
-
-<div class="lang-shell">
-
-<div class="codehilite"><pre><span></span><code>vlc rtp://@:port
-</code></pre></div>
-
-
-</div></div>
+<p>Ancillary devices:   </p>
+<ul>
+<li><a href="/gardenbot/systems/wire-system/wire-parts/24v-battery.html">24v-battery</a></li>
+</ul></div>
 <div class="note-footer">
 <div class="backlinks">
 <h2>Backlinks</h2>
 <ul>
-	<li><a class="backlink" href="/gardenbot/systems/computer-system/computer-rpi.html">computer-rpi</a></li>
+	<li><a class="backlink" href="/gardenbot/systems/wire-system/wire-parts/24v-battery.html">24v-battery</a></li>
+	<li><a class="backlink" href="/gardenbot/systems/wire-system/wire-system.html">wire-system</a></li>
 </ul>
 </div>
 
 <div class="tags">
-
+<h2>Tags</h2>
+<ul>
+	<li><a class="backlink" href="/gardenbot/obs.html/tags/todo/index.html">todo</a></li>
+</ul>
 </div>
 
 </div>
 <div class="graph requires_js ">
-    <div id="A190169099934667988673317373706277262110{level}" class="graph_div"></div>
+    <div id="A304057607096394012281116482406876856971{level}" class="graph_div"></div>
 
-    <div class="graph-instructions" id="D190169099934667988673317373706277262110{level}">
+    <div class="graph-instructions" id="D304057607096394012281116482406876856971{level}">
         Left-click: follow link, Right-click: select node, Scroll: zoom
     </div>
     
     <div class="graph-button-row" style="display:flex;">
-        <button class="graph_button graph_show_button" id="B190169099934667988673317373706277262110{level}" level="{level}" note_temp_id="190169099934667988673317373706277262110" onclick="window.ObsHtmlGraph.run(this, '190169099934667988673317373706277262110', 'computer-rpi-camera');">
+        <button class="graph_button graph_show_button" id="B304057607096394012281116482406876856971{level}" level="{level}" note_temp_id="304057607096394012281116482406876856971" onclick="window.ObsHtmlGraph.run(this, '304057607096394012281116482406876856971', '24v-battery-charger');">
             Show Graph
         </button>
-        <button class="graph_button graph_type_button" id="C190169099934667988673317373706277262110{level}" style="flex:1" onclick="window.ObsHtmlGraph.switch_graph_type(this);">
+        <button class="graph_button graph_type_button" id="C304057607096394012281116482406876856971{level}" style="flex:1" onclick="window.ObsHtmlGraph.switch_graph_type(this);">
             2D
         </button>
     </div>
