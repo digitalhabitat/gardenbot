@@ -78,7 +78,10 @@ Labeling Convention `<Wire-id><Port-id><Mate-id>
 	- Labels: WX1, WX2
 
 
-![[wireviz-w1.svg|w1]] ![[wireviz-w2.svg|w2]]
+[![[wireviz-w1.svg]]](wireviz-w1.html) 
+
+[![[wireviz-w2.svg]]](wireviz-w2.html) 
+
 
 ## 24 Volt Supply Wiring Diagram
 
