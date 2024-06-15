@@ -1,6 +1,6 @@
 # Wire System
 
-The the wiring of each major electrical system is documented with https://www.diagrams.net/ via `.drawio` or `.drawio.svg`  See [FAQ](https://www.diagrams.net/doc/faq/save-file-formats) for file format details. The construction of individual wires and harnesses is documented with [WireViz](https://github.com/formatc1702/WireViz) via `.yml` files. The `.yml` files are store in the `wire-diagrams` directory and are processed into `.svg` files with the VScode Task "Run wireviz" using the shell script  `wireviz.sh`
+The the wiring of each major electrical system is documented with https://www.diagrams.net/ via `.drawio` or `.drawio.svg`  See [FAQ](https://www.diagrams.net/doc/faq/save-file-formats) for file format details. The construction of individual wires and harnesses is documented with [WireViz](https://github.com/formatc1702/WireViz) via `.yml` files. The `.yml` files are stored in the `wireviz` directory and are processed into `.svg` files with the VScode Task "Run wireviz" using the shell script  `wireviz.sh`
 
 >[!Work in progress]
 > - #WIP
@@ -14,6 +14,8 @@ The the wiring of each major electrical system is documented with https://www.di
 > - ASME Y14.44-2008 
 > - [NASA Workmapship Standards](https://workmanship.nasa.gov/lib/insp/2%20books/frameset.html)
 > - [NASA Wire and Cable Workmanship](https://workmanship.nasa.gov/lib/insp/2%20books/links/sections/407%20Splices.html)
+> - [WireViz syntax](https://github.com/wireviz/WireViz/blob/dev/docs/syntax.md)
+
 
 >[!Info] **Golden rules** for harness reference designation from IEEE-200-1975 include:
 > - The movable (less fixed) connector of a mating pair shall be designated P [where P means plug].
@@ -23,6 +25,21 @@ The the wiring of each major electrical system is documented with https://www.di
 
 ## 24 Volt Wire System
 
+Labeling Convention `<Wire-id><Port-id><Mate-id>
+- Wire id: Specifies a wire harness (maybe a single or multiple conductors)
+- Port-id: Specifies a wire port (Always at least 2 per wire harness)
+- Mate-id: Specifies a mating connect (Always a least a single matching pair)
+
+[[power-system#24 Volt Wire System]]
+
+>[!Note]
+>[DC cable sizing calculator](https://www.fabhabs.com/dc-cable-sizing-calculator)
+> Voltage (V): 24
+> Current (Amps): 30
+> Cable run, including return (m) : 2 (6.65 feet)
+> Voltage drop (%): 3
+> Calculated Minimum cable cross section (mm^2): 4
+> Closest American (AWG) gauge: AWG 11
 ### Parts
 
 - 24 Battery (2x12VDC )
@@ -65,7 +82,7 @@ The the wiring of each major electrical system is documented with https://www.di
 
 ## 24 Volt Supply Wiring Diagram
 
-![[wire-system-24-volt.drawio.svg]]
+![[wire-system-24-volt.drawio.svg]](wire-system-24-volt.drawio.html)
 
 
 ---

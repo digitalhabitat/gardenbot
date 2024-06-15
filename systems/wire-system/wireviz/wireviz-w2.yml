@@ -1,18 +1,20 @@
 connectors:
   W2P1(3):
-    type: Disconnector 0.25in
+    type: F2 0.25in (spade)
     subtype: female
     pinlabels: [POS]
-    notes: BAT1_POS
+    notes: Mates with B1_POSJ1(3)
   W2P2(4):
-    type: Disconnector 0.25in
+    type: F2 0.25in (spade)
     subtype: female
     pinlabels: [NEG]
-    notes: BAT2_NEG
+    notes: Mates with B1_NEGJ2(4)
   W2P3(5):
     type: XTC90
     subtype: female
+    manufacturer: AMASS
     pinlabels: [POS, NEG]
+    notes: Mates with W3P1(5)
 
 cables:
   W2:

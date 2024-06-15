@@ -1,14 +1,18 @@
 connectors:
   W1P1(1):
-    type: Disconnector 0.25in
+    type: F2 0.25in (spade)
     subtype: female
     pinlabels: [NEG]
-    notes: Mates with BAT1_NEG(1)
+    supplier: Harbor Freight
+    spn: 67686, 61982
+    notes: Mates with B1_NEGJ2(1)
   W1P2(2):
-    type: Disconnector 0.25in
+    type: F2 0.25in (spade)
     subtype: female
     pinlabels: [POS]
-    notes: Mates w2ith BAT2_POS(2)
+    supplier: Harbor Freight
+    spn: 67686, 61982
+    notes: Mates with B2_POSJ1(2)
 
 cables:
   W1:
