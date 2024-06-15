@@ -17,6 +17,7 @@ connectors:
 cables:
   W1:
     manufacturer: SouthWire
+    mpn: 22975701
     gauge: 10 AWG
     length: 0.2
     wirecount: 1

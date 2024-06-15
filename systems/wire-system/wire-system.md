@@ -41,9 +41,8 @@ Labeling Convention `<Wire-id><Port-id><Mate-id>
 > Calculated Minimum cable cross section (mm^2): 4
 > Closest American (AWG) gauge: AWG 11
 ### Parts
-
-- 24 Battery (2x12VDC )
-	- Labels: `BAT1`  `BAT2`
+- [[24v-battery|24V Battery (2x12VDC)]]
+- [[24v-battery-charger|24V Battery Charger]]
 -  50 Amp ANL Fuse and Fuse holder
 	- Labels: `FH1` `F1`
 - Main Battery Disconnect Switch
@@ -60,32 +59,7 @@ Labeling Convention `<Wire-id><Port-id><Mate-id>
 - 2x DC Motors
 	- Label:
 	- `MY1016`
-
-### Electrical Cabling and Wires
-
-- 10 AWG, Single conductor, Stranded Copper
-	- Manufacturer: Southwire
-	- Seller:
-	- Labels: W1, W2
-- 16 AWG, Single conductor, Stranded Copper
-	- Manufacturer: Southwire
-	- Seller: 
-
-- 20 AWG, 2 Conductor, PVC Jacked, Stranded Copper 
-	- Manufacturer: TZMOIK
-	- Seller: Amazon
-		- ASIN : B093LBG853
-	- Labels: WX1, WX2
-
-
-[![[wireviz-w1.svg]]](wireviz-w1.html) 
-
-[![[wireviz-w2.svg]]](wireviz-w2.html) 
-
-
 ## 24 Volt Supply Wiring Diagram
-
-[test](wire-system-24-volt.drawio.html)
 
 [![[wire-system-24-volt.drawio.svg]]](wire-system-24-volt.drawio.html)
 

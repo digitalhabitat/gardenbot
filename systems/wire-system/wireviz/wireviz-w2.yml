@@ -19,6 +19,7 @@ connectors:
 cables:
   W2:
     manufacturer: SouthWire
+    mpn: 22975701, 22973201
     category: bundle
     gauge: 10 AWG
     length: 0.2
