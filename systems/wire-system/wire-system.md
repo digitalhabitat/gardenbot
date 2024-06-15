@@ -82,7 +82,7 @@ Labeling Convention `<Wire-id><Port-id><Mate-id>
 
 ## 24 Volt Supply Wiring Diagram
 
-![[wire-system-24-volt.drawio.svg]](wire-system-24-volt.drawio.html)
+[![[wire-system-24-volt.drawio.svg]]]([[wire-system-24-volt.drawio.html]])
 
 
 ---
