@@ -1132,7 +1132,8 @@ position_covariance_type: <span class="m">1</span>
 <p>My current understanding of possible configurations at this moment are: <br />
 1. Utilize Reach Modules' on-board WiFi and NTRIP client software to receive RTCM and stream the receiver "Position Output" to the Raspberry Pi in a "Serial-To-PC" fashion and utilize <code>nmea_navsat_diver</code> (Initial Testing Config) <br />
 2. Utilize <code>str2str</code> and <code>nmea_navsat_driver</code> and <strong>UART</strong> as a second channel for receiving NMEA sentences while <strong>PC-to-Serial</strong> is used for streaming RTCM Messages to the Reach Module. <br />
-3. Utilize <code>str2str</code> and <code>nmea_tcp_driver</code> (Only after <a href="https://github.com/CearLab/nmea_tcp_driver" class="external-link">nmea_tcp_driver</a> is rewritten for ROS2 support 💀) Currently started on a <a href="https://github.com/digitalhabitat/emlid_reach_ros2" class="external-link">emlid_reach_ros2</a> but I'm not sure how much work is required.   </p>
+3. Utilize <code>str2str</code> and <span class="formatting_strikethrough"><code>nmea_tcp_driver</code> (Only after <a href="https://github.com/CearLab/nmea_tcp_driver" class="external-link">nmea_tcp_driver</a> is rewritten for ROS2 support 💀) Currently started on a <a href="https://github.com/digitalhabitat/emlid_reach_ros2" class="external-link">emlid_reach_ros2</a> but I'm not sure how much work is required.</span> <br />
+4. Utilize <code>str2str</code> and <a href="https://index.ros.org/p/gpsd_client/#humble" class="external-link">gpsd_client</a>   </p>
 <h2 id="questions">Questions</h2>
 <h3 id="q1-how-do-you-find-the-ntrip-mount-point-for-automatic-cells-or-single-sites">Q1. How do you find the NTRIP Mount point for Automatic Cells or Single Sites?</h3>
 <ol>
@@ -1216,33 +1217,33 @@ position_covariance_type: <span class="m">1</span>
 <div class="tags">
 <h2>Tags</h2>
 <ul>
-	<li><a class="backlink" href="/gardenbot/obs.html/tags/ABF7F7A6/index.html">ABF7F7A6</a></li>
-	<li><a class="backlink" href="/gardenbot/obs.html/tags/todo/index.html">todo</a></li>
-	<li><a class="backlink" href="/gardenbot/obs.html/tags/FFB86CA6/index.html">FFB86CA6</a></li>
-	<li><a class="backlink" href="/gardenbot/obs.html/tags/D2B3FFA6/index.html">D2B3FFA6</a></li>
-	<li><a class="backlink" href="/gardenbot/obs.html/tags/FFF3A3A6/index.html">FFF3A3A6</a></li>
-	<li><a class="backlink" href="/gardenbot/obs.html/tags/FF5582A6/index.html">FF5582A6</a></li>
-	<li><a class="backlink" href="/gardenbot/obs.html/tags/WIP/index.html">WIP</a></li>
-	<li><a class="backlink" href="/gardenbot/obs.html/tags/FFB8EBA6/index.html">FFB8EBA6</a></li>
+	<li><a class="backlink" href="/gardenbot/obs.html/tags/CACFD9A6/index.html">CACFD9A6</a></li>
 	<li><a class="backlink" href="/gardenbot/obs.html/tags/BBFABBA6/index.html">BBFABBA6</a></li>
 	<li><a class="backlink" href="/gardenbot/obs.html/tags/ADCCFFA6/index.html">ADCCFFA6</a></li>
-	<li><a class="backlink" href="/gardenbot/obs.html/tags/CACFD9A6/index.html">CACFD9A6</a></li>
+	<li><a class="backlink" href="/gardenbot/obs.html/tags/ABF7F7A6/index.html">ABF7F7A6</a></li>
+	<li><a class="backlink" href="/gardenbot/obs.html/tags/D2B3FFA6/index.html">D2B3FFA6</a></li>
+	<li><a class="backlink" href="/gardenbot/obs.html/tags/todo/index.html">todo</a></li>
+	<li><a class="backlink" href="/gardenbot/obs.html/tags/WIP/index.html">WIP</a></li>
+	<li><a class="backlink" href="/gardenbot/obs.html/tags/FFB8EBA6/index.html">FFB8EBA6</a></li>
+	<li><a class="backlink" href="/gardenbot/obs.html/tags/FFF3A3A6/index.html">FFF3A3A6</a></li>
+	<li><a class="backlink" href="/gardenbot/obs.html/tags/FF5582A6/index.html">FF5582A6</a></li>
+	<li><a class="backlink" href="/gardenbot/obs.html/tags/FFB86CA6/index.html">FFB86CA6</a></li>
 </ul>
 </div>
 
 </div>
 <div class="graph requires_js ">
-    <div id="A208784215666645412400212394222819105553{level}" class="graph_div"></div>
+    <div id="A422662847972591718945690288728535945{level}" class="graph_div"></div>
 
-    <div class="graph-instructions" id="D208784215666645412400212394222819105553{level}">
+    <div class="graph-instructions" id="D422662847972591718945690288728535945{level}">
         Left-click: follow link, Right-click: select node, Scroll: zoom
     </div>
     
     <div class="graph-button-row" style="display:flex;">
-        <button class="graph_button graph_show_button" id="B208784215666645412400212394222819105553{level}" level="{level}" note_temp_id="208784215666645412400212394222819105553" onclick="window.ObsHtmlGraph.run(this, '208784215666645412400212394222819105553', 'usb-gnss-setup');">
+        <button class="graph_button graph_show_button" id="B422662847972591718945690288728535945{level}" level="{level}" note_temp_id="422662847972591718945690288728535945" onclick="window.ObsHtmlGraph.run(this, '422662847972591718945690288728535945', 'usb-gnss-setup');">
             Show Graph
         </button>
-        <button class="graph_button graph_type_button" id="C208784215666645412400212394222819105553{level}" style="flex:1" onclick="window.ObsHtmlGraph.switch_graph_type(this);">
+        <button class="graph_button graph_type_button" id="C422662847972591718945690288728535945{level}" style="flex:1" onclick="window.ObsHtmlGraph.switch_graph_type(this);">
             2D
         </button>
     </div>
