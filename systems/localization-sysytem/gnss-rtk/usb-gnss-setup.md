@@ -477,7 +477,8 @@ position_covariance_type: 1
 My current understanding of possible configurations at this moment are:
 1. Utilize Reach Modules' on-board WiFi and NTRIP client software to receive RTCM and stream the receiver "Position Output" to the Raspberry Pi in a "Serial-To-PC" fashion and utilize `nmea_navsat_diver` (Initial Testing Config)
 2. Utilize `str2str` and `nmea_navsat_driver` and **UART** as a second channel for receiving NMEA sentences while **PC-to-Serial** is used for streaming RTCM Messages to the Reach Module.
-3. Utilize `str2str` and `nmea_tcp_driver` (Only after [nmea_tcp_driver](https://github.com/CearLab/nmea_tcp_driver) is rewritten for ROS2 support 💀) Currently started on a [emlid_reach_ros2](https://github.com/digitalhabitat/emlid_reach_ros2) but I'm not sure how much work is required.
+3. Utilize `str2str` and ~~`nmea_tcp_driver` (Only after [nmea_tcp_driver](https://github.com/CearLab/nmea_tcp_driver) is rewritten for ROS2 support 💀) Currently started on a [emlid_reach_ros2](https://github.com/digitalhabitat/emlid_reach_ros2) but I'm not sure how much work is required.~~
+4. Utilize `str2str` and [gpsd_client](https://index.ros.org/p/gpsd_client/#humble)
 ## Questions
 
 ### Q1. How do you find the NTRIP Mount point for Automatic Cells or Single Sites?
