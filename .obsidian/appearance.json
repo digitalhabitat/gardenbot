@@ -1,6 +1,7 @@
 {
   "enabledCssSnippets": [],
-  "baseFontSize": 16,
+  "baseFontSize": 12,
   "theme": "moonstone",
-  "accentColor": ""
+  "accentColor": "",
+  "baseFontSizeAction": true
 }
