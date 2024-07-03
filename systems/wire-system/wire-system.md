@@ -12,6 +12,7 @@ The the wiring of each major electrical system is documented with https://www.di
 > - https://www.cosjwt.com/tag/asme-y1444-2008/
 > - IEEE-200-1975 (ANSI Y32.16-1975)
 > - ASME Y14.44-2008 
+> - MIL-STD-1472H (Human Engineering)
 > - [NASA Workmapship Standards](https://workmanship.nasa.gov/lib/insp/2%20books/frameset.html)
 > - [NASA Wire and Cable Workmanship](https://workmanship.nasa.gov/lib/insp/2%20books/links/sections/407%20Splices.html)
 > - [WireViz syntax](https://github.com/wireviz/WireViz/blob/dev/docs/syntax.md)
