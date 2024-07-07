@@ -11,11 +11,13 @@ The the wiring of each major electrical system is documented with https://www.di
 > - Wire lables (incomplete)
 > - https://www.cosjwt.com/tag/asme-y1444-2008/
 > - IEEE-200-1975 (ANSI Y32.16-1975)
-> - ASME Y14.44-2008 
+> - ASME Y14.44-2008
+> 	- Reference Designations for Electrical and Electronics Parts and Equipment
 > - MIL-STD-1472H (Human Engineering)
 > - [NASA Workmapship Standards](https://workmanship.nasa.gov/lib/insp/2%20books/frameset.html)
 > - [NASA Wire and Cable Workmanship](https://workmanship.nasa.gov/lib/insp/2%20books/links/sections/407%20Splices.html)
 > - [WireViz syntax](https://github.com/wireviz/WireViz/blob/dev/docs/syntax.md)
+> - [Relay Pin Numbering](https://klc.kicad.org/general/g3/g3.1/)
 
 
 >[!Info] **Golden rules** for harness reference designation from IEEE-200-1975 include:
@@ -60,6 +62,10 @@ Labeling Convention `<Wire-id><Port-id><Mate-id>
 - 2x DC Motors
 	- Label:
 	- `MY1016`
+
+## Power System Concept
+
+![[power-system-concept.drawio.svg]]
 ## 24 Volt Supply Wiring Diagram
 
 [![[wire-system-24-volt.drawio.svg]]](wire-system-24-volt.drawio.html)
@@ -70,4 +76,6 @@ Labeling Convention `<Wire-id><Port-id><Mate-id>
 ## 12 Volt Supply Wiring Diagram
 
 ---
-![[12v_battery_system.drawio.svg]]
+![[12v_battery_system.drawio.svg]]## Glossary
+
+changeover contact
