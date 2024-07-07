@@ -18,6 +18,7 @@ The the wiring of each major electrical system is documented with https://www.di
 > - [NASA Wire and Cable Workmanship](https://workmanship.nasa.gov/lib/insp/2%20books/links/sections/407%20Splices.html)
 > - [WireViz syntax](https://github.com/wireviz/WireViz/blob/dev/docs/syntax.md)
 > - [Relay Pin Numbering](https://klc.kicad.org/general/g3/g3.1/)
+> - [Regenerative Braking Safety](https://github.com/mjbots/moteus/blob/main/docs/reference.md#regenerative-braking-safety)
 
 
 >[!Info] **Golden rules** for harness reference designation from IEEE-200-1975 include:
