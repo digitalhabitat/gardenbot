@@ -380,9 +380,9 @@
 <li><a href="#november-notes" class="anchor-link">November Notes</a><ul>
 <li><a href="#added-udev-rules" class="anchor-link">Added udev rules</a></li>
 <li><a href="#run-gui-or-cli" class="anchor-link">Run GUI or CLI</a></li>
-<li><a href="#etc" class="anchor-link">Etc</a></li>
 </ul>
 </li>
+<li><a href="#starting-fresh-in-july-2024" class="anchor-link">Starting fresh in July 2024</a></li>
 </ul>
 </li>
 </ul>
@@ -477,7 +477,7 @@ conf get id.id
 <hr />
 <h2 id="november-notes">November Notes</h2>
 <p><a href="https://github.com/mjbots/moteus/blob/main/docs/reference.md" class="external-link">https://github.com/mjbots/moteus/blob/main/docs/reference.md</a>   </p>
-<p><a href="https://github.com/mjbots/moteus/blob/main/docs/getting_started.md" class="external-link">https://github.com/mjbots/moteus/blob/main/docs/getting_started.md</a>   </p>
+<p><a href="https://github.com/mjbots/moteus/blob/main/docs/getting_started.md" class="external-link" class="external-link">https://github.com/mjbots/moteus/blob/main/docs/getting_started.md</a>   </p>
 <h3 id="added-udev-rules">Added udev rules</h3>
 <p><a href="https://github.com/mjbots/fdcanusb/blob/master/70-fdcanusb.rules" class="external-link">https://github.com/mjbots/fdcanusb/blob/master/70-fdcanusb.rules</a>   </p>
 <h3 id="run-gui-or-cli">Run GUI or CLI</h3>
@@ -497,11 +497,153 @@ conf get id.id
 
 </div>
 
-<h3 id="etc">Etc</h3>
 <p>A command like <code>d pos nan 0 nan</code> can be used to "hold position"   </p>
+<h2 id="starting-fresh-in-july-2024">Starting fresh in July 2024</h2>
+<p>I recently purchased a new <a href="https://mjbots.com/products/moteus-r4-11" class="external-link">moteus r4.11 controller</a>after accidentally frying my last one from the moteus dev kit. Referencing the moteus <a href="https://github.com/mjbots/moteus/blob/main/docs/getting_started.md" class="external-link" class="external-link">getting_started.md</a>page on github. I was able to set some basic config parameters and calibrate the devices for the moteus. It is refreshing to see things moving again.   </p>
+<p>First I started the GUI and set the following configurations: <br />
+1. <code>servopos.position_min: 10</code> <br />
+2. <code>servopos.position_max: -10</code> <br />
+3. <code>servo.max_current_A: 40</code>   </p>
+<div class="lang-general">
+
+<div class="codehilite"><pre><span></span><code> python3 -m moteus_gui.tview
+</code></pre></div>
+
+
+</div>
+
+<p>Second I launched the calibrating tool   </p>
 <div class="lang-general">
 
 <div class="codehilite"><pre><span></span><code><span class="n">python3</span><span class="w"> </span><span class="o">-</span><span class="n">m</span><span class="w"> </span><span class="n">moteus</span><span class="o">.</span><span class="n">moteus_tool</span><span class="w"> </span><span class="o">--</span><span class="n">target</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="o">--</span><span class="n">calibrate</span><span class="w"></span>
+</code></pre></div>
+
+
+</div>
+
+<p>Here is the output after calibrating   </p>
+<div class="lang-general">
+
+<div class="codehilite"><pre><span></span><code><span class="nv">This</span> <span class="nv">will</span> <span class="nv">move</span> <span class="nv">the</span> <span class="nv">motor</span>, <span class="nv">ensure</span> <span class="nv">it</span> <span class="nv">can</span> <span class="nv">spin</span> <span class="nv">freely</span><span class="o">!</span>
+<span class="nv">Starting</span> <span class="nv">calibration</span> <span class="nv">process</span>
+<span class="nv">Testing</span> <span class="mi">0</span>.<span class="mi">548</span><span class="nv">V</span> <span class="k">for</span> <span class="nv">resistance</span>
+<span class="nv">Using</span> <span class="mi">0</span>.<span class="mi">548</span> <span class="nv">V</span> <span class="k">for</span> <span class="nv">resistance</span> <span class="nv">and</span> <span class="nv">inductance</span> <span class="nv">calibration</span>
+<span class="nv">Calculating</span> <span class="nv">winding</span> <span class="nv">resistance</span>
+<span class="mi">0</span>.<span class="mi">274</span><span class="nv">V</span> <span class="o">-</span> <span class="mi">5</span>.<span class="mi">235</span><span class="nv">A</span>
+<span class="mi">0</span>.<span class="mi">329</span><span class="nv">V</span> <span class="o">-</span> <span class="mi">6</span>.<span class="mi">382</span><span class="nv">A</span>
+<span class="mi">0</span>.<span class="mi">383</span><span class="nv">V</span> <span class="o">-</span> <span class="mi">7</span>.<span class="mi">368</span><span class="nv">A</span>
+<span class="mi">0</span>.<span class="mi">465</span><span class="nv">V</span> <span class="o">-</span> <span class="mi">8</span>.<span class="mi">958</span><span class="nv">A</span>
+<span class="mi">0</span>.<span class="mi">548</span><span class="nv">V</span> <span class="o">-</span> <span class="mi">10</span>.<span class="mi">543</span><span class="nv">A</span>
+<span class="nv">Calibrating</span> <span class="o">|</span> 
+<span class="nv">Storing</span> <span class="nv">encoder</span> <span class="nv">config</span>
+<span class="nv">Calculating</span> <span class="nv">motor</span> <span class="nv">inductance</span>
+<span class="nv">Calculated</span> <span class="nv">inductance</span>: <span class="mi">2</span>.<span class="mi">7061918203661112</span><span class="nv">e</span><span class="o">-</span><span class="mi">05</span><span class="nv">H</span>
+<span class="nv">Calculated</span> <span class="nv">kp</span><span class="o">/</span><span class="nv">ki</span>: <span class="mi">0</span>.<span class="mi">01700350468413393</span><span class="o">/</span><span class="mi">32</span>.<span class="mi">617144037664104</span>
+<span class="nv">Calculating</span> <span class="nv">Kv</span> <span class="nv">rating</span>
+<span class="nv">Testing</span> <span class="mi">0</span>.<span class="mi">602</span><span class="nv">V</span> <span class="k">for</span> <span class="nv">Kv</span>
+<span class="mi">0</span>.<span class="mi">000</span><span class="nv">V</span> <span class="o">-</span> <span class="o">-</span><span class="mi">0</span>.<span class="mi">019</span><span class="nv">Hz</span>
+<span class="mi">0</span>.<span class="mi">151</span><span class="nv">V</span> <span class="o">-</span> <span class="mi">2</span>.<span class="mi">427</span><span class="nv">Hz</span>
+<span class="mi">0</span>.<span class="mi">301</span><span class="nv">V</span> <span class="o">-</span> <span class="mi">3</span>.<span class="mi">627</span><span class="nv">Hz</span>
+<span class="mi">0</span>.<span class="mi">452</span><span class="nv">V</span> <span class="o">-</span> <span class="mi">4</span>.<span class="mi">787</span><span class="nv">Hz</span>
+<span class="mi">0</span>.<span class="mi">602</span><span class="nv">V</span> <span class="o">-</span> <span class="mi">6</span>.<span class="mi">035</span><span class="nv">Hz</span>
+<span class="nv">v_per_hz</span> <span class="ss">(</span><span class="nv">pre</span><span class="o">-</span><span class="nv">gearbox</span><span class="ss">)</span><span class="o">=</span><span class="mi">0</span>.<span class="mi">10409780857098226</span>
+<span class="nv">Saving</span> <span class="nv">to</span> <span class="nv">persistent</span> <span class="nv">storage</span>
+<span class="nv">Calibration</span> <span class="nv">complete</span>
+<span class="nv">REPORT</span>: <span class="nv">moteus</span><span class="o">-</span><span class="nv">cal</span><span class="o">-</span><span class="nv">ADsAP1QwUBQgOTNO</span><span class="o">-</span><span class="mi">20240707</span><span class="nv">T053905</span>.<span class="mi">633576</span>.<span class="nv">log</span>
+<span class="o">------------------------</span>
+{
+  <span class="s2">&quot;</span><span class="s">timestamp</span><span class="s2">&quot;</span>: <span class="s2">&quot;</span><span class="s">2024-07-07 05:39:05.633576</span><span class="s2">&quot;</span>,
+  <span class="s2">&quot;</span><span class="s">device_info</span><span class="s2">&quot;</span>: {
+    <span class="s2">&quot;</span><span class="s">serial_number</span><span class="s2">&quot;</span>: <span class="s2">&quot;</span><span class="s">ADsAP1QwUBQgOTNO</span><span class="s2">&quot;</span>,
+    <span class="s2">&quot;</span><span class="s">model</span><span class="s2">&quot;</span>: <span class="s2">&quot;</span><span class="s">0</span><span class="s2">&quot;</span>,
+    <span class="s2">&quot;</span><span class="s">git_hash</span><span class="s2">&quot;</span>: <span class="s2">&quot;</span><span class="s">1ba9e683e207d792060b45ea435dd6905589a7d4</span><span class="s2">&quot;</span>,
+    <span class="s2">&quot;</span><span class="s">git_dirty</span><span class="s2">&quot;</span>: <span class="nv">false</span>,
+    <span class="s2">&quot;</span><span class="s">git_timestamp</span><span class="s2">&quot;</span>: <span class="mi">1704573873</span>,
+    <span class="s2">&quot;</span><span class="s">uuid</span><span class="s2">&quot;</span>: <span class="s2">&quot;</span><span class="s">a6f2a76c-d89b-442a-ba72-c22e72c31101</span><span class="s2">&quot;</span>
+  },
+  <span class="s2">&quot;</span><span class="s">calibration</span><span class="s2">&quot;</span>: {
+    <span class="s2">&quot;</span><span class="s">invert</span><span class="s2">&quot;</span>: <span class="nv">false</span>,
+    <span class="s2">&quot;</span><span class="s">phase_invert</span><span class="s2">&quot;</span>: <span class="nv">true</span>,
+    <span class="s2">&quot;</span><span class="s">poles</span><span class="s2">&quot;</span>: <span class="mi">14</span>,
+    <span class="s2">&quot;</span><span class="s">offset</span><span class="s2">&quot;</span>: [
+      <span class="mi">0</span>.<span class="mi">9291043923982312</span>,
+      <span class="mi">0</span>.<span class="mi">9080441376652112</span>,
+      <span class="mi">0</span>.<span class="mi">923251210321675</span>,
+      <span class="mi">0</span>.<span class="mi">9302735384682055</span>,
+      <span class="mi">0</span>.<span class="mi">9209538083401249</span>,
+      <span class="mi">0</span>.<span class="mi">9362829160504444</span>,
+      <span class="mi">0</span>.<span class="mi">9336180211790873</span>,
+      <span class="mi">0</span>.<span class="mi">9162088646671183</span>,
+      <span class="mi">0</span>.<span class="mi">9246434017578448</span>,
+      <span class="mi">0</span>.<span class="mi">9243608180641886</span>,
+      <span class="mi">0</span>.<span class="mi">9119390176439753</span>,
+      <span class="mi">0</span>.<span class="mi">9341803220114789</span>,
+      <span class="mi">0</span>.<span class="mi">9441491999433136</span>,
+      <span class="mi">0</span>.<span class="mi">9345091722948959</span>,
+      <span class="mi">0</span>.<span class="mi">9546224644381333</span>,
+      <span class="mi">0</span>.<span class="mi">9587009827621329</span>,
+      <span class="mi">0</span>.<span class="mi">940866427591365</span>,
+      <span class="mi">0</span>.<span class="mi">9424844926740586</span>,
+      <span class="mi">0</span>.<span class="mi">9423741494825162</span>,
+      <span class="mi">0</span>.<span class="mi">9235825680286207</span>,
+      <span class="mi">0</span>.<span class="mi">9329791463628045</span>,
+      <span class="mi">0</span>.<span class="mi">9395819222680403</span>,
+      <span class="mi">0</span>.<span class="mi">9230719609761023</span>,
+      <span class="mi">0</span>.<span class="mi">9374960274030024</span>,
+      <span class="mi">0</span>.<span class="mi">9468792430204659</span>,
+      <span class="mi">0</span>.<span class="mi">9287872090293436</span>,
+      <span class="mi">0</span>.<span class="mi">9265690789435301</span>,
+      <span class="mi">0</span>.<span class="mi">9319126340197734</span>,
+      <span class="mi">0</span>.<span class="mi">9119536892725523</span>,
+      <span class="mi">0</span>.<span class="mi">916217260685877</span>,
+      <span class="mi">0</span>.<span class="mi">9284349729012737</span>,
+      <span class="mi">0</span>.<span class="mi">9161694481877397</span>,
+      <span class="mi">0</span>.<span class="mi">9229000983556694</span>,
+      <span class="mi">0</span>.<span class="mi">9322429826765771</span>,
+      <span class="mi">0</span>.<span class="mi">9135108888562541</span>,
+      <span class="mi">0</span>.<span class="mi">9105339836755743</span>,
+      <span class="mi">0</span>.<span class="mi">9188153374905843</span>,
+      <span class="mi">0</span>.<span class="mi">8993951983411802</span>,
+      <span class="mi">0</span>.<span class="mi">9003032776482336</span>,
+      <span class="mi">0</span>.<span class="mi">9195018091414466</span>,
+      <span class="mi">0</span>.<span class="mi">9173317960977031</span>,
+      <span class="mi">0</span>.<span class="mi">9268154494523038</span>,
+      <span class="mi">0</span>.<span class="mi">9456301398966219</span>,
+      <span class="mi">0</span>.<span class="mi">9373080148629866</span>,
+      <span class="mi">0</span>.<span class="mi">9323385738799804</span>,
+      <span class="mi">0</span>.<span class="mi">9479210106497703</span>,
+      <span class="mi">0</span>.<span class="mi">9344117173427554</span>,
+      <span class="mi">0</span>.<span class="mi">935705686151873</span>,
+      <span class="mi">0</span>.<span class="mi">9593096861645075</span>,
+      <span class="mi">0</span>.<span class="mi">9561208809738951</span>,
+      <span class="mi">0</span>.<span class="mi">9606123295540611</span>,
+      <span class="mi">0</span>.<span class="mi">9794030530024259</span>,
+      <span class="mi">0</span>.<span class="mi">9655958030423725</span>,
+      <span class="mi">0</span>.<span class="mi">9483422603745693</span>,
+      <span class="mi">0</span>.<span class="mi">9538860459595291</span>,
+      <span class="mi">0</span>.<span class="mi">9382022290073622</span>,
+      <span class="mi">0</span>.<span class="mi">9296042697770357</span>,
+      <span class="mi">0</span>.<span class="mi">9472156147122485</span>,
+      <span class="mi">0</span>.<span class="mi">9489999555065128</span>,
+      <span class="mi">0</span>.<span class="mi">9477995316625859</span>,
+      <span class="mi">0</span>.<span class="mi">9643512115052546</span>,
+      <span class="mi">0</span>.<span class="mi">9561865550020834</span>,
+      <span class="mi">0</span>.<span class="mi">9380360368044164</span>,
+      <span class="mi">0</span>.<span class="mi">9416474922656203</span>
+    ]
+  },
+  <span class="s2">&quot;</span><span class="s">winding_resistance</span><span class="s2">&quot;</span>: <span class="mi">0</span>.<span class="mi">05191179703134584</span>,
+  <span class="s2">&quot;</span><span class="s">inductance</span><span class="s2">&quot;</span>: <span class="mi">2</span>.<span class="mi">7061918203661112</span><span class="nv">e</span><span class="o">-</span><span class="mi">05</span>,
+  <span class="s2">&quot;</span><span class="s">pid_dq_kp</span><span class="s2">&quot;</span>: <span class="mi">0</span>.<span class="mi">01700350468413393</span>,
+  <span class="s2">&quot;</span><span class="s">pid_dq_ki</span><span class="s2">&quot;</span>: <span class="mi">32</span>.<span class="mi">617144037664104</span>,
+  <span class="s2">&quot;</span><span class="s">torque_bw_hz</span><span class="s2">&quot;</span>: <span class="mi">100</span>.<span class="mi">0</span>,
+  <span class="s2">&quot;</span><span class="s">encoder_filter_bw_hz</span><span class="s2">&quot;</span>: <span class="mi">200</span>.<span class="mi">0</span>,
+  <span class="s2">&quot;</span><span class="s">encoder_filter_kp</span><span class="s2">&quot;</span>: <span class="mi">2513</span>.<span class="mi">2741228718346</span>,
+  <span class="s2">&quot;</span><span class="s">encoder_filter_ki</span><span class="s2">&quot;</span>: <span class="mi">1579136</span>.<span class="mi">7041742974</span>,
+  <span class="s2">&quot;</span><span class="s">v_per_hz</span><span class="s2">&quot;</span>: <span class="mi">0</span>.<span class="mi">10409780857098226</span>,
+  <span class="s2">&quot;</span><span class="s">kv</span><span class="s2">&quot;</span>: <span class="mi">288</span>.<span class="mi">1905047938025</span>,
+  <span class="s2">&quot;</span><span class="s">unwrapped_position_scale</span><span class="s2">&quot;</span>: <span class="mi">1</span>.<span class="mi">0</span>
+}
 </code></pre></div>
 
 
@@ -525,17 +667,17 @@ conf get id.id
 
 </div>
 <div class="graph requires_js ">
-    <div id="A224595567959125998480734549046093290940{level}" class="graph_div"></div>
+    <div id="A129644886536975127147358169224621201863{level}" class="graph_div"></div>
 
-    <div class="graph-instructions" id="D224595567959125998480734549046093290940{level}">
+    <div class="graph-instructions" id="D129644886536975127147358169224621201863{level}">
         Left-click: follow link, Right-click: select node, Scroll: zoom
     </div>
     
     <div class="graph-button-row" style="display:flex;">
-        <button class="graph_button graph_show_button" id="B224595567959125998480734549046093290940{level}" level="{level}" note_temp_id="224595567959125998480734549046093290940" onclick="window.ObsHtmlGraph.run(this, '224595567959125998480734549046093290940', 'steering-motor-controller');">
+        <button class="graph_button graph_show_button" id="B129644886536975127147358169224621201863{level}" level="{level}" note_temp_id="129644886536975127147358169224621201863" onclick="window.ObsHtmlGraph.run(this, '129644886536975127147358169224621201863', 'steering-motor-controller');">
             Show Graph
         </button>
-        <button class="graph_button graph_type_button" id="C224595567959125998480734549046093290940{level}" style="flex:1" onclick="window.ObsHtmlGraph.switch_graph_type(this);">
+        <button class="graph_button graph_type_button" id="C129644886536975127147358169224621201863{level}" style="flex:1" onclick="window.ObsHtmlGraph.switch_graph_type(this);">
             2D
         </button>
     </div>
