@@ -47,146 +47,6 @@ A CORS Network is a collection of GNSS Base stations combined in a single networ
 
 https://software.rtcm-ntrip.org/wiki
 
-## RTKLIB str2str
-
-[str2str manual](https://www.rtklib.com/prog/manual_2.4.2.pdf#page=101)
-
-0. Open a terminal and enter the following command to capture the serial port device label e.g. `/dev/tty*` [More info](https://en.wikipedia.org/wiki/Serial_port#Hardware_abstraction)
-```shell
-dmesg --follow
-```
-
-1. Plugin in the USB RTK module and on the Linux terminal you should see this something like the following: 
-
-```stdout
-[604400.525618] cdc_acm 1-1.3:1.0: ttyACM0: USB ACM device
-                                   ^^^^^^^ make note of this label
-```
-
-> [!NOTE]
-> If you're using a terminal within a docker container you may need to try running the 
-> container in "privileged" mode. This is consider unsafe in some circumstances so you may look [here](#TODO) for details on how to expose serial interfaces more securely.
-
-2. Cancel the process from step 0. In the terminal, enter the following.
-```shell
-sudo screen /dev/ttyACM0 9600
-```
-
-or
-
-```shell
-sudo cutecom
-```
-
-3. You should be able to observe [NMEA strings](http://lefebure.com/articles/nmea-gga/) streamed to the terminal. If not, your device may need to be manually configured to do so. One, alternative method is to configure the GNSS receiver to output data via TCP. Enter the either the following commands to observe the data stream.
-
-```shell
-nc 192.168.0.20:9002
-```
-
-or
-
-```shell
-socat - TCP4:192.168.0.20:9002
-```
-
-4. The `str2str` rtklib CLI application is use to connect to a NTRIP Caster and receive correction data. 
-
-```
-$ sudo ./str2str -in ntrip://username:password@hostname:port/mountpoint -out serial://ttyACM0:115200#52001 -b 1
-```
-
-
-### Access RTK correction service and RTK correction data
-
-- If your using a RTK correction service then we need a convenient way to store the login credentials securely. This is can be done with Environment Variables
-- Alternatively you can set up your own base station (this requires an additional Receiver that can stream out RTK corrections).
-- Each method will perform similarly. The limitations of each will be based on the following:
-
-|Method|Base Station Coverage| Cost|
-|-|-|-|
-|RTK Service| Typically Statewide| Free or Subscription (depending on state)|
-|RTK Base station | 6 mi (single band) 36 mi (multi-band)| +$300 for additional receiver and antenna|
-
----
-
-### Environment Variables
-
-https://www.linode.com/docs/guides/how-to-set-linux-environment-variables/
-
-0. Open new terminal,  and append the `.bashrc` file with the following template and overwriting the characters with `...` 
-
-```shell
-sudo vim ~/.bashrc
-```
-
->[!WARNING]
-> Note login credentials environment variables have been omitted. Use this snippet as a template. Be careful **NOT** to upload theses to the internet. This should pasted at the bottom of the .bashrc file of the Linux machine. This will create permanent environment variables to store RTK correction service login credentials. This template has two separate ports and endpoints for connecting to a network that automatically selects a reference station and one for connecting a specific reference station. 
-
->[!Info] 
-> If you prefer not to store secrets as environment variables [OWSAP recommends](https://cheatsheetseries.owasp.org/cheatsheets/Secrets_Management_Cheat_Sheet.html#32-where-should-a-secret-be) using secrets-manager such as:
-> >[AWS Secret Manager](https://aws.amazon.com/secrets-manager/), [Azure Key Vault](https://azure.microsoft.com/nl-nl/services/key-vault/), [Google Secret Manager](https://cloud.google.com/secret-manager)), or other third-party facilities ([Hashicorp Vault](https://www.vaultproject.io/), [Conjur](https://www.conjur.org/), [Keeper](https://www.keepersecurity.com/), [Confidant](https://lyft.github.io/confidant/))
-> 
-> Other secret managers are [bitwarden](https://bitwarden.com/products/secrets-manager/)and [infisical](https://infisical.com/infisical-vs-hashicorp-vault)
-
-```shell
-# InCORS RTK correction service credentials https://incors.in.gov/
-# Save the environment variables to to .bashrc i.e `sudo vim ~/.bashrc`
-#########################################################
-# DO NOT PUBLISH, THIS CONTAINS USERNAMES and PASSWORDS #
-#########################################################
-export NT_HOSTNAME='...'
-# Automatic cells
-export NT_PORT_AUTO='9000'
-export NT_ENDPOINT_AUTO='RTCM3_MAX'
-# single site
-export NT_PORT_SINGLE='...'
-export NT_ENDPOINT_SINGLE='...'
-# secret
-export NT_USER='...'
-export NT_PASSWORD='...'
-```
-
-1. After saving edits, close the terminal then run `source ~/.bahsrc`
-2. Verify environment variables
-```shell
-echo -e '\n'\
-'ntrip hostname:        ' $NT_HOSTNAME'\n'\
-'ntrip port_auto:       ' $NT_PORT_AUTO'\n'\
-'ntrip endpoint_auto:   ' $NT_ENDPOINT_AUTO'\n'\
-'ntrip port_sigle:      ' $NT_PORT_SINGLE'\n'\
-'ntrip endpoint_single: ' $NT_ENDPOINT_SINGLE'\n'\
-'ntrip user:            ' $NT_USER'\n'\
-'nitrip password:       ' $NT_PASSWORD
-```
-
----
-
-### Installing RTKLIB
-
-0. In the terminal install the rtklib
-
-```
-sudo apt install rtklib
-```
-
-1. Attempt to receive RTK corrections.
-
- - Single Site
- 
-```shell
-str2str -in ntrip://$NT_USER:$NT_PASSWORD@$NT_HOSTNAME:$NT_PORT_SINGLE/$NT_ENDPOINT_SINGLE#rtcm3
-```
-
-- Automatic Site
-
-> [!warning]
-> Automatic site requires communication with a **GNSS RTK Receiver** in order to automatically send you correction data from the nearest site (mount point). Since there is NO target `-out` parameter provided in the example below `str2str` will timeout as it waits to receive GNSS coordinate data. In this case the `-in` `-out` abstraction is not strictly accurate since the data is being exchanged both directions between server and client. #todo explain `-b 1` argument.
-
-```shell
-str2str -in ntrip://$NT_USER:$NT_PASSWORD@$NT_HOSTNAME:$NT_PORT_AUTO/$NT_ENDPOINT_AUTO#rtcm3
-```
-
 ## GNSS RTK Receiver
 ### Configure RTK device correction input and position out methods
 
@@ -421,6 +281,150 @@ nc localhost 52001
 	- fctr: 
 	- output_tcp_port -b 1: The `-b 1` indicates that we want to use the **1st** of many output streams (if multiple outputs streams are used) as the source of NMEA sentences to stream to a TCP server 
 
+## RTKLIB str2str
+
+[str2str manual](https://www.rtklib.com/prog/manual_2.4.2.pdf#page=101)
+
+0. Open a terminal and enter the following command to capture the serial port device label e.g. `/dev/tty*` [More info](https://en.wikipedia.org/wiki/Serial_port#Hardware_abstraction)
+```shell
+dmesg --follow
+```
+
+1. Plugin in the USB RTK module and on the Linux terminal you should see this something like the following: 
+
+```stdout
+[604400.525618] cdc_acm 1-1.3:1.0: ttyACM0: USB ACM device
+                                   ^^^^^^^ make note of this label
+```
+
+> [!NOTE]
+> If you're using a terminal within a docker container you may need to try running the 
+> container in "privileged" mode. This is consider unsafe in some circumstances so you may look [here](#TODO) for details on how to expose serial interfaces more securely.
+
+2. Cancel the process from step 0. In the terminal, enter the following.
+```shell
+sudo screen /dev/ttyACM0 9600
+```
+
+or
+
+```shell
+sudo cutecom
+```
+
+3. You should be able to observe [NMEA strings](http://lefebure.com/articles/nmea-gga/) streamed to the terminal. If not, your device may need to be manually configured to do so. One, alternative method is to configure the GNSS receiver to output data via TCP. Enter the either the following commands to observe the data stream.
+
+```shell
+nc 192.168.0.20:9002
+```
+
+or
+
+```shell
+socat - TCP4:192.168.0.20:9002
+```
+
+4. The `str2str` rtklib CLI application is use to connect to a NTRIP Caster and receive correction data. 
+
+```
+$ sudo ./str2str -in ntrip://username:password@hostname:port/mountpoint -out serial://ttyACM0:115200#52001 -b 1
+```
+
+
+### Access RTK correction service and RTK correction data
+
+- If your using a RTK correction service then we need a convenient way to store the login credentials securely. This is can be done with Environment Variables
+- Alternatively you can set up your own base station (this requires an additional Receiver that can stream out RTK corrections).
+- Each method will perform similarly. The limitations of each will be based on the following:
+
+|Method|Base Station Coverage| Cost|
+|-|-|-|
+|RTK Service| Typically Statewide| Free or Subscription (depending on state)|
+|RTK Base station | 6 mi (single band) 36 mi (multi-band)| +$300 for additional receiver and antenna|
+
+---
+
+## Installing RTKLIB
+
+0. In the terminal install the rtklib
+
+```
+sudo apt install rtklib
+```
+
+1. Attempt to receive RTK corrections. Note the placeholders for the required parameters are environment variables. [[#Environment Variables]] discusses details on how to set these up so you don't have to remember them.
+
+ - Single Site
+ 
+```shell
+str2str -in ntrip://$NT_USER:$NT_PASSWORD@$NT_HOSTNAME:$NT_PORT_SINGLE/$NT_ENDPOINT_SINGLE#rtcm3
+```
+
+- Automatic Site
+
+> [!warning]
+> Automatic site requires communication with a **GNSS RTK Receiver** in order to automatically send you correction data from the nearest site (mount point). Since there is NO target `-out` parameter provided in the example below `str2str` will timeout as it waits to receive GNSS coordinate data. In this case the `-in` `-out` abstraction is not strictly accurate since the data is being exchanged both directions between server and client. #todo explain `-b 1` argument.
+
+```shell
+str2str -in ntrip://$NT_USER:$NT_PASSWORD@$NT_HOSTNAME:$NT_PORT_AUTO/$NT_ENDPOINT_AUTO#rtcm3
+```
+
+## Environment Variables 
+
+There are multiple ways to do this. The most important point is to choose the way that offers the least risk from developers accidentally committing passwords or secrets to your public git repo.
+
+https://www.linode.com/docs/guides/how-to-set-linux-environment-variables/
+
+0. Open new terminal,  and append the `.bashrc` file with the following template and overwriting the characters with `...` 
+
+```shell
+sudo vim ~/.bashrc
+```
+
+>[!WARNING]
+> Note login credentials environment variables have been omitted. Use this snippet as a template. Be careful **NOT** to upload theses to the internet. This should pasted at the bottom of the .bashrc file of the Linux machine. This will create permanent environment variables to store RTK correction service login credentials. This template has two separate ports and endpoints for connecting to a network that automatically selects a reference station and one for connecting a specific reference station. 
+
+>[!Info] 
+> If you prefer not to store secrets as environment variables [OWSAP recommends](https://cheatsheetseries.owasp.org/cheatsheets/Secrets_Management_Cheat_Sheet.html#32-where-should-a-secret-be) using secrets-manager such as:
+> >[AWS Secret Manager](https://aws.amazon.com/secrets-manager/), [Azure Key Vault](https://azure.microsoft.com/nl-nl/services/key-vault/), [Google Secret Manager](https://cloud.google.com/secret-manager)), or other third-party facilities ([Hashicorp Vault](https://www.vaultproject.io/), [Conjur](https://www.conjur.org/), [Keeper](https://www.keepersecurity.com/), [Confidant](https://lyft.github.io/confidant/))
+> 
+> Other secret managers are [bitwarden](https://bitwarden.com/products/secrets-manager/)and [infisical](https://infisical.com/infisical-vs-hashicorp-vault)
+
+```shell
+# InCORS RTK correction service credentials https://incors.in.gov/
+# Save the environment variables to to .bashrc i.e `sudo vim ~/.bashrc`
+#########################################################
+# DO NOT PUBLISH, THIS CONTAINS USERNAMES and PASSWORDS #
+#########################################################
+export NT_HOSTNAME='...'
+# Automatic cells
+export NT_PORT_AUTO='9000'
+export NT_ENDPOINT_AUTO='RTCM3_MAX'
+# single site
+export NT_PORT_SINGLE='...'
+export NT_ENDPOINT_SINGLE='...'
+# secret
+export NT_USER='...'
+export NT_PASSWORD='...'
+```
+
+1. After saving edits, close the terminal then run `source ~/.bahsrc`
+2. Verify environment variables
+```shell
+echo -e '\n'\
+'ntrip hostname:        ' $NT_HOSTNAME'\n'\
+'ntrip port_auto:       ' $NT_PORT_AUTO'\n'\
+'ntrip endpoint_auto:   ' $NT_ENDPOINT_AUTO'\n'\
+'ntrip port_sigle:      ' $NT_PORT_SINGLE'\n'\
+'ntrip endpoint_single: ' $NT_ENDPOINT_SINGLE'\n'\
+'ntrip user:            ' $NT_USER'\n'\
+'nitrip password:       ' $NT_PASSWORD
+```
+
+Alternatively, you can save the the copy paste to a standalone file such as `dev.env` then in then set them with the following command. `source dev.env`
+
+---
+
 ## Extras
 
 - Set trace level with `-t 3` and you can read logs with `cat str2str.trace`
@@ -437,8 +441,13 @@ cat str2str.trace
 
 ### Initial Testing
 
-- Configure the Emlid Reach device "Correction input" settings to connect to an NTRIP server via the webapp. 
-- Install the nmea_serial_driver ROS2 package
+- Configure the Emlid Reach device "Correction input" settings to connect to an NTRIP server via the webapp. Note this ideally should be done via `str2str` because such method would used the rpi's network connection instead of the WiFi module on-board the Reach device itself. The main hurdle with using `str2str` is that the command typically connects to the serial interface of the GPS device and most ROS2 packages will only connect to a GPS devices' serial interface. This is _OK_ because we could provide a second serial interface via the UART interface on-board the Reach device and connect the GPIO/UART pins on to the rpi. However this demo section is simply exploring the several ways of getting RTK correction data to our GPS device and then connecting the NEMA sentences to a ROS2 node that can then publish `NavSatFix` messages.
+- ![[reach-correction-input.png]]
+- Install the `nmea_serial_driver` ROS2 package
+```
+sudo apt update
+sudo apt install ros-humble-nmea-navsat-driver
+```
 ```shell
 ros2 run nmea_navsat_driver nmea_serial_driver --ros-args --params-file ./config/nmea_serial_driver.yaml
 ```
@@ -479,6 +488,70 @@ My current understanding of possible configurations at this moment are:
 2. Utilize `str2str` and `nmea_navsat_driver` and **UART** as a second channel for receiving NMEA sentences while **PC-to-Serial** is used for streaming RTCM Messages to the Reach Module.
 3. Utilize `str2str` and ~~`nmea_tcp_driver` (Only after [nmea_tcp_driver](https://github.com/CearLab/nmea_tcp_driver) is rewritten for ROS2 support 💀) Currently started on a [emlid_reach_ros2](https://github.com/digitalhabitat/emlid_reach_ros2) but I'm not sure how much work is required.~~
 4. Utilize `str2str` and [gpsd_client](https://index.ros.org/p/gpsd_client/#humble)
+
+## Test 2 - gpsd
+
+Connect emlid device with correction service via [str2str](https://manpages.ubuntu.com/manpages/jammy/en/man1/str2str.1.html) and Output Received Stream to TCP Port 52001.
+```
+str2str -in ntrip://$NT_USER:$NT_PASSWORD@$NT_HOSTNAME:$NT_PORT_SINGLE/$NT_ENDPOINT_SINGLE#rtcm3 -out serial://emlid_rtk:115200#52001
+```
+
+Verify NMEA stream is present on port 52001 with [nc](https://man.archlinux.org/man/nc.1).
+```
+nc localhost 52001
+```
+
+Launch [gpsd](https://man.archlinux.org/man/gpsd.8) with the following options. This program parses the NMEA stream on the TCP port.
+- `-N`: don't go into background
+- `-p`: do not reconfigure the receiver automatically
+- `-d`: set debug level, default 0 
+- `-S`: set port for daemon, default 2947
+- `tcp://host[:port]`
+```
+ sudo gpsd -N -p -D 5 -S 10002 tcp://192.168.1.25:52001
+```
+
+Run [cgps](https://man.archlinux.org/man/cgps.1.en) to verify that `gpsd` can relay the GPS data. 
+```
+cgps localhost:10002
+```
+
+Output from `cgps`. Notice we have a fix status.
+```
+┌───────────────────────────────────────────┐┌──────────────────Seen  0/Used  0┐
+│ Time:          n/a (0)                    ││GNSS   PRN  Elev   Azim   SNR Use│
+│ Latitude:         <omitted>   N           ││                                 │
+│ Longitude:        <omitted>   W           ││                                 │
+│ Alt (HAE, MSL):   <omitted>, <omitted> ft ││                                 │
+│ Speed:           n/a                      ││                                 │
+│ Track (true, var):                n/a deg ││                                 │
+│ Climb:           n/a                      ││                                 │
+│ Status:         3D RTK FIX (161 secs)     ││                                 │
+│ Long Err  (XDOP, EPX):  n/a ,  n/a        ││                                 │
+│ Lat Err   (YDOP, EPY):  n/a ,  n/a        ││                                 │
+│ Alt Err   (VDOP, EPV):  n/a , +/-  150 ft ││                                 │
+│ 2D Err    (HDOP, CEP):  n/a , +/- 81.0 ft ││                                 │
+│ 3D Err    (PDOP, SEP):  n/a , +/-  149 ft ││                                 │
+│ Time Err  (TDOP):       n/a               ││                                 │
+│ Geo Err   (GDOP):       n/a               ││                                 │
+│ ECEF X, VX:              n/a    n/a       ││                                 │
+│ ECEF Y, VY:              n/a    n/a       ││                                 
+│ ECEF Z, VZ:              n/a    n/a       ││                                 │
+│ Speed Err (EPS):        n/a               ││                                 │
+│ Track Err (EPD):        n/a               ││                                 │
+│ Time offset:            n/a               ││                                 │
+│ Grid Square:            <omitted>         ││                                 │
+└───────────────────────────────────────────┘└─────────────────────────────────┘
+```
+### Test 2 Results
+
+We demonstrated that a single connection (USB) to the emlid GPS device running the programs `str2str` and `gpsd` on the [[rpi]] prepare us to utilize the ROS2 package [gpsd_client](https://index.ros.org/p/gpsd_client/#humble)to offer `NavSatFix` messages.
+
+## Test 3 - ROS2 reach_ros_node
+
+Pretesting Note: Recently a ROS1 package ([reach_ros_node](https://github.com/rpng/reach_ros_node/tree/ros2)) became available for ROS2 for the [Emlid Reach RTK Module](https://docs.emlid.com/reach/reference/specifications/reach-module-specs/). If this works the way I expect it, I would only need to run the `str2str` command with the TCP output and the node from this package.
+
+#todo Complete this test
 ## Questions
 
 ### Q1. How do you find the NTRIP Mount point for Automatic Cells or Single Sites?

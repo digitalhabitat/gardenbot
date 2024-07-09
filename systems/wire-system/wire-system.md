@@ -9,16 +9,22 @@ The the wiring of each major electrical system is documented with https://www.di
 > - Wiring construction (incomplete)
 > - Part documentation (incomplete)
 > - Wire lables (incomplete)
-> - https://www.cosjwt.com/tag/asme-y1444-2008/
-> - IEEE-200-1975 (ANSI Y32.16-1975)
-> - ASME Y14.44-2008
-> 	- Reference Designations for Electrical and Electronics Parts and Equipment
-> - MIL-STD-1472H (Human Engineering)
+> - Topics on how properly properly reference and annotate everything from a single circuit board to a collection of complete enclosures.   
+> 	- https://en.wikipedia.org/wiki/Reference_designator
+> 	- https://www.cosjwt.com/tag/asme-y1444-2008/
+> 	- IEEE-200-1975 (ANSI Y32.16-1975)
+> 		- ==Obsolete== Reference Designations for Electrical and Electronics Parts and Equipment
+> 	- ASME Y14.44-2008
+> 		- ==Renewed== Reference Designations for Electrical and Electronics Parts and Equipment
+> 	- MIL-STD-1472H (Human Engineering)
+> 		- Ideal spacing, size, dimension, and symbols for switches
 > - [NASA Workmapship Standards](https://workmanship.nasa.gov/lib/insp/2%20books/frameset.html)
 > - [NASA Wire and Cable Workmanship](https://workmanship.nasa.gov/lib/insp/2%20books/links/sections/407%20Splices.html)
 > - [WireViz syntax](https://github.com/wireviz/WireViz/blob/dev/docs/syntax.md)
 > - [Relay Pin Numbering](https://klc.kicad.org/general/g3/g3.1/)
 > - [Regenerative Braking Safety](https://github.com/mjbots/moteus/blob/main/docs/reference.md#regenerative-braking-safety)
+> - 
+> - [Siemens Symbols Library](https://symbols.radicasoftware.com/)
 
 
 >[!Info] **Golden rules** for harness reference designation from IEEE-200-1975 include:
@@ -65,6 +71,12 @@ Labeling Convention `<Wire-id><Port-id><Mate-id>
 	- `MY1016`
 
 ## Power System Concept
+
+The power system is responsible for safely supplying power to the loads while also isolating other devices during different modes of operation or charging. This design incorporates on-board chargers that may only connect and charge the batteries under specific conditions. Most low cost off the shelf sealed lead acid (SLA) absorbent glass mat (AGM) float chargers \[SLA battery maintainers\] require the battery to not be under load during charging. The design provides a solution for the following requirements.
+1. Charging mode: Shall use relays or contractors to isolate the 12V and 24V batteries from the loads. The relays or contractors shall also route power from an on-board 12V power supply to the 12V load such that the on-board computer can remain on during charging operations.
+2. E-stop mode: Shall use an emergency-stop button that disconnects power to the 24V load and pre-charge circuit such that the Pre-Charge, Start, and Stop buttons have no battery electrical power supplied to them. This shall effectively unlatch **Relay Z**.
+3. Pre-Charge mode: Shall provide a pre-charge button that supplies a reduced voltage (5V) from the 24V battery to minimize the in-rush current from the capacitive load characteristics of the motor controllers.
+4. Start/Stop mode: Shall provide a Start and Stop button to latch a normally open switch (relay_z) closed. Relay Z and Relay C shall be spec'd to handle at least 24V and 50A. Relay Z shall act as the main power switch to provide 24V to motors.
 
 ![[power-system-concept.drawio.svg]]
 ## 24 Volt Supply Wiring Diagram
