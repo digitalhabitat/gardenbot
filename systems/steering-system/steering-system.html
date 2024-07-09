@@ -303,6 +303,7 @@
 		<div id="folder-container-13" class="dir-container requires_js " path="/gardenbot/systems/localization-sysytem/gnss-rtk">
 			<ul class="dir-list">
 				<li><div class="file-icon non-md-file"></div><a class="" href="/gardenbot/systems/localization-sysytem/gnss-rtk/gnss-rtk-diagram.drawio.svg"  class="external-link">gnss-rtk-diagram.drawio.svg</a></li>
+				<li><div class="file-icon non-md-file"></div><a class="" href="/gardenbot/systems/localization-sysytem/gnss-rtk/reach-correction-input.png"  class="external-link">reach-correction-input.png</a></li>
 				<li><div class="file-icon"></div><a class="" href="/gardenbot/systems/localization-sysytem/gnss-rtk/usb-gnss-setup.html"  >usb-gnss-setup</a></li>
 			</ul>
 		</div>
@@ -371,10 +372,58 @@
 <div class="content"><h1 id="steering-system">Steering System</h1>
 <div class="toc">
 <ul>
-<li><a href="#steering-system" class="anchor-link">Steering System</a></li>
+<li><a href="#steering-system" class="anchor-link">Steering System</a><ul>
+<li><a href="#dual-motor-skid-steering" class="anchor-link">Dual motor skid steering</a></li>
+<li><a href="#ackermann-steering-with-odrive-motor" class="anchor-link">Ackermann Steering with Odrive Motor</a><ul>
+<li><a href="#motor-details" class="anchor-link">Motor Details</a></li>
+</ul>
+</li>
+<li><a href="#ackermann-steering-with-mjbots-motor" class="anchor-link">Ackermann Steering with mjbots Motor</a><ul>
+<li><a href="#motor-controller-details" class="anchor-link">Motor Controller Details</a></li>
+<li><a href="#motor-details_1" class="anchor-link">Motor Details</a></li>
+</ul>
+</li>
+</ul>
+</li>
 </ul>
 </div>
-<p><a class="inline-tag" href="/gardenbot/obs.html/tags/todo/index.html">todo</a>   </p></div>
+<h2 id="dual-motor-skid-steering">Dual motor skid steering</h2>
+<p>This is the simplest design. The design is essentially the same you may see on a zero-radius turn lawn mower. Two independently controlled rear wheel drive with two caster wheels in the front. The draw backs are low handling performance at moderate speeds and on non-flat surfaces or rough terrain.   </p>
+<p><a href="https://www.harborfreight.com/material-handling/tires-casters/swivel-casters/8-inch-pneumatic-swivel-caster-42485.html" class="external-link">8 in. Pneumatic Swivel Caster</a>   </p>
+<h2 id="ackermann-steering-with-odrive-motor">Ackermann Steering with Odrive Motor</h2>
+<h3 id="motor-details">Motor Details</h3>
+<p>Model: <a href="https://shop.odriverobotics.com/products/odrive-custom-motor-d5065" class="external-link">D5065 270kv</a> <br />
+Primary Shaft Diameter: 8 mm (D-shaft cut) <br />
+Primary Shaft Length: 30 mm <br />
+Secondary Shaft diameter: 8 mm <br />
+Secondary Shaft length: 16 mm   </p>
+<h2 id="ackermann-steering-with-mjbots-motor">Ackermann Steering with mjbots Motor</h2>
+<h3 id="motor-controller-details">Motor Controller Details</h3>
+<p><a href="https://mjbots.com/products/moteus-r4-11" class="external-link">moteus r4.11</a>   </p>
+<ul>
+<li>3 phase brushless FOC based control   </li>
+<li>Voltage Input: 10-44V (&lt;=10S)   </li>
+<li>Temperature: -40-85C   </li>
+<li>Peak Electrical Power: 500W   </li>
+<li>Mass: 14.2g   </li>
+<li>Control rate: 15-30kHz   </li>
+<li>PWM switching rate: 15-60kHz   </li>
+<li>170 MHz 32 bit STM32G4 microcroprocessor   </li>
+<li>Peak phase current: 100A   </li>
+<li>Continuous phase current: 11A / 22A (w/o and w/ thermal management)   </li>
+<li>Max electrical frequency: 3kHz   </li>
+</ul>
+<h3 id="motor-details_1">Motor Details</h3>
+<p>Model:<a href="https://mjbots.com/products/mj5208" class="external-link">mj5280</a>   </p>
+<ul>
+<li>Peak torque: 1.7 Nm   </li>
+<li>Mass (with wires): 193 g   </li>
+<li>Peak power: 600W   </li>
+<li>Kv: 330   </li>
+<li>Maximum RPM: 7500   </li>
+<li>Outer diameter: 63mm   </li>
+<li>Length: 25mm   </li>
+</ul></div>
 <div class="note-footer">
 <div class="backlinks">
 <h2>Backlinks</h2>
@@ -384,25 +433,22 @@
 </div>
 
 <div class="tags">
-<h2>Tags</h2>
-<ul>
-	<li><a class="backlink" href="/gardenbot/obs.html/tags/todo/index.html">todo</a></li>
-</ul>
+
 </div>
 
 </div>
 <div class="graph requires_js ">
-    <div id="A9087562347393830680114084569251468519{level}" class="graph_div"></div>
+    <div id="A322859210633773700890751537680690837278{level}" class="graph_div"></div>
 
-    <div class="graph-instructions" id="D9087562347393830680114084569251468519{level}">
+    <div class="graph-instructions" id="D322859210633773700890751537680690837278{level}">
         Left-click: follow link, Right-click: select node, Scroll: zoom
     </div>
     
     <div class="graph-button-row" style="display:flex;">
-        <button class="graph_button graph_show_button" id="B9087562347393830680114084569251468519{level}" level="{level}" note_temp_id="9087562347393830680114084569251468519" onclick="window.ObsHtmlGraph.run(this, '9087562347393830680114084569251468519', 'steering-system');">
+        <button class="graph_button graph_show_button" id="B322859210633773700890751537680690837278{level}" level="{level}" note_temp_id="322859210633773700890751537680690837278" onclick="window.ObsHtmlGraph.run(this, '322859210633773700890751537680690837278', 'steering-system');">
             Show Graph
         </button>
-        <button class="graph_button graph_type_button" id="C9087562347393830680114084569251468519{level}" style="flex:1" onclick="window.ObsHtmlGraph.switch_graph_type(this);">
+        <button class="graph_button graph_type_button" id="C322859210633773700890751537680690837278{level}" style="flex:1" onclick="window.ObsHtmlGraph.switch_graph_type(this);">
             2D
         </button>
     </div>

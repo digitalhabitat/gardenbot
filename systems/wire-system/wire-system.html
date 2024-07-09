@@ -303,6 +303,7 @@
 		<div id="folder-container-13" class="dir-container requires_js " path="/gardenbot/systems/localization-sysytem/gnss-rtk">
 			<ul class="dir-list">
 				<li><div class="file-icon non-md-file"></div><a class="" href="/gardenbot/systems/localization-sysytem/gnss-rtk/gnss-rtk-diagram.drawio.svg"  class="external-link">gnss-rtk-diagram.drawio.svg</a></li>
+				<li><div class="file-icon non-md-file"></div><a class="" href="/gardenbot/systems/localization-sysytem/gnss-rtk/reach-correction-input.png"  class="external-link">reach-correction-input.png</a></li>
 				<li><div class="file-icon"></div><a class="" href="/gardenbot/systems/localization-sysytem/gnss-rtk/usb-gnss-setup.html"  >usb-gnss-setup</a></li>
 			</ul>
 		</div>
@@ -399,16 +400,22 @@
 <li>Wiring construction (incomplete)   </li>
 <li>Part documentation (incomplete)   </li>
 <li>Wire lables (incomplete)   </li>
+<li>Topics on how properly properly reference and annotate everything from a single circuit board to a collection of complete enclosures.   </li>
+<li><a href="https://en.wikipedia.org/wiki/Reference_designator" class="external-link">https://en.wikipedia.org/wiki/Reference_designator</a>   </li>
 <li><a href="https://www.cosjwt.com/tag/asme-y1444-2008/" class="external-link">https://www.cosjwt.com/tag/asme-y1444-2008/</a>   </li>
 <li>IEEE-200-1975 (ANSI Y32.16-1975)   </li>
+<li><mark class="formatting_highlight">Obsolete</mark> Reference Designations for Electrical and Electronics Parts and Equipment   </li>
 <li>ASME Y14.44-2008   </li>
-<li>Reference Designations for Electrical and Electronics Parts and Equipment   </li>
+<li><mark class="formatting_highlight">Renewed</mark> Reference Designations for Electrical and Electronics Parts and Equipment   </li>
 <li>MIL-STD-1472H (Human Engineering)   </li>
+<li>Ideal spacing, size, dimension, and symbols for switches   </li>
 <li><a href="https://workmanship.nasa.gov/lib/insp/2%20books/frameset.html" class="external-link">NASA Workmapship Standards</a>   </li>
 <li><a href="https://workmanship.nasa.gov/lib/insp/2%20books/links/sections/407%20Splices.html" class="external-link">NASA Wire and Cable Workmanship</a>   </li>
 <li><a href="https://github.com/wireviz/WireViz/blob/dev/docs/syntax.md" class="external-link">WireViz syntax</a>   </li>
 <li><a href="https://klc.kicad.org/general/g3/g3.1/" class="external-link">Relay Pin Numbering</a>   </li>
-<li><a href="https://github.com/mjbots/moteus/blob/main/docs/reference.md#regenerative-braking-safety" class="external-link">Regenerative Braking Safety</a></li>
+<li><a href="https://github.com/mjbots/moteus/blob/main/docs/reference.md#regenerative-braking-safety" class="external-link">Regenerative Braking Safety</a>   </li>
+<li></li>
+<li><a href="https://symbols.radicasoftware.com/" class="external-link">Siemens Symbols Library</a></li>
 </ul>
 </div>
 </div>
@@ -488,6 +495,11 @@ Closest American (AWG) gauge: AWG 11</p>
 </li>
 </ul>
 <h2 id="power-system-concept">Power System Concept</h2>
+<p>The power system is responsible for safely supplying power to the loads while also isolating other devices during different modes of operation or charging. This design incorporates on-board chargers that may only connect and charge the batteries under specific conditions. Most low cost off the shelf sealed lead acid (SLA) absorbent glass mat (AGM) float chargers [SLA battery maintainers] require the battery to not be under load during charging. The design provides a solution for the following requirements. <br />
+1. Charging mode: Shall use relays or contractors to isolate the 12V and 24V batteries from the loads. The relays or contractors shall also route power from an on-board 12V power supply to the 12V load such that the on-board computer can remain on during charging operations. <br />
+2. E-stop mode: Shall use an emergency-stop button that disconnects power to the 24V load and pre-charge circuit such that the Pre-Charge, Start, and Stop buttons have no battery electrical power supplied to them. This shall effectively unlatch <strong>Relay Z</strong>. <br />
+3. Pre-Charge mode: Shall provide a pre-charge button that supplies a reduced voltage (5V) from the 24V battery to minimize the in-rush current from the capacitive load characteristics of the motor controllers. <br />
+4. Start/Stop mode: Shall provide a Start and Stop button to latch a normally open switch (relay_z) closed. Relay Z and Relay C shall be spec'd to handle at least 24V and 50A. Relay Z shall act as the main power switch to provide 24V to motors.   </p>
 <p><img alt="" src="/gardenbot/systems/wire-system/wire-diagrams/power-system-concept.drawio.svg" />   </p>
 <h2 id="h_24-volt-supply-wiring-diagram">24 Volt Supply Wiring Diagram</h2>
 <p><a href="/gardenbot/systems/wire-system/wire-diagrams/wire-system-24-volt.drawio.html"><img alt="" src="/gardenbot/systems/wire-system/wire-diagrams/wire-system-24-volt.drawio.svg" /></a>   </p>
@@ -513,17 +525,17 @@ Closest American (AWG) gauge: AWG 11</p>
 
 </div>
 <div class="graph requires_js ">
-    <div id="A323413386364970655313689957023997829706{level}" class="graph_div"></div>
+    <div id="A237061754796113304433903567503450514995{level}" class="graph_div"></div>
 
-    <div class="graph-instructions" id="D323413386364970655313689957023997829706{level}">
+    <div class="graph-instructions" id="D237061754796113304433903567503450514995{level}">
         Left-click: follow link, Right-click: select node, Scroll: zoom
     </div>
     
     <div class="graph-button-row" style="display:flex;">
-        <button class="graph_button graph_show_button" id="B323413386364970655313689957023997829706{level}" level="{level}" note_temp_id="323413386364970655313689957023997829706" onclick="window.ObsHtmlGraph.run(this, '323413386364970655313689957023997829706', 'wire-system');">
+        <button class="graph_button graph_show_button" id="B237061754796113304433903567503450514995{level}" level="{level}" note_temp_id="237061754796113304433903567503450514995" onclick="window.ObsHtmlGraph.run(this, '237061754796113304433903567503450514995', 'wire-system');">
             Show Graph
         </button>
-        <button class="graph_button graph_type_button" id="C323413386364970655313689957023997829706{level}" style="flex:1" onclick="window.ObsHtmlGraph.switch_graph_type(this);">
+        <button class="graph_button graph_type_button" id="C237061754796113304433903567503450514995{level}" style="flex:1" onclick="window.ObsHtmlGraph.switch_graph_type(this);">
             2D
         </button>
     </div>
