@@ -9,6 +9,7 @@ This is the simplest design. The design is essentially the same you may see on a
 
 ### Motor Details
 Model: [D5065 270kv](https://shop.odriverobotics.com/products/odrive-custom-motor-d5065)
+Torque: 1.99 Nm
 Primary Shaft Diameter: 8 mm (D-shaft cut)
 Primary Shaft Length: 30 mm
 Secondary Shaft diameter: 8 mm

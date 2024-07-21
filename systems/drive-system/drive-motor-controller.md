@@ -9,6 +9,7 @@ aliases: [roboclaw]
 - 30 Amps Continuous Per Channel
 - 60 Amps Peak Per Channel
 - Motor Type: Brushed DC
+- Female Molex PicoBlade 2-pin connector for 5V fan 
 
 Version: `V5E 2x30`
 Firmware: `4.1.34`

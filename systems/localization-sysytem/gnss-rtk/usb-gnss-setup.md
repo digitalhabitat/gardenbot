@@ -21,6 +21,7 @@
 >[!INFO] Helpful Resources
 > - [RTK Explained](https://www.ardusimple.com/rtk-explained/)
 > - [What is str2str](https://github.com/septentrio-gnss/Septentrio_AgnosticCorrectionsProgram/blob/main/str2str/README.md#what-is-str2str)
+> - [gpsd - Programmer's References](https://gpsd.gitlab.io/gpsd/references.html)
 > - [simpleRTK2B – Basic Starter Kit](https://www.ardusimple.com/product/simplertk2b-basic-starter-kit-ip65/)
 > - https://incors.in.gov/
 
@@ -136,6 +137,54 @@ This project is using the [Emlid Reach RTK Module](https://docs.emlid.com/reach/
 > [/details]
 > ```
 
+### Identifying serial port
+
+0. Open a terminal and enter the following command to capture the serial port device label e.g. `/dev/tty*` [More info](https://en.wikipedia.org/wiki/Serial_port#Hardware_abstraction)
+```shell
+dmesg --follow
+```
+
+1. Plugin in the USB RTK module and on the Linux terminal you should see this something like the following: 
+
+```stdout
+[604400.525618] cdc_acm 1-1.3:1.0: ttyACM0: USB ACM device
+                                   ^^^^^^^ make note of this label
+```
+
+> [!NOTE]
+> If you're using a terminal within a docker container you may need to try running the 
+> container in "privileged" mode. This is consider unsafe in some circumstances so you may look [here](#TODO) for details on how to expose serial interfaces more securely.
+
+2. Cancel the process from step 0. In the terminal, enter the following.
+```shell
+sudo screen /dev/ttyACM0 9600
+```
+
+or
+
+```shell
+sudo cutecom
+```
+
+3. You should be able to observe [NMEA strings](http://lefebure.com/articles/nmea-gga/) streamed to the terminal. If not, your device may need to be manually configured to do so. One, alternative method is to configure the GNSS receiver to output data via TCP. Enter the either the following commands to observe the data stream.
+
+```shell
+nc 192.168.0.20:9002
+```
+
+or
+
+```shell
+socat - TCP4:192.168.0.20:9002
+```
+
+4. The `str2str` rtklib CLI application is use to connect to a NTRIP Caster and receive correction data. 
+
+```
+$ sudo ./str2str -in ntrip://username:password@hostname:port/mountpoint -out serial://ttyACM0:115200#52001 -b 1
+```
+
+
 ###  Creating a persistent label for the RTK GNSS USB device
 
 To use the serial device as non-root user, udev rules must be installed.
@@ -229,107 +278,9 @@ ls -l /dev/emlid*
 sudo screen /dev/emlid_rtk
 ```
 
-6.  Run the `str2str` rtklib CLI application
-
-- To receive **Single site** corrections via NTRIP and relay to USB GNSS receiver via serial
-
-```shell
-str2str -in ntrip://$NT_USER:$NT_PASSWORD@$NT_HOSTNAME:$NT_PORT_SINGLE/$NT_ENDPOINT_SINGLE#rtcm3 -out serial://emlid_rtk:115200#52001
-```
-
-- Alt. to Receive **Automatic cell** corrections via NTRIP and relay to USB GNSS receiver via serial 
-> [!Note]
-> Not sure if `hostname` is require for `serial://emlid_rtk:115200#NT_HOSTNAME`. For VRS or Automatic Cell sites, just be sure to include `-b 1` with your output stream
-
- 
-```shell
-str2str -in ntrip://$NT_USER:$NT_PASSWORD@$NT_HOSTNAME:$NT_PORT_AUTO/$NT_ENDPOINT_AUTO#rtcm3 -out serial://emlid_rtk:115200#NT_HOSTNAME -b 1
-```
-
-> [!Note]
-> STR2STR also implements "Output Received Stream to TCP Port" option like STRSVR 2.4.3 b34
-> https://github.com/tomojitakasu/RTKLIB/issues/573#issuecomment-760017844
-
-- Alt. to Receive **Automatic cell** corrections via NTRIP and stream RTCM sentences via serial port. Stream reciever NMEA sentences via serial and TCP port 52001.
-```shell
-str2str -in ntrip://$NT_USER:$NT_PASSWORD@$NT_HOSTNAME:$NT_PORT_AUTO/$NT_ENDPOINT_AUTO#rtcm3 -out serial://emlid_rtk:115200#52001
-```
-
-7. Listen
-
-```shell
-nc localhost 52001
-```
-
-### Explanation of `str2str` parameters
-
-[Running str2str](https://github.com/septentrio-gnss/Septentrio_AgnosticCorrectionsProgram/blob/main/str2str/README.md#running-str2str)
-
-#todo
-- -in ntrip://<mark style="background: #FFB8EBA6;">username</mark>:<mark style="background: #FFB86CA6;">password</mark>@<mark style="background: #BBFABBA6;">host</mark>:<mark style="background: #ADCCFFA6;">port</mark>/<mark style="background: #CACFD9A6;">mount</mark>#<mark style="background: #FF5582A6;">format</mark>
-	- username: 
-	- password:
-	- host: Required
-	- port:
-	- mount:
-	- format:
-- -out serial://<mark style="background: #FFF3A3A6;">device_port</mark>:<mark style="background: #ABF7F7A6;">bitrate</mark>:<mark style="background: #D2B3FFA6;">parity</mark>:<mark style="background: #FFB8EBA6;">stopbit</mark>:<mark style="background: #FFB86CA6;">fctr</mark>#<mark style="background: #BBFABBA6;">output_tcp_port -b 1</mark>
-	- device_port: 
-	- bitrate: 
-	- parity: 
-	- stopbit: 
-	- fctr: 
-	- output_tcp_port -b 1: The `-b 1` indicates that we want to use the **1st** of many output streams (if multiple outputs streams are used) as the source of NMEA sentences to stream to a TCP server 
-
 ## RTKLIB str2str
 
 [str2str manual](https://www.rtklib.com/prog/manual_2.4.2.pdf#page=101)
-
-0. Open a terminal and enter the following command to capture the serial port device label e.g. `/dev/tty*` [More info](https://en.wikipedia.org/wiki/Serial_port#Hardware_abstraction)
-```shell
-dmesg --follow
-```
-
-1. Plugin in the USB RTK module and on the Linux terminal you should see this something like the following: 
-
-```stdout
-[604400.525618] cdc_acm 1-1.3:1.0: ttyACM0: USB ACM device
-                                   ^^^^^^^ make note of this label
-```
-
-> [!NOTE]
-> If you're using a terminal within a docker container you may need to try running the 
-> container in "privileged" mode. This is consider unsafe in some circumstances so you may look [here](#TODO) for details on how to expose serial interfaces more securely.
-
-2. Cancel the process from step 0. In the terminal, enter the following.
-```shell
-sudo screen /dev/ttyACM0 9600
-```
-
-or
-
-```shell
-sudo cutecom
-```
-
-3. You should be able to observe [NMEA strings](http://lefebure.com/articles/nmea-gga/) streamed to the terminal. If not, your device may need to be manually configured to do so. One, alternative method is to configure the GNSS receiver to output data via TCP. Enter the either the following commands to observe the data stream.
-
-```shell
-nc 192.168.0.20:9002
-```
-
-or
-
-```shell
-socat - TCP4:192.168.0.20:9002
-```
-
-4. The `str2str` rtklib CLI application is use to connect to a NTRIP Caster and receive correction data. 
-
-```
-$ sudo ./str2str -in ntrip://username:password@hostname:port/mountpoint -out serial://ttyACM0:115200#52001 -b 1
-```
-
 
 ### Access RTK correction service and RTK correction data
 
@@ -342,9 +293,7 @@ $ sudo ./str2str -in ntrip://username:password@hostname:port/mountpoint -out ser
 |RTK Service| Typically Statewide| Free or Subscription (depending on state)|
 |RTK Base station | 6 mi (single band) 36 mi (multi-band)| +$300 for additional receiver and antenna|
 
----
-
-## Installing RTKLIB
+### Installing RTKLIB
 
 0. In the terminal install the rtklib
 
@@ -362,13 +311,70 @@ str2str -in ntrip://$NT_USER:$NT_PASSWORD@$NT_HOSTNAME:$NT_PORT_SINGLE/$NT_ENDPO
 
 - Automatic Site
 
-> [!warning]
-> Automatic site requires communication with a **GNSS RTK Receiver** in order to automatically send you correction data from the nearest site (mount point). Since there is NO target `-out` parameter provided in the example below `str2str` will timeout as it waits to receive GNSS coordinate data. In this case the `-in` `-out` abstraction is not strictly accurate since the data is being exchanged both directions between server and client. #todo explain `-b 1` argument.
+> [!IMPORTANT]
+> Automatic site requires communication with a **GNSS RTK Receiver** in order to automatically send you correction data from the nearest site (mount point) or if caster is using VRS. Since there is NO target `-out` parameter provided in the example below `str2str` will timeout as it waits to receive GNSS coordinate data. In this case the `-in` `-out` semantics might be confusing since the data is being exchanged in both directions between server and client.
+> 
+> It is important to understand that if you are using **Automatic Cells or VRS** (see [this](https://incors.in.gov/InCORS%20Broadcast%20RTK%20Corrections_Products_12-05-2022_port9000.pdf)) then a target `-out` parameter specifying a GNSS receiver and the `-b 1` arguments must be passed with `str2str` or the NTRIP caster will time out.
 
 ```shell
-str2str -in ntrip://$NT_USER:$NT_PASSWORD@$NT_HOSTNAME:$NT_PORT_AUTO/$NT_ENDPOINT_AUTO#rtcm3
+str2str -in ntrip://$NT_USER:$NT_PASSWORD@$NT_HOSTNAME:$NT_PORT_AUTO/$NT_ENDPOINT_AUTO
 ```
 
+### `str2str` Testing
+
+1.  Run the `str2str` rtklib CLI application
+
+To receive **Single site** corrections via NTRIP and relay to USB GNSS receiver via serial
+
+```shell
+str2str -in ntrip://$NT_USER:$NT_PASSWORD@$NT_HOSTNAME:$NT_PORT_SINGLE/$NT_ENDPOINT_SINGLE#rtcm3 -out serial://emlid_rtk:115200#52001
+```
+
+To Receive **Automatic cell** corrections via NTRIP and relay to USB GNSS receiver via serial 
+
+> [!IMPORTANT]
+> For VRS or Automatic Cell sites, just be sure to include `-b 1` with your output stream. 
+
+```shell
+str2str -in ntrip://$NT_USER:$NT_PASSWORD@$NT_HOSTNAME:$NT_PORT_AUTO/$NT_ENDPOINT_AUTO -out serial://emlid_rtk:115200 -b 1
+```
+
+> [!Note]
+> STR2STR also implements "Output Received Stream to TCP Port" option like STRSVR 2.4.3 b34
+> https://github.com/tomojitakasu/RTKLIB/issues/573#issuecomment-760017844
+
+- Alt. to Receive **Automatic cell** corrections via NTRIP and stream RTCM sentences via serial port. Stream reciever NMEA sentences via serial and TCP port 52001.
+```shell
+str2str -in ntrip://$NT_USER:$NT_PASSWORD@$NT_HOSTNAME:$NT_PORT_AUTO/$NT_ENDPOINT_AUTO -out serial://emlid_rtk:115200#52001 -b 1
+```
+
+2. Listen
+
+```shell
+nc localhost 52001
+```
+
+### Explanation of `str2str` parameters
+
+[Running str2str](https://github.com/septentrio-gnss/Septentrio_AgnosticCorrectionsProgram/blob/main/str2str/README.md#running-str2str)
+
+#todo
+- -in ntrip://<mark style="background: #FFB8EBA6;">username</mark>:<mark style="background: #FFB86CA6;">password</mark>@<mark style="background: #BBFABBA6;">host</mark>:<mark style="background: #ADCCFFA6;">port</mark>/<mark style="background: #CACFD9A6;">mount</mark>#<mark style="background: #FF5582A6;">format</mark>
+	- username: 
+	- password:
+	- host: Required
+	- port:
+	- mount:
+	- format:
+- -out serial://<mark style="background: #FFF3A3A6;">device_port</mark>:<mark style="background: #ABF7F7A6;">bitrate</mark>:<mark style="background: #D2B3FFA6;">parity</mark>:<mark style="background: #FFB8EBA6;">stopbit</mark>:<mark style="background: #FFB86CA6;">fctr</mark>#<mark style="background: #BBFABBA6;">output_tcp_port</mark>
+	- device_port: 
+	- bitrate: 
+	- parity: 
+	- stopbit: 
+	- fctr: 
+	- output_tcp_port:
+- -b 1: The `-b 1` indicates we want to use the **1st** of many output streams (if multiple outputs streams are used) as the source to send NMEA GGA messages to the corrections provider (required for VRS or Automatic Cells)
+background
 ## Environment Variables 
 
 There are multiple ways to do this. The most important point is to choose the way that offers the least risk from developers accidentally committing passwords or secrets to your public git repo.
@@ -388,13 +394,16 @@ sudo vim ~/.bashrc
 > If you prefer not to store secrets as environment variables [OWSAP recommends](https://cheatsheetseries.owasp.org/cheatsheets/Secrets_Management_Cheat_Sheet.html#32-where-should-a-secret-be) using secrets-manager such as:
 > >[AWS Secret Manager](https://aws.amazon.com/secrets-manager/), [Azure Key Vault](https://azure.microsoft.com/nl-nl/services/key-vault/), [Google Secret Manager](https://cloud.google.com/secret-manager)), or other third-party facilities ([Hashicorp Vault](https://www.vaultproject.io/), [Conjur](https://www.conjur.org/), [Keeper](https://www.keepersecurity.com/), [Confidant](https://lyft.github.io/confidant/))
 > 
-> Other secret managers are [bitwarden](https://bitwarden.com/products/secrets-manager/)and [infisical](https://infisical.com/infisical-vs-hashicorp-vault)
+> Other secret managers are:
+> - [bitwarden](https://bitwarden.com/products/secrets-manager/)
+> - [infisical](https://infisical.com/infisical-vs-hashicorp-vault)
+> - https://github.com/getsops/sops
+> - ⭐https://dotenvx.com/
 
 ```shell
 # InCORS RTK correction service credentials https://incors.in.gov/
-# Save the environment variables to to .bashrc i.e `sudo vim ~/.bashrc`
 #########################################################
-# DO NOT PUBLISH, THIS CONTAINS USERNAMES and PASSWORDS #
+# DO NOT commit to source control unless encrypted      #
 #########################################################
 export NT_HOSTNAME='...'
 # Automatic cells
@@ -421,7 +430,7 @@ echo -e '\n'\
 'nitrip password:       ' $NT_PASSWORD
 ```
 
-Alternatively, you can save the the copy paste to a standalone file such as `dev.env` then in then set them with the following command. `source dev.env`
+> [!NOTE] Alternatively, you can save the environment variables to a standalone file such as `.env.dev` and then encrypt the value of the key-value pair with [dontenvx](https://dotenvx.com/encryption). Just don't commit your `.env.keys ` 😉
 
 ---
 
@@ -508,12 +517,16 @@ Launch [gpsd](https://man.archlinux.org/man/gpsd.8) with the following options. 
 - `-S`: set port for daemon, default 2947
 - `tcp://host[:port]`
 ```
- sudo gpsd -N -p -D 5 -S 10002 tcp://192.168.1.25:52001
+ sudo gpsd -N -p -D 5 -S 10002 tcp://localhost:52001
 ```
 
 Run [cgps](https://man.archlinux.org/man/cgps.1.en) to verify that `gpsd` can relay the GPS data. 
 ```
 cgps localhost:10002
+```
+or
+```
+gpsmon localhost:10002
 ```
 
 Output from `cgps`. Notice we have a fix status.
@@ -547,11 +560,79 @@ Output from `cgps`. Notice we have a fix status.
 
 We demonstrated that a single connection (USB) to the emlid GPS device running the programs `str2str` and `gpsd` on the [[rpi]] prepare us to utilize the ROS2 package [gpsd_client](https://index.ros.org/p/gpsd_client/#humble)to offer `NavSatFix` messages.
 
+### Test 2 - `gpsd_client` 
+
+>[!NOTE]
+>These commands quickly become cumbersome to wrangle with. A more practical solution will use a single command that essentially calls the following commands sequentially. These commands are provided as an educational guide and demonstrate principles. Here is a ROS2 python launch file that streamlines the process. #todo link here
+
+Connect emlid device with correction service via [str2str](https://manpages.ubuntu.com/manpages/jammy/en/man1/str2str.1.html) and Output Received Stream to TCP Port 9123.
+
+```shell
+str2str -in ntrip://$NT_USER:$NT_PASSWORD@$NT_HOSTNAME:$NT_PORT_AUTO/$NT_ENDPOINT_AUTO -out serial://emlid_rtk:115200#9123 -b 1
+```
+
+Start the gspd server in the foreground (`-N`) on port 9234 (`-S`) and connect to the previously instantiated TCP stream on port 9123 (`tcp://localhost:9123`).
+
+```shell
+gpsd -N -S 9234 tcp://localhost:9123
+```
+
+Start the `gpsd_client` ROS2 node and connect client to the previously started `gpsd` server
+
+>[!IMPORTANT]
+> No nodes (executables) are compiled for `gpsd_client`. You'll have to load it as a [component](https://docs.ros.org/en/foxy/Concepts/About-Composition.html#using-components), `gpsd_client::GPSDClientComponent`. And the `ros2 component standalone` command doesn't support `--ros-args` directly. Instead, you must use the `ros2 component load` command in conjunction with `ros2 run` to achieve a similar effect.
+
+Start the component container.
+
+```shell
+ros2 run rclcpp_components component_container
+```
+
+In a new terminal, load the component into the container with the specified parameters.
+```shell
+ros2 component load /ComponentManager gpsd_client gpsd_client::GPSDClientComponent --node-name gpsd_client_composed_node --param host:=localhost --param port:=9234 --param use_gps_time:=false --param check_fix_by_variance:=false --param frame_id:=gps --param publish_rate:=1
+```
+
+Print the ROS `sensor_msgs/msg/NavSatFix` topic to the terminal.
+
+```shell
+ros2 echo /fix
+```
+
+Observe, GNSS data with a valid fix is available in our ROS topic 🥳
+
+```stdout
+header:
+  stamp:
+    sec: 1721540846
+    nanosec: 346349874
+  frame_id: gps
+status:
+  status: 0 <--- `STATUS_FIX`, indicating that a valid fix has been obtained.
+  service: 1
+latitude: <omitted>
+longitude: <omitted>
+altitude:  <omitted>
+position_covariance:
+- 10.632
+- 0.0
+- 0.0
+- 0.0
+- 24.189
+- 0.0
+- 0.0
+- 0.0
+- 42.55
+position_covariance_type: 2
+---
+```
 ## Test 3 - ROS2 reach_ros_node
 
 Pretesting Note: Recently a ROS1 package ([reach_ros_node](https://github.com/rpng/reach_ros_node/tree/ros2)) became available for ROS2 for the [Emlid Reach RTK Module](https://docs.emlid.com/reach/reference/specifications/reach-module-specs/). If this works the way I expect it, I would only need to run the `str2str` command with the TCP output and the node from this package.
 
-#todo Complete this test
+### Test 3 Results
+
+I encountered issues with the ros2 branch of reach_ros_node. It seems that it is not fully developed for ROS2 yet.
 ## Questions
 
 ### Q1. How do you find the NTRIP Mount point for Automatic Cells or Single Sites?
