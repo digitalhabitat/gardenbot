@@ -72,11 +72,48 @@ Labeling Convention `<Wire-id><Port-id><Mate-id>
 
 ## Power System Concept
 
-The power system is responsible for safely supplying power to the loads while also isolating other devices during different modes of operation or charging. This design incorporates on-board chargers that may only connect and charge the batteries under specific conditions. Most low cost off the shelf sealed lead acid (SLA) absorbent glass mat (AGM) float chargers \[SLA battery maintainers\] require the battery to not be under load during charging. The design provides a solution for the following requirements.
-1. Charging mode: Shall use relays or contractors to isolate the 12V and 24V batteries from the loads. The relays or contractors shall also route power from an on-board 12V power supply to the 12V load such that the on-board computer can remain on during charging operations.
-2. E-stop mode: Shall use an emergency-stop button that disconnects power to the 24V load and pre-charge circuit such that the Pre-Charge, Start, and Stop buttons have no battery electrical power supplied to them. This shall effectively unlatch **Relay Z**.
-3. Pre-Charge mode: Shall provide a pre-charge button that supplies a reduced voltage (5V) from the 24V battery to minimize the in-rush current from the capacitive load characteristics of the motor controllers.
-4. Start/Stop mode: Shall provide a Start and Stop button to latch a normally open switch (relay_z) closed. Relay Z and Relay C shall be spec'd to handle at least 24V and 50A. Relay Z shall act as the main power switch to provide 24V to motors.
+The power system is responsible for safely supplying power to the loads while also isolating other devices during different modes of operation or charging. This design incorporates on-board chargers that may only connect and charge the batteries under specific conditions. Most low cost off the shelf sealed lead acid (SLA) absorbent glass mat (AGM) float chargers \[SLA battery maintainers\] require the battery not be under load during charging. The design provides a solution for the following requirements.
+### Power Modes
+
+1. **Charging mode:** Shall use relays or contractors to isolate the 12V and 24V batteries from the loads. The relays or contractors shall also route power from an on-board 12V power supply to the 12V load such that the on-board computer can remain on during charging operations. The on-board computer ([[rpi]]) will have a dedicated UPS/Battery [[pisugar]] to operate during power source transitions such as (12V Battery to 12V Power Supply).
+2. **E-stop mode:** Shall use an emergency-stop button that disconnects power to the 24V Load and Pre-charge circuit such that the Pre-Charge, Start, and Stop buttons are disabled and **Relay Z** is opened. When releasing the e-stop button the system shall return to Standby-Mode.
+3. **Pre-Charge mode:** Shall provide a Pre-charge Momentary-On push button that supplies a reduced voltage (5V) from the 24V battery to reduced the in-rush current from the capacitive load characteristics of the motor controllers.
+4. **Drive mode:** Shall provide a Start button to latches the normally open switch **Relay Z** closed. **Relay Z** and **Relay C** shall be specified to handle at least 24V and 50A. **Relay Z** shall act as the main power switch to provide 24V to motors. 
+5. **Standby mode:** Shall provide a Stop button to unlatch the normally open switch Relay Z.
+### Relay Behavioral Descriptions
+
+1. **Relay A**
+	1. When not energized:
+		1. Isolate the 12V Charger from the 12V Battery Circuit
+		2. Connect the 12V Battery Circuit to the 12V Load Circuit.
+		3. Isolate 12V Power Supply from the 12V Load Circuit
+	2. When energized by the 12V Power Supply:
+		1. Connect the 12V Charger to 12V Battery Circuit
+		2. Isolate the 12V Battery Circuit from the 12V Load Circuit.
+		3. Connect the 12V Power Supply to the 12V Load Circuit
+2. **Relay B**
+	1. When not energized:
+		1. Isolate the 24V Charger from the 24V Load Circuit during Standby Mode and Drive Mode.
+	2. When energized the 12V Power Supply:
+		1. Connect the 24V Charger to the 24V Battery Circuit during Charging Mode.
+3. **Relay C**
+	1. When not energized:
+		1. Connect the 24V Load Circuit to the 24V Battery Circuit to enable Standby Mode and Drive Mode.
+	2. When energized the 12V Power Supply:
+		1. Isolate the 24V Load Circuit from the the 24V Battery Circuit to enable Charging Mode.
+4. **Relay X**
+	1. When energized by the 12V Load Circuit:
+		1. Latch ON and subsequently latch ON **Relay Z**.
+	2. When not energized by the 12V Load Circuit
+		1. Latch OFF and subsequently latch OFF **Relay Z**.
+5. **Relay Y**
+	1. When energized by the 24V Battery Circuit it enables the Start-Stop Latching Relay Circuit such that the start button will complete the **Relay X Coil Circuit**.
+	2. The main purpose is to act as a stop button to unlatch **Relay Z** during anytime the Power from the 24V Battery Circuit cuts out. This may occur once the e-stop is engaged or the charging mode is engaged thus not energizing the coil.
+6. **Relay Z**
+	1. When energized by the 24V Battery Circuit:
+		1. Connect the power from the 24V Battery Circuit to 24V Load Circuit. The completion of the Relay Z Coil Circuit is dependent on Relay X Contacts, Relay Y Contacts, E-Stop Contacts, Start Button, and Stop Button. 
+	2. When not energized by the 24V Battery Circuit:
+		1. Disconnect power to 24V Load Circuit.
 
 ![[power-system-concept.drawio.svg]]
 ## 24 Volt Supply Wiring Diagram

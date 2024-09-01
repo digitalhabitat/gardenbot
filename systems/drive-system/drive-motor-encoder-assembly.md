@@ -18,6 +18,8 @@ WHERE sub-assembly = "encoder"
 ```
 %%
 
+[[Flat pattern of encoder-bracket-AMT103 Drawing 1.pdf]]
+
 
 - Hex Nut Encoder Adapter (3D printed)
 	- Material: MJF Nylon

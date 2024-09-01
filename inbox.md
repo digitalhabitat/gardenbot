@@ -1,7 +1,7 @@
 # Inbox
 
 - https://quartz.jzhao.xyz/
-- Write a workflow documentation on wire viz and drawio
+- Write a workflow documentation on wireviz and drawio
 	- Can a plugin be used instead of custom scripts?
 - What is web3
 - testing
@@ -15,8 +15,16 @@
 - See https://en.wikipedia.org/wiki/Syncthing as an alternative to github
 - urdf editor viewer http://www.mymodelrobot.appspot.com/ 
 - `ps aux | grep str2str`
+- development tools
+	- https://www.woodenclocks.co.uk/printertips/
 ## TIL
 
-- ros2 nodes that are running in containers are visible to other ros2 containers on separate machines.
+- ros2 nodes that are running in containers are visible to other ros2 nodes in containers on separate machines.
 - https://pinout.xyz/
 - https://salamwaddah.com/blog/connecting-ps4-controller-to-raspberry-pi-via-bluetooth
+
+## Alternatives
+
+- [NMEA23 gearmotor](https://www.omc-stepperonline.com/en-gb/mg-series-planetary-gearbox-gear-ratio-5-1-backlash-30arc-min-for-8mm-shaft-nema-23-stepper-motor-mg23-g5-d8)
+- [NMEA17 gearmotor](https://www.omc-stepperonline.com/en-gb/mg-series-planetary-gearbox-gear-ratio-5-1-backlash-30-arc-min-for-nema-17-stepper-motor-mg17-g5)
+- 
