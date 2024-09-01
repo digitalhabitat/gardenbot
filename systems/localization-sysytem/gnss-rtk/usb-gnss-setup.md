@@ -1,7 +1,7 @@
 # USB GNSS RTK Receiver Setup
 
 
->[!Work in Progess]-
+>[!note]- Work in Progess
 > - Initial testing notes #WIP 
 > - https://learn.sparkfun.com/tutorials/what-is-gps-rtk/all
 > - https://www.ardusimple.com/rtk-explained/
@@ -15,8 +15,8 @@
 > - https://packages.ubuntu.com/search?keywords=rtklib
 > - http://magnav.mit.edu/
 > - https://youtu.be/lQuVkbphOog
->   
-
+> - [NTRIP Documenation](https://gssc.esa.int/wp-content/uploads/2018/07/NtripDocumentation.pdf)
+> - [RTKLIB Presentation](https://www.unoosa.org/documents/pdf/icg/2018/ait-gnss/15a_PPP_RTKLIB.pdf)
 
 >[!INFO] Helpful Resources
 > - [RTK Explained](https://www.ardusimple.com/rtk-explained/)
@@ -280,8 +280,8 @@ sudo screen /dev/emlid_rtk
 
 ## RTKLIB str2str
 
-[str2str manual](https://www.rtklib.com/prog/manual_2.4.2.pdf#page=101)
-
+> [!NOTE]
+> [RTKLIB str2str manual](https://www.rtklib.com/prog/manual_2.4.2.pdf#page=101)
 ### Access RTK correction service and RTK correction data
 
 - If your using a RTK correction service then we need a convenient way to store the login credentials securely. This is can be done with Environment Variables
@@ -301,7 +301,7 @@ sudo screen /dev/emlid_rtk
 sudo apt install rtklib
 ```
 
-1. Attempt to receive RTK corrections. Note the placeholders for the required parameters are environment variables. [[#Environment Variables]] discusses details on how to set these up so you don't have to remember them.
+1. Attempt to receive RTK corrections. Note the ==placeholders for the required parameters== are environment variables. [[#Environment Variables]] discusses details on how to set these up so you don't have to remember them.
 
  - Single Site
  
@@ -315,6 +315,8 @@ str2str -in ntrip://$NT_USER:$NT_PASSWORD@$NT_HOSTNAME:$NT_PORT_SINGLE/$NT_ENDPO
 > Automatic site requires communication with a **GNSS RTK Receiver** in order to automatically send you correction data from the nearest site (mount point) or if caster is using VRS. Since there is NO target `-out` parameter provided in the example below `str2str` will timeout as it waits to receive GNSS coordinate data. In this case the `-in` `-out` semantics might be confusing since the data is being exchanged in both directions between server and client.
 > 
 > It is important to understand that if you are using **Automatic Cells or VRS** (see [this](https://incors.in.gov/InCORS%20Broadcast%20RTK%20Corrections_Products_12-05-2022_port9000.pdf)) then a target `-out` parameter specifying a GNSS receiver and the `-b 1` arguments must be passed with `str2str` or the NTRIP caster will time out.
+> 
+> For additional details see [[#Explanation of `str2str` parameters]]
 
 ```shell
 str2str -in ntrip://$NT_USER:$NT_PASSWORD@$NT_HOSTNAME:$NT_PORT_AUTO/$NT_ENDPOINT_AUTO
@@ -362,7 +364,7 @@ nc localhost 52001
 - -in ntrip://<mark style="background: #FFB8EBA6;">username</mark>:<mark style="background: #FFB86CA6;">password</mark>@<mark style="background: #BBFABBA6;">host</mark>:<mark style="background: #ADCCFFA6;">port</mark>/<mark style="background: #CACFD9A6;">mount</mark>#<mark style="background: #FF5582A6;">format</mark>
 	- username: 
 	- password:
-	- host: Required
+	- host
 	- port:
 	- mount:
 	- format:
@@ -430,7 +432,13 @@ echo -e '\n'\
 'nitrip password:       ' $NT_PASSWORD
 ```
 
-> [!NOTE] Alternatively, you can save the environment variables to a standalone file such as `.env.dev` and then encrypt the value of the key-value pair with [dontenvx](https://dotenvx.com/encryption). Just don't commit your `.env.keys ` 😉
+> [!NOTE] 
+> Alternatively, you can save the environment variables to a standalone file such as `.env.dev` and then encrypt the value of the key-value pair with [dontenvx](https://dotenvx.com/encryption). Just don't commit your `.env.keys ` 😉
+> 
+> The main risk is are the following:
+> 1. You main accidentally commit `.env.dev` file decrypted.
+> 2. You may accidentally commit the `.env.keys` file.
+> 3. Not [post-quantum safe](https://en.wikipedia.org/wiki/Shor's_algorithm#Feasibility_and_impact).
 
 ---
 
@@ -453,10 +461,11 @@ cat str2str.trace
 - Configure the Emlid Reach device "Correction input" settings to connect to an NTRIP server via the webapp. Note this ideally should be done via `str2str` because such method would used the rpi's network connection instead of the WiFi module on-board the Reach device itself. The main hurdle with using `str2str` is that the command typically connects to the serial interface of the GPS device and most ROS2 packages will only connect to a GPS devices' serial interface. This is _OK_ because we could provide a second serial interface via the UART interface on-board the Reach device and connect the GPIO/UART pins on to the rpi. However this demo section is simply exploring the several ways of getting RTK correction data to our GPS device and then connecting the NEMA sentences to a ROS2 node that can then publish `NavSatFix` messages.
 - ![[reach-correction-input.png]]
 - Install the `nmea_serial_driver` ROS2 package
-```
+```sh
 sudo apt update
 sudo apt install ros-humble-nmea-navsat-driver
 ```
+
 ```shell
 ros2 run nmea_navsat_driver nmea_serial_driver --ros-args --params-file ./config/nmea_serial_driver.yaml
 ```
@@ -501,12 +510,12 @@ My current understanding of possible configurations at this moment are:
 ## Test 2 - gpsd
 
 Connect emlid device with correction service via [str2str](https://manpages.ubuntu.com/manpages/jammy/en/man1/str2str.1.html) and Output Received Stream to TCP Port 52001.
-```
+```sh
 str2str -in ntrip://$NT_USER:$NT_PASSWORD@$NT_HOSTNAME:$NT_PORT_SINGLE/$NT_ENDPOINT_SINGLE#rtcm3 -out serial://emlid_rtk:115200#52001
 ```
 
 Verify NMEA stream is present on port 52001 with [nc](https://man.archlinux.org/man/nc.1).
-```
+```sh
 nc localhost 52001
 ```
 
@@ -516,16 +525,16 @@ Launch [gpsd](https://man.archlinux.org/man/gpsd.8) with the following options. 
 - `-d`: set debug level, default 0 
 - `-S`: set port for daemon, default 2947
 - `tcp://host[:port]`
-```
+```sh
  sudo gpsd -N -p -D 5 -S 10002 tcp://localhost:52001
 ```
 
 Run [cgps](https://man.archlinux.org/man/cgps.1.en) to verify that `gpsd` can relay the GPS data. 
-```
+```sh
 cgps localhost:10002
 ```
 or
-```
+```sh
 gpsmon localhost:10002
 ```
 

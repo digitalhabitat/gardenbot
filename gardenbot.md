@@ -97,8 +97,12 @@ Achieving this goal requires a deep understanding of existing open-source softwa
 [[steering-system]] #WIP 
 - [[steering-motor-controller]]
 [[power-system]]
+
 [[wire-system]]	
+
 [[localization-system]] #todo
+
+[[docs]]
 
 ---
 
