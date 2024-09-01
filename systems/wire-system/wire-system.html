@@ -279,6 +279,7 @@
 				<ul class="dir-list">
 					<li><div class="file-icon non-md-file"></div><a class="" href="/gardenbot/systems/drive-system/drive-system-details/drive-system-drawings/2313n26_corner-machine-bracketl.gif"  class="external-link">2313n26_corner-machine-bracketl.gif</a></li>
 					<li><div class="file-icon non-md-file"></div><a class="" href="/gardenbot/systems/drive-system/drive-system-details/drive-system-drawings/amt10-encoder-mount-rev-.pdf"  class="external-link">amt10-encoder-mount-rev-.pdf</a></li>
+					<li><div class="file-icon non-md-file"></div><a class="" href="/gardenbot/systems/drive-system/drive-system-details/drive-system-drawings/flat-pattern-of-encoder-bracket-amt103-drawing-1.pdf"  class="external-link">flat-pattern-of-encoder-bracket-amt103-drawing-1.pdf</a></li>
 					<li><div class="file-icon non-md-file"></div><a class="" href="/gardenbot/systems/drive-system/drive-system-details/drive-system-drawings/hex-nut-encoder-adapter-rev-.pdf"  class="external-link">hex-nut-encoder-adapter-rev-.pdf</a></li>
 					<li><div class="file-icon non-md-file"></div><a class="" href="/gardenbot/systems/drive-system/drive-system-details/drive-system-drawings/my1060_dimension.webp"  class="external-link">my1060_dimension.webp</a></li>
 					<li><div class="file-icon non-md-file"></div><a class="" href="/gardenbot/systems/drive-system/drive-system-details/drive-system-drawings/vclamp-wiring.png"  class="external-link">vclamp-wiring.png</a></li>
@@ -331,8 +332,8 @@
 			<ul class="dir-list">
 				<li><div class="file-icon non-md-file"></div><a class="" href="/gardenbot/systems/wire-system/wire-diagrams/12v_battery_system.drawio.svg"  class="external-link">12v_battery_system.drawio.svg</a></li>
 				<li><div class="file-icon non-md-file"></div><a class="" href="/gardenbot/systems/wire-system/wire-diagrams/power-system-concept.drawio.svg"  class="external-link">power-system-concept.drawio.svg</a></li>
-				<li><div class="file-icon non-md-file"></div><a class="" href="/gardenbot/systems/wire-system/wire-diagrams/wire-system-24-volt.drawio.svg"  class="external-link">wire-system-24-volt.drawio.svg</a></li>
 				<li><div class="file-icon non-md-file"></div><a class="" href="/gardenbot/systems/wire-system/wire-diagrams/wire-system-24-volt.drawio.html"  >wire-system-24-volt.drawio.html</a></li>
+				<li><div class="file-icon non-md-file"></div><a class="" href="/gardenbot/systems/wire-system/wire-diagrams/wire-system-24-volt.drawio.svg"  class="external-link">wire-system-24-volt.drawio.svg</a></li>
 			</ul>
 		</div>
 		<button id="folder-18" class="dir-button " onclick="toggle_dir(this.id)"><div class="file-icon"></div>wire-parts</button>
@@ -377,7 +378,11 @@
 <li><a href="#parts" class="anchor-link">Parts</a></li>
 </ul>
 </li>
-<li><a href="#power-system-concept" class="anchor-link">Power System Concept</a></li>
+<li><a href="#power-system-concept" class="anchor-link">Power System Concept</a><ul>
+<li><a href="#power-modes" class="anchor-link">Power Modes</a></li>
+<li><a href="#relay-behavioral-descriptions" class="anchor-link">Relay Behavioral Descriptions</a></li>
+</ul>
+</li>
 <li><a href="#h_24-volt-supply-wiring-diagram" class="anchor-link">24 Volt Supply Wiring Diagram</a></li>
 <li><a href="#h_12-volt-supply-wiring-diagram" class="anchor-link">12 Volt Supply Wiring Diagram</a></li>
 </ul>
@@ -495,11 +500,82 @@ Closest American (AWG) gauge: AWG 11</p>
 </li>
 </ul>
 <h2 id="power-system-concept">Power System Concept</h2>
-<p>The power system is responsible for safely supplying power to the loads while also isolating other devices during different modes of operation or charging. This design incorporates on-board chargers that may only connect and charge the batteries under specific conditions. Most low cost off the shelf sealed lead acid (SLA) absorbent glass mat (AGM) float chargers [SLA battery maintainers] require the battery to not be under load during charging. The design provides a solution for the following requirements. <br />
-1. Charging mode: Shall use relays or contractors to isolate the 12V and 24V batteries from the loads. The relays or contractors shall also route power from an on-board 12V power supply to the 12V load such that the on-board computer can remain on during charging operations. <br />
-2. E-stop mode: Shall use an emergency-stop button that disconnects power to the 24V load and pre-charge circuit such that the Pre-Charge, Start, and Stop buttons have no battery electrical power supplied to them. This shall effectively unlatch <strong>Relay Z</strong>. <br />
-3. Pre-Charge mode: Shall provide a pre-charge button that supplies a reduced voltage (5V) from the 24V battery to minimize the in-rush current from the capacitive load characteristics of the motor controllers. <br />
-4. Start/Stop mode: Shall provide a Start and Stop button to latch a normally open switch (relay_z) closed. Relay Z and Relay C shall be spec'd to handle at least 24V and 50A. Relay Z shall act as the main power switch to provide 24V to motors.   </p>
+<p>The power system is responsible for safely supplying power to the loads while also isolating other devices during different modes of operation or charging. This design incorporates on-board chargers that may only connect and charge the batteries under specific conditions. Most low cost off the shelf sealed lead acid (SLA) absorbent glass mat (AGM) float chargers [SLA battery maintainers] require the battery not be under load during charging. The design provides a solution for the following requirements.   </p>
+<h3 id="power-modes">Power Modes</h3>
+<ol>
+<li><strong>Charging mode:</strong> Shall use relays or contractors to isolate the 12V and 24V batteries from the loads. The relays or contractors shall also route power from an on-board 12V power supply to the 12V load such that the on-board computer can remain on during charging operations. The on-board computer (<a href="/gardenbot/not_created.html" class="nonexistent-link">rpi</a>) will have a dedicated UPS/Battery <a href="/gardenbot/systems/power-system/pisugar.html">pisugar</a> to operate during power source transitions such as (12V Battery to 12V Power Supply).   </li>
+<li><strong>E-stop mode:</strong> Shall use an emergency-stop button that disconnects power to the 24V Load and Pre-charge circuit such that the Pre-Charge, Start, and Stop buttons are disabled and <strong>Relay Z</strong> is opened. When releasing the e-stop button the system shall return to Standby-Mode.   </li>
+<li><strong>Pre-Charge mode:</strong> Shall provide a Pre-charge Momentary-On push button that supplies a reduced voltage (5V) from the 24V battery to reduced the in-rush current from the capacitive load characteristics of the motor controllers.   </li>
+<li><strong>Drive mode:</strong> Shall provide a Start button to latches the normally open switch <strong>Relay Z</strong> closed. <strong>Relay Z</strong> and <strong>Relay C</strong> shall be specified to handle at least 24V and 50A. <strong>Relay Z</strong> shall act as the main power switch to provide 24V to motors.    </li>
+<li><strong>Standby mode:</strong> Shall provide a Stop button to unlatch the normally open switch Relay Z.   </li>
+</ol>
+<h3 id="relay-behavioral-descriptions">Relay Behavioral Descriptions</h3>
+<ol>
+<li><strong>Relay A</strong>   <ol>
+<li>When not energized:   <ol>
+<li>Isolate the 12V Charger from the 12V Battery Circuit   </li>
+<li>Connect the 12V Battery Circuit to the 12V Load Circuit.   </li>
+<li>Isolate 12V Power Supply from the 12V Load Circuit   </li>
+</ol>
+</li>
+<li>When energized by the 12V Power Supply:   <ol>
+<li>Connect the 12V Charger to 12V Battery Circuit   </li>
+<li>Isolate the 12V Battery Circuit from the 12V Load Circuit.   </li>
+<li>Connect the 12V Power Supply to the 12V Load Circuit   </li>
+</ol>
+</li>
+</ol>
+</li>
+<li><strong>Relay B</strong>   <ol>
+<li>When not energized:   <ol>
+<li>Isolate the 24V Charger from the 24V Load Circuit during Standby Mode and Drive Mode.   </li>
+</ol>
+</li>
+<li>When energized the 12V Power Supply:   <ol>
+<li>Connect the 24V Charger to the 24V Battery Circuit during Charging Mode.   </li>
+</ol>
+</li>
+</ol>
+</li>
+<li><strong>Relay C</strong>   <ol>
+<li>When not energized:   <ol>
+<li>Connect the 24V Load Circuit to the 24V Battery Circuit to enable Standby Mode and Drive Mode.   </li>
+</ol>
+</li>
+<li>When energized the 12V Power Supply:   <ol>
+<li>Isolate the 24V Load Circuit from the the 24V Battery Circuit to enable Charging Mode.   </li>
+</ol>
+</li>
+</ol>
+</li>
+<li><strong>Relay X</strong>   <ol>
+<li>When energized by the 12V Load Circuit:   <ol>
+<li>Latch ON and subsequently latch ON <strong>Relay Z</strong>.   </li>
+</ol>
+</li>
+<li>When not energized by the 12V Load Circuit   <ol>
+<li>Latch OFF and subsequently latch OFF <strong>Relay Z</strong>.   </li>
+</ol>
+</li>
+</ol>
+</li>
+<li><strong>Relay Y</strong>   <ol>
+<li>When energized by the 24V Battery Circuit it enables the Start-Stop Latching Relay Circuit such that the start button will complete the <strong>Relay X Coil Circuit</strong>.   </li>
+<li>The main purpose is to act as a stop button to unlatch <strong>Relay Z</strong> during anytime the Power from the 24V Battery Circuit cuts out. This may occur once the e-stop is engaged or the charging mode is engaged thus not energizing the coil.   </li>
+</ol>
+</li>
+<li><strong>Relay Z</strong>   <ol>
+<li>When energized by the 24V Battery Circuit:   <ol>
+<li>Connect the power from the 24V Battery Circuit to 24V Load Circuit. The completion of the Relay Z Coil Circuit is dependent on Relay X Contacts, Relay Y Contacts, E-Stop Contacts, Start Button, and Stop Button.    </li>
+</ol>
+</li>
+<li>When not energized by the 24V Battery Circuit:   <ol>
+<li>Disconnect power to 24V Load Circuit.   </li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
 <p><img alt="" src="/gardenbot/systems/wire-system/wire-diagrams/power-system-concept.drawio.svg" />   </p>
 <h2 id="h_24-volt-supply-wiring-diagram">24 Volt Supply Wiring Diagram</h2>
 <p><a href="/gardenbot/systems/wire-system/wire-diagrams/wire-system-24-volt.drawio.html"><img alt="" src="/gardenbot/systems/wire-system/wire-diagrams/wire-system-24-volt.drawio.svg" /></a>   </p>
@@ -525,17 +601,17 @@ Closest American (AWG) gauge: AWG 11</p>
 
 </div>
 <div class="graph requires_js ">
-    <div id="A237061754796113304433903567503450514995{level}" class="graph_div"></div>
+    <div id="A129556691292347632170207588758249854488{level}" class="graph_div"></div>
 
-    <div class="graph-instructions" id="D237061754796113304433903567503450514995{level}">
+    <div class="graph-instructions" id="D129556691292347632170207588758249854488{level}">
         Left-click: follow link, Right-click: select node, Scroll: zoom
     </div>
     
     <div class="graph-button-row" style="display:flex;">
-        <button class="graph_button graph_show_button" id="B237061754796113304433903567503450514995{level}" level="{level}" note_temp_id="237061754796113304433903567503450514995" onclick="window.ObsHtmlGraph.run(this, '237061754796113304433903567503450514995', 'wire-system');">
+        <button class="graph_button graph_show_button" id="B129556691292347632170207588758249854488{level}" level="{level}" note_temp_id="129556691292347632170207588758249854488" onclick="window.ObsHtmlGraph.run(this, '129556691292347632170207588758249854488', 'wire-system');">
             Show Graph
         </button>
-        <button class="graph_button graph_type_button" id="C237061754796113304433903567503450514995{level}" style="flex:1" onclick="window.ObsHtmlGraph.switch_graph_type(this);">
+        <button class="graph_button graph_type_button" id="C129556691292347632170207588758249854488{level}" style="flex:1" onclick="window.ObsHtmlGraph.switch_graph_type(this);">
             2D
         </button>
     </div>
