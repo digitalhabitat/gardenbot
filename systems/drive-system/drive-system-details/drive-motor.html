@@ -5,7 +5,7 @@
         <head>
                 <!-- Page information -->
                 <meta charset="UTF-8" />
-                <meta name="node_id" content="docs">
+                <meta name="node_id" content="drive-motor">
                 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
                 <link rel="shortcut icon" href="/gardenbot/favicon.ico" />
 
@@ -57,9 +57,9 @@
 
                 <!-- Onload tweaks -->
                 <script>
-                        const CURRENT_NODE = 'docs';
+                        const CURRENT_NODE = 'drive-motor';
                         const HTML_URL_PREFIX = '/gardenbot';
-                        const PAGE_DEPTH = 1;
+                        const PAGE_DEPTH = 3;
                 </script>
         </head>
 
@@ -186,7 +186,7 @@
             }
         </script>
                                     <div class="graph_header_div requires_js">
-            <a id="graph_link" class="system-link" href="/gardenbot/obs.html/graph/index.html?node=docs" title="Open fullpage Graph">
+            <a id="graph_link" class="system-link" href="/gardenbot/obs.html/graph/index.html?node=drive-motor" title="Open fullpage Graph">
                     <img class="graph_header_div_svg" src = "/gardenbot/obs.html/static/graph.svg" alt="Open fullpage Graph" style="margin: 2px; width: 17px;"/>
             </a>
         </div>
@@ -248,8 +248,8 @@
 		<li><div class="file-icon non-md-file"></div><a class="" href="/gardenbot/dimensions/main_capture-removebg.png"  class="external-link">main_capture-removebg.png</a></li>
 	</ul>
 </div>
-<button id="folder-5" class="dir-button folder_note active active current_page_dirtree" href="/gardenbot/docs/docs.html" onclick="toggle_dir(this.id)"><div class="file-icon"></div><div class="fn_pf">*</div>docs</button>
-<div id="folder-container-5" class="dir-container requires_js active" path="/gardenbot/docs">
+<button id="folder-5" class="dir-button folder_note  " href="/gardenbot/docs/docs.html" onclick="open_folder_note(this)"><div class="file-icon"></div><div class="fn_pf">*</div>docs</button>
+<div id="folder-container-5" class="dir-container requires_js " path="/gardenbot/docs">
 	<button id="folder-6" class="dir-button " onclick="toggle_dir(this.id)"><div class="file-icon"></div>formal-docs</button>
 	<div id="folder-container-6" class="dir-container requires_js " path="/gardenbot/docs/formal-docs">
 		<ul class="dir-list">
@@ -275,8 +275,8 @@
 	<ul class="dir-list">
 	</ul>
 </div>
-<button id="folder-9" class="dir-button " onclick="toggle_dir(this.id)"><div class="file-icon"></div>systems</button>
-<div id="folder-container-9" class="dir-container requires_js " path="/gardenbot/systems">
+<button id="folder-9" class="dir-button active" onclick="toggle_dir(this.id)"><div class="file-icon"></div>systems</button>
+<div id="folder-container-9" class="dir-container requires_js active" path="/gardenbot/systems">
 	<button id="folder-10" class="dir-button folder_note  " href="/gardenbot/systems/computer-system/computer-system.html" onclick="open_folder_note(this)"><div class="file-icon"></div><div class="fn_pf">*</div>computer-system</button>
 	<div id="folder-container-10" class="dir-container requires_js " path="/gardenbot/systems/computer-system">
 		<ul class="dir-list">
@@ -286,8 +286,8 @@
 			<li><div class="file-icon"></div><a class="" href="/gardenbot/systems/computer-system/computer-rpi-setup.html"  >computer-rpi-setup</a></li>
 		</ul>
 	</div>
-	<button id="folder-11" class="dir-button folder_note  " href="/gardenbot/systems/drive-system/drive-system.html" onclick="open_folder_note(this)"><div class="file-icon"></div><div class="fn_pf">*</div>drive-system</button>
-	<div id="folder-container-11" class="dir-container requires_js " path="/gardenbot/systems/drive-system">
+	<button id="folder-11" class="dir-button folder_note active " href="/gardenbot/systems/drive-system/drive-system.html" onclick="open_folder_note(this)"><div class="file-icon"></div><div class="fn_pf">*</div>drive-system</button>
+	<div id="folder-container-11" class="dir-container requires_js active" path="/gardenbot/systems/drive-system">
 		<button id="folder-12" class="dir-button folder_note  " href="/gardenbot/systems/drive-system/drive-motor-controller/drive-motor-controller.html" onclick="open_folder_note(this)"><div class="file-icon"></div><div class="fn_pf">*</div>drive-motor-controller</button>
 		<div id="folder-container-12" class="dir-container requires_js " path="/gardenbot/systems/drive-system/drive-motor-controller">
 			<ul class="dir-list">
@@ -309,8 +309,8 @@
 				<li><div class="file-icon"></div><a class="" href="/gardenbot/systems/drive-system/drive-system-assembly/encoder-assembly-parts-list.html"  >encoder-assembly-parts-list</a></li>
 			</ul>
 		</div>
-		<button id="folder-15" class="dir-button " onclick="toggle_dir(this.id)"><div class="file-icon"></div>drive-system-details</button>
-		<div id="folder-container-15" class="dir-container requires_js " path="/gardenbot/systems/drive-system/drive-system-details">
+		<button id="folder-15" class="dir-button active" onclick="toggle_dir(this.id)"><div class="file-icon"></div>drive-system-details</button>
+		<div id="folder-container-15" class="dir-container requires_js active" path="/gardenbot/systems/drive-system/drive-system-details">
 			<button id="folder-16" class="dir-button " onclick="toggle_dir(this.id)"><div class="file-icon"></div>drive-system-drawings</button>
 			<div id="folder-container-16" class="dir-container requires_js " path="/gardenbot/systems/drive-system/drive-system-details/drive-system-drawings">
 				<ul class="dir-list">
@@ -323,7 +323,7 @@
 				</ul>
 			</div>
 			<ul class="dir-list">
-				<li><div class="file-icon"></div><a class="" href="/gardenbot/systems/drive-system/drive-system-details/drive-motor.html"  >drive-motor</a></li>
+				<li><div class="file-icon"></div><a class="active current_page_dirtree" href="/gardenbot/systems/drive-system/drive-system-details/drive-motor.html"  >drive-motor</a></li>
 				<li><div class="file-icon"></div><a class="" href="/gardenbot/systems/drive-system/drive-system-details/drive-system-safety.html"  >drive-system-safety</a></li>
 				<li><div class="file-icon non-md-file"></div><a class="" href="/gardenbot/systems/drive-system/drive-system-details/vclamp_datasheet.pdf"  class="external-link">vclamp_datasheet.pdf</a></li>
 			</ul>
@@ -407,72 +407,68 @@
                 <div style="width:100%; text-align: right;display: block;margin: 0.5rem;">
                     <div style="flex:1;display: none;"></div>
                     <div class="breadcrumbs" style="flex:1 ;padding: 0.5rem; width: fit-content;display: inline;border-radius: 0.2rem;">
-                        <a href="/gardenbot/" style="color: rgb(var(--normal-text-color));">Home</a> / <a href="/gardenbot/docs/docs.html" >docs</a>
+                        <a href="/gardenbot/" style="color: rgb(var(--normal-text-color));">Home</a> / <span style="color: #666;">systems</span> / <a href="/gardenbot/systems/drive-system/drive-system.html" style="color: var(--normal-text-color);">drive-system</a> / <span style="color: #666;">drive-system-details</span> / <a href="/gardenbot/systems/drive-system/drive-system-details/drive-motor.html" >drive-motor</a>
                     </div>
                 </div>
-<div class="content"><h1 id="docs">docs</h1>
+<div class="content"><h1 id="drive-motor">Drive Motor</h1>
 <div class="toc">
 <ul>
-<li><a href="#docs" class="anchor-link">docs</a></li>
-<li><a href="#formal-docs" class="anchor-link">Formal Docs</a></li>
-<li><a href="#oem-docs" class="anchor-link">OEM Docs</a></li>
-<li><a href="#reference-documentation" class="anchor-link">Reference Documentation</a></li>
-<li><a href="#external-links" class="anchor-link">External Links</a></li>
-<li><a href="#ros-external-links" class="anchor-link">ROS External Links</a></li>
-<li><a href="#amazon-links" class="anchor-link">Amazon Links</a></li>
-<li><a href="#accolades" class="anchor-link">Accolades</a></li>
+<li><a href="#drive-motor" class="anchor-link">Drive Motor</a><ul>
+<li><a href="#specs" class="anchor-link">Specs</a></li>
+<li><a href="#parts" class="anchor-link">Parts</a></li>
+</ul>
+</li>
 </ul>
 </div>
-<p>Documentation related to parts, devices, tools, etc. use to build the gardenbot.    </p>
-<h1 id="formal-docs">Formal Docs</h1>
+<figure><img src="/gardenbot/dimensions/chain_drive_system/drive-system-images/drive_motor_assembly_nobg.png" width="" alt="300x300" title="300x300" /><figcaption>300x300</figcaption></figure>
+
+<h2 id="specs">Specs</h2>
+<p>Type: 24 Volt Brushed DC <br />
+Max Current: 15 A <br />
+Rated Speed: 2750 RPM +/- 5%   <br />
+Rated Current: 11.0 A   <br />
+Output: 200 watts <br />
+Model: MY1016 <br />
+Sprocket: 11 Tooth #25 ANSI Roller Chain <a class="inline-tag" href="/gardenbot/obs.html/tags/motor-sprocket/index.html">motor-sprocket</a> <br />
+Supplier Link: <a href="https://www.monsterscooterparts.com/24vo200wamow.html" class="external-link">https://www.monsterscooterparts.com/24vo200wamow.html</a>   </p>
+<div class="lang-csvtable">
+
+<div class="codehilite"><pre><span></span><code><span class="n">source</span><span class="o">:</span><span class="w"> </span><span class="n">systems</span><span class="sr">/drive-system/drive-system-details/</span><span class="n">MY1060_specs</span><span class="o">.</span><span class="na">csv</span><span class="w"></span>
+</code></pre></div>
+
+
+</div>
+
+<h2 id="parts">Parts</h2>
 <ul>
-<li><a class="inline-tag" href="/gardenbot/obs.html/tags/todo/index.html">todo</a>   </li>
+<li>M6 Hex Bolt   </li>
+<li>M6 Eye Bolt   </li>
+<li>M6 Hex Nut   </li>
+<li>M6 Washer   </li>
+<li>M6 Oversized Washer    </li>
+<li>Corner Machine Bracket   <ul>
+<li>Drawing: <a href="/gardenbot/systems/drive-system/drive-system-details/drive-system-drawings/2313n26_corner-machine-bracketl.gif" class="external-link">2313n26_corner machine bracketl.gif</a>   </li>
+<li>Supplier Link: <a href="https://www.mcmaster.com/2313N26/" class="external-link">https://www.mcmaster.com/2313N26/</a>   <ul>
+<li>Chain: 108 link #25 ASNI Roller Chain   </li>
 </ul>
-<h1 id="oem-docs">OEM Docs</h1>
+</li>
+<li>Supplier Linker: <a href="https://www.monsterscooterparts.com/brands/pulse/models/street-cruiser-e/108-link-25-chain.html" class="external-link">108-link-25-chain.html</a>   </li>
+</ul>
+</li>
+</ul>
+<p>Interfacing Components   </p>
 <ul>
-<li><a href="/gardenbot/docs/oem-docs/gsw-14.pdf" class="external-link">gsw-14 dpst</a>   </li>
-<li><a href="/gardenbot/docs/oem-docs/gsw-110.pdf" class="external-link">gsw-110 spst</a>   </li>
-<li><a href="/gardenbot/docs/oem-docs/gsw-123.pdf" class="external-link">gsw-123 dpdt</a>   </li>
-<li><a href="/gardenbot/not_created.html" class="nonexistent-link">gsw-22 Black Push Button Switch, SPST, OFF-Mom ON</a>   </li>
-<li><a href="/gardenbot/docs/oem-docs/gsw-23.pdf" class="external-link">gsw-23 Red Push-Button Switch, SPST, ON-Mom-OFF</a>   </li>
-<li><a class="inline-tag" href="/gardenbot/obs.html/tags/todo/index.html">todo</a> add voltage/amp gauges   </li>
-<li><a class="inline-tag" href="/gardenbot/obs.html/tags/todo/index.html">todo</a> add relays   </li>
-<li><a href="/gardenbot/docs/oem-docs/asin_b08rrtdsfb-_batter-disconnect.pdf" class="external-link">24V Battery Disconnect</a>   </li>
-<li><a href="../docs/oem-docs/KFL000-10mm-Zinc-Alloy-Self-Aligning-Pillow-Block-Flange-Bearing">Pillow Block Flange Bearing</a>   </li>
-</ul>
-<h1 id="reference-documentation">Reference Documentation</h1>
-<ul>
-<li><a href="/gardenbot/docs/ref-docs/metal-gauges-unipunch.pdf" class="external-link">Metal Gauges</a>   </li>
-<li><a class="inline-tag" href="/gardenbot/obs.html/tags/todo/index.html">todo</a> Metal anode   </li>
-</ul>
-<h1 id="external-links">External Links</h1>
-<ul>
-<li><a href="https://www.wescottdesign.com/articles/pid/pidWithoutAPhd.pdf" class="external-link">PID with a PhD</a>   </li>
-<li><a href="https://github.com/S2-group/icse-seip-2020-replication-package/blob/master/ICSE_SEIP_2020.pdf" class="external-link">How do you Architect your Robots?</a>   </li>
-<li><a href="https://people.freebsd.org/~lstewart/articles/cpumemory.pdf" class="external-link">What Every Programmer Should Know About Memory</a>   </li>
-<li><a href="https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1008316" class="external-link">Ten simple rules for writing Dockerfiles for reproducible data science</a>   </li>
-<li><a href="https://www.fabhabs.com/dc-cable-sizing-calculator" class="external-link">Determining DC Cable Thickness</a>   </li>
-<li><a href="https://www.pepperquality.com/Upload/Bulletin/pdf/010000%20-%20Fasteners%20-%2001%20Galvantic%20Action%20-%20022812.pdf" class="external-link">Guidelines for Selection of Fasteners Based on Galvanic Action</a>   </li>
-</ul>
-<h1 id="ros-external-links">ROS External Links</h1>
-<ul>
-<li><a href="https://www.theconstruct.ai/how-to-migrate-launch-files-in-xml-format-from-ros1-to-ros2/" class="external-link">Migrating Launch Files in XML format from ROS1 to ROS2 – ROS2</a>   </li>
-<li><a href="https://github.com/athackst/vscode_ros2_workspace" class="external-link">Template for using VSCode as an IDE for ROS2 development</a>   </li>
-</ul>
-<h1 id="amazon-links">Amazon Links</h1>
-<p><a href="https://www.amazon.com/dp/B0C4Y9S5C2" class="external-link">20 AWG USB cable</a> <br />
-<a href="https://www.amazon.com/gp/product/B07FXCFX1N/ref=ppx_yo_dt_b_search_asin_title?ie=UTF8&amp;psc=1" class="external-link">TWTADE/DC 24V Relay 10A YJ2N-LY</a> <br />
-<a href="https://www.amazon.com/gp/product/B01IV7D1Q8/ref=ppx_yo_dt_b_search_asin_title?ie=UTF8&amp;psc=1" class="external-link">24V 200A</a> <br />
-<a href="https://www.amazon.com/gp/product/B07FCJ39QR/ref=ppx_yo_dt_b_search_asin_title?ie=UTF8&amp;psc=1" class="external-link">TWTADE/JQX-62F-2Z Coil Voltage DC 12V 80A DPDT</a> <br />
-<a href="https://www.amazon.com/gp/product/B07C78SLKD/ref=ppx_yo_dt_b_search_asin_title?ie=UTF8&amp;psc=1" class="external-link">TWTADE/DC 12V Relay 10A 2DPT YJ2N-LY</a> <br />
-<a href="https://www.amazon.com/gp/product/B07CG5BM4S/ref=ppx_yo_dt_b_search_asin_title?ie=UTF8&amp;psc=1" class="external-link">TWTADE/DC 12V 5A 4PDT HH54P MY4J</a>   </p>
-<h1 id="accolades">Accolades</h1>
-<p><a href="https://joschua.io/posts/2023/09/01/obsidian-publish-dataview/" class="external-link">https://joschua.io/posts/2023/09/01/obsidian-publish-dataview/</a>   </p></div>
+<li><a href="/gardenbot/systems/drive-system/drive-system-assembly/drive-motor-encoder-assembly.html">drive-motor-encoder-assembly</a>    </li>
+<li><a href="/gardenbot/systems/drive-system/drive-system-assembly/drive-system-wheel-assembly.html">drive-system-wheel-assembly</a>   </li>
+<li><a href="/gardenbot/chassis/lower-platform.html">lower-platform</a>   </li>
+<li><a href="/gardenbot/systems/drive-system/drive-motor-controller/drive-motor-controller.html">drive-motor-controller</a>   </li>
+</ul></div>
 <div class="note-footer">
 <div class="backlinks">
 <h2>Backlinks</h2>
 <ul>
-	<li><a class="backlink" href="/gardenbot/recently-edited.html">recently edited</a></li>
+	<li><a class="backlink" href="/gardenbot/systems/drive-system/drive-system.html">drive-system</a></li>
+	<li><a class="backlink" href="/gardenbot/systems/drive-system/drive-motor-controller/drive-motor-controller.html">drive-motor-controller</a></li>
 	<li><a class="backlink" href="/gardenbot/index.html">index</a></li>
 </ul>
 </div>
@@ -480,24 +476,23 @@
 <div class="tags">
 <h2>Tags</h2>
 <ul>
-	<li><a class="backlink" href="/gardenbot/obs.html/tags/test/index.html">test</a></li>
-	<li><a class="backlink" href="/gardenbot/obs.html/tags/todo/index.html">todo</a></li>
+	<li><a class="backlink" href="/gardenbot/obs.html/tags/motor-sprocket/index.html">motor-sprocket</a></li>
 </ul>
 </div>
 
 </div>
 <div class="graph requires_js ">
-    <div id="A32634261333004874904649018378233439871{level}" class="graph_div"></div>
+    <div id="A88167025901459136895126847695795528407{level}" class="graph_div"></div>
 
-    <div class="graph-instructions" id="D32634261333004874904649018378233439871{level}">
+    <div class="graph-instructions" id="D88167025901459136895126847695795528407{level}">
         Left-click: follow link, Right-click: select node, Scroll: zoom
     </div>
     
     <div class="graph-button-row" style="display:flex;">
-        <button class="graph_button graph_show_button" id="B32634261333004874904649018378233439871{level}" level="{level}" note_temp_id="32634261333004874904649018378233439871" onclick="window.ObsHtmlGraph.run(this, '32634261333004874904649018378233439871', 'docs');">
+        <button class="graph_button graph_show_button" id="B88167025901459136895126847695795528407{level}" level="{level}" note_temp_id="88167025901459136895126847695795528407" onclick="window.ObsHtmlGraph.run(this, '88167025901459136895126847695795528407', 'drive-motor');">
             Show Graph
         </button>
-        <button class="graph_button graph_type_button" id="C32634261333004874904649018378233439871{level}" style="flex:1" onclick="window.ObsHtmlGraph.switch_graph_type(this);">
+        <button class="graph_button graph_type_button" id="C88167025901459136895126847695795528407{level}" style="flex:1" onclick="window.ObsHtmlGraph.switch_graph_type(this);">
             2D
         </button>
     </div>
