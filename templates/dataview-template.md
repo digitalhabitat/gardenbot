@@ -1,7 +1,7 @@
-
 <%*
 const dv = app.plugins.plugins["dataview"].api;
 // Add as many filenames and queries as you'd like!
+// use variable for file source parts-list-rev1.csv
 const fileAndQuery = new Map([
   [
     "encoder-assembly-parts-list",
@@ -20,7 +20,7 @@ await fileAndQuery.forEach(async (query, filename) => {
   }
   const tFile = tp.file.find_tfile(filename);
   const queryOutput = await dv.queryMarkdown(query);
-  const fileContent = `%% Updated via "test" template %% \n\n${queryOutput.value}`;
+  const fileContent = `%% Updated via "dataview-template" %% \n\n${queryOutput.value}`;
   try {
     await app.vault.modify(tFile, fileContent);
     new Notice(`Updated ${tFile.basename}.`);

@@ -1,11 +1,11 @@
-%% Updated via "test" template %% 
+%% Updated via "dataview-template" %% 
 
 | Note                             | Modified              |
 | -------------------------------- | --------------------- |
-| [[test]]                         | Sep 2, 2024, 12:41 AM |
-| [[Recently Edited]]              | Sep 2, 2024, 12:41 AM |
+| [[dataview-template]]            | Sep 2, 2024, 1:04 AM  |
+| [[Recently Edited]]              | Sep 2, 2024, 1:01 AM  |
+| [[drive-motor-encoder-assembly]] | Sep 2, 2024, 1:01 AM  |
+| [[encoder-assembly-parts-list]]  | Sep 2, 2024, 1:01 AM  |
+| [[parts-list-rev1.csv]]          | Sep 2, 2024, 1:00 AM  |
+| [[inbox]]                        | Sep 2, 2024, 12:57 AM |
 | [[gardenbot]]                    | Sep 2, 2024, 12:40 AM |
-| [[encoder-assembly-parts-list]]  | Sep 2, 2024, 12:40 AM |
-| [[docs]]                         | Sep 1, 2024, 11:53 PM |
-| [[drive-motor-encoder-assembly]] | Sep 1, 2024, 11:46 PM |
-| [[wire-system]]                  | Sep 1, 2024, 8:37 PM  |

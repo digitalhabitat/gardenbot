@@ -6,6 +6,7 @@
 - What is web3
 - testing
 - iOS test
+
 - UART cable need for Emlid
 - How to sync installed plugins on mobile?
 - https://app.diagrams.net/
