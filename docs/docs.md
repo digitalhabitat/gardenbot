@@ -41,3 +41,4 @@ Documentation related to parts, devices, tools, etc. use to build the gardenbot.
 
 # Accolades
 https://joschua.io/posts/2023/09/01/obsidian-publish-dataview/
+https://sketchfab.com/

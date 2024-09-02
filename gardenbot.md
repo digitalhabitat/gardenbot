@@ -4,7 +4,6 @@
 > https://github.com/digitalhabitat/gardenbot
 
 > [!note]- [[Recently Edited]]
-> 
 
 ![[main_capture-removebg.png|400]]
 
