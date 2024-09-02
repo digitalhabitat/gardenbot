@@ -1,3 +1,4 @@
+
 <%*
 const dv = app.plugins.plugins["dataview"].api;
 // Add as many filenames and queries as you'd like!
@@ -8,7 +9,7 @@ const fileAndQuery = new Map([
   ],
   [
     "Recently Edited",
-    'TABLE WITHOUT ID file.link AS Note, dateformat(file.mtime, "ff") AS Modified FROM "" SORT file.mtime desc LIMIT 7',
+    'TABLE WITHOUT ID "[[" + file.name + "]]" AS Note, dateformat(file.mtime, "ff") AS Modified FROM "" SORT file.mtime desc LIMIT 7',
   ],
 ]);
 
