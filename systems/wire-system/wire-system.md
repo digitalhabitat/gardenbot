@@ -2,7 +2,7 @@
 
 The the wiring of each major electrical system is documented with https://www.diagrams.net/ via `.drawio` or `.drawio.svg`  See [FAQ](https://www.diagrams.net/doc/faq/save-file-formats) for file format details. The construction of individual wires and harnesses is documented with [WireViz](https://github.com/formatc1702/WireViz) via `.yml` files. The `.yml` files are stored in the `wireviz` directory and are processed into `.svg` files with the VScode Task "Run wireviz" using the shell script  `wireviz.sh`
 
->[!Work in progress]
+>[!warning]- Work in progress
 > - #WIP
 > - 24 Volt System Diagram (mostly complete)
 > - 12 Volt System Diagram (incomplete)
@@ -117,6 +117,8 @@ The power system is responsible for safely supplying power to the loads while al
 
 ![[power-system-concept.drawio.svg]]
 ## 24 Volt Supply Wiring Diagram
+
+[[wire-system-24-volt.drawio.html]]
 
 [![[wire-system-24-volt.drawio.svg]]](wire-system-24-volt.drawio.html)
 

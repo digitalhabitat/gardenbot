@@ -8,15 +8,15 @@ aliases: [encoder, encoders, AMT103-V]
 
 ## Parts
 
-
-%%
-```dataview
-TABLE WITHOUT ID
-component-type, description, source-files, supplier-link
-FROM csv("parts-list-rev1.csv")
-WHERE sub-assembly = "encoder"
-```
-%%
+> [!NOTE]- Parts List Table
+> 
+> ```dataview
+> TABLE WITHOUT ID
+> component-type, description, source-files, supplier-link
+> FROM csv("docs/ref-docs/parts-list-rev1.csv")
+> WHERE sub-assembly = "encoder"
+> ```
+> 
 
 [[Flat pattern of encoder-bracket-AMT103 Drawing 1.pdf]]
 
