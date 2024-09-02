@@ -1,3 +1,8 @@
+---
+tags:
+  - test
+public_note: "true"
+---
 # docs
 Documentation related to parts, devices, tools, etc. use to build the gardenbot. 
 # Formal Docs
@@ -33,3 +38,6 @@ Documentation related to parts, devices, tools, etc. use to build the gardenbot.
 [TWTADE/JQX-62F-2Z Coil Voltage DC 12V 80A DPDT](https://www.amazon.com/gp/product/B07FCJ39QR/ref=ppx_yo_dt_b_search_asin_title?ie=UTF8&psc=1)
 [TWTADE/DC 12V Relay 10A 2DPT YJ2N-LY](https://www.amazon.com/gp/product/B07C78SLKD/ref=ppx_yo_dt_b_search_asin_title?ie=UTF8&psc=1)
 [TWTADE/DC 12V 5A 4PDT HH54P MY4J](https://www.amazon.com/gp/product/B07CG5BM4S/ref=ppx_yo_dt_b_search_asin_title?ie=UTF8&psc=1)
+
+# Accolades
+https://joschua.io/posts/2023/09/01/obsidian-publish-dataview/

@@ -1,5 +1,8 @@
 ---
-aliases: [encoder, encoders, AMT103-V]
+aliases:
+  - encoder
+  - encoders
+  - AMT103-V
 ---
 # Drive Motor Encoder Assembly
 ---
@@ -9,17 +12,9 @@ aliases: [encoder, encoders, AMT103-V]
 ## Parts
 
 > [!NOTE]- Parts List Table
-> 
-> ```dataview
-> TABLE WITHOUT ID
-> component-type, description, source-files, supplier-link
-> FROM csv("docs/ref-docs/parts-list-rev1.csv")
-> WHERE sub-assembly = "encoder"
-> ```
-> 
+> ![[encoder-assembly-parts-list]]
 
 [[Flat pattern of encoder-bracket-AMT103 Drawing 1.pdf]]
-
 
 - Hex Nut Encoder Adapter (3D printed)
 	- Material: MJF Nylon

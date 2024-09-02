@@ -9,5 +9,7 @@
   "highlightr-plugin",
   "obsidian-emoji-toolbar",
   "numerals",
-  "obsidian-importer"
+  "obsidian-importer",
+  "dataview-serializer",
+  "templater-obsidian"
 ]
