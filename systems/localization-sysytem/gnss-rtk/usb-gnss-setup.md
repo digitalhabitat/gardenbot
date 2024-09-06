@@ -137,7 +137,7 @@ This project is using the [Emlid Reach RTK Module](https://docs.emlid.com/reach/
 > [/details]
 > ```
 
-### Identifying serial port
+### Identifying serial port label
 
 0. Open a terminal and enter the following command to capture the serial port device label e.g. `/dev/tty*` [More info](https://en.wikipedia.org/wiki/Serial_port#Hardware_abstraction)
 ```shell
@@ -146,16 +146,23 @@ dmesg --follow
 
 1. Plugin in the USB RTK module and on the Linux terminal you should see this something like the following: 
 
-```stdout
+```
 [604400.525618] cdc_acm 1-1.3:1.0: ttyACM0: USB ACM device
                                    ^^^^^^^ make note of this label
 ```
 
 > [!NOTE]
 > If you're using a terminal within a docker container you may need to try running the 
-> container in "privileged" mode. This is consider unsafe in some circumstances so you may look [here](#TODO) for details on how to expose serial interfaces more securely.
+> container in [privileged mode](https://docs.docker.com/engine/containers/run/#runtime-privilege-and-linux-capabilities) using the `--privileged` flag. Privileged mode is not a secure solution but the alternative requires you to specify the exact device and grant access to the device group. The `devcontainer.json` with look something like the following:
+> ```
+> "runArgs": [
+>	"--device=/dev/ttyUSB0:/dev/ttyUSB0",
+>	 "--group-add=dialout",
+> ]
+> ```
+### Test GPS serial port
 
-2. Cancel the process from step 0. In the terminal, enter the following.
+1. Cancel the process from step 0. In the terminal, enter the following.
 ```shell
 sudo screen /dev/ttyACM0 9600
 ```
@@ -184,7 +191,6 @@ socat - TCP4:192.168.0.20:9002
 $ sudo ./str2str -in ntrip://username:password@hostname:port/mountpoint -out serial://ttyACM0:115200#52001 -b 1
 ```
 
-
 ###  Creating a persistent label for the RTK GNSS USB device
 
 To use the serial device as non-root user, udev rules must be installed.
@@ -203,20 +209,16 @@ To use the serial device as non-root user, udev rules must be installed.
 lsusb
 ```
 
-```stdout
+1. You should see this something like the following:
+
+```
 Bus 003 Device 063: ID 3032:0014 Emlid Reach
                        ^^^^ ^^^^
                     vendor  product
 ```
-
-1. On the Linux terminal you should see this something like the following:
-
-```stdout
-[604400.525618] cdc_acm 1-1.3:1.0: ttyACM0: USB ACM device
-                                   ^^^^^^^ make note of this label
-```
-
-2. Run the udev management tool `udevadmn` to capture additional info.
+ 
+2. Identify the the serial port label [[usb-gnss-setup#Identifying serial port label]]
+3. Run the udev management tool `udevadmn` to capture additional info.
 
 ```shell
 udevadm info -q all -n /dev/ttyACM0
@@ -246,7 +248,7 @@ cd /etc/udev/rules.d/;
 sudo vim 51-emlid.rules
 ```
 
-```shell
+```sh
 # Copy this udev with "sudo cp 51-emlid.rules /etc/udev/rules.d/"
 # When done, do "sudo udevadm control --reload && sudo udevadm trigger"
 # Edit it to suit your type of Linux. It's currently set up for modern Ubuntu
@@ -278,6 +280,8 @@ ls -l /dev/emlid*
 sudo screen /dev/emlid_rtk
 ```
 
+
+![[note.c]]
 ## RTKLIB str2str
 
 > [!NOTE]
@@ -642,6 +646,31 @@ Pretesting Note: Recently a ROS1 package ([reach_ros_node](https://github.com/rp
 ### Test 3 Results
 
 I encountered issues with the ros2 branch of reach_ros_node. It seems that it is not fully developed for ROS2 yet.
+## Testing Summary 
+
+The python ros2 launch file examples below, will perform following:
+1. Use `dotenx` to decrypt `str2str` login parameters
+2. Utilize `str2str` to receive correction data
+	1. inputs:
+		1. Location Data from GNSS device
+		2. Correction data from CORS Network
+	2. outputs: 
+		1. Location data to CORS Network
+		2. Location data to local Network `tcp://localhost:9123`
+3. Utilize a gpsd server to republished the data a JSON objects
+	1. Inputs: 
+		1. Location data from local Network `tcp://localhost:9123`
+	2. Outputs: 
+		1. Location data to local Network `tcp://localhost:9234`
+4. Utilize  `gpsd_client::GPSDClientComponent` to republish data as a ROS topic
+	1. input: 
+		1. Location data from local Network `tcp://localhost:9234`
+	2. Outputs: 
+		1. Location data a ROS topic `sensor_msgs/msg/NavSatFix` messages
+
+```embed-python
+PATH: https://raw.githubusercontent.com/digitalhabitat/bot2_ros2_workspace/humble/launch/gpsd-client-test.py
+```
 ## Questions
 
 ### Q1. How do you find the NTRIP Mount point for Automatic Cells or Single Sites?
@@ -658,41 +687,22 @@ I encountered issues with the ros2 branch of reach_ros_node. It seems that it is
 Source Table: Represents contents list of provided data by NTRIP servers
 
 1. **RTK (Real-Time Kinematic):** A technique used to improve the precision of GNSS data.
-    
 2. **GNSS (Global Navigation Satellite System):** A generic term used for satellite navigation systems including GPS, GLONASS, Galileo, and BeiDou.
-    
 3. **PPP (Precise Point Positioning):**
-    
 4. **Base Station:** A stationary GNSS receiver used as a reference point for RTK corrections.
-    
 5. **Rover Station:** A mobile GNSS receiver that receives corrections from a base station.
-
 6. **NMEA message/string**: #todo
-    
 6. **NTRIP (Networked Transport of RTCM via Internet Protocol):** A communication protocol to streaming RTCM correction data over the internet.
-    
 7. **RTCM (Radio Technical Commission for Maritime Services):**  An international standards body that defines standards such as, RTCM SC-104, which specifies a set of binary messages (aka RTCM messages) containing GNSS correction data.
-    
 8. **Observation Data:** Raw GNSS measurements collected by a receiver, including pseudoranges and carrier phase information.
-    
 9. **Solution:** The final output of the positioning process, providing accurate coordinates for a specific location.
-    
 10. **Float Solution:** A position solution with a lower level of accuracy, often used in standard GPS positioning.
-    
 11. **Fix Solution:** A high-precision position solution achieved through RTK techniques, providing centimeter-level accuracy.
-    
 12. **DGNSS (Differential GNSS):** A technique that improves GNSS accuracy by using correction data from a reference station.
-    
 13. **Cycle Slip:** 
-    
 14. **ION (Institute of Navigation):** A professional organization that focuses on the science and art of navigation.
-    
 15. **Tropospheric Delay:** The slowing of GNSS signals as they pass through the Earth's atmosphere, affecting accuracy.
-    
 16. **Receiver Firmware:** . Embedded software of GNSS receievers.
-    
 18. **RINEX (Receiver Independent Exchange Format):** A standard format for exchanging GNSS data between different software.
-    
 19. **Solution Status:** Information indicating the quality and reliability of the position solution, such as 'FIXED' or 'FLOAT.'
-    
 20. **Ambiguity Resolution:** The process of determining the integer values in carrier phase measurements to improve positioning accuracy in RTK.

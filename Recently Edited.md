@@ -1,11 +1,11 @@
 %% Updated via "dataview-template" %% 
 
-| Note                             | Modified              |
-| -------------------------------- | --------------------- |
-| [[dataview-template]]            | Sep 2, 2024, 1:04 AM  |
-| [[Recently Edited]]              | Sep 2, 2024, 1:01 AM  |
-| [[drive-motor-encoder-assembly]] | Sep 2, 2024, 1:01 AM  |
-| [[encoder-assembly-parts-list]]  | Sep 2, 2024, 1:01 AM  |
-| [[parts-list-rev1.csv]]          | Sep 2, 2024, 1:00 AM  |
-| [[inbox]]                        | Sep 2, 2024, 12:57 AM |
-| [[gardenbot]]                    | Sep 2, 2024, 12:40 AM |
+| Note                  | Modified              |
+| --------------------- | --------------------- |
+| [[usb-gnss-setup]]    | Sep 6, 2024, 12:01 AM |
+| [[dataview-template]] | Sep 5, 2024, 11:51 PM |
+| [[note.c]]            | Sep 5, 2024, 10:58 PM |
+| [[dentifying]]        | Sep 5, 2024, 10:17 PM |
+| [[list-test]]         | Sep 5, 2024, 9:39 PM  |
+| [[wire-system]]       | Sep 5, 2024, 9:15 PM  |
+| [[gardenbot]]         | Sep 5, 2024, 9:10 PM  |

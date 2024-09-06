@@ -3,7 +3,7 @@
 > [!example]- obsidian.md notes
 > https://github.com/digitalhabitat/gardenbot
 
-> [!note]- [[Recently Edited]]
+> [!note] [[Recently Edited]]
 
 ![[main_capture-removebg.png|400]]
 

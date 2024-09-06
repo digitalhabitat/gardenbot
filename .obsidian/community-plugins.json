@@ -11,5 +11,6 @@
   "numerals",
   "obsidian-importer",
   "dataview-serializer",
-  "templater-obsidian"
+  "templater-obsidian",
+  "embed-code-file"
 ]

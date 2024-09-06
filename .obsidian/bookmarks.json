@@ -17,6 +17,16 @@
       "ctime": 1705197250429,
       "path": "systems/localization-sysytem/gnss-rtk/usb-gnss-setup.md",
       "title": "RTK"
+    },
+    {
+      "type": "file",
+      "ctime": 1725256916759,
+      "path": "systems/power-system/power-system.md"
+    },
+    {
+      "type": "file",
+      "ctime": 1725256952281,
+      "path": "systems/steering-system/steering-system.md"
     }
   ]
 }
