@@ -3,6 +3,8 @@
 > [!example]- obsidian.md notes
 > https://github.com/digitalhabitat/gardenbot
 
+> [!note] [[Recently Edited]]
+
 ![[main_capture-removebg.png|400]]
 
 ## Introduction
@@ -95,10 +97,16 @@ Achieving this goal requires a deep understanding of existing open-source softwa
 - [[drive-motor-controller]] `roboclaw 2x30A`
 
 [[steering-system]] #WIP 
+
+
 - [[steering-motor-controller]]
 [[power-system]]
+
 [[wire-system]]	
+
 [[localization-system]] #todo
+
+[[docs]]
 
 ---
 

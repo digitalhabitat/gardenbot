@@ -8,7 +8,7 @@
 ## Serial Interface Setup
 
 >[!INFO]
-The roboclaw motor controller is not powered via the micro-USB port. In order to power the motor controller the Roboclaw must be connected to the Main Battery. Alternatively, a Logic Battery (Backup Battery) may be connected to the RoboClaw.
+> The roboclaw motor controller is not powered via the micro-USB port. In order to power the motor controller the Roboclaw must be connected to the Main Battery. Alternatively, a Logic Battery (Backup Battery) may be connected to the RoboClaw.
 
 1. With the motor controller powered off, connect the controller via the micro-USB to the Linux machine you wish to interface the controller with.
 2. Open a terminal and issue the following command to capture the serial port device label e.g. `/dev/tty*` [More info](https://en.wikipedia.org/wiki/Serial_port#Hardware_abstraction)
@@ -17,7 +17,6 @@ dmesg --follow
 ```
 3. Power on the controller buy connecting the Main Battery.
 4. On the Linux terminal you should see this something like the following:
-
 ```
 [604400.525618] cdc_acm 1-1.3:1.0: ttyACM0: USB ACM device
                                    ^^^^^^^ make note of this label
