@@ -21,6 +21,9 @@ import RecentNotes from "./RecentNotes"
 import Breadcrumbs from "./Breadcrumbs"
 import Comments from "./Comments"
 
+// Custom Imports
+import LinksHeader from "./LinksHeader"
+
 export {
   ArticleTitle,
   Content,
@@ -44,4 +47,5 @@ export {
   NotFound,
   Breadcrumbs,
   Comments,
+  LinksHeader
 }
