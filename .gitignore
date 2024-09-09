@@ -10,6 +10,11 @@
 # to exclude workspace cache specific to mobile devices
 .obsidian/workspace-mobile.json
 
+# Quartz
+quartz/node_modules
+quartz/public
+quartz/quartz/.quartz-cache
+
 # Add below lines to exclude OS settings and caches
 .trash/
 .DS_Store
