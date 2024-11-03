@@ -51,6 +51,14 @@ cd ~/repo/gardenbot
 ```bash
 git subtree pull --prefix=quartz https://github.com/jackyzha0/quartz.git v4 --squash
 ```
-- Resolve merge conflicts with customized configurations files. This will always be the cause with files like `quarts.config.ts` 
+- Resolve merge conflicts with customized configurations files. This will always be the cause with files like `quarts.config.ts`
 
+## Fine-grained Personal Access Token (PAT)
 
+#todo
+
+To enable updating notes via the [obsidian mobile app](https://obsidian.md/mobile) and the g[obisidan-git plugin](https://github.com/Vinzent03/obsidian-git). This project uses PATs because the mobile app does not support SSH authentication. 
+
+## Github Workflow
+
+#todo
