@@ -1,6 +1,7 @@
 # PiSugar
 
->[!NOTE]  Make sure USB cable is connect to bottom left charging port.
+>[!important]  Make sure USB cable is connect to bottom left charging port.
+>![[pisugar-interface.drawio.svg]]
 
 ## Info
 - Name: Pisugar 3 Plus
@@ -27,7 +28,7 @@ Web UI: http://192.168.1.25:8421/#/
 	- Solid Blue: On Battery
 	- Incrementing Green: Charging (PS-Power Present)
 
-![[pisugar-interface.drawio.svg]]
+
 
 [Amazon](https://www.amazon.com/Portable-Platform-Raspberry-Accessories-handhold/dp/B09MJ876FW/)
 [Install](https://github.com/PiSugar/PiSugar/wiki/PiSugar-3-Series)

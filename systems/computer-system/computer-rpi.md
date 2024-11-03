@@ -6,30 +6,19 @@ aliases: [ rpi4, rpi]
 
 - Raspberry Pi 4 Model B Rev 1.5 (4GB)
 - Raspberry Pi OS 64-bit
-- Description: Debian GNU/Linux 11 (bullseye) #todo update  to 12 (Bookworm)
-- `Linux raspberrypi 5.15.56-v8+ #1575 SMP PREEMPT Fri Jul 22 20:31:26 BST 2022 aarch64 GNU/Linux`
+- Description: Debian GNU/Linux 12 (Bookworm)
+- `Linux rpi4 6.6.51+rpt-rpi-v8 #1 SMP PREEMPT Debian 1:6.6.51-1+rpt3 (2024-10-08) aarch64 GNU/Linux`
+
 - Quick Links
-	- https://pinout.xyz/
-- [[computer-rpi-setup|rpi-setup]]
+	- https://pinout.xyz/ #pinout
+	- [[computer-rpi-setup|rpi-setup]]
+	- [[pisugar]]
 
 ## Components
 
 - Din Rail Enclosure
-- LED Status indication
-	- https://github.com/todbot/blink1-tool.git
-- [[computer-rpi-camera]]
-	- OV5647
-	- 15-pin MIPI Camera Serial Interface (CSI) connector
-	- https://www.amazon.com/gp/product/B07RWCGX5K
-	- https://www.raspberrypi.com/documentation/accessories/camera.html
-- Battery Backup
--  
-https://elinux.org/RPi_VerifiedPeripherals
 
-## Specs
-
-- USB-C Power:
-- Storage: 32 GB SD Card
+- 64 GB SD Card
 
 ## Software 
 - Raspberry Pi OS 64-bit
@@ -39,10 +28,19 @@ https://elinux.org/RPi_VerifiedPeripherals
 - See [[computer-rpi-setup]] for instructions.
 
 ## Peripheral Devices
-
 - [[drive-motor-controller|roboclaw]]
-- Bluetooth Controller (Procurement Pending)
-- GNSS Receiver (Procurement Pending)
+- Bluetooth Controller
+- [[usb-gnss-setup|GNSS Receiver]]
+- - LED Status indication
+	- https://github.com/todbot/blink1-tool.git
+- [[computer-rpi-camera]]
+	- OV5647
+	- 15-pin MIPI Camera Serial Interface (CSI) connector
+	- https://www.amazon.com/gp/product/B07RWCGX5K
+	- https://www.raspberrypi.com/documentation/accessories/camera.html
+- [[pisugar|Pi Sugar Battery Backup]]
+
+ https://elinux.org/RPi_VerifiedPeripherals
 
 ## Caveats
 
