@@ -30,6 +30,7 @@ jobs:
           node-version: 22
 
       - name: Install Dependencies
+        working-directory: quartz
         run: npm ci
 
       - name: Build Quartz
