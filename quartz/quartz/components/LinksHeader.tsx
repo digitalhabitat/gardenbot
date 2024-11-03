@@ -10,7 +10,7 @@ export default (() => {
     return (
       <div id="links-header-container">
         <div id="links-header">
-            <a class="links-header-item" href="/gardenbot">
+            <a class="links-header-item" href="/gardenbot/gardenbot-intro">
             Intro</a>     
             <a class="links-header-item" href="/gardenbot/systems/wire-system/wire-system">
             Wiring</a>      
