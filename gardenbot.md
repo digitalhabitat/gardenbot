@@ -19,7 +19,10 @@ Goal #1 is to document my experience in building a semi-autonomous navigating fo
 
 Robots are inherently complex, which makes building a robot especially challenging. In order for a robotic endeavor such as this to reach success, managing that complexity is crucial. Since I'm basically building a robot from scratch—for the first time ever on my own—I admittingly was not prepared for all the design and fabrication work involved. Acutely aware of the project’s growing complexity, I realized that pen-and-paper and ad-hoc solutions were inefficient in managing the mechanical design and development process.
 
-So I reached for a personal knowledge base—this website—to help me document, organize, and share my research and findings. [Obsidian.md](https://en.wikipedia.org/wiki/Obsidian_(software)) will be the foundation for managing most of the technical information and knowledge that require high visibility and access.
+So I reached for a personal knowledge base—this website—to help me document, organize, and share my research and findings. [Obsidian.md](https://en.wikipedia.org/wiki/Obsidian_(software)) will be the foundation for managing most of the technical information and knowledge that require high visibility and access. I am also using the Obsdian publishing Tool [Quartz](https://quartz.jzhao.xyz/) to publish thes obisdian notes on the current website you are likely reading from.
+
+ >[!quote]
+ > "The only difference between Science and screwing around is writing it down." - Alex Jason & Adam Savage [Quote](https://www.youtube.com/watch?v=BSUMBBFjxrY)
 
 ## Goal 2
 
