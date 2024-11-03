@@ -12,13 +12,13 @@ export default (() => {
         <div id="links-header">
             <a class="links-header-item" href="/gardenbot">
             Intro</a>     
-            <a class="links-header-item" href="/systems/wire-system/wire-system">
+            <a class="links-header-item" href="/gardenbot/systems/wire-system/wire-system">
             Wiring</a>      
-            <a class="links-header-item" href="/systems/localization-sysytem/gnss-rtk/usb-gnss-setup">
+            <a class="links-header-item" href="/gardenbot/systems/localization-sysytem/gnss-rtk/usb-gnss-setup">
             RTK GNSS</a>
-            <a class="links-header-item" href="/systems/power-system/power-system">
+            <a class="links-header-item" href="/gardenbot//systems/power-system/power-system">
             Power System</a>
-            <a class="links-header-item" href="/systems/computer-system/computer-system">
+            <a class="links-header-item" href="/gardenbot//systems/computer-system/computer-system">
             Computer System</a>
         </div>
         <hr></hr>
