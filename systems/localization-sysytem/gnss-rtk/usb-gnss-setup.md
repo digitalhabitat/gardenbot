@@ -368,7 +368,7 @@ nc localhost 52001
 - -in ntrip://<mark style="background: #FFB8EBA6;">username</mark>:<mark style="background: #FFB86CA6;">password</mark>@<mark style="background: #BBFABBA6;">host</mark>:<mark style="background: #ADCCFFA6;">port</mark>/<mark style="background: #CACFD9A6;">mount</mark>#<mark style="background: #FF5582A6;">format</mark>
 	- username: 
 	- password:
-	- host
+	- host: IP address of 
 	- port:
 	- mount:
 	- format:
