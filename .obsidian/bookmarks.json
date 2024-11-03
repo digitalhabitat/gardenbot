@@ -27,6 +27,12 @@
       "type": "file",
       "ctime": 1725256952281,
       "path": "systems/steering-system/steering-system.md"
+    },
+    {
+      "type": "file",
+      "ctime": 1730665079316,
+      "path": "systems/computer-system/computer-rpi-setup.md",
+      "title": "rpi4"
     }
   ]
 }
