@@ -15,7 +15,7 @@ const config: QuartzConfig = {
       provider: "plausible",
     },
     locale: "en-US",
-    baseUrl: "quartz.jzhao.xyz",
+    baseUrl: "https://digitalhabitat.github.io/gardenbot/",
     ignorePatterns: ["private", "templates", ".obsidian", "quartz"],
     defaultDateType: "created",
     theme: {
