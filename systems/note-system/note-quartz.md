@@ -57,7 +57,7 @@ git subtree pull --prefix=quartz https://github.com/jackyzha0/quartz.git v4 --sq
 
 #todo
 
-To enable updating notes via the [obsidian mobile app](https://obsidian.md/mobile) and the g[obisidan-git plugin](https://github.com/Vinzent03/obsidian-git). This project uses PATs because the mobile app does not support SSH authentication. 
+To enable updating notes via the [obsidian mobile app](https://obsidian.md/mobile) and the g[obisidan-git plugin](https://github.com/Vinzent03/obsidian-git). This project uses Github [Fined-grained PATs](https://github.com/settings/tokens?type=beta) because the mobile app does not support SSH authentication. 
 
 ## Github Workflow
 
