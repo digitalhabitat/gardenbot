@@ -4,8 +4,14 @@
 
 ## Initial Testing of mjbots moteus controller with raspberry pi
 
-https://github.com/babel-robotics/mjbots_Moteus/blob/main/docs/raspberry_pi.md
+https://github.com/mjbots/moteus/blob/main/docs/raspberry_pi.md
 
+https://www.youtube.com/watch?v=6prAv9hbmeM&t=157s
+
+Set defaults
+```
+conf default
+```
 
 ### CLI tool
 
@@ -226,3 +232,16 @@ REPORT: moteus-cal-ADsAP1QwUBQgOTNO-20240707T053905.633576.log
 ```
 
 https://www.youtube.com/watch?v=6prAv9hbmeM&t=237s
+
+## Test 3
+
+1. Plug usb2can device into rpi4
+2. Verify detection
+```shell
+$ lsub
+> Bus 001 Device 062: ID 0483:5740 STMicroelectronics Virtual COM Port
+```
+3. run the gui
+```
+python3 -m moteus_gui.tview
+```
