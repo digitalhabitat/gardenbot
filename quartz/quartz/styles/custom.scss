@@ -1,3 +1,18 @@
 @use "./base.scss";
 
 // put your custom CSS here!
+
+// Target dark theme
+[saved-theme="dark"] {
+    // Invert all images with '_DM.svg' or  '_DM.drawio.svg' in the filename 
+    // across all pages
+    img[src*="_DM.svg"],
+    img[src*="_DM.drawio.svg"] {
+      filter: invert(100%) hue-rotate(180deg);
+    }
+  
+    // Additional dark theme adjustments
+    #texture {
+      mix-blend-mode: overlay;
+    }
+  }
