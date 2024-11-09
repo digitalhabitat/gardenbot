@@ -5,6 +5,7 @@
 		}
 	],
 	"settings": {
-		"editor.mouseWheelZoom": true
+		"editor.mouseWheelZoom": true,
+		"editor.rulers": [80,120]
 	}
 }
