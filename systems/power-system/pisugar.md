@@ -1,7 +1,11 @@
 # PiSugar
 
->[!important]  Make sure USB cable is connect to bottom left charging port.
->![[pisugar-interface.drawio.svg]]
+> [!important]  
+> Make sure the USB cable is connected to the bottom left charging port
+> (USB-C PiSugar-Power).
+> This provides charging to the PiSugar battery **AND** power to the
+> Raspberry Pi.
+>![[pisugar-interface_DM.drawio.svg]]
 
 ## Info
 - Name: Pisugar 3 Plus
