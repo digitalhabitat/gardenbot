@@ -44,7 +44,8 @@ The power system is responsible for safely supplying power to the loads while al
 	2. When not energized by the 24V Battery Circuit:
 		1. Disconnect power to 24V Load Circuit.
 
-![[power-system-concept.drawio.svg]]
+![[power-system-concept_DM.drawio.svg]]
+
 ## 24V Motor Battery System	
  
  ### Components
