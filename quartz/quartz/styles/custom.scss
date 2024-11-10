@@ -4,8 +4,9 @@
 
 // Target dark theme
 [saved-theme="dark"] {
-    // Invert all images with '_DM.svg' or  '_DM.drawio.svg' in the filename 
-    // across all pages
+    // Invert all images with the following filename across all pages
+    // '_DM.webp', '_DM.svg' or  '_DM.drawio.svg'
+    img[src*="_DM.webp"],
     img[src*="_DM.svg"],
     img[src*="_DM.drawio.svg"] {
       filter: invert(100%) hue-rotate(180deg);

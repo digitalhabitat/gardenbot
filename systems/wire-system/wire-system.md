@@ -1,8 +1,15 @@
-# Wire System
+---
+title: Wire System
+tags:
+  - ASME_Y14.44-2008
+  - WIP
+---
+
+![[wires_DM.webp]]
 
 The the wiring of each major electrical system is documented with https://www.diagrams.net/ via `.drawio` or `.drawio.svg`  See [FAQ](https://www.diagrams.net/doc/faq/save-file-formats) for file format details. The construction of individual wires and harnesses is documented with [WireViz](https://github.com/formatc1702/WireViz) via `.yml` files. The `.yml` files are stored in the `wireviz` directory and are processed into `.svg` files with the VScode Task "Run wireviz" using the shell script  `wireviz.sh`
 
-For Electrical Power documentation see [[power-system]].
+This page is specifically for documenting **WHAT** and **HOW** components are wired within a technical maintenance mindset. For understanding **WHY** they are wired this way, see the Electrical Power Design documentation [[power-system]].
 
 >[!warning]- Work in progress
 > - #WIP
@@ -29,7 +36,7 @@ For Electrical Power documentation see [[power-system]].
 > - [Siemens Symbols Library](https://symbols.radicasoftware.com/)
 
 
->[!Info] **Golden rules** for harness reference designation from IEEE-200-1975 include:
+>[!Info] [Golden rules for harness reference designation from IEEE-200-1975](https://www.cosjwt.com/tag/asme-y1444-2008/)
 > - The movable (less fixed) connector of a mating pair shall be designated P [where P means plug].
 > - The stationary (more fixed) connector of a mating pair shall be designated J or X [where J means Jack].
 > - If two cables are to be connected to each other, each of the mating cable connectors shall be designated P.
@@ -76,7 +83,7 @@ Labeling Convention `<Wire-id><Port-id><Mate-id>
 
 [[wire-system-24-volt.drawio.html]]
 
-[![[wire-system-24-volt.drawio.svg]]](wire-system-24-volt.drawio.html)
+![[wire-system-24-volt_DM.drawio.svg]]
 
 
 ---
@@ -84,6 +91,9 @@ Labeling Convention `<Wire-id><Port-id><Mate-id>
 ## 12 Volt Supply Wiring Diagram
 
 ---
-![[12v_battery_system.drawio.svg]]## Glossary
+
+![[wire-system-12-volt_DM.drawio.svg]]
+
+## Glossary
 
 changeover contact
