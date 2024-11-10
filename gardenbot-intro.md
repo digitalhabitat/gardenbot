@@ -1,9 +1,10 @@
-# gardenbot
+---
+title: Gardenbot Intro
+---
 
-> [!example]- obsidian.md notes
-> https://github.com/digitalhabitat/gardenbot
-
-> [!note] [[Recently Edited]]
+> [!example]- Github Repos
+> - Documenation: https://github.com/digitalhabitat/gardenbot (What you're viewing)
+> - Implementation: https://github.com/digitalhabitat/bot2_ros2_workspace
 
 ![[main_capture-removebg.png|400]]
 
@@ -45,7 +46,8 @@ Achieving this goal requires a deep understanding of existing open-source softwa
 ## Demonstration Road Map
 
 - [x] Keyboard Teleoperation
-- [ ] Bluetooth Controller Teleoperation
+- [x] Bluetooth Controller Teleoperation Differential Steering
+- [ ] Bluetooth Controller Teleoperation of Ackermann Steering
 - [ ] Remote Teleoperation
 - [ ] Realtime Camera Streaming
 - [ ] Localization
@@ -58,20 +60,20 @@ Achieving this goal requires a deep understanding of existing open-source softwa
 
 - [x] Primary Electronics 
 - [x] Differential Steering
-- [x] Ackermann Steering
-- [ ] Computer Enclosure
-- [ ] Charging Relay
-- [ ] SugarPi 3 Plus
+- [ ] Ackermann Steering #WIP
+- [x] Computer Enclosure
+- [x] Charging Relay
+- [x] SugarPi 3 Plus
 - [ ] GPS mount
 - [ ] IMU mount
-- [ ] Computer mount
+- [x] Computer mount
 - [ ] Camera mount
 - [ ] 2D LIDAR
 - [ ] Vehicle Enclosure
 
 ### Documentation
 
-- [ ] Utilize [obsidian-html](https://github.comobsidian-html/obsidian-html) 
+- [x] Utilize [Quartz](https://quartz.jzhao.xyz/)
 - [ ] Parts List #WIP 
 - [ ] Wire Diagram #WIP 
 - [ ] Steering System #todo

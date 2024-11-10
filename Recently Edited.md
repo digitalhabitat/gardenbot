@@ -1,11 +1,11 @@
 %% Updated via "dataview-template" %% 
 
-| Note                  | Modified              |
-| --------------------- | --------------------- |
-| [[usb-gnss-setup]]    | Sep 6, 2024, 12:01 AM |
-| [[dataview-template]] | Sep 5, 2024, 11:51 PM |
-| [[note.c]]            | Sep 5, 2024, 10:58 PM |
-| [[dentifying]]        | Sep 5, 2024, 10:17 PM |
-| [[list-test]]         | Sep 5, 2024, 9:39 PM  |
-| [[wire-system]]       | Sep 5, 2024, 9:15 PM  |
-| [[gardenbot]]         | Sep 5, 2024, 9:10 PM  |
+| Note                  | Modified               |
+| --------------------- | ---------------------- |
+| [[simulation-system]] | Nov 10, 2024, 3:20 PM  |
+| [[gardenbot-intro]]   | Nov 10, 2024, 3:17 PM  |
+| [[pisugar]]           | Nov 10, 2024, 2:55 PM  |
+| [[wire-system]]       | Nov 10, 2024, 2:00 PM  |
+| [[index]]             | Nov 10, 2024, 12:34 PM |
+| [[power-system]]      | Nov 9, 2024, 4:21 PM   |
+| [[usb-gnss-setup]]    | Nov 9, 2024, 4:18 PM   |
