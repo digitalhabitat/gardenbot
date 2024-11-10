@@ -1,7 +1,7 @@
 ---
 title: Welcome to my digital notebook 
 ---
-![[gardenbot.svg|300]]
+![[gardenbot_DM.svg|400]]
 
 I'm building a four-wheel robot and this is where I'm am documenting all the technical rabbit holes and madness that follows.
 
@@ -9,6 +9,10 @@ I'm building a four-wheel robot and this is where I'm am documenting all the tec
 
 [Wire System](./systems/wire-system/wire-system.md)
 
+[RTK GNSS](./systems/localization-sysytem/gnss-rtk/usb-gnss-setup.md)
+
 [Power System](./systems/power-system/power-system.md)
 
 [Drive System](./systems/drive-system/drive-system.md)
+
+[Computer System](./systems/computer-system/computer-system.md)
