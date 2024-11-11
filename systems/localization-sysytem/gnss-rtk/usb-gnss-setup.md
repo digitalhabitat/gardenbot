@@ -658,16 +658,16 @@ The python ros2 launch file examples below, will perform following:
 	2. outputs: 
 		1. Location data to CORS Network
 		2. Location data to local Network `tcp://localhost:9123`
-3. Utilize a gpsd server to republished the data a JSON objects
+3. Utilize a `gpsd` server to republished the data as JSON objects
 	1. Inputs: 
 		1. Location data from local Network `tcp://localhost:9123`
 	2. Outputs: 
-		1. Location data to local Network `tcp://localhost:9234`
+		1. JSON formatted location data to local network `tcp://localhost:9234`
 4. Utilize  `gpsd_client::GPSDClientComponent` to republish data as a ROS topic
 	1. input: 
-		1. Location data from local Network `tcp://localhost:9234`
+		1. JSON formatted location data from local network `tcp://localhost:9234`
 	2. Outputs: 
-		1. Location data a ROS topic `sensor_msgs/msg/NavSatFix` messages
+		1. Location data as a ROS topic `sensor_msgs/msg/NavSatFix` messages
 
 ```embed-python
 PATH: https://raw.githubusercontent.com/digitalhabitat/bot2_ros2_workspace/humble/launch/gpsd-client-test.py
