@@ -577,7 +577,7 @@ We demonstrated that a single connection (USB) to the emlid GPS device running t
 ### Test 2 - `gpsd_client` 
 
 >[!NOTE]
->These commands quickly become cumbersome to wrangle with. A more practical solution will use a single command that essentially calls the following commands sequentially. These commands are provided as an educational guide and demonstrate principles. Here is a ROS2 python launch file that streamlines the process. #todo link here
+>These commands quickly become cumbersome to wrangle with. A more practical solution will use a single command that essentially calls the following commands sequentially. These commands are provided as an educational guide and demonstrate principles. Here is a ROS2 python launch file that streamlines the process. [gpsd-client-test.py](https://github.com/digitalhabitat/bot2_ros2_workspace/blob/humble/launch/gpsd-client-test.py)
 
 Connect emlid device with correction service via [str2str](https://manpages.ubuntu.com/manpages/jammy/en/man1/str2str.1.html) and Output Received Stream to TCP Port 9123.
 
@@ -668,6 +668,8 @@ The python ros2 launch file examples below, will perform following:
 		1. JSON formatted location data from local network `tcp://localhost:9234`
 	2. Outputs: 
 		1. Location data as a ROS topic `sensor_msgs/msg/NavSatFix` messages
+
+[gpsd-client-test.py](https://github.com/digitalhabitat/bot2_ros2_workspace/blob/humble/launch/gpsd-client-test.py)
 
 ```embed-python
 PATH: https://raw.githubusercontent.com/digitalhabitat/bot2_ros2_workspace/humble/launch/gpsd-client-test.py
