@@ -9,6 +9,7 @@
   "spellcheck": true,
   "showInlineTitle": false,
   "showUnsupportedFiles": true,
-  "promptDelete": false,
-  "newLinkFormat": "shortest"
+  "promptDelete": true,
+  "newLinkFormat": "shortest",
+  "useTab": false
 }
