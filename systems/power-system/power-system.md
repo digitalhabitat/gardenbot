@@ -1,6 +1,10 @@
 
 # Power System Concept
 
+> [!NOTE]  Referencees
+> - https://batteryuniversity.com/
+> - https://dirtypcbs.com/store/pcbs
+
 The power system is responsible for safely supplying power to the loads while also isolating other devices during different modes of operation or charging. This design incorporates on-board chargers that may only connect and charge the batteries under specific conditions. Most low cost off the shelf sealed lead acid (SLA) absorbent glass mat (AGM) float chargers \[SLA battery maintainers\] require the battery not be under load during charging. The design provides a solution for the following requirements.
 ### Power Modes
 

@@ -1,10 +1,19 @@
 # Steering System
 
+Supplier Links
+- https://us.misumi-ec.com/
+- https://www.harborfreight.com/
+- https://www.mcmaster.com/
+
 ## Dual motor skid steering
 
 This is the simplest design. The design is essentially the same you may see on a zero-radius turn lawn mower. Two independently controlled rear wheel drive with two caster wheels in the front. The draw backs are low handling performance at moderate speeds and on non-flat surfaces or rough terrain.
 
 [8 in. Pneumatic Swivel Caster](https://www.harborfreight.com/material-handling/tires-casters/swivel-casters/8-inch-pneumatic-swivel-caster-42485.html)
+
+
+## Ackerman Steering Notes
+- https://web.archive.org/web/20180325200857/http://sariel.pl/2015/03/virtual-pivot-steering-system/
 ## Ackermann Steering with Odrive Motor
 
 ### Motor Details
@@ -15,6 +24,12 @@ Primary Shaft Length: 30 mm
 Secondary Shaft diameter: 8 mm
 Secondary Shaft length: 16 mm
 ## Ackermann Steering with mjbots Motor
+
+### Gear Motor Details
+#todo
+[NEMA 17 10:1](https://www.omc-stepperonline.com/mg-series-planetary-gearbox-gear-ratio-10-1-backlash-30-arc-min-for-nema-17-stepper-motor-mg17-g10)
+[NEMA 17 5:1](https://www.omc-stepperonline.com/mg-series-planetary-gearbox-gear-ratio-5-1-backlash-30-arc-min-for-nema-17-stepper-motor-mg17-g5)
+
 
 ### Motor Controller Details
 [moteus r4.11](https://mjbots.com/products/moteus-r4-11)
