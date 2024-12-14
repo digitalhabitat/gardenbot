@@ -3,7 +3,6 @@
   "obsidian-dynamic-toc",
   "txt-as-md-obsidian",
   "dataview",
-  "obsidian-git",
   "obsidian-diagrams-net",
   "highlightr-plugin",
   "obsidian-emoji-toolbar",
@@ -11,5 +10,6 @@
   "obsidian-importer",
   "dataview-serializer",
   "templater-obsidian",
-  "embed-code-file"
+  "embed-code-file",
+  "obsidian-git"
 ]

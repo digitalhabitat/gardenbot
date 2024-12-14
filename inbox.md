@@ -8,7 +8,7 @@
 - development tools
 	- https://www.woodenclocks.co.uk/printertips/
 - https://heywillow.io/
-- test
+- testing 1 2 3
 ## TIL
 - ros2 nodes that are running in containers are visible to other ros2 nodes in containers on separate machines.
 - https://pinout.xyz/
