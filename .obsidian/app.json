@@ -11,5 +11,6 @@
   "showUnsupportedFiles": true,
   "promptDelete": true,
   "newLinkFormat": "shortest",
-  "useTab": false
+  "useTab": false,
+  "propertiesInDocument": "source"
 }

@@ -1,4 +1,7 @@
 # note-system
+#todos
+- Document Obsidian plugins used
+- 
 
 This project uses the following tools for note taking, diagrams, and publishing.
 - [obsidian.md](https://obsidian.md/) - Markdown based note taking application (Amazing community developed plugins)
@@ -13,6 +16,7 @@ This project uses the following tools for note taking, diagrams, and publishing.
 > - [Outline](https://www.getoutline.com/)
 > - [Bookstack](https://www.bookstackapp.com/)
 > - [Docusaurus](https://docusaurus.io/)
+> - [Front Porch](https://front-porch.digitalgardeningcollective.com/)
 > - [Further Discussion](https://news.ycombinator.com/item?id=42162751)
 
 Other tools and general knowledge reasources
@@ -26,3 +30,6 @@ Other tools and general knowledge reasources
 - https://public.resource.org/ - Public Standards and Code
 - https://usefind.ai/
 - https://videohubapp.com/en/
+- https://socialsharepreview.com/
+- https://ogp.me/
+- https://slightlynerd.com/journal/1546690621660/rich-link-previews-using-the-open-graph-protocol
